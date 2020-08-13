@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "API Transporteur vers Woop",
-    "description": "Contrat d'interface des APIs des transporteurs vers Last Mile.",
+    "title": "Transporteur vers Woop",
+    "description": "Contrat d'interface des APIs des transporteurs vers Woop.",
     "version": "1.3.0"
   },
   "servers": [
@@ -40,7 +40,7 @@
         "tags": [
           "Delivery"
         ],
-        "description": "Evolution de status de livraison.",
+        "description": "Mise à jour de status de livraison.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -51,7 +51,13 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/putDeliveryStatus"
+          "content": {
+            "application/json": {
+              "schema": {
+               "$ref": "#/components/requestBodies/putDeliveryStatus"
+              }
+            }
+          }       
         },
         "responses": {
           "204": {
@@ -74,7 +80,8 @@
           {
             "client_credentials": []
           }
-        ]
+        ],
+        "summary": "Mise à jour de statut d'une livraison"
       }
     },
     "/deliveries/{deliveryId}/deltaCosts": {
@@ -116,7 +123,8 @@
           {
             "client_credentials": []
           }
-        ]
+        ],
+        "summary": "Ajout de frais supplémentaire ou de remise sur la commande."
       }
     },
     "/deliveries/{deliveryId}/closure": {
@@ -158,7 +166,8 @@
           {
             "client_credentials": []
           }
-        ]
+        ],
+        "summary": ""
       }
     },
     "/deliveries/{deliveryId}/events": {
@@ -382,6 +391,7 @@
           "mm",
           "cm",
           "m",
+          "km",
           "in",
           "ft-us",
           "ft",
@@ -545,7 +555,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "example": "1.1.0"
+          "example": "1.3.0"
         }
       },
       "webhookAuth": {
@@ -562,7 +572,8 @@
         "name": "deliveryId",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "description": "Id de livraison"
         }
       }
     },
