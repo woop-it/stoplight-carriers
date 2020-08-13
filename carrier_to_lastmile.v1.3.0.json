@@ -37,10 +37,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "tags": [
-          "Delivery"
-        ],
-        "description": "Mise à jour de status de livraison.",
+        "description": "Mise à jour de statut de livraison.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -51,13 +48,39 @@
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-               "$ref": "#/components/requestBodies/putDeliveryStatus"
+          "required": true,
+          "description": "Contient les informations du nouveau status de delivery.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "status",
+                "date",
+                "comment"
+              ],
+              "properties": {
+                "status": {
+                  "$ref": "#/components/schemas/deliveryStatus"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "datetime"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "team": {
+                  "$ref": "#/components/schemas/team"
+                }
+              }
+            },
+            "examples": {
+              "Livraison livrée conforme": {
+                "$ref": "#/components/examples/putDeliveryStatus"
               }
             }
-          }       
+          }
+        }
         },
         "responses": {
           "204": {
@@ -81,7 +104,10 @@
             "client_credentials": []
           }
         ],
-        "summary": "Mise à jour de statut d'une livraison"
+        "summary": "Mise à jour de statut d'une livraison",
+        "tags": [
+          "Livraison"
+        ]
       }
     },
     "/deliveries/{deliveryId}/deltaCosts": {
@@ -578,41 +604,7 @@
       }
     },
     "requestBodies": {
-      "putDeliveryStatus": {
-        "required": true,
-        "description": "Contient les informations du nouveau status de delivery.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "required": [
-                "status",
-                "date",
-                "comment"
-              ],
-              "properties": {
-                "status": {
-                  "$ref": "#/components/schemas/deliveryStatus"
-                },
-                "date": {
-                  "type": "string",
-                  "format": "datetime"
-                },
-                "comment": {
-                  "type": "string"
-                },
-                "team": {
-                  "$ref": "#/components/schemas/team"
-                }
-              }
-            },
-            "examples": {
-              "Livraison livrée conforme": {
-                "$ref": "#/components/examples/putDeliveryStatus"
-              }
-            }
-          }
-        }
-      },
+  
       "putDeliveryDeltaCosts": {
         "required": true,
         "description": "Contient les informations du delta cost.",
@@ -1251,5 +1243,10 @@
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Livraison"
+    }
+  ]
 }
