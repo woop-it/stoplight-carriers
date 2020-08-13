@@ -37,7 +37,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Mise à jour de statut de livraison.",
+        "description": "Mise à jour de statut.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -106,6 +106,15 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -125,7 +134,7 @@
             "client_credentials": []
           }
         ],
-        "summary": "Mise à jour de statut d'une livraison",
+        "summary": "Mise à jour de statut",
         "tags": [
           "Livraison"
         ]
@@ -136,9 +145,12 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Ajout de frais supplémentaire ou de remise sur la commande.",
+        "description": "Ajout de frais supplémentaire ou de remise.",
         "operationId": "putDeliveryDeltaCosts",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/contentType"
+          },
           {
             "$ref": "#/components/parameters/apiVersion"
           },
@@ -147,14 +159,73 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/putDeliveryDeltaCosts"
+          "required": true,
+          "description": "Contient les informations du delta cost.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "amount",
+                  "reason",
+                  "currency",
+                  "date"
+                ],
+                "properties": {
+                  "amount": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "reason": {
+                    "$ref": "#/components/schemas/deltaCostReason"
+                  },
+                  "currency": {
+                    "$ref": "#/components/schemas/currency"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "datetime"
+                  }
+                }
+              },
+              "examples": {
+                "Annulation tardive": {
+                  "value": {
+                    "amount": 165.98,
+                    "currency": "EUR",
+                    "reason": "DELTACOST_LATE_CANCELLATION",
+                    "comment": "Commande annulée 5min avant livraison.",
+                    "date": "2019-11-27T10:30:00+0000"
+                  }
+                }
+              }
+            }
+          }
         },
         "responses": {
           "204": {
             "description": "Requête traitée avec succès"
           },
           "400": {
-            "$ref": "#/components/schemas/badRequest"
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "reasons": [
+                      "Missing argument 'xxxxx'"
+                    ]
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
@@ -171,7 +242,7 @@
             "client_credentials": []
           }
         ],
-        "summary": "Ajout de frais supplémentaire ou de remise sur la commande."
+        "summary": "Ajout de frais supplémentaire ou de remise"
       }
     },
     "/deliveries/{deliveryId}/closure": {
@@ -179,9 +250,12 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Envoi des informations de facturation.",
+        "description": "Ajout des informations de facturation.",
         "operationId": "postDeliveryClosure",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/contentType"
+          },
           {
             "$ref": "#/components/parameters/apiVersion"
           },
@@ -190,7 +264,41 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/postDeliveryClosure"
+          "required": true,
+          "description": "Contient les informations de facturation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "emittedCarbonDioxide",
+                  "billedDistance",
+                  "vehicleType"
+                ],
+                "properties": {
+                  "emittedCarbonDioxide": {
+                    "$ref": "#/components/schemas/mass"
+                  },
+                  "billedDistance": {
+                    "$ref": "#/components/schemas/length"
+                  },
+                  "vehicleType": {
+                    "$ref": "#/components/schemas/vehicleType"
+                  }
+                }
+              },
+              "example": {
+                "emittedCarbonDioxide": {
+                  "value": 13.5,
+                  "unit": "mg"
+                },
+                "billedDistance": {
+                  "value": 5,
+                  "unit": "km"
+                },
+                "vehicleType": "VEHICLE_TYPE_SCOOTER"
+              }
+            }
+          }
         },
         "responses": {
           "204": {
@@ -214,7 +322,7 @@
             "client_credentials": []
           }
         ],
-        "summary": ""
+        "summary": "Ajout d'informations de facturation"
       }
     },
     "/deliveries/{deliveryId}/events": {
@@ -222,9 +330,12 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Envoi d'un évènement.",
+        "description": "Ajout d'un évènement.",
         "operationId": "postDeliveryEvent",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/contentType"
+          },
           {
             "$ref": "#/components/parameters/apiVersion"
           },
@@ -240,7 +351,14 @@
             "description": "Requête traitée avec succès"
           },
           "400": {
-            "$ref": "#/components/schemas/badRequest"
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
           },
           "401": {
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
@@ -253,7 +371,8 @@
           {
             "client_credentials": []
           }
-        ]
+        ],
+        "summary": "Ajout d'un évènement"
       }
     },
     "/subscriptions": {
@@ -295,7 +414,7 @@
           "Delivery",
           "Document"
         ],
-        "description": "Envoi d'un document",
+        "description": "Ajout d'un document",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -323,7 +442,8 @@
           {
             "client_credentials": []
           }
-        ]
+        ],
+        "summary": "Ajout d'un document"
       }
     },
     "/webhook/updateStatus": {
@@ -586,14 +706,14 @@
           }
         },
         "description": "Elements manquants et/ou incorrect dans le body",
+        "title": "Erreur 400",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "reasons": [
               "Missing argument 'xxxxx'"
             ]
           }
-        },
-        "title": "Erreur 400"
+        }
       }
     },
     "parameters": {
@@ -635,83 +755,6 @@
       }
     },
     "requestBodies": {
-      "putDeliveryDeltaCosts": {
-        "required": true,
-        "description": "Contient les informations du delta cost.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "required": [
-                "amount",
-                "reason",
-                "currency",
-                "date"
-              ],
-              "properties": {
-                "amount": {
-                  "type": "number",
-                  "format": "float"
-                },
-                "reason": {
-                  "$ref": "#/components/schemas/deltaCostReason"
-                },
-                "currency": {
-                  "$ref": "#/components/schemas/currency"
-                },
-                "comment": {
-                  "type": "string"
-                },
-                "date": {
-                  "type": "string",
-                  "format": "datetime"
-                }
-              }
-            },
-            "examples": {
-              "Annulation tardive": {
-                "$ref": "#/components/examples/putDeliveryDeltaCosts"
-              }
-            }
-          }
-        }
-      },
-      "postDeliveryClosure": {
-        "required": true,
-        "description": "Contient les informations de facturation.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "required": [
-                "emittedCarbonDioxide",
-                "billedDistance",
-                "vehicleType"
-              ],
-              "properties": {
-                "emittedCarbonDioxide": {
-                  "$ref": "#/components/schemas/mass"
-                },
-                "billedDistance": {
-                  "$ref": "#/components/schemas/length"
-                },
-                "vehicleType": {
-                  "$ref": "#/components/schemas/vehicleType"
-                }
-              }
-            },
-            "example": {
-              "emittedCarbonDioxide": {
-                "value": 13.5,
-                "unit": "mg"
-              },
-              "billedDistance": {
-                "value": 5,
-                "unit": "km"
-              },
-              "vehicleType": "VEHICLE_TYPE_SCOOTER"
-            }
-          }
-        }
-      },
       "postDeliveryDocument": {
         "required": true,
         "description": "Contient les informations du document envoyé.",
@@ -1126,15 +1169,6 @@
       }
     },
     "examples": {
-      "putDeliveryDeltaCosts": {
-        "value": {
-          "amount": 165.98,
-          "currency": "EUR",
-          "reason": "DELTACOST_LATE_CANCELLATION",
-          "comment": "Commande annulée 5min avant livraison.",
-          "date": "2019-11-27T10:30:00+0000"
-        }
-      },
       "postSubscriptionBasic": {
         "value": {
           "callbacks": {
