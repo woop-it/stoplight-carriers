@@ -109,7 +109,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Example": {
+                  "Exemple": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -218,7 +218,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -287,8 +287,11 @@
                   }
                 }
               },
-              "example": {
-                "emittedCarbonDioxide": {
+
+              "examples" :{
+                "Exemple": {
+                  "value" : {
+"emittedCarbonDioxide": {
                   "value": 13.5,
                   "unit": "mg"
                 },
@@ -297,6 +300,8 @@
                   "unit": "km"
                 },
                 "vehicleType": "VEHICLE_TYPE_SCOOTER"
+                  }
+                }
               }
             }
           }
@@ -314,7 +319,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -449,7 +454,7 @@
               }
             },
             "examples": {
-              "Example": {
+              "Exemple": {
                 "value": {
                   "reasons": [
                     "Missing argument 'xxxxx'"
@@ -835,7 +840,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -863,7 +868,7 @@
     "/deliveries/{deliveryId}/documents": {
       "post": {
         "tags": [
-          "Livraison"
+          "Document"
         ],
         "description": "Ajout d'un document",
         "operationId": "postDeliveryDocument",
@@ -911,10 +916,14 @@
                   }
                 }
               },
-              "example": {
-                "document": "file stream",
+              "examples" :{
+                "Exemple": {
+                  "value": {
+"document": "file stream",
                 "type": "EVIDENCE",
                 "date": "2019-11-27T10:30:00+0000"
+                  }
+                }
               }
             }
           }
@@ -932,7 +941,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -1183,7 +1192,7 @@
         "description": "Elements manquants et/ou incorrect dans le body",
         "title": "Erreur 400",
         "x-examples": {
-          "Example": {
+          "Exemple": {
             "reasons": [
               "Missing argument 'xxxxx'"
             ]
@@ -1220,140 +1229,6 @@
         }
       }
     },
-    "requestBodies": {
-      "postDeliveryEvent": {
-        "required": true,
-        "description": "Contient les informations de la notification envoyée.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "required": [
-                "status",
-                "type",
-                "date",
-                "subject",
-                "message"
-              ],
-              "properties": {
-                "status": {
-                  "type": "boolean",
-                  "description": "'true' si l'évènement est réussi"
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Type de notification",
-                  "enum": [
-                    "EVENT_TYPE_SMS",
-                    "EVENT_TYPE_MAIL",
-                    "EVENT_TYPE_CALL"
-                  ]
-                },
-                "date": {
-                  "type": "string",
-                  "description": "Heure de l'évènement",
-                  "format": "datetime"
-                },
-                "subject": {
-                  "type": "string",
-                  "description": "Sujet de l'évènement",
-                  "enum": [
-                    "DELIVERY_INIT",
-                    "DELIVERY_STARTED",
-                    "DELIVERY_PICK_UP_REACHED",
-                    "DELIVERY_PICK_UP_OK",
-                    "DELIVERY_IN_PROGRESS",
-                    "DELIVERY_AT_DROP_OF_LOCATION",
-                    "DELIVERY_PICK_UP_FAILED",
-                    "DELIVERY_DELIVERED_WITH_CLAIM",
-                    "DELIVERY_CANCELLED_WITH_RETURN",
-                    "DELIVERY_FAILED_WITH_RETURN",
-                    "DELIVERY_RETURNED_TO_PICK_UP",
-                    "DELIVERY_DELIVERED_OK",
-                    "DELIVERY_CANCELLED"
-                  ]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "Message d'information à propos de l'évènement"
-                },
-                "failReason": {
-                  "type": "string",
-                  "description": "Raison de l'échec de l'évènement"
-                }
-              }
-            },
-            "example": {
-              "status": true,
-              "type": "EVENT_TYPE_SMS",
-              "date": "2019-11-27T10:30:00+0000",
-              "subject": "DELIVERY_INIT",
-              "message": "Bonjour, votre commande a bien été confirmée."
-            }
-          }
-        }
-      },
-      "postStuartHook": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "required": [
-                "event",
-                "type",
-                "data"
-              ],
-              "properties": {
-                "event": {
-                  "type": "string",
-                  "example": "delivery",
-                  "enum": [
-                    "delivery"
-                  ]
-                },
-                "type": {
-                  "type": "string",
-                  "example": "create",
-                  "enum": [
-                    "create",
-                    "update"
-                  ]
-                },
-                "data": {
-                  "type": "object",
-                  "required": [
-                    "id",
-                    "status"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 110456,
-                      "description": "ID de la delivery Stuart"
-                    },
-                    "status": {
-                      "type": "string",
-                      "example": "pending",
-                      "description": "Statut de la delivery chez Stuart",
-                      "enum": [
-                        "waiting_at_dropoff",
-                        "cancelled",
-                        "delivered",
-                        "almost_delivering",
-                        "pending",
-                        "delivering",
-                        "waiting_at_pickup",
-                        "picking",
-                        "almost_picking"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "securitySchemes": {
       "oAuth2ClientCredentials": {
         "type": "oauth2",
@@ -1374,6 +1249,9 @@
     },
     {
       "name": "Health"
+    },
+    {
+      "name": "Document"
     },
     {
       "name": "Souscriptions"

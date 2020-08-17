@@ -372,7 +372,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -802,11 +802,15 @@
                     }
                   }
                 },
-                "example": {
-                  "reasons": [
+                "examples": {
+                  "Exemple": {
+                    "value": {
+ "reasons": [
                     "REFUSED_TOO_HEAVY"
                   ],
                   "comment": "Finalement je ne prends pas cette livraison."
+                    }
+                  }
                 }
               }
             }
@@ -829,7 +833,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -916,7 +920,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
@@ -1174,7 +1178,7 @@
                 }
               },
               "examples": {
-                "Example": {
+                "Exemple": {
                   "value": {
                     "reasons": [
                       "Missing argument 'xxxxx'"
