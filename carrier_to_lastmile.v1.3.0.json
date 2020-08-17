@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Mise à jour de statut.",
+        "description": "Mise à jour de statut d'une livraison.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -53,7 +53,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations du nouveau status de delivery.",
+          "description": "Contient les informations du nouveau statut de livraison",
           "content": {
             "application/json": {
               "schema": {
@@ -132,10 +132,10 @@
         },
         "security": [
           {
-            "client_credentials": []
+            "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Mise à jour de statut",
+        "summary": "Mise à jour de statut d'une livraison",
         "tags": [
           "Livraison"
         ]
@@ -146,7 +146,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Ajout de frais supplémentaire ou de remise.",
+        "description": "Ajout de frais supplémentaire ou de remise d'une livraison.",
         "operationId": "putDeliveryDeltaCosts",
         "parameters": [
           {
@@ -240,10 +240,10 @@
         },
         "security": [
           {
-            "client_credentials": []
+            "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout de frais supplémentaire ou de remise"
+        "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
       }
     },
     "/deliveries/{deliveryId}/closure": {
@@ -251,7 +251,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Ajout des informations de facturation.",
+        "description": "Ajout des informations de facturation d'une livraison.",
         "operationId": "postDeliveryClosure",
         "parameters": [
           {
@@ -336,10 +336,10 @@
         },
         "security": [
           {
-            "client_credentials": []
+            "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout d'informations de facturation"
+        "summary": "Ajout d'informations de facturation d'une livraison"
       }
     },
     "/deliveries/{deliveryId}/events": {
@@ -347,7 +347,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Ajout d'un évènement.",
+        "description": "Ajout d'un évènement d'une livraison.",
         "operationId": "postDeliveryEvent",
         "parameters": [
           {
@@ -421,12 +421,18 @@
                   }
                 }
               },
-              "example": {
+              "examples": {
+                "Exemple" : {
+                  "value": 
+{
                 "status": true,
                 "type": "EVENT_TYPE_SMS",
                 "date": "2019-11-27T10:30:00+0000",
                 "subject": "DELIVERY_INIT",
                 "message": "Bonjour, votre commande a bien été confirmée."
+             
+                  }
+                }
               }
             }
           }
@@ -443,7 +449,16 @@
                   "$ref": "#/components/schemas/badRequest"
                 }
               }
-            }
+            },
+             "examples": {
+                "Example": {
+                  "value": {
+                    "reasons": [
+                      "Missing argument 'xxxxx'"
+                    ]
+                  }
+                }
+              }
           },
           "401": {
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
@@ -454,10 +469,10 @@
         },
         "security": [
           {
-            "client_credentials": []
+            "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout d'un évènement"
+        "summary": "Ajout d'un évènement d'une livraison"
       }
     },
     "/subscriptions": {
@@ -470,7 +485,344 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/postSubscription"
+          "required": true,
+          "description": "Contient les informations de souscription",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "callbacks"
+                ],
+                "properties": {
+                  "callbacks": {
+                    "type": "object",
+                    "required": [
+                      "quote",
+                      "delivery",
+                      "cancelDelivery"
+                    ],
+                    "properties": {
+                      "quote": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant d'obtenir des devis"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir woop vers transporteur)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "delivery": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de valider un devis"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir woop vers transporteur)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "cancelDelivery": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant d'annuler un ordre de livraison"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "cancelQuote": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant d'annuler un devis"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "score": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de fournir la note du transporteur d'une commande"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "pickupPoint": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de fournir la liste des points relais"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "price": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de faire une demande de prix"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "label": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de générer et récupérer une étiquette"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de récupérer les statuts par 'package'"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      },
+                      "update": {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Url de la route permettant de mettre à jour un ordre de livraison"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "example": "1.4.0"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "adapter": {
+                    "type": "string",
+                    "description": "Permet d'indiquer le nom du service utilisé dans LMMP pour convertir le format de données de certaines APIs du Transporteur.",
+                    "example": "XMLAdapter"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "key",
+                        "value"
+                      ],
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "auth": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/postSubscriptionBasic"
+                      },
+                      {
+                        "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                      },
+                      {
+                        "$ref": "#/components/schemas/postSubscriptionToken"
+                      }
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Basic": {
+                  "value": {
+                    "callbacks": {
+                      "quote": {
+                        "url": "https://my_url/quote",
+                        "version": "1.4.0"
+                      },
+                      "delivery": {
+                        "url": "https://my_url/delivery",
+                        "version": "1.4.0"
+                      },
+                      "cancelDelivery": {
+                        "url": "https://my_url/cancelDelivery",
+                        "version": "1.4.0"
+                      },
+                      "cancelQuote": {
+                        "url": "https://my_url/cancelQuote",
+                        "version": "1.4.0"
+                      },
+                      "score": {
+                        "url": "https://my_url/score",
+                        "version": "1.4.0"
+                      }
+                    },
+                    "headers": [
+                      {
+                        "key": "x-api-key",
+                        "value": "KHJKO8U9"
+                      }
+                    ],
+                    "auth": {
+                      "basic": {
+                        "username": "admin",
+                        "password": "1234"
+                      }
+                    }
+                  }
+                },
+                "OAuth2": {
+                  "value": {
+                    "callbacks": {
+                      "quote": {
+                        "url": "https://my_url/quote",
+                        "version": "1.4.0"
+                      },
+                      "delivery": {
+                        "url": "https://my_url/delivery",
+                        "version": "1.4.0"
+                      },
+                      "cancelDelivery": {
+                        "url": "https://my_url/cancelDelivery",
+                        "version": "1.4.0"
+                      },
+                      "cancelQuote": {
+                        "url": "https://my_url/cancelQuote",
+                        "version": "1.4.0"
+                      },
+                      "score": {
+                        "url": "https://my_url/score",
+                        "version": "1.4.0"
+                      },
+                      "price": {
+                        "url": "https://my_url/price",
+                        "version": "1.4.0"
+                      }
+                    },
+                    "auth": {
+                      "oauth2": {
+                        "client_id": "8664fb6e578be877cdd16e2c13e1db3e",
+                        "client_secret": "4bb43097953c6d3ffae77b77f4716bba",
+                        "audience": "carrier.last-mile.fr",
+                        "grant_type": "client_credentials",
+                        "tokenEndPoint": "token.last-mile.fr"
+                      }
+                    }
+                  }
+                },
+                "Token": {
+                  "value": {
+                    "callbacks": {
+                      "quote": {
+                        "url": "https://my_url/quote",
+                        "version": "1.4.0"
+                      },
+                      "delivery": {
+                        "url": "https://my_url/delivery",
+                        "version": "1.4.0"
+                      },
+                      "cancelDelivery": {
+                        "url": "https://my_url/cancelDelivery",
+                        "version": "1.4.0"
+                      },
+                      "cancelQuote": {
+                        "url": "https://my_url/cancelQuote",
+                        "version": "1.4.0"
+                      },
+                      "score": {
+                        "url": "https://my_url/score",
+                        "version": "1.4.0"
+                      }
+                    },
+                    "auth": {
+                      "token": {
+                        "username": "admin",
+                        "password": "1234",
+                        "endpoint": "token.last-mile.fr"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         "responses": {
           "204": {
@@ -501,7 +853,7 @@
         },
         "security": [
           {
-            "client_credentials": []
+            "oAuth2ClientCredentials": []
           }
         ],
         "summary": "Ajout de souscriptions",
@@ -601,10 +953,10 @@
         },
         "security": [
           {
-            "client_credentials": []
+            "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout d'un document"
+        "summary": "Ajout d'un document d'une livraison"
       }
     }
   },
@@ -999,357 +1351,6 @@
                   }
                 }
               }
-            }
-          }
-        }
-      },
-      "postSubscription": {
-        "required": true,
-        "description": "Contient les informations de subscription.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "required": [
-                "callbacks"
-              ],
-              "properties": {
-                "callbacks": {
-                  "type": "object",
-                  "required": [
-                    "quote",
-                    "delivery",
-                    "cancelDelivery"
-                  ],
-                  "properties": {
-                    "quote": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant d'obtenir des devis"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "delivery": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de valider un devis"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "cancelDelivery": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant d'annuler un ordre de livraison"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "cancelQuote": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant d'annuler un devis"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "score": {
-                      "type": "object",
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de fournir la note du transporteur d'une commande"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "pickupPoint": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de fournir la liste des points relais"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "price": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de faire une demande de prix"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "label": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de générer et récupérer une étiquette"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "status": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de récupérer les statuts par 'package'"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    },
-                    "update": {
-                      "type": "object",
-                      "required": [
-                        "url"
-                      ],
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "description": "Url de la route permettant de mettre à jour un ordre de livraison"
-                        },
-                        "version": {
-                          "type": "string",
-                          "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                          "example": "1.1.0"
-                        }
-                      }
-                    }
-                  }
-                },
-                "adapter": {
-                  "type": "string",
-                  "description": "Permet d'indiquer le nom du service utilisé dans LMMP pour convertir le format de données de certaines APIs du Transporteur.",
-                  "example": "XMLAdapter"
-                },
-                "headers": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": [
-                      "key",
-                      "value"
-                    ],
-                    "properties": {
-                      "key": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                },
-                "auth": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/postSubscriptionBasic"
-                    },
-                    {
-                      "$ref": "#/components/schemas/postSubscriptionOAuth2"
-                    },
-                    {
-                      "$ref": "#/components/schemas/postSubscriptionToken"
-                    }
-                  ]
-                }
-              }
-            },
-            "examples": {
-              "Basic": {
-                "$ref": "#/components/examples/postSubscriptionBasic"
-              },
-              "OAuth2": {
-                "$ref": "#/components/examples/postSubscriptionOAuth2"
-              },
-              "Token": {
-                "$ref": "#/components/examples/postSubscriptionToken"
-              }
-            }
-          }
-        }
-      }
-    },
-    "examples": {
-      "postSubscriptionBasic": {
-        "value": {
-          "callbacks": {
-            "quote": {
-              "url": "https://my_url/quote",
-              "version": "1.1.0"
-            },
-            "delivery": {
-              "url": "https://my_url/delivery",
-              "version": "1.1.0"
-            },
-            "cancelDelivery": {
-              "url": "https://my_url/cancelDelivery",
-              "version": "1.1.0"
-            },
-            "cancelQuote": {
-              "url": "https://my_url/cancelQuote",
-              "version": "1.1.0"
-            },
-            "score": {
-              "url": "https://my_url/score",
-              "version": "1.1.0"
-            }
-          },
-          "headers": [
-            {
-              "key": "x-api-key",
-              "value": "KHJKO8U9"
-            }
-          ],
-          "auth": {
-            "basic": {
-              "username": "admin",
-              "password": "1234"
-            }
-          }
-        }
-      },
-      "postSubscriptionOAuth2": {
-        "value": {
-          "callbacks": {
-            "quote": {
-              "url": "https://my_url/quote",
-              "version": "1.1.0"
-            },
-            "delivery": {
-              "url": "https://my_url/delivery",
-              "version": "1.1.0"
-            },
-            "cancelDelivery": {
-              "url": "https://my_url/cancelDelivery",
-              "version": "1.1.0"
-            },
-            "cancelQuote": {
-              "url": "https://my_url/cancelQuote",
-              "version": "1.1.0"
-            },
-            "score": {
-              "url": "https://my_url/score",
-              "version": "1.1.0"
-            },
-            "price": {
-              "url": "https://my_url/price",
-              "version": "1.1.0"
-            }
-          },
-          "auth": {
-            "oauth2": {
-              "client_id": "8664fb6e578be877cdd16e2c13e1db3e",
-              "client_secret": "4bb43097953c6d3ffae77b77f4716bba",
-              "audience": "carrier.last-mile.fr",
-              "grant_type": "client_credentials",
-              "tokenEndPoint": "token.last-mile.fr"
-            }
-          }
-        }
-      },
-      "postSubscriptionToken": {
-        "value": {
-          "callbacks": {
-            "quote": {
-              "url": "https://my_url/quote",
-              "version": "1.1.0"
-            },
-            "delivery": {
-              "url": "https://my_url/delivery",
-              "version": "1.1.0"
-            },
-            "cancelDelivery": {
-              "url": "https://my_url/cancelDelivery",
-              "version": "1.1.0"
-            },
-            "cancelQuote": {
-              "url": "https://my_url/cancelQuote",
-              "version": "1.1.0"
-            },
-            "score": {
-              "url": "https://my_url/score",
-              "version": "1.1.0"
-            }
-          },
-          "auth": {
-            "token": {
-              "username": "admin",
-              "password": "1234",
-              "endpoint": "token.last-mile.fr"
             }
           }
         }

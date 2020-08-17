@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Contrat d'interface Woop vers Transporteur",
+    "title": "Woop vers Transporteur",
     "description": "Contrat d'interface des APIs de Woop vers les transporteurs.",
     "version": "1.4.1"
   },
@@ -369,6 +369,15 @@
                         "example": "Missing argument 'xxxxx'"
                       }
                     }
+                  }
+                }
+              },
+               "examples": {
+                "Example": {
+                  "value": {
+                    "reasons": [
+                      "Missing argument 'xxxxx'"
+                    ]
                   }
                 }
               }
@@ -819,6 +828,15 @@
                     }
                   }
                 }
+              },
+               "examples": {
+                "Example": {
+                  "value": {
+                    "reasons": [
+                      "Missing argument 'xxxxx'"
+                    ]
+                  }
+                }
               }
             }
           }
@@ -897,11 +915,49 @@
                     }
                   }
                 }
+              },
+               "examples": {
+                "Example": {
+                  "value": {
+                    "reasons": [
+                      "Missing argument 'xxxxx'"
+                    ]
+                  }
+                }
               }
             }
           },
           "403": {
-            "description": "La commande ne peut être annulée"
+           "description": "La commande ne peut être annulée",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "reasons": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Exemple": {
+                "value" : {
+ "reasons": [
+                "Missing argument 'xxxxx'"
+              ],
+              "comment": "C'est trop tard !"
+                }
+              }
+            }
+          }
+        }
+
           },
           "404": {
             "description": "Le 'deliveryId' n'existe pas"
@@ -1026,6 +1082,38 @@
           },
           "401": {
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "La commande ne peut être modifiée",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "reasons": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Exemple": {
+                "value" : {
+ "reasons": [
+                "Missing argument 'xxxxx'"
+              ],
+              "comment": "C'est trop tard !"
+                }
+              }
+            }
+          }
+        }
+
           }
         },
         "summary": "Mise à jour d'une livraison"
@@ -1085,6 +1173,15 @@
                         "example": "Missing argument 'xxxxx'"
                       }
                     }
+                  }
+                }
+              },
+               "examples": {
+                "Example": {
+                  "value": {
+                    "reasons": [
+                      "Missing argument 'xxxxx'"
+                    ]
                   }
                 }
               }
@@ -1846,6 +1943,7 @@
       "pathQuoteId": {
         "in": "path",
         "required": true,
+        "description": "Id de devis",
         "name": "quoteId",
         "schema": {
           "type": "string"
@@ -1855,6 +1953,7 @@
         "in": "path",
         "required": true,
         "name": "deliveryId",
+        "description": "Id de livraison",
         "schema": {
           "type": "string"
         }
