@@ -462,9 +462,6 @@
     },
     "/subscriptions": {
       "post": {
-        "tags": [
-          "Souscription"
-        ],
         "description": "Endpoint d'initialisation d'échanges avec les APIs transporteur.",
         "operationId": "postSubscription",
         "parameters": [
@@ -507,7 +504,10 @@
             "client_credentials": []
           }
         ],
-        "summary": "Ajout de souscriptions"
+        "summary": "Ajout de souscriptions",
+        "tags": [
+          "Souscriptions"
+        ]
       }
     },
     "/deliveries/{deliveryId}/documents": {
@@ -1377,7 +1377,7 @@
       "name": "Health"
     },
     {
-      "name": "Souscription"
+      "name": "Souscriptions"
     }
   ]
 }

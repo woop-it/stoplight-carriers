@@ -1,0 +1,1879 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Contrat d'interface Woop vers Transporteur",
+    "description": "Contrat d'interface des APIs de Woop vers les transporteurs.",
+    "version": "1.4.1"
+  },
+  "paths": {
+    "/quotes": {
+      "post": {
+        "tags": [
+          "Devis"
+        ],
+        "description": "Demande de devis.",
+        "operationId": "postQuote",
+        "requestBody": {
+          "required": true,
+          "description": "Contient les informations de demande de devis.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postQuote"
+              },
+              "examples": {
+                "Exemple par défaut": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "id": "ret123",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Travaux en ce moment attention.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Exemple avec le prix des produits": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "id": "ret123",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Travaux en ce moment attention.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM",
+                      "SERVICE_ASSEMBLY"
+                    ],
+                    "productsPrice": {
+                      "value": 30,
+                      "currency": "EUR"
+                    }
+                  }
+                },
+                "Exemple avec tags": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "id": "ret123",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Travaux en ce moment attention.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Les devis ont été générés pour la commande, chacun possède un 'quoteId'.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/quote"
+              }
+            },
+            "examples":{
+              "Exemple": {
+                "value" : [
+              {
+                "quoteId": "4zd5z4d5zd",
+                "price": {
+                  "value": 135.56,
+                  "currency": "EUR"
+                },
+                "vehicleType": "VEHICLE_TYPE_BIKE"
+              }
+            ]
+              }
+            }
+          }
+        }
+          },
+          "202": {
+            "description": "La demande a été traitée, mais aucun devis n'a été généré.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "reasons"
+              ],
+              "properties": {
+                "reasons": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/refusedReason"
+                  }
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples" : {
+              "Exemple": {
+                "value": {
+              "reasons": [
+                "REFUSED_TOO_HEAVY"
+              ],
+              "comment": "C'est trop lourd !"
+            }
+              }
+            }
+          
+          }
+        }
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Demande de devis"
+      }
+    },
+    "/quotes/{quoteId}": {
+      "delete": {
+        "tags": [
+          "Devis"
+        ],
+        "description": "Annulation d'un devis.",
+        "operationId": "deleteQuote",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pathQuoteId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "403": {
+            "description": "Le devis ne peut être annulé"
+          },
+          "404": {
+            "description": "Le 'quoteId' n'existe pas"
+          }
+        },
+        "summary": "Annulation d'un devis"
+      }
+    },
+    "/deliveries": {
+      "post": {
+        "operationId": "postDelivery",
+        "description": "Valide un devis et confirme l'ordre de livraison en fournissant les informations supplémentaires de livraison.",
+        "requestBody": {
+          "required": true,
+          "description": "Contient les informations de la demande de livraison.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postDelivery"
+              },
+              "examples": {
+                "Exemple par défaut": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "id": "ret123",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Travaux en ce moment attention.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "reference": "1234A",
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Exemple avec le prix des produits": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "id": "ret123",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Travaux en ce moment attention.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM",
+                      "SERVICE_ASSEMBLY"
+                    ],
+                    "productsPrice": {
+                      "value": 30,
+                      "currency": "EUR"
+                    }
+                  }
+                },
+                "Exemple avec tags": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "id": "ret123",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Travaux en ce moment attention.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "reference": "1234A",
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "La livraison est acceptée, un 'deliveryId' est retourné, additionnellement un tableau d'id de 'packages' peut être retourné en cas de tracking par colis.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/deliveryCreated"
+                    },
+                    {
+                      "$ref": "#/components/schemas/deliveryCreatedPackages"
+                    },
+                    {
+                      "$ref": "#/components/schemas/deliveryCreatedReference"
+                    }
+                  ]
+                },
+                "examples": {
+                  "Exemple par défaut": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd"
+                    }
+                  },
+                  "Exemple avec suivi de colis": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "packages": [
+                        {
+                          "id": "pack123"
+                        }
+                      ]
+                    }
+                  },
+                  "Exemple avec référence de livraison": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "externalReference": "12254-AX"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "205": {
+            "description": "La livraison est finalement refusée, les raisons sont retournées.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/refusedReason"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "reasons": [
+                    "REFUSED_TOO_HEAVY"
+                  ],
+                  "comment": "Finalement je ne prends pas cette livraison."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Livraison"
+        ],
+        "summary": "Demande de livraison"
+      }
+    },
+    "/deliveries/{deliveryId}": {
+      "delete": {
+        "tags": [
+          "Livraison"
+        ],
+        "description": "Annulation d'une livraison.",
+        "operationId": "deleteDelivery",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contient les informations sur le refus de la livraison.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reasons",
+                  "comment"
+                ],
+                "properties": {
+                  "reasons": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/cancelledReason"
+                    }
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Exemple": {
+                  "value": {
+                    "reasons": [
+                      "CANCELLED_CANNOT_SERVICE"
+                    ],
+                    "comment": "En fait non."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "La commande ne peut être annulée"
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'existe pas"
+          }
+        },
+        "summary": "Annulation d'une livraison"
+      },
+      "patch": {
+        "tags": [
+          "Livraison"
+        ],
+        "description": "Mise à jour d'une livraison",
+        "operationId": "patchDelivery",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contient les informations de mise à jour d'une livraison.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "picking": {
+                    "required": [
+                      "address",
+                      "interval",
+                      "contact"
+                    ],
+                    "properties": {
+                      "address": {
+                        "$ref": "#/components/schemas/address"
+                      },
+                      "infos": {
+                        "type": "string"
+                      },
+                      "interval": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/interval"
+                        }
+                      },
+                      "contact": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    }
+                  },
+                  "delivery": {
+                    "required": [
+                      "address",
+                      "interval",
+                      "contact"
+                    ],
+                    "properties": {
+                      "address": {
+                        "$ref": "#/components/schemas/address"
+                      },
+                      "infos": {
+                        "type": "string"
+                      },
+                      "interval": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/interval"
+                        }
+                      },
+                      "contact": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    }
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/package"
+                    }
+                  },
+                  "services": {
+                    "$ref": "#/components/schemas/services"
+                  }
+                }
+              },
+              "examples": {
+                "Exemple": {
+                  "value": {
+                    "picking": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès."
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          }
+        },
+        "summary": "Mise à jour d'une livraison"
+      }
+    },
+    "/deliveries/{deliveryId}/score": {
+      "put": {
+        "tags": [
+          "Livraison"
+        ],
+        "description": "Notification d'une nouvelle note d'une livraison",
+        "operationId": "putDeliveryScore",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contient la note client.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/notation"
+              },
+              "examples": {
+                "Exemple": {
+                  "value": {
+                    "score": [
+                      {
+                        "note": 9,
+                        "type": "SCORE_TYPE_RECOMMENDATION"
+                      }
+                    ],
+                    "comment": "Je recommande à 200% !"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'existe pas"
+          }
+        },
+        "summary": "Ajout d'une note d'une livraison"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "address": {
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country"
+        ],
+        "properties": {
+          "addressLine1": {
+            "type": "string"
+          },
+          "addressLine2": {
+            "type": "string"
+          },
+          "elevator": {
+            "type": "boolean"
+          },
+          "floor": {
+            "type": "integer"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "doorCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string",
+            "enum": [
+              "FR",
+              "BE"
+            ]
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "addressWithoutSensitiveData": {
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country"
+        ],
+        "properties": {
+          "addressLine1": {
+            "type": "string"
+          },
+          "addressLine2": {
+            "type": "string"
+          },
+          "elevator": {
+            "type": "boolean"
+          },
+          "floor": {
+            "type": "integer"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string",
+            "enum": [
+              "FR",
+              "BE"
+            ]
+          },
+          "pickupPointId": {
+            "type": "string"
+          }
+        }
+      },
+      "interval": {
+        "required": [
+          "start",
+          "end"
+        ],
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "end": {
+            "type": "string",
+            "format": "datetime"
+          }
+        }
+      },
+      "contact": {
+        "required": [
+          "firstName",
+          "lastName",
+          "phone",
+          "email"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "tags": {
+        "type": "array",
+        "description": "Permet de définir des \"marqueurs\" sur cette commande",
+        "items": {
+          "type": "object",
+          "required": [
+            "key",
+            "value"
+          ],
+          "properties": {
+            "key": {
+              "type": "string",
+              "example": "origin"
+            },
+            "value": {
+              "type": "string",
+              "example": "web"
+            }
+          }
+        }
+      },
+      "contactWithLocalization": {
+        "required": [
+          "firstName",
+          "lastName",
+          "phone",
+          "email",
+          "language",
+          "timezone"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          }
+        }
+      },
+      "services": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/deliveryService"
+        }
+      },
+      "postPackage": {
+        "required": [
+          "length",
+          "width",
+          "height",
+          "weight",
+          "quantity"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "length": {
+            "$ref": "#/components/schemas/length"
+          },
+          "width": {
+            "$ref": "#/components/schemas/length"
+          },
+          "height": {
+            "$ref": "#/components/schemas/length"
+          },
+          "weight": {
+            "$ref": "#/components/schemas/mass"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/productType"
+                },
+                "ean": {
+                  "type": "string"
+                },
+                "cug": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "default": 1
+                }
+              }
+            }
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "package": {
+        "required": [
+          "length",
+          "width",
+          "height",
+          "weight",
+          "quantity"
+        ],
+        "properties": {
+          "length": {
+            "$ref": "#/components/schemas/length"
+          },
+          "width": {
+            "$ref": "#/components/schemas/length"
+          },
+          "height": {
+            "$ref": "#/components/schemas/length"
+          },
+          "weight": {
+            "$ref": "#/components/schemas/mass"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/productType"
+                },
+                "ean": {
+                  "type": "string"
+                },
+                "cug": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "default": 1
+                }
+              }
+            }
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "quote": {
+        "properties": {
+          "quoteId": {
+            "type": "string"
+          },
+          "price": {
+            "$ref": "#/components/schemas/price"
+          },
+          "vehicleType": {
+            "$ref": "#/components/schemas/vehicleType"
+          }
+        }
+      },
+      "notation": {
+        "required": [
+          "score",
+          "comment"
+        ],
+        "properties": {
+          "score": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/score"
+            }
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "score": {
+        "type": "object",
+        "required": [
+          "note",
+          "type"
+        ],
+        "properties": {
+          "note": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "SCORE_TYPE_RECOMMENDATION",
+              "SCORE_TYPE_SATISFACTION"
+            ]
+          }
+        }
+      },
+      "length": {
+        "required": [
+          "value",
+          "unit"
+        ],
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/lengthUnit"
+          }
+        }
+      },
+      "mass": {
+        "required": [
+          "value",
+          "unit"
+        ],
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/massUnit"
+          }
+        }
+      },
+      "retailer": {
+        "required": [
+          "name",
+          "id",
+          "store"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "store": {
+            "required": [
+              "id",
+              "name",
+              "contact"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "contact": {
+                "$ref": "#/components/schemas/contact"
+              }
+            }
+          }
+        }
+      },
+      "price": {
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/currency"
+          }
+        }
+      },
+      "refusedReason": {
+        "type": "string",
+        "enum": [
+          "REFUSED_TOO_HEAVY",
+          "REFUSED_AVAILABILITY",
+          "REFUSED_AREA",
+          "REFUSED_TOO_LARGE",
+          "REFUSED_TIME_NOT_WORKED",
+          "REFUSED_DAY_OFF",
+          "REFUSED_EXCEPTION"
+        ]
+      },
+      "cancelledReason": {
+        "type": "string",
+        "enum": [
+          "CANCELLED_CANNOT_SERVICE",
+          "CANCELLED_UNKNOWN",
+          "CANCELLED_PREPARATION_DELAYED",
+          "CANCELLED_BY_CLIENT",
+          "CANCELLED_NEW_ADDRESS",
+          "CANCELLED_INCOMPLETE"
+        ]
+      },
+      "deliveryService": {
+        "type": "string",
+        "enum": [
+          "SERVICE_SELECTED_ROOM",
+          "SERVICE_FRONT_HOME",
+          "SERVICE_UNPACKING",
+          "SERVICE_INSTALL",
+          "SERVICE_RECOVERY",
+          "SERVICE_PICKUP_POINT",
+          "SERVICE_REGULAR_FRONT_HOME",
+          "SERVICE_SIMPLE_INSTALL",
+          "SERVICE_COMPLEX_INSTALL",
+          "SERVICE_ASSEMBLY"
+        ]
+      },
+      "vehicleType": {
+        "type": "string",
+        "enum": [
+          "VEHICLE_TYPE_BIKE",
+          "VEHICLE_TYPE_SCOOTER",
+          "VEHICLE_TYPE_E_SCOOTER",
+          "VEHICLE_TYPE_VAN_SMALL",
+          "VEHICLE_TYPE_E_VAN_SMALL",
+          "VEHICLE_TYPE_VAN_MEDIUM",
+          "VEHICLE_TYPE_PEDESTRIAN",
+          "VEHICLE_TYPE_TRUCK",
+          "VEHICLE_TYPE_VAN_BIG",
+          "VEHICLE_TYPE_E_VAN_BIG",
+          "VEHICLE_TYPE_BIKE_CARGO",
+          "VEHICLE_TYPE_CAR",
+          "VEHICLE_TYPE_E_CAR"
+        ]
+      },
+      "productType": {
+        "type": "string",
+        "enum": [
+          "TYPOLOGY_GENERIC",
+          "TYPOLOGY_GROCERY",
+          "TYPOLOGY_FRESH",
+          "TYPOLOGY_FROZEN",
+          "TYPOLOGY_DANGEROUS",
+          "TYPOLOGY_HOUSEHOLD",
+          "TYPOLOGY_VOLUMINOUS",
+          "TYPOLOGY_FRAGILE",
+          "TYPOLOGY_VOLUMINOUS_FRAGILE",
+          "TYPOLOGY_LARGE_HOUSEHOLD",
+          "TYPOLOGY_PALLET_GENERIC",
+          "TYPOLOGY_NON_STANDARD"
+        ]
+      },
+      "currency": {
+        "type": "string",
+        "enum": [
+          "EUR"
+        ]
+      },
+      "lengthUnit": {
+        "type": "string",
+        "enum": [
+          "mm",
+          "cm",
+          "m",
+          "in",
+          "ft-us",
+          "ft",
+          "mi"
+        ]
+      },
+      "massUnit": {
+        "type": "string",
+        "enum": [
+          "mcg",
+          "mg",
+          "g",
+          "kg",
+          "oz",
+          "lb",
+          "mt",
+          "t"
+        ]
+      },
+      "withoutContact": {
+        "required": [
+          "address",
+          "interval"
+        ],
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/addressWithoutSensitiveData"
+          },
+          "infos": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/interval"
+            }
+          }
+        }
+      },
+      "withContact": {
+        "required": [
+          "address",
+          "interval",
+          "contact"
+        ],
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "infos": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/interval"
+            }
+          },
+          "contact": {
+            "$ref": "#/components/schemas/contact"
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/withoutContact"
+          },
+          {
+            "required": [
+              "contact"
+            ],
+            "properties": {
+              "contact": {
+                "$ref": "#/components/schemas/contact"
+              }
+            }
+          }
+        ]
+      },
+      "withContactAndLocalization": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/withoutContact"
+          },
+          {
+            "required": [
+              "contact"
+            ],
+            "properties": {
+              "contact": {
+                "$ref": "#/components/schemas/contactWithLocalization"
+              }
+            }
+          }
+        ]
+      },
+      "postQuote": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/deliveryInformations"
+          },
+          {
+            "required": [
+              "picking",
+              "delivery"
+            ],
+            "properties": {
+              "picking": {
+                "$ref": "#/components/schemas/withoutContact"
+              },
+              "delivery": {
+                "$ref": "#/components/schemas/withoutContact"
+              }
+            }
+          }
+        ]
+      },
+      "postDelivery": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/postDeliveryInformations"
+          },
+          {
+            "required": [
+              "quoteId",
+              "picking",
+              "delivery"
+            ],
+            "properties": {
+              "picking": {
+                "$ref": "#/components/schemas/withContact"
+              },
+              "delivery": {
+                "$ref": "#/components/schemas/withContactAndLocalization"
+              }
+            }
+          }
+        ]
+      },
+      "deliveryInformations": {
+        "required": [
+          "orderId",
+          "referenceNumber",
+          "retailer",
+          "packages",
+          "services"
+        ],
+        "properties": {
+          "orderId": {
+            "type": "string"
+          },
+          "referenceNumber": {
+            "type": "string"
+          },
+          "productsPrice": {
+            "$ref": "#/components/schemas/price"
+          },
+          "retailer": {
+            "$ref": "#/components/schemas/retailer"
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/package"
+            }
+          },
+          "services": {
+            "$ref": "#/components/schemas/services"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/tags"
+          }
+        }
+      },
+      "postDeliveryInformations": {
+        "required": [
+          "orderId",
+          "referenceNumber",
+          "retailer",
+          "packages",
+          "services"
+        ],
+        "properties": {
+          "orderId": {
+            "type": "string"
+          },
+          "referenceNumber": {
+            "type": "string"
+          },
+          "productsPrice": {
+            "$ref": "#/components/schemas/price"
+          },
+          "retailer": {
+            "$ref": "#/components/schemas/retailer"
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/postPackage"
+            }
+          },
+          "services": {
+            "$ref": "#/components/schemas/services"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/tags"
+          }
+        }
+      },
+      "deliveryCreated": {
+        "properties": {
+          "deliveryId": {
+            "type": "string"
+          }
+        }
+      },
+      "deliveryCreatedReference": {
+        "properties": {
+          "deliveryId": {
+            "type": "string"
+          },
+          "externalReference": {
+            "type": "string"
+          }
+        }
+      },
+      "deliveryCreatedPackages": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/deliveryCreated"
+          },
+          {
+            "properties": {
+              "packages": {
+                "type": "array",
+                "items": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "parameters": {
+      "pathQuoteId": {
+        "in": "path",
+        "required": true,
+        "name": "quoteId",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "pathDeliveryId": {
+        "in": "path",
+        "required": true,
+        "name": "deliveryId",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [
+    {
+      "url": "",
+      "description": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "Livraison"
+    },
+    {
+      "name": "Devis"
+    }
+  ]
+}
