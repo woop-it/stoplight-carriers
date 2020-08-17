@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Woop vers Transporteur",
-    "description": "Contrat d'interface des APIs de Woop vers les transporteurs.",
+    "description": "Contrat d'interface des APIs de Woop vers les transporteurs.\nVersion 1.4.1",
     "version": "1.4.1"
   },
   "paths": {
@@ -295,65 +295,64 @@
         "responses": {
           "201": {
             "description": "Les devis ont été générés pour la commande, chacun possède un 'quoteId'.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/quote"
-              }
-            },
-            "examples":{
-              "Exemple": {
-                "value" : [
-              {
-                "quoteId": "4zd5z4d5zd",
-                "price": {
-                  "value": 135.56,
-                  "currency": "EUR"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/quote"
+                  }
                 },
-                "vehicleType": "VEHICLE_TYPE_BIKE"
-              }
-            ]
+                "examples": {
+                  "Exemple": {
+                    "value": [
+                      {
+                        "quoteId": "4zd5z4d5zd",
+                        "price": {
+                          "value": 135.56,
+                          "currency": "EUR"
+                        },
+                        "vehicleType": "VEHICLE_TYPE_BIKE"
+                      }
+                    ]
+                  }
+                }
               }
             }
-          }
-        }
           },
           "202": {
             "description": "La demande a été traitée, mais aucun devis n'a été généré.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "required": [
-                "reasons"
-              ],
-              "properties": {
-                "reasons": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/refusedReason"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "reasons"
+                  ],
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/refusedReason"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
                   }
                 },
-                "comment": {
-                  "type": "string"
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "REFUSED_TOO_HEAVY"
+                      ],
+                      "comment": "C'est trop lourd !"
+                    }
+                  }
                 }
               }
-            },
-            "examples" : {
-              "Exemple": {
-                "value": {
-              "reasons": [
-                "REFUSED_TOO_HEAVY"
-              ],
-              "comment": "C'est trop lourd !"
             }
-              }
-            }
-          
-          }
-        }
           },
           "400": {
             "description": "Elements manquants et/ou incorrect dans le body",
@@ -372,7 +371,7 @@
                   }
                 }
               },
-               "examples": {
+              "examples": {
                 "Example": {
                   "value": {
                     "reasons": [
@@ -829,7 +828,7 @@
                   }
                 }
               },
-               "examples": {
+              "examples": {
                 "Example": {
                   "value": {
                     "reasons": [
@@ -916,7 +915,7 @@
                   }
                 }
               },
-               "examples": {
+              "examples": {
                 "Example": {
                   "value": {
                     "reasons": [
@@ -928,36 +927,35 @@
             }
           },
           "403": {
-           "description": "La commande ne peut être annulée",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "reasons": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
+            "description": "La commande ne peut être annulée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
                   }
                 },
-                "comment": {
-                  "type": "string"
-                }
-              }
-            },
-            "examples": {
-              "Exemple": {
-                "value" : {
- "reasons": [
-                "Missing argument 'xxxxx'"
-              ],
-              "comment": "C'est trop tard !"
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ],
+                      "comment": "C'est trop tard !"
+                    }
+                  }
                 }
               }
             }
-          }
-        }
-
           },
           "404": {
             "description": "Le 'deliveryId' n'existe pas"
@@ -1085,35 +1083,34 @@
           },
           "403": {
             "description": "La commande ne peut être modifiée",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "reasons": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
                   }
                 },
-                "comment": {
-                  "type": "string"
-                }
-              }
-            },
-            "examples": {
-              "Exemple": {
-                "value" : {
- "reasons": [
-                "Missing argument 'xxxxx'"
-              ],
-              "comment": "C'est trop tard !"
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ],
+                      "comment": "C'est trop tard !"
+                    }
+                  }
                 }
               }
             }
-          }
-        }
-
           }
         },
         "summary": "Mise à jour d'une livraison"
@@ -1176,7 +1173,7 @@
                   }
                 }
               },
-               "examples": {
+              "examples": {
                 "Example": {
                   "value": {
                     "reasons": [
