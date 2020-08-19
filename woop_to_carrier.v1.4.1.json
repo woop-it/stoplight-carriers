@@ -11,7 +11,7 @@
         "tags": [
           "Devis"
         ],
-        "description": "Demande de devis.",
+        "description": "Cette méthode permet d'effectuer une demande de devis auprès du transporteur. Si le devis est validé, les informations transmises seront utilisées lors de la création de l'expédition à l'aide du POST /deliveries. ",
         "operationId": "postQuote",
         "requestBody": {
           "required": true,
@@ -42,13 +42,13 @@
                     },
                     "picking": {
                       "address": {
-                        "addressLine1": "237 rue du Ballon",
-                        "addressLine2": "Niji",
-                        "postalCode": "59110",
-                        "city": "La Madeleine",
+                        "addressLine1": "179 Boulevard de Turin",
+                        "addressLine2": "",
+                        "postalCode": "59000",
+                        "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Travaux sur le boulevard.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -59,6 +59,7 @@
                     "delivery": {
                       "address": {
                         "addressLine1": "165 avenue de Bretagne",
+                        "addressLine2": "Euratech - EuraTechnologies",
                         "elevator": true,
                         "floor": 2,
                         "postalCode": "59000",
@@ -75,19 +76,19 @@
                     "packages": [
                       {
                         "length": {
-                          "value": 15,
+                          "value": 121.8,
                           "unit": "cm"
                         },
                         "width": {
-                          "value": 35.5,
+                          "value": 77.5,
                           "unit": "cm"
                         },
                         "height": {
-                          "value": 1.25,
-                          "unit": "m"
+                          "value": 55,
+                          "unit": "cm"
                         },
                         "weight": {
-                          "value": 12.35,
+                          "value": 33.4,
                           "unit": "kg"
                         },
                         "products": [
@@ -95,7 +96,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Armoire",
+                            "label": "Produit label 1",
                             "quantity": 1
                           }
                         ],
@@ -127,13 +128,13 @@
                     },
                     "picking": {
                       "address": {
-                        "addressLine1": "237 rue du Ballon",
-                        "addressLine2": "Niji",
-                        "postalCode": "59110",
-                        "city": "La Madeleine",
+                        "addressLine1": "179 Boulevard de Turin",
+                        "addressLine2": "",
+                        "postalCode": "59000",
+                        "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Travaux sur le boulevard.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -144,6 +145,7 @@
                     "delivery": {
                       "address": {
                         "addressLine1": "165 avenue de Bretagne",
+                        "addressLine2": "Euratech - EuraTechnologies",
                         "elevator": true,
                         "floor": 2,
                         "postalCode": "59000",
@@ -160,19 +162,19 @@
                     "packages": [
                       {
                         "length": {
-                          "value": 15,
+                          "value": 121.8,
                           "unit": "cm"
                         },
                         "width": {
-                          "value": 35.5,
+                          "value": 77.5,
                           "unit": "cm"
                         },
                         "height": {
-                          "value": 1.25,
-                          "unit": "m"
+                          "value": 55,
+                          "unit": "cm"
                         },
                         "weight": {
-                          "value": 12.35,
+                          "value": 33.4,
                           "unit": "kg"
                         },
                         "products": [
@@ -180,7 +182,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Armoire",
+                            "label": "Produit label 1",
                             "quantity": 1
                           }
                         ],
@@ -217,13 +219,13 @@
                     },
                     "picking": {
                       "address": {
-                        "addressLine1": "237 rue du Ballon",
-                        "addressLine2": "Niji",
-                        "postalCode": "59110",
-                        "city": "La Madeleine",
+                        "addressLine1": "179 Boulevard de Turin",
+                        "addressLine2": "",
+                        "postalCode": "59000",
+                        "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Travaux sur le boulevard.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -234,6 +236,7 @@
                     "delivery": {
                       "address": {
                         "addressLine1": "165 avenue de Bretagne",
+                        "addressLine2": "Euratech - EuraTechnologies",
                         "elevator": true,
                         "floor": 2,
                         "postalCode": "59000",
@@ -250,19 +253,19 @@
                     "packages": [
                       {
                         "length": {
-                          "value": 15,
+                          "value": 121.8,
                           "unit": "cm"
                         },
                         "width": {
-                          "value": 35.5,
+                          "value": 77.5,
                           "unit": "cm"
                         },
                         "height": {
-                          "value": 1.25,
-                          "unit": "m"
+                          "value": 55,
+                          "unit": "cm"
                         },
                         "weight": {
-                          "value": 12.35,
+                          "value": 33.4,
                           "unit": "kg"
                         },
                         "products": [
@@ -270,7 +273,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Armoire",
+                            "label": "Produit label 1",
                             "quantity": 1
                           }
                         ],
@@ -289,12 +292,18 @@
                   }
                 }
               }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Les devis ont été générés pour la commande, chacun possède un 'quoteId'.",
+            "description": "Code succès, les devis ont été générés pour la commande. Tous les transporteurs solicités possèdent un identifiant de devis pour accepter la livraison.",
             "content": {
               "application/json": {
                 "schema": {
@@ -391,7 +400,7 @@
         "tags": [
           "Devis"
         ],
-        "description": "Annulation d'un devis.",
+        "description": "Cette méthode permet d'annuler une demande de devis auprès de tous les transporteur. Si le devis est déjà validé par un transporteur, la demande d'annulation sera rejetée. ",
         "operationId": "deleteQuote",
         "parameters": [
           {
@@ -400,7 +409,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Code succès, le devis a été annulé. "
           },
           "403": {
             "description": "Le devis ne peut être annulé"
@@ -410,7 +419,18 @@
           }
         },
         "summary": "Annulation d'un devis"
-      }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "quoteId",
+          "in": "path",
+          "required": true,
+          "description": "Numéro de devis"
+        }
+      ]
     },
     "/deliveries": {
       "post": {
@@ -805,10 +825,10 @@
                 "examples": {
                   "Exemple": {
                     "value": {
- "reasons": [
-                    "REFUSED_TOO_HEAVY"
-                  ],
-                  "comment": "Finalement je ne prends pas cette livraison."
+                      "reasons": [
+                        "REFUSED_TOO_HEAVY"
+                      ],
+                      "comment": "Finalement je ne prends pas cette livraison."
                     }
                   }
                 }
@@ -1239,6 +1259,20 @@
           },
           "comment": {
             "type": "string"
+          }
+        },
+        "x-examples": {
+          "example-1": {
+            "addressLine1": "string",
+            "addressLine2": "string",
+            "elevator": true,
+            "floor": 0,
+            "postalCode": "string",
+            "doorCode": "string",
+            "city": "string",
+            "district": "string",
+            "country": "FR",
+            "comment": "string"
           }
         }
       },
