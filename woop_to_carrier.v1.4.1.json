@@ -378,9 +378,8 @@
                       }
                     }
                   }
-                }
-              },
-              "examples": {
+                },
+                "examples": {
                 "Exemple": {
                   "value": {
                     "reasons": [
@@ -388,6 +387,7 @@
                     ]
                   }
                 }
+              }
               }
             }
           }
@@ -856,9 +856,8 @@
                       }
                     }
                   }
-                }
-              },
-              "examples": {
+                },
+                "examples": {
                 "Exemple": {
                   "value": {
                     "reasons": [
@@ -866,6 +865,7 @@
                     ]
                   }
                 }
+              }
               }
             }
           }
@@ -943,9 +943,8 @@
                       }
                     }
                   }
-                }
-              },
-              "examples": {
+                },
+                "examples": {
                 "Exemple": {
                   "value": {
                     "reasons": [
@@ -953,6 +952,7 @@
                     ]
                   }
                 }
+              }
               }
             }
           },
@@ -1201,9 +1201,8 @@
                       }
                     }
                   }
-                }
-              },
-              "examples": {
+                },
+                "examples": {
                 "Exemple": {
                   "value": {
                     "reasons": [
@@ -1211,6 +1210,7 @@
                     ]
                   }
                 }
+              }
               }
             }
           },
