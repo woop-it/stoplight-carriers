@@ -380,14 +380,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           }
@@ -441,10 +441,10 @@
     "/deliveries": {
       "post": {
         "operationId": "postDelivery",
-        "description": "Valide un devis et confirme l'ordre de livraison en fournissant les informations supplémentaires de livraison.",
+        "description": "Cette méthode permet de valider un devis et de confirmer l'ordre de livraison. Elle fournit en réponse, les informations supplémentaires utiles à la livraison.",
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de la demande de livraison.",
+          "description": "Contient les informations requis pour la création d'une demande de livraison.",
           "content": {
             "application/json": {
               "schema": {
@@ -858,14 +858,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           }
@@ -945,14 +945,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -1203,14 +1203,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -1613,34 +1613,40 @@
         }
       },
       "length": {
-        "required": [
-          "value",
-          "unit"
-        ],
+        "description": "Correspond à la longueur du colis",
+        "type": "object",
         "properties": {
           "value": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "Valeur indicative du poids du colis"
           },
           "unit": {
             "$ref": "#/components/schemas/lengthUnit"
           }
-        }
-      },
-      "mass": {
+        },
         "required": [
           "value",
           "unit"
-        ],
+        ]
+      },
+      "mass": {
+        "description": "Indique le poids max autorisé pour un colis dans ce point-relais",
+        "type": "object",
         "properties": {
           "value": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "Valeur indicative du poids"
           },
           "unit": {
             "$ref": "#/components/schemas/massUnit"
           }
-        }
+        },
+        "required": [
+          "value",
+          "unit"
+        ]
       },
       "retailer": {
         "required": [
@@ -1782,7 +1788,9 @@
           "ft-us",
           "ft",
           "mi"
-        ]
+        ],
+        "description": "Liste des unités de mesure utilisée",
+        "default": "cm"
       },
       "massUnit": {
         "type": "string",
@@ -1795,7 +1803,9 @@
           "lb",
           "mt",
           "t"
-        ]
+        ],
+        "description": "Liste des unités de poids possible ",
+        "default": "kg"
       },
       "withoutContact": {
         "required": [
