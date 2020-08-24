@@ -19,6 +19,6 @@ Toutes les dates utilisées dans l'API sont au format **ISO 8601**.
 
 ## Numéro de téléphone
 
-Tous les numéros de téléphone doivent être dans un format international : `Indicatif pays + numéro`
+Tous les numéros de téléphone sont au format international : `Indicatif pays + numéro`
 
-*Exemple: `+33610101010` ou `0033610101010`*
+*Exemple: `+33610101010`*
