@@ -2,8 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Woop vers Transporteur",
-    "description": "Contrat d'interface des APIs de Woop vers les transporteurs.\nVersion 1.4.1",
-    "version": "1.4.1"
+    "description": "Contrat d'interface des APIs de Woop vers les transporteurs.\n\n **Version 1.4.0**",
+    "version": "1.4.0"
   },
   "paths": {
     "/quotes": {
@@ -1240,6 +1240,8 @@
           }
         },
         "type": "object",
+        "description": "Informations d'une adresse",
+        "title": "Adresse (address)",
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -1263,7 +1265,7 @@
           },
           "doorCode": {
             "type": "string",
-            "description": "Numéro de porte "
+            "description": "Digicode"
           },
           "city": {
             "type": "string",
@@ -1291,13 +1293,12 @@
           "postalCode",
           "city",
           "country"
-        ],
-        "description": "Informations requises pour l'ajout d'une adresse"
+        ]
       },
       "addressWithoutSensitiveData": {
-        "title": "",
+        "title": "Adresse sans digicode (addressWithoutSensitiveData)",
         "type": "object",
-        "description": "Informations requises pour l'ajout d'une adresse sans digicode",
+        "description": "Informations d'une adresse sans digicode",
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -1337,7 +1338,7 @@
           },
           "pickupPointId": {
             "type": "string",
-            "description": "Commentaire libre d’utilisation"
+            "description": "Identifiant du point relais. Présent si le service de livraison est \"SERVICE_PICKUP_POINT\""
           }
         },
         "required": [
@@ -1389,7 +1390,8 @@
           "lastName",
           "phone",
           "email"
-        ]
+        ],
+        "title": "Contact (contact)"
       },
       "tags": {
         "type": "array",
@@ -1448,7 +1450,8 @@
           "email",
           "language",
           "timezone"
-        ]
+        ],
+        "title": "Contact (contactWithLocalization)"
       },
       "services": {
         "type": "array",
@@ -1456,14 +1459,10 @@
           "$ref": "#/components/schemas/deliveryService"
         }
       },
-      "postPackage": {
-        "required": [
-          "length",
-          "width",
-          "height",
-          "weight",
-          "quantity"
-        ],
+      "package": {
+        "type": "object",
+        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis",
+        "title": "",
         "properties": {
           "reference": {
             "type": "string"
@@ -1482,86 +1481,48 @@
           },
           "products": {
             "type": "array",
+            "description": "Liste des produits dans le colis",
             "items": {
-              "required": [
-                "type"
-              ],
+              "type": "object",
               "properties": {
                 "type": {
                   "$ref": "#/components/schemas/productType"
                 },
                 "ean": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Ean du produit"
                 },
                 "cug": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Cug du produit"
                 },
                 "label": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Libellé du produit"
                 },
                 "quantity": {
                   "type": "integer",
-                  "default": 1
+                  "default": 1,
+                  "description": "Quantité de produit dans le colis"
                 }
-              }
+              },
+              "required": [
+                "type"
+              ]
             }
           },
           "quantity": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Quantité de colis"
           }
-        }
-      },
-      "package": {
+        },
         "required": [
           "length",
           "width",
           "height",
           "weight",
           "quantity"
-        ],
-        "properties": {
-          "length": {
-            "$ref": "#/components/schemas/length"
-          },
-          "width": {
-            "$ref": "#/components/schemas/length"
-          },
-          "height": {
-            "$ref": "#/components/schemas/length"
-          },
-          "weight": {
-            "$ref": "#/components/schemas/mass"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "required": [
-                "type"
-              ],
-              "properties": {
-                "type": {
-                  "$ref": "#/components/schemas/productType"
-                },
-                "ean": {
-                  "type": "string"
-                },
-                "cug": {
-                  "type": "string"
-                },
-                "label": {
-                  "type": "string"
-                },
-                "quantity": {
-                  "type": "integer",
-                  "default": 1
-                }
-              }
-            }
-          },
-          "quantity": {
-            "type": "integer"
-          }
-        }
+        ]
       },
       "quote": {
         "properties": {
@@ -1649,40 +1610,49 @@
         ]
       },
       "retailer": {
-        "required": [
-          "name",
-          "id",
-          "store"
-        ],
+        "title": "Enseigne (retailer)",
+        "description": "Enseigne",
+        "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Nom de l'enseigne"
           },
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant de l'enseigne"
           },
           "store": {
+            "type": "object",
             "required": [
               "id",
               "name",
               "contact"
             ],
+            "description": "Magasin de l'enseigne",
             "properties": {
               "id": {
-                "type": "string"
+                "type": "string",
+                "description": "Identifiant du magasin"
               },
               "name": {
-                "type": "string"
+                "type": "string",
+                "description": "Nom du magasin"
               },
               "contact": {
                 "$ref": "#/components/schemas/contact"
               }
             }
           }
-        }
+        },
+        "required": [
+          "name",
+          "id",
+          "store"
+        ]
       },
       "price": {
-        "description": "Correspond au prix de vente du produit. A renseigner si la livraison est effectuée avec le service “SERVICE_INSTALL”",
+        "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”",
         "type": "object",
         "properties": {
           "value": {
@@ -1719,7 +1689,8 @@
           "CANCELLED_NEW_ADDRESS",
           "CANCELLED_INCOMPLETE"
         ],
-        "description": "Liste regroupant l’ensemble des raisons d’annulation possible pour une livraison"
+        "description": "Liste regroupant l’ensemble des raisons d’annulation possible pour une livraison",
+        "title": "Raison d'annulation d'une livraison (cancelledReason)"
       },
       "deliveryService": {
         "type": "string",
@@ -1776,7 +1747,8 @@
         "enum": [
           "EUR"
         ],
-        "description": "Liste de la monnaie utilisable"
+        "description": "Devise utilisable",
+        "title": "Devise (currency)"
       },
       "lengthUnit": {
         "type": "string",
@@ -1925,7 +1897,9 @@
               }
             }
           }
-        ]
+        ],
+        "title": "Demande livraison (postDelivery)",
+        "description": "Demande de livraison"
       },
       "deliveryInformations": {
         "description": "",
@@ -1968,19 +1942,17 @@
         ]
       },
       "postDeliveryInformations": {
-        "required": [
-          "orderId",
-          "referenceNumber",
-          "retailer",
-          "packages",
-          "services"
-        ],
+        "title": "Informations de demande de livraison (postDeliveryInformations)",
+        "description": "Informations de demande de livraison",
+        "type": "object",
         "properties": {
           "orderId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant unique de la commande à renseigner par l'enseigne"
           },
           "referenceNumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId"
           },
           "productsPrice": {
             "$ref": "#/components/schemas/price"
@@ -1990,8 +1962,9 @@
           },
           "packages": {
             "type": "array",
+            "description": "List des colis",
             "items": {
-              "$ref": "#/components/schemas/postPackage"
+              "$ref": "#/components/schemas/package"
             }
           },
           "services": {
@@ -2000,7 +1973,14 @@
           "tags": {
             "$ref": "#/components/schemas/tags"
           }
-        }
+        },
+        "required": [
+          "orderId",
+          "referenceNumber",
+          "retailer",
+          "packages",
+          "services"
+        ]
       },
       "deliveryCreated": {
         "type": "object",
