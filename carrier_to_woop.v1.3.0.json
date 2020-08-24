@@ -889,7 +889,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Cette méthode permet d'ajouter un document d'une livraison.\n\nTrois types de document sont disponibles :\n- EVIDENCE : Preuve de livraison.\n- INVOICE : Facture de livraison.\n- CONTRACT: Contrat entre le transporteur et l'enseigne.",
+        "description": "Cette méthode permet d'ajouter un document d'une livraison.\n\nTrois types de document sont possible :\n- EVIDENCE : Preuve de livraison.\n- INVOICE : Facture de livraison.\n- CONTRACT: Contrat entre le transporteur et l'enseigne.",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -1136,6 +1136,16 @@
               }
             }
           }
+        },
+        "title": "Authentification Basic (postSubscriptionBasic)",
+        "description": "Authentification souscription Basic",
+        "x-examples": {
+          "Exemple": {
+            "basic": {
+              "username": "username",
+              "password": "password"
+            }
+          }
         }
       },
       "postSubscriptionOAuth2": {
@@ -1167,6 +1177,19 @@
               }
             }
           }
+        },
+        "title": "Authentification oauth2 (postSubscriptionOauth2)",
+        "description": "Authentification souscription oauth2 ",
+        "x-examples": {
+          "Exemple": {
+            "oauth2": {
+              "client_id": "XXXX",
+              "client_secret": "XXXX",
+              "audience": "XXXX",
+              "grant_type": "client_credentials",
+              "tokenEndPoint": "https://my-token-url.com"
+            }
+          }
         }
       },
       "postSubscriptionToken": {
@@ -1190,6 +1213,17 @@
                 "type": "string",
                 "description": "Url permettant de recupérer le token d'accès"
               }
+            }
+          }
+        },
+        "title": "Authentification token (postSubscriptionOauth2)",
+        "description": "Authentification souscription token",
+        "x-examples": {
+          "Exemple": {
+            "token": {
+              "username": "username",
+              "password": "password",
+              "endpoint": "https://my-token-url.com"
             }
           }
         }
