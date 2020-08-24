@@ -1073,8 +1073,8 @@
             "$ref": "#/components/schemas/massUnits"
           }
         },
-        "title": "Masse (mass)",
-        "description": "Masse",
+        "title": "Poids (mass)",
+        "description": "Poids",
         "x-examples": {
           "Exemple": {
             "value": 1,
@@ -1112,8 +1112,8 @@
           "mt",
           "t"
         ],
-        "title": "Unité de masse (massUnits)",
-        "description": "Unité de masse",
+        "title": "Unité de poids (massUnits)",
+        "description": "Unité de poids",
         "x-examples": {
           "Exemple": "mcg"
         }

@@ -308,6 +308,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
+                  "description": "Liste des devis",
                   "items": {
                     "$ref": "#/components/schemas/quote"
                   }
@@ -811,7 +812,7 @@
             }
           },
           "205": {
-            "description": "La livraison est finalement refusée, les raisons sont retournées.",
+            "description": "La livraison est finalement refusée, les motifs sont retournées.",
             "content": {
               "application/json": {
                 "schema": {
@@ -881,7 +882,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Annulation d'une livraison.",
+        "description": "Cette méthode permet d'annuler une livraison",
         "operationId": "deleteDelivery",
         "parameters": [
           {
@@ -890,26 +891,29 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations sur le refus de la livraison.",
+          "description": "Contient les informations sur les motifs de l'annulation de la livraison.",
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "reasons",
-                  "comment"
-                ],
+                "description": "Informations d'annulation",
                 "properties": {
                   "reasons": {
                     "type": "array",
+                    "description": "Liste des motifs d'annulation",
                     "items": {
                       "$ref": "#/components/schemas/cancelledReason"
                     }
                   },
                   "comment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Commentaire libre"
                   }
-                }
+                },
+                "required": [
+                  "reasons",
+                  "comment"
+                ]
               },
               "examples": {
                 "Exemple": {
@@ -926,7 +930,7 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Livraison annulée avec succès"
           },
           "400": {
             "description": "Elements manquants et/ou incorrect dans le body",
@@ -962,15 +966,18 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "description": "Informations du refus d'annulation",
                   "properties": {
                     "reasons": {
                       "type": "array",
+                      "description": "Liste des motifs du refus d'annulation",
                       "items": {
                         "type": "string"
                       }
                     },
                     "comment": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Commentaire libre"
                     }
                   }
                 },
@@ -997,7 +1004,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Mise à jour d'une livraison",
+        "description": "Cette méthode permet de mettre à jour une livraison",
         "operationId": "patchDelivery",
         "parameters": [
           {
@@ -1011,22 +1018,22 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "description": "Mise à jour de livraison",
                 "properties": {
                   "picking": {
-                    "required": [
-                      "address",
-                      "interval",
-                      "contact"
-                    ],
+                    "type": "object",
+                    "description": "Informations sur l'adresse de prélèvement",
                     "properties": {
                       "address": {
                         "$ref": "#/components/schemas/address"
                       },
                       "infos": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Informations libre à propos de l'adresse"
                       },
                       "interval": {
                         "type": "array",
+                        "description": "Créneaux de prélèvement",
                         "items": {
                           "$ref": "#/components/schemas/interval"
                         }
@@ -1034,23 +1041,27 @@
                       "contact": {
                         "$ref": "#/components/schemas/contact"
                       }
-                    }
+                    },
+                    "required": [
+                      "address",
+                      "interval",
+                      "contact"
+                    ]
                   },
                   "delivery": {
-                    "required": [
-                      "address",
-                      "interval",
-                      "contact"
-                    ],
+                    "type": "object",
+                    "description": "Informations sur l'adresse de livraison",
                     "properties": {
                       "address": {
                         "$ref": "#/components/schemas/address"
                       },
                       "infos": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Informations libre à propos de l'adresse de livraison"
                       },
                       "interval": {
                         "type": "array",
+                        "description": "Créneaux de livraison",
                         "items": {
                           "$ref": "#/components/schemas/interval"
                         }
@@ -1058,10 +1069,16 @@
                       "contact": {
                         "$ref": "#/components/schemas/contact"
                       }
-                    }
+                    },
+                    "required": [
+                      "address",
+                      "interval",
+                      "contact"
+                    ]
                   },
                   "packages": {
                     "type": "array",
+                    "description": "Ensemble des colis",
                     "items": {
                       "$ref": "#/components/schemas/package"
                     }
@@ -1106,7 +1123,7 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès."
+            "description": "Livraison mis à jour avec succès"
           },
           "401": {
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
@@ -1151,7 +1168,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Notification d'une nouvelle note d'une livraison",
+        "description": "Cette méthode permet de recevoir la notification d'une nouvelle note d'une livraison",
         "operationId": "putDeliveryScore",
         "parameters": [
           {
@@ -1184,7 +1201,7 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Note enregistrée avec succès"
           },
           "400": {
             "description": "Elements manquants et/ou incorrect dans le body",
@@ -1226,17 +1243,14 @@
     "schemas": {
       "address": {
         "x-examples": {
-          "example-1": {
-            "addressLine1": "string",
-            "addressLine2": "string",
+          "Exemple": {
+            "addressLine1": "179 boulevard de Turien",
+            "addressLine2": "Woop",
             "elevator": true,
-            "floor": 0,
-            "postalCode": "string",
-            "doorCode": "string",
-            "city": "string",
-            "district": "string",
-            "country": "FR",
-            "comment": "string"
+            "floor": 8,
+            "postalCode": "59000",
+            "city": "Lille",
+            "country": "FR"
           }
         },
         "type": "object",
@@ -1346,21 +1360,43 @@
           "postalCode",
           "city",
           "country"
-        ]
+        ],
+        "x-examples": {
+          "Exemple": {
+            "addressLine1": "179 boulevard de Turien",
+            "addressLine2": "Woop",
+            "elevator": true,
+            "floor": 8,
+            "postalCode": "59000",
+            "city": "Lille",
+            "country": "FR"
+          }
+        }
       },
       "interval": {
+        "title": "Créneaux de dates (interval)",
+        "description": "Créneaux de dates",
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Début du créneau"
+          },
+          "end": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Fin du créneau"
+          }
+        },
         "required": [
           "start",
           "end"
         ],
-        "properties": {
-          "start": {
-            "type": "string",
-            "format": "datetime"
-          },
-          "end": {
-            "type": "string",
-            "format": "datetime"
+        "x-examples": {
+          "Exemple": {
+            "start": "2019-05-02T15:52:01+0000",
+            "end": "2019-05-02T17:52:01+0000"
           }
         }
       },
@@ -1412,7 +1448,8 @@
               "example": "web"
             }
           }
-        }
+        },
+        "title": "Tags (tags)"
       },
       "contactWithLocalization": {
         "description": "Informations personnelles sur le contact de livraison et/ou de prélèvement",
@@ -1457,15 +1494,25 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/deliveryService"
+        },
+        "title": "Services de livraison (services)",
+        "description": "Services de livraison",
+        "x-examples": {
+          "Exemple": [
+            "SERVICE_SELECTED_ROOM"
+          ]
         }
       },
       "package": {
         "type": "object",
         "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis",
-        "title": "",
+        "title": "Colis (package)",
         "properties": {
           "reference": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "length": {
             "$ref": "#/components/schemas/length"
@@ -1525,9 +1572,13 @@
         ]
       },
       "quote": {
+        "title": "Devis (quote)",
+        "description": "Informations sur le devis",
+        "type": "object",
         "properties": {
           "quoteId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant du devis"
           },
           "price": {
             "$ref": "#/components/schemas/price"
@@ -1538,13 +1589,24 @@
         }
       },
       "notation": {
-        "required": [
-          "score",
-          "comment"
-        ],
+        "title": "Note client (notation)",
+        "description": "Note client",
+        "x-examples": {
+          "Exemple": {
+            "score": [
+              {
+                "note": 8,
+                "type": "SCORE_TYPE_RECOMMENDATION"
+              }
+            ],
+            "comment": "Top!"
+          }
+        },
+        "type": "object",
         "properties": {
           "score": {
             "type": "array",
+            "description": "Liste des scores",
             "items": {
               "$ref": "#/components/schemas/score"
             }
@@ -1552,35 +1614,54 @@
           "comment": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "score",
+          "comment"
+        ]
       },
       "score": {
         "type": "object",
-        "required": [
-          "note",
-          "type"
-        ],
+        "title": "Score (score)",
+        "description": "score",
+        "x-examples": {
+          "Score de recommendation": {
+            "note": 6,
+            "type": "SCORE_TYPE_RECOMMENDATION"
+          },
+          "Score de satisfaction": {
+            "note": 9,
+            "type": "SCORE_TYPE_SATISFACTION"
+          }
+        },
         "properties": {
           "note": {
-            "type": "number"
+            "type": "number",
+            "description": "Note sur 10"
           },
           "type": {
             "type": "string",
             "enum": [
               "SCORE_TYPE_RECOMMENDATION",
               "SCORE_TYPE_SATISFACTION"
-            ]
+            ],
+            "description": "Type de score"
           }
-        }
+        },
+        "required": [
+          "note",
+          "type"
+        ]
       },
       "length": {
-        "description": "Correspond à la longueur du colis",
+        "description": "Dimension",
         "type": "object",
+        "title": "Dimension (length)",
         "properties": {
           "value": {
             "type": "number",
             "format": "float",
-            "description": "Valeur indicative du poids du colis"
+            "description": ""
           },
           "unit": {
             "$ref": "#/components/schemas/lengthUnit"
@@ -1592,7 +1673,7 @@
         ]
       },
       "mass": {
-        "description": "Indique le poids max autorisé pour un colis dans ce point-relais",
+        "description": "Poids",
         "type": "object",
         "properties": {
           "value": {
@@ -1607,7 +1688,8 @@
         "required": [
           "value",
           "unit"
-        ]
+        ],
+        "title": "Poids (mass)"
       },
       "retailer": {
         "title": "Enseigne (retailer)",
@@ -1665,7 +1747,8 @@
           "currency": {
             "$ref": "#/components/schemas/currency"
           }
-        }
+        },
+        "title": "Prix de vente des produits (price)"
       },
       "refusedReason": {
         "type": "string",
@@ -1677,7 +1760,12 @@
           "REFUSED_TIME_NOT_WORKED",
           "REFUSED_DAY_OFF",
           "REFUSED_EXCEPTION"
-        ]
+        ],
+        "title": "Motif de refus (refusedReason)",
+        "x-examples": {
+          "Exemple": "REFUSED_TOO_HEAVY"
+        },
+        "description": "Motif de refus"
       },
       "cancelledReason": {
         "type": "string",
@@ -1689,8 +1777,11 @@
           "CANCELLED_NEW_ADDRESS",
           "CANCELLED_INCOMPLETE"
         ],
-        "description": "Liste regroupant l’ensemble des raisons d’annulation possible pour une livraison",
-        "title": "Raison d'annulation d'une livraison (cancelledReason)"
+        "description": "Liste regroupant l’ensemble des motifs d’annulation possible pour une livraison",
+        "title": "Motif d'annulation d'une livraison (cancelledReason)",
+        "x-examples": {
+          "Exemple": "CANCELLED_CANNOT_SERVICE"
+        }
       },
       "deliveryService": {
         "type": "string",
@@ -1705,7 +1796,12 @@
           "SERVICE_SIMPLE_INSTALL",
           "SERVICE_COMPLEX_INSTALL",
           "SERVICE_ASSEMBLY"
-        ]
+        ],
+        "title": "Service de livraison (deliveryService)",
+        "description": "Service de livraison",
+        "x-examples": {
+          "Exemple": "SERVICE_SELECTED_ROOM"
+        }
       },
       "vehicleType": {
         "type": "string",
@@ -1723,7 +1819,12 @@
           "VEHICLE_TYPE_BIKE_CARGO",
           "VEHICLE_TYPE_CAR",
           "VEHICLE_TYPE_E_CAR"
-        ]
+        ],
+        "title": "Type de véhicule (vehicleType)",
+        "description": "Type de véhicule",
+        "x-examples": {
+          "Exemple": "VEHICLE_TYPE_BIKE"
+        }
       },
       "productType": {
         "type": "string",
@@ -1740,7 +1841,12 @@
           "TYPOLOGY_LARGE_HOUSEHOLD",
           "TYPOLOGY_PALLET_GENERIC",
           "TYPOLOGY_NON_STANDARD"
-        ]
+        ],
+        "title": "Typologie de produit (productType)",
+        "description": "Typologie de produit",
+        "x-examples": {
+          "Exemple": "TYPOLOGY_GENERIC"
+        }
       },
       "currency": {
         "type": "string",
@@ -1748,7 +1854,10 @@
           "EUR"
         ],
         "description": "Devise utilisable",
-        "title": "Devise (currency)"
+        "title": "Devise (currency)",
+        "x-examples": {
+          "Exemple": "EUR"
+        }
       },
       "lengthUnit": {
         "type": "string",
@@ -1761,8 +1870,9 @@
           "ft",
           "mi"
         ],
-        "description": "Liste des unités de mesure utilisée",
-        "default": "cm"
+        "description": "Unité de mesure",
+        "default": "cm",
+        "title": "Unité de mesure (lengthUnit)"
       },
       "massUnit": {
         "type": "string",
@@ -1776,8 +1886,12 @@
           "mt",
           "t"
         ],
-        "description": "Liste des unités de poids possible ",
-        "default": "kg"
+        "description": "Unité de poids",
+        "default": "kg",
+        "title": "Unité de poids (massUnit)",
+        "x-examples": {
+          "Exemple": "kg"
+        }
       },
       "withoutContact": {
         "required": [
@@ -1797,7 +1911,8 @@
               "$ref": "#/components/schemas/interval"
             }
           }
-        }
+        },
+        "title": "Informations sur l'adresse de prélèvement ou livraison"
       },
       "withContact": {
         "required": [
@@ -1836,7 +1951,9 @@
               }
             }
           }
-        ]
+        ],
+        "title": "Informations sur l'adresse de prélèvement",
+        "description": "Informations de l'adresse de prélèvement"
       },
       "withContactAndLocalization": {
         "allOf": [
@@ -1853,7 +1970,9 @@
               }
             }
           }
-        ]
+        ],
+        "title": "Informations sur l'adresse de livraison",
+        "description": "Informations sur l'adresse de livraison"
       },
       "postQuote": {
         "allOf": [
@@ -1875,7 +1994,8 @@
             }
           }
         ],
-        "description": "Informations nécessaire à la création d'un devis de livraison"
+        "description": "Informations nécessaire à la création d'un devis de livraison",
+        "title": "Informations de demande de devis (postQuote)"
       },
       "postDelivery": {
         "allOf": [
@@ -1902,7 +2022,7 @@
         "description": "Demande de livraison"
       },
       "deliveryInformations": {
-        "description": "",
+        "description": "Informations de livraison",
         "type": "object",
         "properties": {
           "orderId": {
@@ -1939,7 +2059,108 @@
           "retailer",
           "packages",
           "services"
-        ]
+        ],
+        "title": "Informations de livraison (deliveryInformations)",
+        "x-examples": {
+          "Exemple": {
+            "orderId": "65zq1d5qz1d56q1",
+            "referenceNumber": "65zq1d5qz1d56q1-456",
+            "retailer": {
+              "name": "Enseigne A",
+              "id": "ret123",
+              "store": {
+                "id": "store123",
+                "name": "Magasin C",
+                "contact": {
+                  "firstName": "Pierre",
+                  "lastName": "Dupond",
+                  "phone": "+33600000000",
+                  "email": "pierre.dupond@mail.fr"
+                }
+              }
+            },
+            "picking": {
+              "contact": {
+                "firstName": "Michel",
+                "lastName": "Dupont",
+                "phone": "+33600000000",
+                "email": "michel.dupont@mail.fr"
+              },
+              "address": {
+                "addressLine1": "237 rue du Ballon",
+                "addressLine2": "Niji",
+                "postalCode": "59110",
+                "city": "La Madeleine",
+                "country": "FR"
+              },
+              "infos": "Travaux en ce moment attention.",
+              "interval": [
+                {
+                  "start": "2019-12-04T12:30:00+0000",
+                  "end": "2019-12-04T13:30:00+0000"
+                }
+              ]
+            },
+            "delivery": {
+              "contact": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "phone": "+33600000000",
+                "email": "john.doe@mail.fr",
+                "language": "fr-FR",
+                "timezone": "Europe/Paris"
+              },
+              "address": {
+                "addressLine1": "165 avenue de Bretagne",
+                "elevator": true,
+                "floor": 2,
+                "postalCode": "59000",
+                "city": "Lille",
+                "country": "FR"
+              },
+              "interval": [
+                {
+                  "start": "2019-12-06T13:00:00+0000",
+                  "end": "2019-12-06T15:00:00+0000"
+                }
+              ]
+            },
+            "packages": [
+              {
+                "length": {
+                  "value": 15,
+                  "unit": "cm"
+                },
+                "width": {
+                  "value": 35.5,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 1.25,
+                  "unit": "m"
+                },
+                "weight": {
+                  "value": 12.35,
+                  "unit": "kg"
+                },
+                "products": [
+                  {
+                    "type": "TYPOLOGY_GENERIC",
+                    "ean": "4897567123548",
+                    "cug": "e21fe21",
+                    "label": "Armoire",
+                    "quantity": 1
+                  }
+                ],
+                "reference": "1234A",
+                "quantity": 1
+              }
+            ],
+            "services": [
+              "SERVICE_SELECTED_ROOM"
+            ]
+          }
+        }
       },
       "postDeliveryInformations": {
         "title": "Informations de demande de livraison (postDeliveryInformations)",
@@ -1962,7 +2183,7 @@
           },
           "packages": {
             "type": "array",
-            "description": "List des colis",
+            "description": "Ensemble des colis",
             "items": {
               "$ref": "#/components/schemas/package"
             }
@@ -1990,7 +2211,13 @@
             "description": "Identifiant unique de la livraison"
           }
         },
-        "description": "Informations reçues à la création d'une livraison"
+        "description": "Informations retour à la création d'une livraison",
+        "title": "Informations retour création d'une livraison (deliveryCreated)",
+        "x-examples": {
+          "Exemple": {
+            "deliveryId": "1123663GHG"
+          }
+        }
       },
       "deliveryCreatedReference": {
         "properties": {
@@ -2000,7 +2227,9 @@
           "externalReference": {
             "type": "string"
           }
-        }
+        },
+        "title": "Informations retour création d'une livraison avec reference (deliveryCreatedPackages))",
+        "description": "Informations retour création d'une livraison avec reference"
       },
       "deliveryCreatedPackages": {
         "allOf": [
@@ -2008,10 +2237,13 @@
             "$ref": "#/components/schemas/deliveryCreated"
           },
           {
+            "type": "object",
             "properties": {
               "packages": {
                 "type": "array",
+                "description": "Informations sur les colis",
                 "items": {
+                  "type": "object",
                   "properties": {
                     "id": {
                       "type": "string"
@@ -2021,14 +2253,26 @@
               }
             }
           }
-        ]
+        ],
+        "title": "Informations retour création d'une livraison avec colis (deliveryCreatedPackages))",
+        "description": "Informations retour création d'une livraison avec colis",
+        "x-examples": {
+          "Exemple": {
+            "deliveryId": "113123765",
+            "packages": [
+              {
+                "id": "JU7798"
+              }
+            ]
+          }
+        }
       }
     },
     "parameters": {
       "pathQuoteId": {
         "in": "path",
         "required": true,
-        "description": "Id de devis",
+        "description": "Identifiant de devis",
         "name": "quoteId",
         "schema": {
           "type": "string"
@@ -2038,7 +2282,7 @@
         "in": "path",
         "required": true,
         "name": "deliveryId",
-        "description": "Id de livraison",
+        "description": "Identifiant de livraison",
         "schema": {
           "type": "string"
         }
