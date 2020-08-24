@@ -15,7 +15,7 @@
         "operationId": "postQuote",
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de demande de devis.",
+          "description": "Contient les informations nécessaire à la création d'un devis de livraison. ",
           "content": {
             "application/json": {
               "schema": {
@@ -330,7 +330,7 @@
             }
           },
           "202": {
-            "description": "La demande a été traitée, mais aucun devis n'a été généré.",
+            "description": "La demande de devis a été traitée. Actuellement, aucun devis n'a été généré.",
             "content": {
               "application/json": {
                 "schema": {
@@ -364,7 +364,7 @@
             }
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Des élèments sont manquants et/ou incorrect dans le body. ",
             "content": {
               "application/json": {
                 "schema": {
@@ -380,14 +380,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           }
@@ -405,17 +405,23 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/pathQuoteId"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "quoteId",
+            "required": true,
+            "description": "Identifiant unique du devis pour la livraison"
           }
         ],
         "responses": {
-          "204": {
-            "description": "Code succès, le devis a été annulé. "
-          },
           "403": {
-            "description": "Le devis ne peut être annulé"
+            "description": "Le devis ne peut pas/plus être annulé"
           },
           "404": {
-            "description": "Le 'quoteId' n'existe pas"
+            "description": "L'identifiant du devis quoteId n'existe pas"
           }
         },
         "summary": "Annulation d'un devis"
@@ -435,10 +441,10 @@
     "/deliveries": {
       "post": {
         "operationId": "postDelivery",
-        "description": "Valide un devis et confirme l'ordre de livraison en fournissant les informations supplémentaires de livraison.",
+        "description": "Cette méthode permet de valider un devis et de confirmer l'ordre de livraison. Elle fournit en réponse, les informations supplémentaires utiles à la livraison.",
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de la demande de livraison.",
+          "description": "Contient les informations requis pour la création d'une demande de livraison.",
           "content": {
             "application/json": {
               "schema": {
@@ -852,14 +858,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           }
@@ -939,14 +945,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -1197,14 +1203,14 @@
                   }
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -1219,48 +1225,6 @@
   "components": {
     "schemas": {
       "address": {
-        "required": [
-          "addressLine1",
-          "postalCode",
-          "city",
-          "country"
-        ],
-        "properties": {
-          "addressLine1": {
-            "type": "string"
-          },
-          "addressLine2": {
-            "type": "string"
-          },
-          "elevator": {
-            "type": "boolean"
-          },
-          "floor": {
-            "type": "integer"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "doorCode": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "district": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string",
-            "enum": [
-              "FR",
-              "BE"
-            ]
-          },
-          "comment": {
-            "type": "string"
-          }
-        },
         "x-examples": {
           "example-1": {
             "addressLine1": "string",
@@ -1274,48 +1238,114 @@
             "country": "FR",
             "comment": "string"
           }
-        }
-      },
-      "addressWithoutSensitiveData": {
-        "required": [
-          "addressLine1",
-          "postalCode",
-          "city",
-          "country"
-        ],
+        },
+        "type": "object",
         "properties": {
           "addressLine1": {
-            "type": "string"
+            "type": "string",
+            "description": "Adresse complète du lieu principal"
           },
           "addressLine2": {
-            "type": "string"
+            "type": "string",
+            "description": "Adresse complémentaire du lieu"
           },
           "elevator": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indique si l’adresse possède un ascenseur\nValeur par défaut : FALSE"
           },
           "floor": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Précise l’étage de l’adresse en question\nValeur par défaut : 0"
           },
           "postalCode": {
-            "type": "string"
+            "type": "string",
+            "description": "Correspond au code postal associé à l’adresse principale"
+          },
+          "doorCode": {
+            "type": "string",
+            "description": "Numéro de porte "
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "description": "Intitulé de la ville"
           },
           "district": {
-            "type": "string"
+            "type": "string",
+            "description": "Intitulé de l’arrondissement"
           },
           "country": {
             "type": "string",
             "enum": [
               "FR",
               "BE"
-            ]
+            ],
+            "description": "Correspond au code Pays (ISO 3166-1 alpha-2)"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Commentaire libre d’utilisation"
+          }
+        },
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country"
+        ],
+        "description": "Informations requises pour l'ajout d'une adresse"
+      },
+      "addressWithoutSensitiveData": {
+        "title": "",
+        "type": "object",
+        "description": "Informations requises pour l'ajout d'une adresse sans digicode",
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "description": "Adresse complète du lieu principal"
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Adresse complémentaire du lieu"
+          },
+          "elevator": {
+            "type": "boolean",
+            "description": "Indique si l’adresse possède un ascenseur\nValeur par défaut : FALSE"
+          },
+          "floor": {
+            "type": "integer",
+            "description": "Précise l’étage de l’adresse en question\nValeur par défaut : 0"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Correspond au code postal associé à l’adresse principale"
+          },
+          "city": {
+            "type": "string",
+            "description": "Intitulé de la ville"
+          },
+          "district": {
+            "type": "string",
+            "description": "Intitulé de l’arrondissement"
+          },
+          "country": {
+            "type": "string",
+            "enum": [
+              "FR",
+              "BE"
+            ],
+            "description": "Correspond au code Pays (ISO 3166-1 alpha-2)"
           },
           "pickupPointId": {
-            "type": "string"
+            "type": "string",
+            "description": "Commentaire libre d’utilisation"
           }
-        }
+        },
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country"
+        ]
       },
       "interval": {
         "required": [
@@ -1334,26 +1364,32 @@
         }
       },
       "contact": {
+        "description": "Informations personnelles sur le contact de livraison et/ou de prélèvement",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "Correspond au prénom du client final"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Correspond au nom de famille du client final"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Correspond au numéro de téléphone du client final"
+          },
+          "email": {
+            "type": "string",
+            "description": "Correspond à l’email du client final"
+          }
+        },
         "required": [
           "firstName",
           "lastName",
           "phone",
           "email"
-        ],
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
+        ]
       },
       "tags": {
         "type": "array",
@@ -1377,6 +1413,34 @@
         }
       },
       "contactWithLocalization": {
+        "description": "Informations personnelles sur le contact de livraison et/ou de prélèvement",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "Correspond au prénom du client final"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Correspond au nom de famille du client final"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Correspond au numéro de téléphone du client final"
+          },
+          "email": {
+            "type": "string",
+            "description": "Correspond à l’email du client final"
+          },
+          "language": {
+            "type": "string",
+            "description": "Correspond à la langue du client final"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Correspond au fuseau horaire de livraison du client final"
+          }
+        },
         "required": [
           "firstName",
           "lastName",
@@ -1384,27 +1448,7 @@
           "email",
           "language",
           "timezone"
-        ],
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "language": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          }
-        }
+        ]
       },
       "services": {
         "type": "array",
@@ -1569,34 +1613,40 @@
         }
       },
       "length": {
-        "required": [
-          "value",
-          "unit"
-        ],
+        "description": "Correspond à la longueur du colis",
+        "type": "object",
         "properties": {
           "value": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "Valeur indicative du poids du colis"
           },
           "unit": {
             "$ref": "#/components/schemas/lengthUnit"
           }
-        }
-      },
-      "mass": {
+        },
         "required": [
           "value",
           "unit"
-        ],
+        ]
+      },
+      "mass": {
+        "description": "Indique le poids max autorisé pour un colis dans ce point-relais",
+        "type": "object",
         "properties": {
           "value": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "Valeur indicative du poids"
           },
           "unit": {
             "$ref": "#/components/schemas/massUnit"
           }
-        }
+        },
+        "required": [
+          "value",
+          "unit"
+        ]
       },
       "retailer": {
         "required": [
@@ -1632,10 +1682,15 @@
         }
       },
       "price": {
+        "description": "Correspond au prix de vente du produit. A renseigner si la livraison est effectuée avec le service “SERVICE_INSTALL”",
+        "type": "object",
         "properties": {
           "value": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "Nombre entier indicatif du prix",
+            "exclusiveMinimum": true,
+            "minimum": 0
           },
           "currency": {
             "$ref": "#/components/schemas/currency"
@@ -1663,7 +1718,8 @@
           "CANCELLED_BY_CLIENT",
           "CANCELLED_NEW_ADDRESS",
           "CANCELLED_INCOMPLETE"
-        ]
+        ],
+        "description": "Liste regroupant l’ensemble des raisons d’annulation possible pour une livraison"
       },
       "deliveryService": {
         "type": "string",
@@ -1719,7 +1775,8 @@
         "type": "string",
         "enum": [
           "EUR"
-        ]
+        ],
+        "description": "Liste de la monnaie utilisable"
       },
       "lengthUnit": {
         "type": "string",
@@ -1731,7 +1788,9 @@
           "ft-us",
           "ft",
           "mi"
-        ]
+        ],
+        "description": "Liste des unités de mesure utilisée",
+        "default": "cm"
       },
       "massUnit": {
         "type": "string",
@@ -1744,7 +1803,9 @@
           "lb",
           "mt",
           "t"
-        ]
+        ],
+        "description": "Liste des unités de poids possible ",
+        "default": "kg"
       },
       "withoutContact": {
         "required": [
@@ -1841,7 +1902,8 @@
               }
             }
           }
-        ]
+        ],
+        "description": "Informations nécessaire à la création d'un devis de livraison"
       },
       "postDelivery": {
         "allOf": [
@@ -1866,19 +1928,16 @@
         ]
       },
       "deliveryInformations": {
-        "required": [
-          "orderId",
-          "referenceNumber",
-          "retailer",
-          "packages",
-          "services"
-        ],
+        "description": "",
+        "type": "object",
         "properties": {
           "orderId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant unique de la commande à renseigner par l'enseigne"
           },
           "referenceNumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égal à l’orderId. "
           },
           "productsPrice": {
             "$ref": "#/components/schemas/price"
@@ -1888,6 +1947,7 @@
           },
           "packages": {
             "type": "array",
+            "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis",
             "items": {
               "$ref": "#/components/schemas/package"
             }
@@ -1898,7 +1958,14 @@
           "tags": {
             "$ref": "#/components/schemas/tags"
           }
-        }
+        },
+        "required": [
+          "orderId",
+          "referenceNumber",
+          "retailer",
+          "packages",
+          "services"
+        ]
       },
       "postDeliveryInformations": {
         "required": [
@@ -1936,11 +2003,14 @@
         }
       },
       "deliveryCreated": {
+        "type": "object",
         "properties": {
           "deliveryId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant unique de la livraison"
           }
-        }
+        },
+        "description": "Informations reçues à la création d'une livraison"
       },
       "deliveryCreatedReference": {
         "properties": {
