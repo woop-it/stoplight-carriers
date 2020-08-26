@@ -11,7 +11,7 @@
         "tags": [
           "Devis"
         ],
-        "description": "Cette méthode permet d'effectuer une demande de devis auprès du transporteur. Si le devis est validé, les informations transmises seront utilisées lors de la création de l'expédition à l'aide du POST /deliveries. ",
+        "description": "Cette méthode permet de recevoir les demandes de devis. Si le devis est validé, les informations transmises seront utilisées lors de la création de l'ordre de livraison à l'aide du POST /deliveries. ",
         "operationId": "postQuote",
         "requestBody": {
           "required": true,
@@ -401,7 +401,7 @@
         "tags": [
           "Devis"
         ],
-        "description": "Cette méthode permet d'annuler une demande de devis auprès de tous les transporteur. Si le devis est déjà validé par un transporteur, la demande d'annulation sera rejetée. ",
+        "description": "Cette méthode permet de recevoir les demandes d'annulation d'un devis",
         "operationId": "deleteQuote",
         "parameters": [
           {
@@ -436,7 +436,7 @@
     "/deliveries": {
       "post": {
         "operationId": "postDelivery",
-        "description": "Cette méthode permet de valider un devis et de confirmer l'ordre de livraison. Elle fournit en réponse, les informations supplémentaires utiles à la livraison.",
+        "description": "Cette méthode permet de valider un devis et de recevoir l'ordre de livraison. Elle fournit en réponse, les informations supplémentaires utiles à la livraison.",
         "requestBody": {
           "required": true,
           "description": "Contient les informations requis pour la création d'une demande de livraison.",
@@ -876,7 +876,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet d'annuler une livraison",
+        "description": "Cette méthode permet de recevoir les demandes d'annulation d'une livraison",
         "operationId": "deleteDelivery",
         "parameters": [
           {
@@ -998,7 +998,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet de mettre à jour une livraison",
+        "description": "Cette méthode permet de recevoir les demanddes de mise à jour d'une livraison",
         "operationId": "patchDelivery",
         "parameters": [
           {
