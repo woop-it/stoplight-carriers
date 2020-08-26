@@ -7,15 +7,15 @@
   },
   "servers": [
     {
-      "url": "car-api.recette.gcp.last-mile.fr",
+      "url": "https://car-api.recette.gcp.last-mile.fr",
       "description": "URL de recette"
     },
     {
-      "url": "car-api.preprod.gcp.last-mile.fr",
+      "url": "https://car-api.preprod.gcp.last-mile.fr",
       "description": "URL de preprod"
     },
     {
-      "url": "carrier.last-mile.fr",
+      "url": "https://carrier.last-mile.fr",
       "description": "URL de prod"
     }
   ],
