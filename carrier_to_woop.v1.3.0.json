@@ -496,7 +496,7 @@
     },
     "/subscriptions": {
       "post": {
-        "description": "Endpoint d'initialisation d'échanges avec les APIs transporteur.",
+        "description": "Cette méthode permet d'initialiser les souscriptions à nos APIs.\n\nPlus d'informations dans la documentation dédiée \"Souscriptions\"",
         "operationId": "postSubscription",
         "parameters": [
           {
@@ -878,7 +878,7 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout de souscriptions",
+        "summary": "Initialisation des souscriptions",
         "tags": [
           "Souscriptions"
         ]
