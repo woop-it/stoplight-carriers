@@ -114,6 +114,24 @@ Les données à envoyées sont :
             }
           }
         },
+        "update": {
+          "type": "object",
+          "description": "Callback permettant de recevoir les demandes de mise à jour d'une livraison",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Url de la route d'API"
+            },
+            "version": {
+              "type": "string",
+              "description": "Version d'API pour ce callback",
+              "example": "1.4.0"
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
         "pickupPoint": {
           "type": "object",
           "description": "Callback permettant de recevoir les demandes de points relais",
@@ -157,24 +175,6 @@ Les données à envoyées sont :
             "url": {
               "type": "string",
               "description": "Url de la route d'API'"
-            },
-            "version": {
-              "type": "string",
-              "description": "Version d'API pour ce callback",
-              "example": "1.4.0"
-            }
-          },
-          "required": [
-            "url"
-          ]
-        },
-        "update": {
-          "type": "object",
-          "description": "Callback permettant de recevoir les demandes de mise à jour d'une livraison",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "Url de la route d'API"
             },
             "version": {
               "type": "string",
@@ -304,10 +304,11 @@ delivery | Callback permettant de recevoir les demandes de livraison | [/deliver
 cancelDelivery | Callback permettant de recevoir les demandes d'annulation d'une livraison| [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/delete) | **OUI**
 cancelQuote | Callback permettant de recevoir les demandes d'annulation d'un devis | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes~1%7BquoteId%7D/delete) | NON
 score | Callback permettant de recevoir les notes client | [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
-pickupPoint | Callback permettant de recevoir les demandes de points relais | /pickupPoints | NON
-label | Callback permettant de recevoir les demandes d'étiquette | /labels/{labelId} | NON
-status | Callback permettant de recevoir les demandes de récupération de statut d'un 'package' | /packages/{packageId} | NON
 update | Callback permettant de recevoir les demandes de mise à jour d'une livraison | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
+pickupPoint | Callback permettant de recevoir les demandes de points relais | /pickupPoints | NON
+label | Callback permettant de recevoir les demandes d'étiquette | /labels | NON
+status | Callback permettant de recevoir les demandes de récupération de statut d'un 'package' | /packages/{packageId} | NON
+
 
 **Description d'un callback**
 
@@ -338,12 +339,12 @@ Url de la route d'API vers laquelle la plateforme Woop enverra l’événement l
 
 <!-- theme: info -->
 
-> **Variable d'url**
+> **Variables d'url**
 >
-> Pour récupérer l'orderId dans vos APIs, il est fortement conseillé d’incorporer la variable `{orderId}` dans vos urls de callbacks.
-> Cette variable sera remplacée par la valeur de l'orderId lors des appels.
+> Pour récupérer les deliveryId, quoteId ou packageId dans vos APIs, il est fortement conseillé d’incorporer les variables `{deliveryId}` `{quoteId}` et `{packageId}`dans vos urls de callbacks.
+> Ces variables seront remplacées par les valeurs réelles lors des appels.
 >
-> Exemple: **https://my_url/orders/{orderId}/status** 
+> Exemple: **https://my_url/deliveries/{deliveryId}** 
 
 **Version**
 
@@ -364,7 +365,9 @@ Exemple :
   }
 }
 ```
+### Adapter
 
+Valeur à remplir à notre demande.
 
 ### Headers
 
@@ -515,30 +518,27 @@ Je m'abonne à toutes les souscriptions, mon API est protégée par une authenti
       "url": "https://my_url/quotes/{quoteId}",
       "version": "1.4.0"
     },
-    "cancelQuote": {
-      "url": "https://my_url/quotes/{quoteId}",
-      "version": "1.4.0"
-    },
     "score": {
       "url": "https://my_url/deliveries/{deliveryId}/score",
-      "version": "1.4.0"
-    },
-    "pickupPoint": {
-      "url": "https://my_url/deliveries/pickupPoints",
-      "version": "1.4.0"
-    },
-    "label": {
-      "url": "https://my_url/deliveries/labels/{labelId}",
-      "version": "1.4.0"
-    },
-    "status": {
-      "url": "https://my_url/deliveries/packages/{packageId}",
       "version": "1.4.0"
     },
     "update": {
       "url": "https://my_url/deliveries/deliveries/{deliveryId}",
       "version": "1.4.0"
     }
+    "pickupPoint": {
+      "url": "https://my_url/deliveries/pickupPoints",
+      "version": "1.4.0"
+    },
+    "label": {
+      "url": "https://my_url/deliveries/labels",
+      "version": "1.4.0"
+    },
+    "status": {
+      "url": "https://my_url/deliveries/packages/{packageId}",
+      "version": "1.4.0"
+    },
+
   },
   "auth": {
     "oauth2": {
@@ -567,10 +567,11 @@ delivery | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.
 cancelDelivery | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/delete) | **OUI**
 cancelQuote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes~1%7BquoteId%7D/delete) | NON
 score |  [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
-pickupPoint |  /pickupPoints | NON
-label |  /labels/{labelId} | NON
-status | /packages/{packageId} | NON
 update |  [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
+pickupPoint |  /pickupPoints | NON
+label |  /labels | NON
+status | /packages/{packageId} | NON
+
 
 
 <!-- theme: warning -->
