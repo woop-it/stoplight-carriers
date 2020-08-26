@@ -306,8 +306,6 @@ cancelQuote | Callback permettant de recevoir les demandes d'annulation d'un dev
 score | Callback permettant de recevoir les notes client | [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
 update | Callback permettant de recevoir les demandes de mise à jour d'une livraison | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
 pickupPoint | Callback permettant de recevoir les demandes de points relais | /pickupPoints | NON
-label | Callback permettant de recevoir les demandes d'étiquette | /labels | NON
-status | Callback permettant de recevoir les demandes de récupération de statut d'un 'package' | /packages/{packageId} | NON
 
 
 **Description d'un callback**
@@ -341,7 +339,7 @@ Url de la route d'API vers laquelle la plateforme Woop enverra l’événement l
 
 > **Variables d'url**
 >
-> Pour récupérer les deliveryId, quoteId ou packageId dans vos APIs, il est fortement conseillé d’incorporer les variables `{deliveryId}` `{quoteId}` et `{packageId}`dans vos urls de callbacks.
+> Pour récupérer les deliveryId ou quoteId dans vos APIs, il est fortement conseillé d’incorporer les variables `{deliveryId}` et `{quoteId}`  `dans vos urls de callbacks.
 > Ces variables seront remplacées par les valeurs réelles lors des appels.
 >
 > Exemple: **https://my_url/deliveries/{deliveryId}** 
@@ -527,18 +525,9 @@ Je m'abonne à toutes les souscriptions, mon API est protégée par une authenti
       "version": "1.4.0"
     }
     "pickupPoint": {
-      "url": "https://my_url/deliveries/pickupPoints",
+      "url": "https://my_url/pickupPoints",
       "version": "1.4.0"
-    },
-    "label": {
-      "url": "https://my_url/deliveries/labels",
-      "version": "1.4.0"
-    },
-    "status": {
-      "url": "https://my_url/deliveries/packages/{packageId}",
-      "version": "1.4.0"
-    },
-
+    }
   },
   "auth": {
     "oauth2": {
@@ -569,9 +558,6 @@ cancelQuote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to
 score |  [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
 update |  [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
 pickupPoint |  /pickupPoints | NON
-label |  /labels | NON
-status | /packages/{packageId} | NON
-
 
 
 <!-- theme: warning -->

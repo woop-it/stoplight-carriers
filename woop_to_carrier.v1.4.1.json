@@ -406,18 +406,12 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/pathQuoteId"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "quoteId",
-            "required": true,
-            "description": "Identifiant unique du devis pour la livraison"
           }
         ],
         "responses": {
+          "204": {
+            "description": "Devis annul avec succès"
+          },
           "403": {
             "description": "Le devis ne peut pas/plus être annulé"
           },
@@ -1236,6 +1230,249 @@
           }
         },
         "summary": "Ajout d'une note d'une livraison"
+      }
+    },
+    "/pickupPoints": {
+      "get": {
+        "summary": "Recherche de points relais",
+        "tags": [
+          "Point Relais"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, Contient les points relais",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pickupPoints": {
+                      "type": "array",
+                      "description": "Informations sur les point relais",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "address": {
+                            "allOf": [
+                              {
+                                "$ref": "#/components/schemas/address"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "title"
+                                ]
+                              }
+                            ],
+                            "description": "Adresse du point relais"
+                          },
+                          "coordinates": {
+                            "$ref": "#/components/schemas/coordinates"
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "Id du point relais"
+                          },
+                          "openingHours": {
+                            "type": "object",
+                            "description": "Horaires d'ouverture du point relais",
+                            "properties": {
+                              "monday": {
+                                "type": "array",
+                                "description": "Horaires du lundi",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              },
+                              "tuesday": {
+                                "type": "array",
+                                "description": "Horaires du mardi",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              },
+                              "wednesday": {
+                                "type": "array",
+                                "description": "Horaires du mercredi",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              },
+                              "thursday": {
+                                "type": "array",
+                                "description": "Horaires du jeudi",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              },
+                              "friday": {
+                                "type": "array",
+                                "description": "Horaires du vendredi",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              },
+                              "saturday": {
+                                "type": "array",
+                                "description": "Horaires du samedi",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              },
+                              "sunday": {
+                                "type": "array",
+                                "description": "Horaires du dimanche",
+                                "items": {
+                                  "$ref": "#/components/schemas/interval_hour"
+                                }
+                              }
+                            }
+                          },
+                          "maxWeight": {
+                            "$ref": "#/components/schemas/mass"
+                          }
+                        },
+                        "required": [
+                          "address",
+                          "coordinates",
+                          "id",
+                          "carrier",
+                          "openingHours",
+                          "maxWeight"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "pickupPoints": [
+                        {
+                          "address": {
+                            "addressLine1": "168 RUE DES POSTES",
+                            "postalCode": "59000",
+                            "city": "Lille",
+                            "country": "FR",
+                            "title": "Point relais"
+                          },
+                          "coordinates": {
+                            "latitude": 50.638386,
+                            "longitude": 3.077183
+                          },
+                          "id": "q251zd564qz",
+                          "openingHours": {
+                            "monday": [
+                              {
+                                "start": "08:00",
+                                "end": "19:30"
+                              }
+                            ],
+                            "tuesday": [
+                              {
+                                "start": "08:00",
+                                "end": "19:30"
+                              }
+                            ],
+                            "wednesday": [
+                              {
+                                "start": "08:00",
+                                "end": "19:30"
+                              }
+                            ],
+                            "thursday": [
+                              {
+                                "start": "08:00",
+                                "end": "19:30"
+                              }
+                            ],
+                            "friday": [
+                              {
+                                "start": "08:00",
+                                "end": "19:30"
+                              }
+                            ],
+                            "saturday": [
+                              {
+                                "start": "08:00",
+                                "end": "16:00"
+                              }
+                            ],
+                            "sunday": [
+                              {
+                                "start": "08:00",
+                                "end": "12:00"
+                              }
+                            ]
+                          },
+                          "maxWeight": {
+                            "value": 250,
+                            "unit": "kg"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Des élèments sont manquants et/ou incorrect dans le body. ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getPickupPoints",
+        "description": "Cette méthode permet de récupérer la liste des point relais situés autour d’une géolocalisation donnée.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/queryLatitude"
+          },
+          {
+            "$ref": "#/components/parameters/queryLongitude"
+          },
+          {
+            "$ref": "#/components/parameters/queryNumber"
+          },
+          {
+            "$ref": "#/components/parameters/queryKilometricDistance"
+          },
+          {
+            "$ref": "#/components/parameters/queryPickupPointType"
+          },
+          {
+            "$ref": "#/components/parameters/queryPickupPointCategory"
+          }
+        ]
       }
     }
   },
@@ -2266,9 +2503,129 @@
             ]
           }
         }
+      },
+      "coordinates": {
+        "type": "object",
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "properties": {
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          }
+        },
+        "description": "Coordonnées géographiques",
+        "x-examples": {
+          "Exemple": {
+            "latitude": 50.63833,
+            "longitude": 3.077359
+          }
+        },
+        "title": "Coordonnées géographiques (coordinates)"
+      },
+      "interval_hour": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "time"
+          },
+          "end": {
+            "type": "string",
+            "format": "time"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "x-examples": {
+          "Exemple": {
+            "start": "14:00",
+            "end": "18:00"
+          }
+        },
+        "description": "Créneau horaires",
+        "title": "Créneau horaires (interval_hour)"
       }
     },
     "parameters": {
+      "queryLatitude": {
+        "in": "query",
+        "required": true,
+        "description": "Latitude du point de recherche",
+        "name": "latitude",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "queryLongitude": {
+        "in": "query",
+        "description": "Longitude du point de recherche",
+        "required": true,
+        "name": "longitude",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "queryNumber": {
+        "in": "query",
+        "required": false,
+        "description": "Nombre de points relais retournés",
+        "name": "number",
+        "schema": {
+          "type": "integer",
+          "maximum": 25,
+          "default": 10
+        }
+      },
+      "queryKilometricDistance": {
+        "in": "query",
+        "required": false,
+        "description": "Distance en kilomètres du rayon de recherche",
+        "name": "kilometricDistance",
+        "schema": {
+          "type": "integer",
+          "maximum": 40,
+          "default": 5
+        }
+      },
+      "queryPickupPointType": {
+        "in": "query",
+        "required": false,
+        "name": "type",
+        "description": "Type de point relais",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "PICKUP_POINT_AGENCY",
+            "PICKUP_POINT_POST_OFFICE",
+            "PICKUP_POINT_RELAY_WITH_LOCKER",
+            "PICKUP_POINT_RELAY_WITHOUT_LOCKER",
+            "PICKUP_POINT_ALL"
+          ],
+          "default": "PICKUP_POINT_RELAY_WITH_LOCKER"
+        }
+      },
+      "queryPickupPointCategory": {
+        "in": "query",
+        "required": false,
+        "name": "category",
+        "description": "Catégorie de point relais",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "PICKUP_POINT_STANDARD",
+            "PICKUP_POINT_XL",
+            "PICKUP_POINT_XXL",
+            "PICKUP_POINT_DRIVE"
+          ]
+        }
+      },
       "pathQuoteId": {
         "in": "path",
         "required": true,
@@ -2302,6 +2659,12 @@
     },
     {
       "name": "Devis"
+    },
+    {
+      "name": "Point Relais"
+    },
+    {
+      "name": "Colis"
     }
   ]
 }
