@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Transporteur vers Woop",
-    "description": "Contrat d'interface des APIs des transporteurs vers Woop.\nVersion 1.3.0",
+    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Transporteur vers Woop\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la <b>Version 1.3.0</b>",
     "version": "1.3.0"
   },
   "servers": [
@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Mise à jour de statut d'une livraison.",
+        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -211,14 +211,14 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -278,19 +278,18 @@
                   }
                 }
               },
-
-              "examples" :{
+              "examples": {
                 "Exemple": {
-                  "value" : {
-"emittedCarbonDioxide": {
-                  "value": 13.5,
-                  "unit": "mg"
-                },
-                "billedDistance": {
-                  "value": 5,
-                  "unit": "km"
-                },
-                "vehicleType": "VEHICLE_TYPE_SCOOTER"
+                  "value": {
+                    "emittedCarbonDioxide": {
+                      "value": 13.5,
+                      "unit": "mg"
+                    },
+                    "billedDistance": {
+                      "value": 5,
+                      "unit": "km"
+                    },
+                    "vehicleType": "VEHICLE_TYPE_SCOOTER"
                   }
                 }
               }
@@ -308,15 +307,15 @@
                 "schema": {
                   "$ref": "#/components/schemas/badRequest"
                 },
-                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -440,14 +439,14 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-              "Exemple": {
-                "value": {
-                  "reasons": [
-                    "Missing argument 'xxxxx'"
-                  ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
                 }
-              }
-            }
               }
             }
           },
@@ -827,14 +826,14 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -874,15 +873,11 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "document",
-                  "type",
-                  "date"
-                ],
+                "type": "object",
                 "properties": {
                   "document": {
                     "type": "string",
-                    "description": "Le document sour format binaire, max 10mb",
+                    "description": "Le document sous format binaire, max 10mb",
                     "format": "binary"
                   },
                   "type": {
@@ -899,14 +894,19 @@
                     "description": "Date de création du document",
                     "format": "datetime"
                   }
-                }
+                },
+                "required": [
+                  "document",
+                  "type",
+                  "date"
+                ]
               },
-              "examples" :{
+              "examples": {
                 "Exemple": {
                   "value": {
-"document": "file stream",
-                "type": "EVIDENCE",
-                "date": "2019-11-27T10:30:00+0000"
+                    "document": "file stream",
+                    "type": "EVIDENCE",
+                    "date": "2019-11-27T10:30:00+0000"
                   }
                 }
               }
@@ -925,14 +925,14 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                "Exemple": {
-                  "value": {
-                    "reasons": [
-                      "Missing argument 'xxxxx'"
-                    ]
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
                   }
                 }
-              }
               }
             }
           },
@@ -958,7 +958,12 @@
         "type": "string",
         "enum": [
           "EUR"
-        ]
+        ],
+        "title": "Devise (currency)",
+        "description": "Devise, précise la monnaie utilisée.",
+        "x-examples": {
+          "example": "EUR"
+        }
       },
       "deliveryStatus": {
         "type": "string",
@@ -976,7 +981,12 @@
           "DELIVERY_RETURNED_TO_PICK_UP",
           "DELIVERY_DELIVERED_OK",
           "DELIVERY_DELIVERED_PARTIALLY"
-        ]
+        ],
+        "title": "Statuts de livraison (deliveryStatus)",
+        "description": "Précise les différents statuts de livraison possible au sein de la plateforme. ",
+        "x-examples": {
+          "example": "DELIVERY_STARTED"
+        }
       },
       "deltaCostReason": {
         "type": "string",
@@ -990,7 +1000,12 @@
           "DELTACOST_PICKUP_FAILED",
           "DELTACOST_PARTIALLY_DELIVERED",
           "DELTACOST_UNKNOWN"
-        ]
+        ],
+        "title": "Raison de deltaCost (deltaCostReason)",
+        "x-examples": {
+          "example": "DELTACOST_EXTEND_WAITING_WAREHOUSE"
+        },
+        "description": "Précise la raison transporteur pour la création d'un deltaCost. "
       },
       "length": {
         "required": [
@@ -1004,6 +1019,14 @@
           },
           "unit": {
             "$ref": "#/components/schemas/lengthUnits"
+          }
+        },
+        "title": "Dimension (length)",
+        "description": "Précise la dimension d'un colis.",
+        "x-examples": {
+          "example": {
+            "value": 200,
+            "unit": "mm"
           }
         }
       },
@@ -1020,6 +1043,14 @@
           "unit": {
             "$ref": "#/components/schemas/massUnits"
           }
+        },
+        "description": "Précise le poids d'un colis/produit.",
+        "title": "Poids (mass)",
+        "x-examples": {
+          "example": {
+            "value": 1,
+            "unit": "kg"
+          }
         }
       },
       "lengthUnits": {
@@ -1033,7 +1064,12 @@
           "ft-us",
           "ft",
           "mi"
-        ]
+        ],
+        "description": "Précise l'unité de longueur.",
+        "title": "Unité de longueur (lengthUnits)",
+        "x-examples": {
+          "example": "mm"
+        }
       },
       "massUnits": {
         "type": "string",
@@ -1046,25 +1082,43 @@
           "lb",
           "mt",
           "t"
-        ]
+        ],
+        "description": "Précise l'unité de poids.",
+        "title": "Unité de poids (massUnits)",
+        "x-examples": {
+          "example": "mcg"
+        }
       },
       "postSubscriptionBasic": {
+        "description": "Précise la manière de générer le Basic token de souscription.",
+        "x-examples": {
+          "example": {
+            "basic": {
+              "username": "string",
+              "password": "string"
+            }
+          }
+        },
+        "title": "Token de souscription (postSubscriptionBasic)",
+        "type": "object",
         "properties": {
           "basic": {
             "type": "object",
             "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "login de l'utilisateur utilisé pour la souscription"
+              },
+              "password": {
+                "type": "string",
+                "description": "Mot de passe de l'utilisateur pour la souscription"
+              }
+            },
             "required": [
               "username",
               "password"
-            ],
-            "properties": {
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              }
-            }
+            ]
           }
         }
       },
@@ -1097,50 +1151,82 @@
               }
             }
           }
+        },
+        "title": "Token de souscription (postSubscriptionOAuth2)",
+        "description": "Précise la manière de générer le token de souscription OAuth2.",
+        "x-examples": {
+          "example": {
+            "oauth2": {
+              "client_id": "string",
+              "client_secret": "string",
+              "audience": "string",
+              "grant_type": "string",
+              "tokenEndPoint": "string"
+            }
+          }
         }
       },
       "postSubscriptionToken": {
+        "type": "object",
         "properties": {
           "token": {
             "type": "object",
             "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
-            "required": [
-              "username",
-              "password",
-              "endpoint"
-            ],
             "properties": {
               "username": {
-                "type": "string"
+                "type": "string",
+                "description": "login de l'utilisateur utilisé pour la souscription"
               },
               "password": {
-                "type": "string"
+                "type": "string",
+                "description": "Mot de passe de l'utilisateur pour la souscription"
               },
               "endpoint": {
                 "type": "string",
                 "description": "Url permettant de recupérer le token d'accès"
               }
-            }
+            },
+            "required": [
+              "username",
+              "password",
+              "endpoint"
+            ]
           }
-        }
+        },
+        "title": "Token de souscription (postSubscriptionToken)",
+        "description": "Précise la manière de générer le Bearer token de souscription."
       },
       "team": {
-        "required": [
-          "members"
-        ],
+        "type": "object",
         "properties": {
           "members": {
             "type": "array",
             "items": {
-              "required": [
-                "id"
-              ],
+              "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Identifiant de l'équipe en charge de la livraison"
                 }
-              }
+              },
+              "required": [
+                "id"
+              ]
             }
+          }
+        },
+        "required": [
+          "members"
+        ],
+        "description": "Précise l'équipe en charge de la livraison. ",
+        "title": "Équipage (team)",
+        "x-examples": {
+          "example": {
+            "members": [
+              {
+                "id": "012345"
+              }
+            ]
           }
         }
       },
@@ -1161,19 +1247,15 @@
           "VEHICLE_TYPE_CAR",
           "VEHICLE_TYPE_E_CAR",
           "VEHICLE_TYPE_UNKNOWN"
-        ]
+        ],
+        "description": "Précise le type de véhicule utilisé lors de la livraison",
+        "title": "Type de véhicule (vehicleType)",
+        "x-examples": {
+          "example": "VEHICLE_TYPE_BIKE"
+        }
       },
       "badRequest": {
         "type": "object",
-        "properties": {
-          "reasons": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "example": "Missing argument 'xxxxx'"
-            }
-          }
-        },
         "description": "Elements manquants et/ou incorrect dans le body",
         "title": "Erreur 400",
         "x-examples": {
@@ -1181,6 +1263,16 @@
             "reasons": [
               "Missing argument 'xxxxx'"
             ]
+          }
+        },
+        "properties": {
+          "reasons": {
+            "type": "array",
+            "description": "Indication sur l'erreur remontée",
+            "items": {
+              "type": "string",
+              "example": "Missing argument 'xxxxx'"
+            }
           }
         }
       }
