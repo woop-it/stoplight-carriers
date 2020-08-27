@@ -1,6 +1,6 @@
 # Statuts de livraison
 
-Au cours de son cible de vie la livraison peut passer par plusieurs statuts. Ce que nous identifions ici ce sont les différents étapes d'une livraison. 
+Au cours de son cycle de vie la livraison peut passer par plusieurs statuts. Ceux que nous identifions ici sont les différentes étapes d'une livraison. 
 
 Statut | Intitulé
 ---------|----------

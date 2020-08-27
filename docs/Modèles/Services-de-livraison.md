@@ -2,7 +2,7 @@
 # Services de livraison
 
 
-Liste des services pouvant être demandé pour une livraison.
+Liste des services pouvant être demandés pour une livraison.
 
 La configuration de la prise en charge de ces services peut-être configuré (nous contacter).
 

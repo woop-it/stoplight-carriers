@@ -10,9 +10,9 @@ Ces demandes et évènements sont décrits dans la partie **Woop vers Transporte
 ## Initialisation des souscriptions
 
 
-Pour vous abonner aux demandes et événements un premier appel à **l'API [/souscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** est nécessaire.
+Pour vous abonner aux demandes et évènements un premier appel à **l'API [/souscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** est nécessaire.
 
-Les données à envoyées sont :
+Les données à envoyer sont :
 
 ```json json_schema
 {
@@ -294,7 +294,7 @@ Les données à envoyées sont :
 
 ### Callbacks
 
-Les `callbacks` ou autrement dit `webhooks` permettent de définir l'URL appelée pour chaque demande ou événement, différents callbacks sont disponibles, **dont certains obligatoires** :
+Les `callbacks` ou autrement dit `webhooks` permettent de définir l'URL appelée pour chaque demande ou évènement, différents callbacks sont disponibles, **dont certains obligatoires** :
 
 
 Callback  | Description | Contrat d'interface | Requis
@@ -333,7 +333,7 @@ pickupPoint | Callback permettant de recevoir les demandes de points relais | [/
 
 **Url**
 
-Url de la route d'API vers laquelle la plateforme Woop enverra l’événement lié au callback.
+Url de la route d'API vers laquelle la plateforme Woop enverra l’évènement lié au callback.
 
 <!-- theme: info -->
 
@@ -451,7 +451,7 @@ Cette méthode effectuera un appel **HTTP POST** vers l'endpoint configuré avec
   "password": "{password}"
 }
 ```
-Le endpoint appelé devra retourner un token : 
+L'endpoint appelé devra retourner un token : 
 ```json
 {
   "token": "87YB1K2B312K3",
@@ -545,7 +545,7 @@ Je m'abonne à toutes les souscriptions, mon API est protégée par une authenti
 
 ## Implémentation des souscriptions
 
-Pour chaque *callback* configuré il est nécessaire d'implémenter le contrat d'interface lié a celui-ci.
+Pour chaque *callback* configuré il est nécessaire d'implémenter le contrat d'interface lié à celui-ci.
 
 Pour rappel :
 
@@ -564,4 +564,4 @@ pickupPoint |  (/pickupPoints)[https://woop.stoplight.io/docs/carrier/woop_to_ca
 
 > **Méthodes et codes HTTP**
 >
-> Lors de l'implémentation des contrats d'interfaces, il est **important** de bien respecter les **méthodes HTTP** (POST. PATCH etc...) ainsi que les **codes HTTP retours** (201, 400 etc..) spécifié dans le contrat d'interface.
+> Lors de l'implémentation des contrats d'interfaces, il est **important** de bien respecter les **méthodes HTTP** (POST. PATCH etc...) ainsi que les **codes HTTP retours** (201, 400 etc..) spécifiés dans le contrat d'interface.
