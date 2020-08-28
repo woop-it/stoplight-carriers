@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Transporteur vers Woop",
-    "description": "Contrat d'interface des APIs des transporteurs vers Woop.\n\n **Version 1.3.0**",
+    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Transporteur vers Woop\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la <b>Version 1.3.0</b>",
     "version": "1.3.0"
   },
   "servers": [
@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Cette méthode permet de mettre à jour le statut d'une livraison.",
+        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -906,11 +906,10 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "description": "Informations du document",
                 "properties": {
                   "document": {
                     "type": "string",
-                    "description": "Le document sour format binaire, max 10mb",
+                    "description": "Le document sous format binaire, max 10mb",
                     "format": "binary"
                   },
                   "type": {
@@ -935,8 +934,12 @@
                 ]
               },
               "examples": {
-                "Preuve de livraison": {
-                  "value": "{\n  \"document\": \"{file stream}\",\n  \"type\": \"EVIDENCE\",\n  \"date\": \"2019-11-27T10:30:00+0000\"\n}"
+                "Exemple": {
+                  "value": {
+                    "document": "file stream",
+                    "type": "EVIDENCE",
+                    "date": "2019-11-27T10:30:00+0000"
+                  }
                 }
               }
             }
@@ -988,10 +991,10 @@
         "enum": [
           "EUR"
         ],
-        "description": "Devise",
         "title": "Devise (currency)",
+        "description": "Devise, précise la monnaie utilisée.",
         "x-examples": {
-          "Exemple": "EUR"
+          "example": "EUR"
         }
       },
       "deliveryStatus": {
@@ -1011,10 +1014,10 @@
           "DELIVERY_DELIVERED_OK",
           "DELIVERY_DELIVERED_PARTIALLY"
         ],
-        "description": "Statut de livraison",
-        "title": "Statut de livraison (deliveryStatus)",
+        "title": "Statuts de livraison (deliveryStatus)",
+        "description": "Précise les différents statuts de livraison possible au sein de la plateforme. ",
         "x-examples": {
-          "Exemple": "DELIVERY_STARTED"
+          "example": "DELIVERY_STARTED"
         }
       },
       "deltaCostReason": {
@@ -1030,11 +1033,11 @@
           "DELTACOST_PARTIALLY_DELIVERED",
           "DELTACOST_UNKNOWN"
         ],
-        "title": "Raison de frais supplémentaire ou remise (deltaCostReason)",
-        "description": "Raison de frais supplémentaire ou remise",
+        "title": "Raison de deltaCost (deltaCostReason)",
         "x-examples": {
-          "Exemple": "DELTACOST_EXTEND_WAITING_WAREHOUSE"
-        }
+          "example": "DELTACOST_EXTEND_WAITING_WAREHOUSE"
+        },
+        "description": "Précise la raison transporteur pour la création d'un deltaCost. "
       },
       "length": {
         "required": [
@@ -1051,10 +1054,10 @@
           }
         },
         "title": "Dimension (length)",
-        "description": "Dimension",
+        "description": "Précise la dimension d'un colis.",
         "x-examples": {
-          "Exemple": {
-            "value": 300,
+          "example": {
+            "value": 200,
             "unit": "mm"
           }
         }
@@ -1073,10 +1076,10 @@
             "$ref": "#/components/schemas/massUnits"
           }
         },
+        "description": "Précise le poids d'un colis/produit.",
         "title": "Poids (mass)",
-        "description": "Poids",
         "x-examples": {
-          "Exemple": {
+          "example": {
             "value": 1,
             "unit": "kg"
           }
@@ -1094,10 +1097,10 @@
           "ft",
           "mi"
         ],
-        "title": "Unité de mesure (lengthUnits)",
-        "description": "Unité de mesure",
+        "description": "Précise l'unité de longueur.",
+        "title": "Unité de longueur (lengthUnits)",
         "x-examples": {
-          "Exemple": "mm"
+          "example": "mm"
         }
       },
       "massUnits": {
@@ -1112,29 +1115,42 @@
           "mt",
           "t"
         ],
+        "description": "Précise l'unité de poids.",
         "title": "Unité de poids (massUnits)",
-        "description": "Unité de poids",
         "x-examples": {
-          "Exemple": "mcg"
+          "example": "mcg"
         }
       },
       "postSubscriptionBasic": {
+        "description": "Précise la manière de générer le Basic token de souscription.",
+        "x-examples": {
+          "example": {
+            "basic": {
+              "username": "string",
+              "password": "string"
+            }
+          }
+        },
+        "title": "Token de souscription (postSubscriptionBasic)",
+        "type": "object",
         "properties": {
           "basic": {
             "type": "object",
             "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "login de l'utilisateur utilisé pour la souscription"
+              },
+              "password": {
+                "type": "string",
+                "description": "Mot de passe de l'utilisateur pour la souscription"
+              }
+            },
             "required": [
               "username",
               "password"
-            ],
-            "properties": {
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              }
-            }
+            ]
           }
         },
         "title": "Authentification Basic (postSubscriptionBasic)",
@@ -1178,46 +1194,49 @@
             }
           }
         },
-        "title": "Authentification oauth2 (postSubscriptionOauth2)",
-        "description": "Authentification souscription oauth2 ",
+        "title": "Token de souscription (postSubscriptionOAuth2)",
+        "description": "Précise la manière de générer le token de souscription OAuth2.",
         "x-examples": {
-          "Exemple": {
+          "example": {
             "oauth2": {
-              "client_id": "XXXX",
-              "client_secret": "XXXX",
-              "audience": "XXXX",
-              "grant_type": "client_credentials",
-              "tokenEndPoint": "https://my-token-url.com"
+              "client_id": "string",
+              "client_secret": "string",
+              "audience": "string",
+              "grant_type": "string",
+              "tokenEndPoint": "string"
             }
           }
         }
       },
       "postSubscriptionToken": {
+        "type": "object",
         "properties": {
           "token": {
             "type": "object",
             "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
-            "required": [
-              "username",
-              "password",
-              "endpoint"
-            ],
             "properties": {
               "username": {
-                "type": "string"
+                "type": "string",
+                "description": "login de l'utilisateur utilisé pour la souscription"
               },
               "password": {
-                "type": "string"
+                "type": "string",
+                "description": "Mot de passe de l'utilisateur pour la souscription"
               },
               "endpoint": {
                 "type": "string",
                 "description": "Url permettant de recupérer le token d'accès"
               }
-            }
+            },
+            "required": [
+              "username",
+              "password",
+              "endpoint"
+            ]
           }
         },
-        "title": "Authentification token (postSubscriptionOauth2)",
-        "description": "Authentification souscription token",
+        "title": "Token de souscription (postSubscriptionToken)",
+        "description": "Précise la manière de générer le Bearer token de souscription."
         "x-examples": {
           "Exemple": {
             "token": {
@@ -1229,31 +1248,34 @@
         }
       },
       "team": {
-        "required": [
-          "members"
-        ],
+        "type": "object",
         "properties": {
           "members": {
             "type": "array",
             "items": {
-              "required": [
-                "id"
-              ],
+              "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Identifiant de l'équipe en charge de la livraison"
                 }
-              }
+              },
+              "required": [
+                "id"
+              ]
             }
           }
         },
-        "title": "Équipe (team)",
-        "description": "Informations de l'équipe ayant contribué à la livraison",
+        "required": [
+          "members"
+        ],
+        "description": "Précise l'équipe en charge de la livraison. ",
+        "title": "Équipage (team)",
         "x-examples": {
-          "Exemple": {
+          "example": {
             "members": [
               {
-                "id": "5643JK"
+                "id": "012345"
               }
             ]
           }
@@ -1277,23 +1299,14 @@
           "VEHICLE_TYPE_E_CAR",
           "VEHICLE_TYPE_UNKNOWN"
         ],
+        "description": "Précise le type de véhicule utilisé lors de la livraison",
         "title": "Type de véhicule (vehicleType)",
-        "description": "Type de véhicule",
         "x-examples": {
-          "Exemple": "VEHICLE_TYPE_BIKE"
+          "example": "VEHICLE_TYPE_BIKE"
         }
       },
       "badRequest": {
         "type": "object",
-        "properties": {
-          "reasons": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "example": "Missing argument 'xxxxx'"
-            }
-          }
-        },
         "description": "Elements manquants et/ou incorrect dans le body",
         "title": "Erreur 400 (badRequest)",
         "x-examples": {
@@ -1301,6 +1314,16 @@
             "reasons": [
               "Missing argument 'xxxxx'"
             ]
+          }
+        },
+        "properties": {
+          "reasons": {
+            "type": "array",
+            "description": "Indication sur l'erreur remontée",
+            "items": {
+              "type": "string",
+              "example": "Missing argument 'xxxxx'"
+            }
           }
         }
       }
