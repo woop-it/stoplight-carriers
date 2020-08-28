@@ -1,6 +1,6 @@
 # Statuts de livraison
 
-Au cours de son cycle de vie la livraison peut passer par plusieurs statuts. Ceux que nous identifions ici sont les différentes étapes d'une livraison. 
+Au cours de son cycle de vie la commande passe tour à tour par plusieurs statuts. Ceux que nous identifions sont les différents stades de la livraison.
 
 Statut | Intitulé
 ---------|----------
@@ -22,3 +22,4 @@ Statut | Intitulé
  `DELIVERY_BLOCKED`|Livraison bloquée
  `DELIVERY_DELAYED`|Livraison retardée
  `DELIVERY_AVAILABLE`|Livraison disponible
+
