@@ -538,7 +538,9 @@
                             "quantity": 1
                           }
                         ],
-                        "reference": "1234A",
+                        "references": [
+                          "1234A"
+                        ],
                         "quantity": 1
                       }
                     ],
@@ -742,7 +744,9 @@
                             "quantity": 1
                           }
                         ],
-                        "reference": "1234A",
+                        "references": [
+                          "1234A"
+                        ],
                         "quantity": 1
                       }
                     ],
@@ -1742,11 +1746,45 @@
       },
       "package": {
         "type": "object",
-        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis.",
+        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un ensemble des produits de la commande regroupé par colis.",
         "title": "Colis (package)",
+        "x-examples": {
+          "example-1": {
+            "references": [
+              "string"
+            ],
+            "length": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "width": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "height": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "weight": {
+              "value": 0,
+              "unit": "kg"
+            },
+            "products": [
+              {
+                "type": "TYPOLOGY_GENERIC",
+                "ean": "string",
+                "cug": "string",
+                "label": "string",
+                "quantity": 1
+              }
+            ],
+            "quantity": 0
+          }
+        },
         "properties": {
-          "reference": {
+          "references": {
             "type": "array",
+            "description": "Références internes des colis si fournies par l'enseigne",
             "items": {
               "type": "string"
             }
