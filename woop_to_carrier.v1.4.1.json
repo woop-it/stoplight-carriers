@@ -1973,19 +1973,19 @@
       "price": {
         "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
         "type": "object",
+        "title": "Prix de vente des produits (price)",
         "properties": {
           "value": {
             "type": "number",
             "format": "float",
-            "description": "Nombre entier indicatif du prix",
+            "description": "Valeur indicative du prix",
             "exclusiveMinimum": true,
             "minimum": 0
           },
           "currency": {
             "$ref": "#/components/schemas/currency"
           }
-        },
-        "title": "Prix de vente des produits (price)"
+        }
       },
       "refusedReason": {
         "type": "string",
