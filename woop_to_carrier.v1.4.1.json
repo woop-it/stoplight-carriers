@@ -2442,6 +2442,73 @@
         "title": "Informations de demande de livraison (postDeliveryInformations)",
         "description": "Informations de demande de livraison.",
         "type": "object",
+        "x-examples": {
+          "example": {
+            "orderId": "string",
+            "quoteId": "string",
+            "referenceNumber": "string",
+            "productsPrice": {
+              "value": 0,
+              "currency": "EUR"
+            },
+            "retailer": {
+              "name": "string",
+              "id": "string",
+              "store": {
+                "id": "string",
+                "name": "string",
+                "contact": {
+                  "firstName": "string",
+                  "lastName": "string",
+                  "phone": "string",
+                  "email": "string"
+                }
+              }
+            },
+            "packages": [
+              {
+                "references": [
+                  "string"
+                ],
+                "length": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "width": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "weight": {
+                  "value": 0,
+                  "unit": "kg"
+                },
+                "products": [
+                  {
+                    "type": "TYPOLOGY_GENERIC",
+                    "ean": "string",
+                    "cug": "string",
+                    "label": "string",
+                    "quantity": 1
+                  }
+                ],
+                "quantity": 0
+              }
+            ],
+            "services": [
+              "SERVICE_SELECTED_ROOM"
+            ],
+            "tags": [
+              {
+                "key": "origin",
+                "value": "web"
+              }
+            ]
+          }
+        },
         "properties": {
           "orderId": {
             "type": "string",
@@ -2469,6 +2536,10 @@
           },
           "tags": {
             "$ref": "#/components/schemas/tags"
+          },
+          "quoteId": {
+            "type": "string",
+            "description": "Identifiant référence du devis de la commande"
           }
         },
         "required": [
@@ -2476,7 +2547,8 @@
           "referenceNumber",
           "retailer",
           "packages",
-          "services"
+          "services",
+          "quoteId"
         ]
       },
       "deliveryCreated": {
