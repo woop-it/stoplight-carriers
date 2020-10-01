@@ -2,20 +2,20 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Transporteur vers Woop",
-    "description": "Contrat d'interface des APIs des transporteurs vers Woop.\n\n **Version 1.3.0**",
+    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Transporteur vers Woop\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la <b>Version 1.3.0</b>",
     "version": "1.3.0"
   },
   "servers": [
     {
-      "url": "https://car-api.recette.gcp.last-mile.fr",
+      "url": "car-api.recette.gcp.last-mile.fr",
       "description": "URL de recette"
     },
     {
-      "url": "https://car-api.preprod.gcp.last-mile.fr",
+      "url": "car-api.preprod.gcp.last-mile.fr",
       "description": "URL de preprod"
     },
     {
-      "url": "https://carrier.last-mile.fr",
+      "url": "carrier.last-mile.fr",
       "description": "URL de prod"
     }
   ],
@@ -25,7 +25,7 @@
         "tags": [
           "Health"
         ],
-        "description": "Test si l'API est UP",
+        "description": "Contrôle si l'application est opérationnelle.",
         "operationId": "getHealth",
         "responses": {
           "204": {
@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Cette méthode permet de mettre à jour le statut d'une livraison.",
+        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -55,19 +55,16 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "description": "Mise à jour de statut de livraison",
                 "properties": {
                   "status": {
                     "$ref": "#/components/schemas/deliveryStatus"
                   },
                   "date": {
                     "type": "string",
-                    "format": "datetime",
-                    "description": "Date et heure de mise à jour"
+                    "format": "datetime"
                   },
                   "comment": {
-                    "type": "string",
-                    "description": "Commentaire libre"
+                    "type": "string"
                   },
                   "team": {
                     "$ref": "#/components/schemas/team"
@@ -84,14 +81,7 @@
                   "value": {
                     "status": "DELIVERY_DELIVERED_OK",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "OK."
-                  }
-                },
-                "Livraison livrée avec conforme avec informations de l'équipe": {
-                  "value": {
-                    "status": "DELIVERY_DELIVERED_OK",
-                    "date": "2019-11-27T10:30:00+0000",
-                    "comment": "OK.",
+                    "comment": "J'ai attendu 5min dehors.",
                     "team": {
                       "members": [
                         {
@@ -132,7 +122,7 @@
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
           },
           "403": {
-            "description": "Le statut ne peut plus être edité"
+            "description": "Le status ne peut plus être edité"
           },
           "404": {
             "description": "Le 'deliveryId' n'a pas été trouvé"
@@ -154,7 +144,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet d'ajouter des frais supplémentaire ou de remise sur une livraison",
+        "description": "Ajout de frais supplémentaire ou de remise d'une livraison.",
         "operationId": "putDeliveryDeltaCosts",
         "parameters": [
           {
@@ -170,13 +160,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "description": "Frais supplémentaire ou remise",
+                "required": [
+                  "amount",
+                  "reason",
+                  "currency",
+                  "date"
+                ],
                 "properties": {
                   "amount": {
                     "type": "number",
-                    "format": "float",
-                    "description": "Montant des frais ou remise"
+                    "format": "float"
                   },
                   "reason": {
                     "$ref": "#/components/schemas/deltaCostReason"
@@ -185,38 +178,21 @@
                     "$ref": "#/components/schemas/currency"
                   },
                   "comment": {
-                    "type": "string",
-                    "description": "Commentaire libre"
+                    "type": "string"
                   },
                   "date": {
                     "type": "string",
-                    "format": "datetime",
-                    "description": "Date et heure de l'opération"
+                    "format": "datetime"
                   }
-                },
-                "required": [
-                  "amount",
-                  "reason",
-                  "currency",
-                  "date"
-                ]
+                }
               },
               "examples": {
-                "Frais supplémentaire pour annulation tardive": {
+                "Annulation tardive": {
                   "value": {
                     "amount": 165.98,
                     "currency": "EUR",
                     "reason": "DELTACOST_LATE_CANCELLATION",
                     "comment": "Commande annulée 5min avant livraison.",
-                    "date": "2019-11-27T10:30:00+0000"
-                  }
-                },
-                "Remise pour livraison partielle": {
-                  "value": {
-                    "amount": -20,
-                    "reason": "DELTACOST_PARTIALLY_DELIVERED",
-                    "currency": "EUR",
-                    "comment": "Livraison partielle",
                     "date": "2019-11-27T10:30:00+0000"
                   }
                 }
@@ -270,7 +246,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet d'ajouter des informations de facturation d'une livraison.",
+        "description": "Ajout des informations de facturation d'une livraison.",
         "operationId": "postDeliveryClosure",
         "parameters": [
           {
@@ -286,8 +262,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "description": "Informations de facturation",
+                "required": [
+                  "emittedCarbonDioxide",
+                  "billedDistance",
+                  "vehicleType"
+                ],
                 "properties": {
                   "emittedCarbonDioxide": {
                     "$ref": "#/components/schemas/mass"
@@ -298,12 +277,7 @@
                   "vehicleType": {
                     "$ref": "#/components/schemas/vehicleType"
                   }
-                },
-                "required": [
-                  "emittedCarbonDioxide",
-                  "billedDistance",
-                  "vehicleType"
-                ]
+                }
               },
               "examples": {
                 "Exemple": {
@@ -369,7 +343,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet de notifier d'un évènement d'une livraison.",
+        "description": "Ajout d'un évènement d'une livraison.",
         "operationId": "postDeliveryEvent",
         "parameters": [
           {
@@ -385,8 +359,13 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "description": "Notification",
+                "required": [
+                  "status",
+                  "type",
+                  "date",
+                  "subject",
+                  "message"
+                ],
                 "properties": {
                   "status": {
                     "type": "boolean",
@@ -433,17 +412,10 @@
                     "type": "string",
                     "description": "Raison de l'échec de l'évènement"
                   }
-                },
-                "required": [
-                  "status",
-                  "type",
-                  "date",
-                  "subject",
-                  "message"
-                ]
+                }
               },
               "examples": {
-                "Notification d'un sms envoyé au sujet d'un livraison prise en charge": {
+                "Exemple": {
                   "value": {
                     "status": true,
                     "type": "EVENT_TYPE_SMS",
@@ -496,7 +468,7 @@
     },
     "/subscriptions": {
       "post": {
-        "description": "Cette méthode permet d'initialiser les souscriptions à nos APIs.\n\nPlus d'informations dans la documentation dédiée \"Souscriptions\"",
+        "description": "Endpoint d'initialisation d'échanges avec les APIs transporteur.",
         "operationId": "postSubscription",
         "parameters": [
           {
@@ -505,12 +477,13 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de souscriptions",
+          "description": "Contient les informations de souscription",
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "description": "Informations de souscriptions",
+                "required": [
+                  "callbacks"
+                ],
                 "properties": {
                   "callbacks": {
                     "type": "object",
@@ -573,6 +546,9 @@
                       },
                       "cancelQuote": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -583,10 +559,7 @@
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "score": {
                         "type": "object",
@@ -604,6 +577,9 @@
                       },
                       "pickupPoint": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -614,13 +590,13 @@
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "price": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -631,13 +607,13 @@
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "label": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -648,13 +624,13 @@
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "status": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -665,13 +641,13 @@
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "update": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -682,10 +658,7 @@
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       }
                     }
                   },
@@ -696,9 +669,12 @@
                   },
                   "headers": {
                     "type": "array",
-                    "description": "Liste des headers à envoyés",
                     "items": {
                       "type": "object",
+                      "required": [
+                        "key",
+                        "value"
+                      ],
                       "properties": {
                         "key": {
                           "type": "string"
@@ -706,11 +682,7 @@
                         "value": {
                           "type": "string"
                         }
-                      },
-                      "required": [
-                        "key",
-                        "value"
-                      ]
+                      }
                     }
                   },
                   "auth": {
@@ -726,10 +698,7 @@
                       }
                     ]
                   }
-                },
-                "required": [
-                  "callbacks"
-                ]
+                }
               },
               "examples": {
                 "Basic": {
@@ -878,7 +847,7 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Initialisation des souscriptions",
+        "summary": "Ajout de souscriptions",
         "tags": [
           "Souscriptions"
         ]
@@ -889,7 +858,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Cette méthode permet d'ajouter un document d'une livraison.\n\nTrois types de document sont possible :\n- EVIDENCE : Preuve de livraison.\n- INVOICE : Facture de livraison.\n- CONTRACT: Contrat entre le transporteur et l'enseigne.",
+        "description": "Ajout d'un document",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -901,16 +870,15 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations du document envoyé au format multipart/form-data.",
+          "description": "Contient les informations du document envoyé.",
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "description": "Informations du document",
                 "properties": {
                   "document": {
                     "type": "string",
-                    "description": "Le document sour format binaire, max 10mb",
+                    "description": "Le document sous format binaire, max 10mb",
                     "format": "binary"
                   },
                   "type": {
@@ -935,8 +903,12 @@
                 ]
               },
               "examples": {
-                "Preuve de livraison": {
-                  "value": "{\n  \"document\": \"{file stream}\",\n  \"type\": \"EVIDENCE\",\n  \"date\": \"2019-11-27T10:30:00+0000\"\n}"
+                "Exemple": {
+                  "value": {
+                    "document": "file stream",
+                    "type": "EVIDENCE",
+                    "date": "2019-11-27T10:30:00+0000"
+                  }
                 }
               }
             }
@@ -988,10 +960,10 @@
         "enum": [
           "EUR"
         ],
-        "description": "Devise",
         "title": "Devise (currency)",
+        "description": "Devise, précise la monnaie utilisée.",
         "x-examples": {
-          "Exemple": "EUR"
+          "example": "EUR"
         }
       },
       "deliveryStatus": {
@@ -1009,12 +981,13 @@
           "DELIVERY_FAILED_WITH_RETURN",
           "DELIVERY_RETURNED_TO_PICK_UP",
           "DELIVERY_DELIVERED_OK",
-          "DELIVERY_DELIVERED_PARTIALLY"
+          "DELIVERY_DELIVERED_PARTIALLY",
+          "DELIVERY_CANCELLED"
         ],
-        "description": "Statut de livraison",
-        "title": "Statut de livraison (deliveryStatus)",
+        "title": "Statuts de livraison (deliveryStatus)",
+        "description": "Précise les différents statuts de livraison possible au sein de la plateforme. ",
         "x-examples": {
-          "Exemple": "DELIVERY_STARTED"
+          "example": "DELIVERY_STARTED"
         }
       },
       "deltaCostReason": {
@@ -1030,11 +1003,11 @@
           "DELTACOST_PARTIALLY_DELIVERED",
           "DELTACOST_UNKNOWN"
         ],
-        "title": "Raison de frais supplémentaire ou remise (deltaCostReason)",
-        "description": "Raison de frais supplémentaire ou remise",
+        "title": "Raison de deltaCost (deltaCostReason)",
         "x-examples": {
-          "Exemple": "DELTACOST_EXTEND_WAITING_WAREHOUSE"
-        }
+          "example": "DELTACOST_EXTEND_WAITING_WAREHOUSE"
+        },
+        "description": "Précise la raison transporteur pour la création d'un deltaCost. "
       },
       "length": {
         "required": [
@@ -1051,10 +1024,10 @@
           }
         },
         "title": "Dimension (length)",
-        "description": "Dimension",
+        "description": "Précise la dimension d'un colis.",
         "x-examples": {
-          "Exemple": {
-            "value": 300,
+          "example": {
+            "value": 200,
             "unit": "mm"
           }
         }
@@ -1073,10 +1046,10 @@
             "$ref": "#/components/schemas/massUnits"
           }
         },
+        "description": "Précise le poids d'un colis/produit.",
         "title": "Poids (mass)",
-        "description": "Poids",
         "x-examples": {
-          "Exemple": {
+          "example": {
             "value": 1,
             "unit": "kg"
           }
@@ -1094,10 +1067,10 @@
           "ft",
           "mi"
         ],
-        "title": "Unité de mesure (lengthUnits)",
-        "description": "Unité de mesure",
+        "description": "Précise l'unité de longueur.",
+        "title": "Unité de longueur (lengthUnits)",
         "x-examples": {
-          "Exemple": "mm"
+          "example": "mm"
         }
       },
       "massUnits": {
@@ -1112,39 +1085,42 @@
           "mt",
           "t"
         ],
+        "description": "Précise l'unité de poids.",
         "title": "Unité de poids (massUnits)",
-        "description": "Unité de poids",
         "x-examples": {
-          "Exemple": "mcg"
+          "example": "mcg"
         }
       },
       "postSubscriptionBasic": {
+        "description": "Précise la manière de générer le Basic token de souscription.",
+        "x-examples": {
+          "example": {
+            "basic": {
+              "username": "string",
+              "password": "string"
+            }
+          }
+        },
+        "title": "Token de souscription (postSubscriptionBasic)",
+        "type": "object",
         "properties": {
           "basic": {
             "type": "object",
             "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "login de l'utilisateur utilisé pour la souscription"
+              },
+              "password": {
+                "type": "string",
+                "description": "Mot de passe de l'utilisateur pour la souscription"
+              }
+            },
             "required": [
               "username",
               "password"
-            ],
-            "properties": {
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "title": "Authentification Basic (postSubscriptionBasic)",
-        "description": "Authentification souscription Basic",
-        "x-examples": {
-          "Exemple": {
-            "basic": {
-              "username": "username",
-              "password": "password"
-            }
+            ]
           }
         }
       },
@@ -1178,82 +1154,79 @@
             }
           }
         },
-        "title": "Authentification oauth2 (postSubscriptionOauth2)",
-        "description": "Authentification souscription oauth2 ",
+        "title": "Token de souscription (postSubscriptionOAuth2)",
+        "description": "Précise la manière de générer le token de souscription OAuth2.",
         "x-examples": {
-          "Exemple": {
+          "example": {
             "oauth2": {
-              "client_id": "XXXX",
-              "client_secret": "XXXX",
-              "audience": "XXXX",
-              "grant_type": "client_credentials",
-              "tokenEndPoint": "https://my-token-url.com"
+              "client_id": "string",
+              "client_secret": "string",
+              "audience": "string",
+              "grant_type": "string",
+              "tokenEndPoint": "string"
             }
           }
         }
       },
       "postSubscriptionToken": {
+        "type": "object",
         "properties": {
           "token": {
             "type": "object",
             "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
-            "required": [
-              "username",
-              "password",
-              "endpoint"
-            ],
             "properties": {
               "username": {
-                "type": "string"
+                "type": "string",
+                "description": "login de l'utilisateur utilisé pour la souscription"
               },
               "password": {
-                "type": "string"
+                "type": "string",
+                "description": "Mot de passe de l'utilisateur pour la souscription"
               },
               "endpoint": {
                 "type": "string",
                 "description": "Url permettant de recupérer le token d'accès"
               }
-            }
+            },
+            "required": [
+              "username",
+              "password",
+              "endpoint"
+            ]
           }
         },
-        "title": "Authentification token (postSubscriptionOauth2)",
-        "description": "Authentification souscription token",
-        "x-examples": {
-          "Exemple": {
-            "token": {
-              "username": "username",
-              "password": "password",
-              "endpoint": "https://my-token-url.com"
-            }
-          }
-        }
+        "title": "Token de souscription (postSubscriptionToken)",
+        "description": "Précise la manière de générer le Bearer token de souscription."
       },
       "team": {
-        "required": [
-          "members"
-        ],
+        "type": "object",
         "properties": {
           "members": {
             "type": "array",
             "items": {
-              "required": [
-                "id"
-              ],
+              "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Identifiant de l'équipe en charge de la livraison"
                 }
-              }
+              },
+              "required": [
+                "id"
+              ]
             }
           }
         },
-        "title": "Équipe (team)",
-        "description": "Informations de l'équipe ayant contribué à la livraison",
+        "required": [
+          "members"
+        ],
+        "description": "Précise l'équipe en charge de la livraison. ",
+        "title": "Équipage (team)",
         "x-examples": {
-          "Exemple": {
+          "example": {
             "members": [
               {
-                "id": "5643JK"
+                "id": "012345"
               }
             ]
           }
@@ -1277,30 +1250,31 @@
           "VEHICLE_TYPE_E_CAR",
           "VEHICLE_TYPE_UNKNOWN"
         ],
+        "description": "Précise le type de véhicule utilisé lors de la livraison.",
         "title": "Type de véhicule (vehicleType)",
-        "description": "Type de véhicule",
         "x-examples": {
-          "Exemple": "VEHICLE_TYPE_BIKE"
+          "example": "VEHICLE_TYPE_BIKE"
         }
       },
       "badRequest": {
         "type": "object",
-        "properties": {
-          "reasons": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "example": "Missing argument 'xxxxx'"
-            }
-          }
-        },
         "description": "Elements manquants et/ou incorrect dans le body",
-        "title": "Erreur 400 (badRequest)",
+        "title": "Erreur 400",
         "x-examples": {
           "Exemple": {
             "reasons": [
               "Missing argument 'xxxxx'"
             ]
+          }
+        },
+        "properties": {
+          "reasons": {
+            "type": "array",
+            "description": "Indication sur l'erreur remontée",
+            "items": {
+              "type": "string",
+              "example": "Missing argument 'xxxxx'"
+            }
           }
         }
       }

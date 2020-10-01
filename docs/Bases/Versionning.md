@@ -4,7 +4,7 @@ tags: ['Bases']
 
 # Versionning
 
-Un versioning par **header HTTP** est utilisé sur toutes les API.
+Un versioning par **header HTTP** est utilisé sur toutes les APIs.
 
 Le header `x-api-version` doit être envoyé à chaque appel avec **la version d'API ciblée**.
 

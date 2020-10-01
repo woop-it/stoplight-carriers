@@ -1,6 +1,12 @@
 # Statuts de livraison
 
-Au cours de son cible de vie la livraison peut passer par plusieurs statuts. Ce que nous identifions ici ce sont les différents étapes d'une livraison. 
+Au cours de son cycle de vie la commande passe tour à tour par plusieurs statuts. Ceux que nous identifions sont les différents stades de la livraison. 
+
+### Parcours d'une commande
+
+![get-started-icon](../../assets/images/Workflow_status_livraison.png)
+
+### Liste des statuts de livraison possible
 
 Statut | Intitulé
 ---------|----------
@@ -20,5 +26,9 @@ Statut | Intitulé
  `DELIVERY_CANCELLED`|Livraison annulée
  `DELIVERY_CANCELLED_WITH_RETURN`|Livraison annulée avec retour magasin
  `DELIVERY_BLOCKED`|Livraison bloquée
- `DELIVERY_DELAYED`|Livraison retardée
- `DELIVERY_AVAILABLE`|Livraison disponible
+ `DELIVERY_DELAYED`|Livraison retardée 
+ `DELIVERY_AVAILABLE`|Livraison disponible en point de retrait
+
+### Gestion des retours et des erreurs
+
+![get-started-icon](../../assets/images/Workflow_retours.png)

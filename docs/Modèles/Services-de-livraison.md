@@ -2,9 +2,8 @@
 # Services de livraison
 
 
-Liste des services pouvant être demandé pour une livraison.
+Liste des différents services de livraison possible lors de la création d'une commande.
 
-La configuration de la prise en charge de ces services peut-être configuré (nous contacter).
 
 Code| Intitulé
 ---------|----------
@@ -17,3 +16,5 @@ Code| Intitulé
 `SERVICE_SELECTED_ROOM`| Livraison pièce du choix
 `SERVICE_SIMPLE_INSTALL`| Mise en service simple
 `SERVICE_COMPLEX_INSTALL`| Mise en service complexe
+
+*La configuration de la prise en charge des services de livraison par transporteur est manuelle, veuillez nous contacter.*

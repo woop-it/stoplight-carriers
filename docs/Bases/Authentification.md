@@ -4,8 +4,9 @@ tags: [token]
 
 # Authentification
 
-Un token est nécessaire pour échange avec nos APIs, une fois récupéré il est valide pendant 24h et doit être fourni à chaque appel dans un header HTTP : ``` Authorization: Bearer {token} ```
+Un token est nécessaire pour échanger avec nos APIs, une fois récupéré il est valide pendant 24h et doit être fourni à chaque appel dans un header HTTP : ``` Authorization: Bearer {token} ```
 
+Le token est indispensable et permet de vous identifiant lors de chaque appel. Il doit être généré au début via la route indiquée. 
 
 ### Urls
 
@@ -18,7 +19,7 @@ Un token est nécessaire pour échange avec nos APIs, une fois récupéré il es
 ### Récupérer un token
 <!-- theme: info -->
 
-> 💡   &nbsp; Les paramètres client_id et client_secret vous seront communiqués ultérieurement.
+> 💡   &nbsp; Les paramètres client_id et client_secret vous seront communiqués ultérieurement par l'équipe IT de Woop.
 
 
 <!-- theme: danger -->
