@@ -54,11 +54,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "status",
-                  "date",
-                  "comment"
-                ],
+                "type": "object",
                 "properties": {
                   "status": {
                     "$ref": "#/components/schemas/deliveryStatus"
@@ -73,7 +69,12 @@
                   "team": {
                     "$ref": "#/components/schemas/team"
                   }
-                }
+                },
+                "required": [
+                  "status",
+                  "date",
+                  "comment"
+                ]
               },
               "examples": {
                 "Livraison livrée conforme": {
@@ -980,7 +981,8 @@
           "DELIVERY_FAILED_WITH_RETURN",
           "DELIVERY_RETURNED_TO_PICK_UP",
           "DELIVERY_DELIVERED_OK",
-          "DELIVERY_DELIVERED_PARTIALLY"
+          "DELIVERY_DELIVERED_PARTIALLY",
+          "DELIVERY_CANCELLED"
         ],
         "title": "Statuts de livraison (deliveryStatus)",
         "description": "Précise les différents statuts de livraison possible au sein de la plateforme. ",

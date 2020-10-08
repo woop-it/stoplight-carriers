@@ -538,7 +538,9 @@
                             "quantity": 1
                           }
                         ],
-                        "reference": "1234A",
+                        "references": [
+                          "1234A"
+                        ],
                         "quantity": 1
                       }
                     ],
@@ -742,7 +744,9 @@
                             "quantity": 1
                           }
                         ],
-                        "reference": "1234A",
+                        "references": [
+                          "1234A"
+                        ],
                         "quantity": 1
                       }
                     ],
@@ -1742,11 +1746,45 @@
       },
       "package": {
         "type": "object",
-        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis.",
+        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un ensemble des produits de la commande regroupé par colis.",
         "title": "Colis (package)",
+        "x-examples": {
+          "example-1": {
+            "references": [
+              "string"
+            ],
+            "length": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "width": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "height": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "weight": {
+              "value": 0,
+              "unit": "kg"
+            },
+            "products": [
+              {
+                "type": "TYPOLOGY_GENERIC",
+                "ean": "string",
+                "cug": "string",
+                "label": "string",
+                "quantity": 1
+              }
+            ],
+            "quantity": 0
+          }
+        },
         "properties": {
-          "reference": {
+          "references": {
             "type": "array",
+            "description": "Références internes des colis si fournies par l'enseigne",
             "items": {
               "type": "string"
             }
@@ -1973,19 +2011,19 @@
       "price": {
         "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
         "type": "object",
+        "title": "Prix de vente des produits (price)",
         "properties": {
           "value": {
             "type": "number",
             "format": "float",
-            "description": "Nombre entier indicatif du prix",
+            "description": "Valeur indicative du prix",
             "exclusiveMinimum": true,
             "minimum": 0
           },
           "currency": {
             "$ref": "#/components/schemas/currency"
           }
-        },
-        "title": "Prix de vente des produits (price)"
+        }
       },
       "refusedReason": {
         "type": "string",
@@ -2404,6 +2442,73 @@
         "title": "Informations de demande de livraison (postDeliveryInformations)",
         "description": "Informations de demande de livraison.",
         "type": "object",
+        "x-examples": {
+          "example": {
+            "orderId": "string",
+            "quoteId": "string",
+            "referenceNumber": "string",
+            "productsPrice": {
+              "value": 0,
+              "currency": "EUR"
+            },
+            "retailer": {
+              "name": "string",
+              "id": "string",
+              "store": {
+                "id": "string",
+                "name": "string",
+                "contact": {
+                  "firstName": "string",
+                  "lastName": "string",
+                  "phone": "string",
+                  "email": "string"
+                }
+              }
+            },
+            "packages": [
+              {
+                "references": [
+                  "string"
+                ],
+                "length": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "width": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "weight": {
+                  "value": 0,
+                  "unit": "kg"
+                },
+                "products": [
+                  {
+                    "type": "TYPOLOGY_GENERIC",
+                    "ean": "string",
+                    "cug": "string",
+                    "label": "string",
+                    "quantity": 1
+                  }
+                ],
+                "quantity": 0
+              }
+            ],
+            "services": [
+              "SERVICE_SELECTED_ROOM"
+            ],
+            "tags": [
+              {
+                "key": "origin",
+                "value": "web"
+              }
+            ]
+          }
+        },
         "properties": {
           "orderId": {
             "type": "string",
@@ -2431,6 +2536,10 @@
           },
           "tags": {
             "$ref": "#/components/schemas/tags"
+          },
+          "quoteId": {
+            "type": "string",
+            "description": "Identifiant référence du devis de la commande"
           }
         },
         "required": [
@@ -2438,7 +2547,8 @@
           "referenceNumber",
           "retailer",
           "packages",
-          "services"
+          "services",
+          "quoteId"
         ]
       },
       "deliveryCreated": {
