@@ -331,7 +331,7 @@
             }
           },
           "202": {
-            "description": "La demande de devis a été traitée. Actuellement, aucun devis n'a été généré.\n\nValeurs possibles pour \"reasons\":\n - \"REFUSED_AREA\": L'adresse de prélèvement se trouve dans un secteur qui n'est pas couvert par nos équipes,\n - \"REFUSED_AREA\": La distance de livraison dépasse notre limite de XX Km\n - \"REFUSED_AVAILABILITY\": Pas d'équipes d'disponible sur le créneau sélectionné\n - \"REFUSED_DAY_OFF\": Créneau en dehors de nos jour de prise en charge\n - \"REFUSED_EXCEPTION\": Une erreur s'est produite: le numéro de téléphone ne peut pas être pris en charge\n - \"REFUSED_TIME_NOT_WORKED\": Créneau en dehors de nos horaires de prise en charge\n - \"REFUSED_TOO_HEAVY\": Poids en dehors de la limite de XX Kg\n - \"REFUSED_TOO_LARGE\": Dimensions en dehors de la limite de XX cm/m/mm",
+            "description": "La demande de devis a été traitée. Actuellement, aucun devis n'a été généré. Les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". ",
             "content": {
               "application/json": {
                 "schema": {
@@ -810,7 +810,7 @@
             }
           },
           "205": {
-            "description": "La livraison est finalement refusée, les motifs sont retournées.\n\nValeurs possibles pour \"reasons\":\n - \"REFUSED_AREA\": L'adresse de prélèvement se trouve dans un secteur qui n'est pas couvert par nos équipes,\n - \"REFUSED_AREA\": La distance de livraison dépasse notre limite de XX Km\n - \"REFUSED_AVAILABILITY\": Pas d'équipes d'disponible sur le créneau sélectionné\n - \"REFUSED_DAY_OFF\": Créneau en dehors de nos jour de prise en charge\n - \"REFUSED_EXCEPTION\": Une erreur s'est produite: le numéro de téléphone ne peut pas être pris en charge\n - \"REFUSED_TIME_NOT_WORKED\": Créneau en dehors de nos horaires de prise en charge\n - \"REFUSED_TOO_HEAVY\": Poids en dehors de la limite de XX Kg\n - \"REFUSED_TOO_LARGE\": Dimensions en dehors de la limite de XX cm/m/mm",
+            "description": "La livraison est finalement refusée, les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". ",
             "content": {
               "application/json": {
                 "schema": {
@@ -2027,20 +2027,21 @@
       },
       "refusedReason": {
         "type": "string",
-        "enum": [
-          "REFUSED_TOO_HEAVY",
-          "REFUSED_AVAILABILITY",
-          "REFUSED_AREA",
-          "REFUSED_TOO_LARGE",
-          "REFUSED_TIME_NOT_WORKED",
-          "REFUSED_DAY_OFF",
-          "REFUSED_EXCEPTION"
-        ],
+        "description": "Précise les raisons de refus possible décrit dans l'article associé : \"Motifs de refus\".",
         "title": "Motif de refus (refusedReason)",
+        "enum": [
+          "REFUSED_AREA",
+          "REFUSED_AVAILABILITY",
+          "REFUSED_DAY_OFF",
+          "REFUSED_EXCEPTION",
+          "REFUSED_TIME_NOT_WORKED",
+          "REFUSED_TOO_HEAVY",
+          "REFUSED_TOO_LARGE"
+        ],
+        "example": "REFUSED_AREA",
         "x-examples": {
-          "Exemple": "REFUSED_TOO_HEAVY"
-        },
-        "description": "Précise les raisons de refus possible."
+          "example-1": "REFUSED_AREA"
+        }
       },
       "cancelledReason": {
         "type": "string",
