@@ -331,7 +331,7 @@
             }
           },
           "202": {
-            "description": "La demande de devis a été traitée. Actuellement, aucun devis n'a été généré. Les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". \n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "La demande de devis a été traitée. Actuellement, aucun devis n'a été généré. Les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". \n\n[Voir les motifs de refus](docs/Modèles/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -810,7 +810,7 @@
             }
           },
           "205": {
-            "description": "La livraison est finalement refusée, les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". \n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "La livraison est finalement refusée, les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". \n\n[Voir les motifs de refus](docs/Modèles/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
