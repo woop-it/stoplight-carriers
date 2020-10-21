@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
