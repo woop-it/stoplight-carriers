@@ -951,6 +951,76 @@
         ],
         "summary": "Ajout d'un document d'une livraison"
       }
+    },
+    "/deliveries/{deliveryId}/appointment": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "deliveryId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "Mise à jour de la date de livraison",
+        "operationId": "put-deliveries-deliveryId-appointment",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Permet de mettre à jour la date de livraison en fonction de l'intervalle de livraison défini avec le client final. L'information sera transmise au retailer et aura un impact sur la livraison initiale. ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          }
+        ],
+        "security": [
+          {
+            "oAuth2ClientCredentials": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "comment": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "interval": {
+                    "$ref": "./woop_to_carrier.v1.4.1.json#/components/schemas/interval"
+                  }
+                },
+                "required": [
+                  "comment",
+                  "date",
+                  "interval"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "comment": "Client absent le 26/11/2020",
+                    "date": "2020-11-22T10:30:00+0000",
+                    "interval": {
+                      "start": "2020-11-28T15:52:01+0000",
+                      "end": "2020-11-28T17:52:01+0000"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "Contient les informations sur l'intervalle de livraison défini avec le client final. "
+        }
+      }
     }
   },
   "components": {

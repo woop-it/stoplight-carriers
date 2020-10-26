@@ -1616,7 +1616,7 @@
       },
       "interval": {
         "title": "Créneau de dates (interval)",
-        "description": "Précise l'interval de date pour un prélèvement/livraison.",
+        "description": "Précise l'interval de date pour un prélèvement et/ou une livraison.",
         "type": "object",
         "properties": {
           "start": {
