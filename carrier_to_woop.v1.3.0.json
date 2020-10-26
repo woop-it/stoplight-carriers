@@ -967,8 +967,27 @@
         "summary": "Mise à jour de la date de livraison",
         "operationId": "put-deliveries-deliveryId-appointment",
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "L'information ne peut plus être envoyée"
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
         "description": "Permet de mettre à jour la date de livraison en fonction de l'intervalle de livraison défini avec le client final. L'information sera transmise au retailer et aura un impact sur la livraison initiale. ",
