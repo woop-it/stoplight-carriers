@@ -1019,7 +1019,10 @@
             }
           },
           "description": "Contient les informations sur l'intervalle de livraison défini avec le client final. "
-        }
+        },
+        "tags": [
+          "Livraison"
+        ]
       }
     }
   },
