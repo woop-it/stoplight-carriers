@@ -68,6 +68,9 @@
                   },
                   "team": {
                     "$ref": "#/components/schemas/team"
+                  },
+                  "additionalData": {
+                    "$ref": "#/components/schemas/additionalData"
                   }
                 },
                 "required": [
@@ -81,14 +84,20 @@
                   "value": {
                     "status": "DELIVERY_DELIVERED_OK",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "J'ai attendu 5min dehors.",
+                    "comment": "J'ai patienté 15 min",
                     "team": {
                       "members": [
                         {
                           "id": "ZER784"
                         }
                       ]
-                    }
+                    },
+                    "additionalData": [
+                      {
+                        "key": "my_personnal_key",
+                        "value": "personal data"
+                      }
+                    ]
                   }
                 }
               }
@@ -1354,6 +1363,31 @@
             }
           }
         }
+      },
+      "additionalData": {
+        "description": "Permet au transporteur de transmettre des informations/données personalisées vers l'enseigne. ",
+        "type": "object",
+        "x-examples": {
+          "example": {
+            "key": "string",
+            "value": "string"
+          }
+        },
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Libellé de l'information transmise"
+          },
+          "value": {
+            "type": "string",
+            "description": "Valeur de l'information transmise"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "Données additionnelles"
       }
     },
     "parameters": {
