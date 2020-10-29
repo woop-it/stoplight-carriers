@@ -149,6 +149,15 @@
           },
           {
             "$ref": "#/components/parameters/pathDeliveryId"
+          },
+          {
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Id du colis"
+            }
           }
         ],
         "requestBody": {
