@@ -139,6 +139,109 @@
         ]
       }
     },
+    "/deliveries/{deliveryId}/packages/{packageId}/status": {
+      "put": {
+        "description": "Permet de mettre à jour le statut d'une commande pour un colis en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "operationId": "putPackageStatus",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contient les informations du nouveau statut de colis",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "$ref": "#/components/schemas/deliveryStatus"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "datetime"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "team": {
+                    "$ref": "#/components/schemas/team"
+                  }
+                },
+                "required": [
+                  "status",
+                  "date",
+                  "comment"
+                ]
+              },
+              "examples": {
+                "Livraison livrée conforme": {
+                  "value": {
+                    "status": "DELIVERY_DELIVERED_OK",
+                    "date": "2019-11-27T10:30:00+0000",
+                    "comment": "J'ai attendu 5min dehors.",
+                    "team": {
+                      "members": [
+                        {
+                          "id": "ZER784"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "Le status ne peut plus être edité"
+          },
+          "404": {
+            "description": "Le 'deliveryId' ou 'packageId' n'a pas été trouvé"
+          }
+        },
+        "security": [
+          {
+            "oAuth2ClientCredentials": []
+          }
+        ],
+        "summary": "Mise à jour de statut d'une livraison",
+        "tags": [
+          "Livraison"
+        ]
+      }
+    },
     "/deliveries/{deliveryId}/deltaCosts": {
       "put": {
         "tags": [
