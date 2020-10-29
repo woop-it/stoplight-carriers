@@ -236,7 +236,7 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Mise à jour de statut d'une livraison",
+        "summary": "Mise à jour de statut d'un colis",
         "tags": [
           "Livraison"
         ]
