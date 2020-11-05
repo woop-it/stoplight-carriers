@@ -2,29 +2,29 @@
 tags: [token]
 ---
 
-# Authentification
+# Authentication
 
-Un token est nécessaire pour échanger avec nos APIs, une fois récupéré il est valide pendant 24h et doit être fourni à chaque appel dans un header HTTP : ``` Authorization: Bearer {token} ```
+A token is needed to communicate with our APIs, once taken its valid during 24H et must be provided in each call in a HTTP Header: ``` Authorization: Bearer {token} ```
 
-Le token est indispensable et permet de vous identifiant lors de chaque appel. Il doit être généré au début via la route indiquée. 
+This token is essential and allows you to authenticate during each call. It must be generated at the beginning with the indicated route.
 
-### Urls
+### URLs
 
-| Environnement |      Url     |
+| Environment |      URL     |
 | ------------- | :-----------: |
 | Production    | <https://token.last-mile.fr/oauth/token> |
 | Preproduction | <https://connect.preprod.gcp.last-mile.fr/api/oauth/token> |
 | Recette       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token> |
 
-### Récupérer un token
+### Retrieve a token
 <!-- theme: info -->
 
-> 💡   &nbsp; Les paramètres client_id et client_secret vous seront communiqués ultérieurement par l'équipe IT de Woop.
+> 💡   &nbsp; Parameters `client_id` and `client_secret` will be communicated later to you by Woop IT team.
 
 
 <!-- theme: danger -->
 
->   Pour cet appel uniquement le Content-Type précisé dans le header doit être **application/x-www-form-urlencoded**.
+>   Only for this call, defined Content-Type in header must be **application/x-www-form-urlencoded**.
 
 ```json http
 {
@@ -42,7 +42,7 @@ Le token est indispensable et permet de vous identifiant lors de chaque appel. I
 }
 ```
 
-#### Réponse
+#### Response
 ```json json_schema
 {
   "type": "object",
@@ -50,7 +50,7 @@ Le token est indispensable et permet de vous identifiant lors de chaque appel. I
   "properties": {
     "access_token": {
       "type": "string",
-      "description": "Token à récuperer et à fournir dans le Header Authorization"
+      "description": "Token to provide in Authorization Header"
     },
     "token_type": {
       "type": "string",
@@ -60,7 +60,7 @@ Le token est indispensable et permet de vous identifiant lors de chaque appel. I
     },
     "expires_in": {
       "type": "number",
-      "description": "Expiration du token en ms"
+      "description": "Token expiration in ms"
     },
     "audience": {
       "type": "string"
