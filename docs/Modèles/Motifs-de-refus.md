@@ -1,17 +1,17 @@
-# Motifs de refus
+# Refusal reasons
 
-Pour plusieurs situations, le transporteur solicité a la possiblité de refuser lors de l'appel : 
-- Une demande de devis pour une course 
-- Une demande de livraison pour validation d'un devis 
+In many situations, the carrier can refuse during the call :
+- A quote request
+- A delivery request to validate a quote
 
-Dans ce cas, la demande de devis a été traitée, mais aucun devis n'a été généré et/ou la livraison demandée est finalement refusée. Le transporteur est alors dans l'obligation d'indiquer le motif de son refus afin de pouvoir identifier les anomalies et/ou points de blocage. 
+In this case, the quote request has been processed, but not any quote has been generated and/or the asked delivery is finally refused. The carrier must indicate the refusal reason in order to identify incidents and/or blocking point.
 
-Code| Commentaire
+Code| Comment
 ---------|----------
-`REFUSED_AREA`| L'adresse de prélèvement se trouve dans un secteur qui n'est pas couvert par nos équipes OU La distance de livraison dépasse notre limite de XX Km
-`REFUSED_AVAILABILITY`| Pas d'équipage disponible sur le créneau sélectionné
-`REFUSED_DAY_OFF`| Créneau en dehors des jours de prises en charge autorisés
-`REFUSED_TIME_NOT_WORKED`| Créneau en dehors des horaires de prise en charge autorisés
-`REFUSED_TOO_HEAVY`| Poids en dehors de la limite de XX Kg
-`REFUSED_TOO_LARGE`| Dimensions en dehors de la limite de XX cm/m/mm
-`REFUSED_EXCEPTION`| Erreur lors de la prise en charge de certaines informations. Ex: "Numéro de téléphone invalide"
+`REFUSED_AREA`| The picking address is in an area which is not covered by our teams OR the delivery distance exceeds our limit of XX Km
+`REFUSED_AVAILABILITY`| No available team on the selected time slot
+`REFUSED_DAY_OFF`| Time slot out of authorized working days
+`REFUSED_TIME_NOT_WORKED`| Time slot out of authorized working hours
+`REFUSED_TOO_HEAVY`| Weight out of XX Kg limit
+`REFUSED_TOO_LARGE`| Dimensions out of XX cm/m/mm limit
+`REFUSED_EXCEPTION`| Error during some informations handling. e.g. "Invalid phone number"
