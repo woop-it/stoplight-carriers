@@ -1,20 +1,20 @@
-# Typologies de produit
+# Product typology
 
-Afin d'obtenir le meilleur service de livraison, il est nécessaire d'associer à chaque produit une typologie. Celui-ci permet d'identifier le produit et de le catégoriser correctement.
+In order to have the best delivery service, it is necessary to associate each product with a typology. It allows to identify the product and categorizing it correctly.
 
-Code| Intitulé 
+Code| Label 
 ---------|----------
-`TYPOLOGY_DANGEROUS`| Produit dangereux
-`TYPOLOGY_FRAGILE`| Produit fragile
-`TYPOLOGY_FRESH`| Frais
-`TYPOLOGY_FROZEN`| Surgelé
-`TYPOLOGY_GENERIC`| Marchandise générale
-`TYPOLOGY_GROCERY`| Epicerie
-`TYPOLOGY_HOUSEHOLD`| Electroménager D3E
-`TYPOLOGY_VOLUMINOUS`| Produit volumineux
-`TYPOLOGY_VOLUMINOUS_FRAGILE`| Produit volumineux et fragile
-`TYPOLOGY_LARGE_HOUSEHOLD`| Gros électroménager (frigo américain, piano, cuisson...)
-`TYPOLOGY_PALLET_GENERIC`| Palette marchandise générale
-`TYPOLOGY_NON_STANDARD`| Produit non standard
+`TYPOLOGY_DANGEROUS`| Hazardous product
+`TYPOLOGY_FRAGILE`| Fragile product
+`TYPOLOGY_FRESH`| Fresh
+`TYPOLOGY_FROZEN`| Frozen
+`TYPOLOGY_GENERIC`| General merchandise
+`TYPOLOGY_GROCERY`| Grocery
+`TYPOLOGY_HOUSEHOLD`| Household electrical
+`TYPOLOGY_VOLUMINOUS`| Voluminous product
+`TYPOLOGY_VOLUMINOUS_FRAGILE`| Voluminous and fragile product
+`TYPOLOGY_LARGE_HOUSEHOLD`| Big household electrical (fridge, piano...)
+`TYPOLOGY_PALLET_GENERIC`| General merchandise pallet
+`TYPOLOGY_NON_STANDARD`| Non-standard product
 
-*La configuration de la prise en charge des typologies par produit est manuelle, veuillez nous contacter.*
+*Product typology configuration is manual, please contact us.*
