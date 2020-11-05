@@ -1,20 +1,17 @@
+# Delivery services
 
-# Services de livraison
+List of different possible delivery services during order creation.
 
-
-Liste des différents services de livraison possible lors de la création d'une commande.
-
-
-Code| Intitulé
+Code| Label
 ---------|----------
-`SERVICE_ASSEMBLY`| Assemblage
-`SERVICE_INSTALL`| Installation électroménager
-`SERVICE_RECOVERY`| Reprise de l'ancien matériel
-`SERVICE_UNPACKING`| Déballage et reprise des emballages
-`SERVICE_FRONT_HOME`| Livraison devant habitation
-`SERVICE_PICKUP_POINT`| Livraison point relais
-`SERVICE_SELECTED_ROOM`| Livraison pièce du choix
-`SERVICE_SIMPLE_INSTALL`| Mise en service simple
-`SERVICE_COMPLEX_INSTALL`| Mise en service complexe
+`SERVICE_ASSEMBLY`| Assembly
+`SERVICE_INSTALL`| Household electrical installation
+`SERVICE_RECOVERY`| Old equipment recovery
+`SERVICE_UNPACKING`| Unboxing and unboxing recovery
+`SERVICE_FRONT_HOME`| Delivery in front of home
+`SERVICE_PICKUP_POINT`| Pickup point delivery
+`SERVICE_SELECTED_ROOM`| Delivery in room of choice
+`SERVICE_SIMPLE_INSTALL`| Simple putting into service
+`SERVICE_COMPLEX_INSTALL`| Complex putting into service
 
-*La configuration de la prise en charge des services de livraison par transporteur est manuelle, veuillez nous contacter.*
+*Delivery services configuration is manual, please contact us.*
