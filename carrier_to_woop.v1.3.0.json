@@ -25,11 +25,11 @@
         "tags": [
           "Health"
         ],
-        "description": "Contrôle si l'application est opérationnelle.",
+        "description": "Check if application is operational.",
         "operationId": "getHealth",
         "responses": {
           "204": {
-            "description": "Le service est opérationnel"
+            "description": "Service is operational"
           }
         },
         "security": [],
@@ -135,7 +135,7 @@
         ],
         "summary": "Delivery status update",
         "tags": [
-          "Livraison"
+          "Delivery"
         ]
       }
     },
@@ -254,9 +254,9 @@
     "/deliveries/{deliveryId}/deltaCosts": {
       "put": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Ajout de frais supplémentaire ou de remise d'une livraison.",
+        "description": "Adding extra cost or discount on a delivery.",
         "operationId": "putDeliveryDeltaCosts",
         "parameters": [
           {
@@ -268,7 +268,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations du delta cost.",
+          "description": "Contains delta cost informations.",
           "content": {
             "application/json": {
               "schema": {
@@ -304,7 +304,7 @@
                     "amount": 165.98,
                     "currency": "EUR",
                     "reason": "DELTACOST_LATE_CANCELLATION",
-                    "comment": "Commande annulée 5min avant livraison.",
+                    "comment": "Order cancelled 5minutes before delivery.",
                     "date": "2019-11-27T10:30:00+0000"
                   }
                 }
@@ -314,10 +314,10 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Request processed with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -336,13 +336,13 @@
             }
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           },
           "403": {
-            "description": "Des frais supplémentaires ne peuvent plus être envoyés"
+            "description": "Delta costs can't be sent anymore."
           },
           "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
+            "description": "The 'deliveryId' has not been found"
           }
         },
         "security": [
@@ -350,15 +350,15 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
+        "summary": "Adding extra cost or discount on a delivery."
       }
     },
     "/deliveries/{deliveryId}/closure": {
       "post": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Ajout des informations de facturation d'une livraison.",
+        "description": "Adding billing informations on a delivery.",
         "operationId": "postDeliveryClosure",
         "parameters": [
           {
@@ -370,7 +370,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de facturation.",
+          "description": "Contains billing informations.",
           "content": {
             "application/json": {
               "schema": {
@@ -411,10 +411,10 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Request processed with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -433,13 +433,13 @@
             }
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           },
           "403": {
-            "description": "Des frais supplémentaires ne peuvent plus être envoyés"
+            "description": "Billing informations can't be sent anymore"
           },
           "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
+            "description": "The 'deliveryId' has not been found"
           }
         },
         "security": [
@@ -447,15 +447,15 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout d'informations de facturation d'une livraison"
+        "summary": "Adding billing informations on a delivery."
       }
     },
     "/deliveries/{deliveryId}/events": {
       "post": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Ajout d'un évènement d'une livraison.",
+        "description": "Adding a delivery event.",
         "operationId": "postDeliveryEvent",
         "parameters": [
           {
@@ -467,7 +467,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de la notification envoyée.",
+          "description": "Contains informations about the notification that will be sent.",
           "content": {
             "application/json": {
               "schema": {
@@ -481,11 +481,11 @@
                 "properties": {
                   "status": {
                     "type": "boolean",
-                    "description": "'true' si l'évènement est réussi"
+                    "description": "'true' if event has been a success"
                   },
                   "type": {
                     "type": "string",
-                    "description": "Type de notification",
+                    "description": "Notification type",
                     "enum": [
                       "EVENT_TYPE_SMS",
                       "EVENT_TYPE_MAIL",
@@ -494,12 +494,12 @@
                   },
                   "date": {
                     "type": "string",
-                    "description": "Heure de l'évènement",
+                    "description": "Event hour",
                     "format": "datetime"
                   },
                   "subject": {
                     "type": "string",
-                    "description": "Sujet de l'évènement",
+                    "description": "Event topic",
                     "enum": [
                       "DELIVERY_INIT",
                       "DELIVERY_STARTED",
@@ -518,11 +518,11 @@
                   },
                   "message": {
                     "type": "string",
-                    "description": "Message d'information à propos de l'évènement"
+                    "description": "Information message about the event"
                   },
                   "failReason": {
                     "type": "string",
-                    "description": "Raison de l'échec de l'évènement"
+                    "description": "Event failure reason"
                   }
                 }
               },
@@ -533,7 +533,7 @@
                     "type": "EVENT_TYPE_SMS",
                     "date": "2019-11-27T10:30:00+0000",
                     "subject": "DELIVERY_INIT",
-                    "message": "Bonjour, votre commande a bien été confirmée."
+                    "message": "Hi, your order has been confirmed."
                   }
                 }
               }
@@ -542,10 +542,10 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Request processed with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -564,10 +564,10 @@
             }
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           },
           "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
+            "description": "The 'deliveryId' has not been found"
           }
         },
         "security": [
@@ -575,12 +575,111 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout d'un évènement d'une livraison"
+        "summary": "Adding a delivery event."
+      }
+    },
+    "/deliveries/{deliveryId}/documents": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Adding a document",
+        "operationId": "postDeliveryDocument",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contains informations about the document that will be sent.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "document": {
+                    "type": "string",
+                    "description": "Document in binary format, max 10 MB",
+                    "format": "binary"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Document type",
+                    "enum": [
+                      "EVIDENCE",
+                      "INVOICE",
+                      "CONTRACT"
+                    ]
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Document creation date",
+                    "format": "datetime"
+                  }
+                },
+                "required": [
+                  "document",
+                  "type",
+                  "date"
+                ]
+              },
+              "examples": {
+                "Exemple": {
+                  "value": {
+                    "document": "file stream",
+                    "type": "EVIDENCE",
+                    "date": "2019-11-27T10:30:00+0000"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Request processed with success"
+          },
+          "400": {
+            "description": "Missing or incorrect element in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not allowed to access this element."
+          },
+          "404": {
+            "description": "The 'deliveryId' has not been found"
+          }
+        },
+        "security": [
+          {
+            "oAuth2ClientCredentials": []
+          }
+        ],
+        "summary": "Adding a document on a delivery."
       }
     },
     "/subscriptions": {
       "post": {
-        "description": "Endpoint d'initialisation d'échanges avec les APIs transporteur.",
+        "description": "Initialization of endpoints to exchange with carrier APIs.",
         "operationId": "postSubscription",
         "parameters": [
           {
@@ -589,7 +688,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de souscription",
+          "description": "Contains subscription informations",
           "content": {
             "application/json": {
               "schema": {
@@ -613,11 +712,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant d'obtenir des devis"
+                            "description": "Route URL allowing getting quotes"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir woop vers transporteur)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -630,11 +729,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de valider un devis"
+                            "description": "Route URL allowing validating a quote"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir woop vers transporteur)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -647,11 +746,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant d'annuler un ordre de livraison"
+                            "description": "Route URL allowing delivery cancellation"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -664,11 +763,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant d'annuler un devis"
+                            "description": "Route URL allowing quote cancellation"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -678,11 +777,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de fournir la note du transporteur d'une commande"
+                            "description": "Route URL allowing providing the carrier rating for an order"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -695,11 +794,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de fournir la liste des points relais"
+                            "description": "Route URL allowing providing pickup points list"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -712,11 +811,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de faire une demande de prix"
+                            "description": "Route URL allowing making a price request"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -729,11 +828,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de générer et récupérer une étiquette"
+                            "description": "Route URL allowing generating & retrieving a label"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -746,11 +845,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de récupérer les statuts par 'package'"
+                            "description": "Route URL allowing getting status per 'package'"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -763,11 +862,11 @@
                         "properties": {
                           "url": {
                             "type": "string",
-                            "description": "Url de la route permettant de mettre à jour un ordre de livraison"
+                            "description": "Route URL allowing updating a delivery order"
                           },
                           "version": {
                             "type": "string",
-                            "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
+                            "description": "API version for this callback (see Woop to Carrier)",
                             "example": "1.4.0"
                           }
                         }
@@ -776,7 +875,7 @@
                   },
                   "adapter": {
                     "type": "string",
-                    "description": "Permet d'indiquer le nom du service utilisé dans LMMP pour convertir le format de données de certaines APIs du Transporteur.",
+                    "description": "Allows indicating service name in Woop platform to convert some data format of certain Carrier APIs.",
                     "example": "XMLAdapter"
                   },
                   "headers": {
@@ -929,10 +1028,10 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Request processed with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -951,7 +1050,7 @@
             }
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           }
         },
         "security": [
@@ -959,109 +1058,10 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Ajout de souscriptions",
+        "summary": "Adding subscriptions",
         "tags": [
-          "Souscriptions"
+          "Subscriptions"
         ]
-      }
-    },
-    "/deliveries/{deliveryId}/documents": {
-      "post": {
-        "tags": [
-          "Document"
-        ],
-        "description": "Ajout d'un document",
-        "operationId": "postDeliveryDocument",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/apiVersion"
-          },
-          {
-            "$ref": "#/components/parameters/pathDeliveryId"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "description": "Contient les informations du document envoyé.",
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "document": {
-                    "type": "string",
-                    "description": "Le document sous format binaire, max 10mb",
-                    "format": "binary"
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": "Type de document",
-                    "enum": [
-                      "EVIDENCE",
-                      "INVOICE",
-                      "CONTRACT"
-                    ]
-                  },
-                  "date": {
-                    "type": "string",
-                    "description": "Date de création du document",
-                    "format": "datetime"
-                  }
-                },
-                "required": [
-                  "document",
-                  "type",
-                  "date"
-                ]
-              },
-              "examples": {
-                "Exemple": {
-                  "value": {
-                    "document": "file stream",
-                    "type": "EVIDENCE",
-                    "date": "2019-11-27T10:30:00+0000"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Requête traitée avec succès"
-          },
-          "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/badRequest"
-                },
-                "examples": {
-                  "Exemple": {
-                    "value": {
-                      "reasons": [
-                        "Missing argument 'xxxxx'"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
-          },
-          "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
-          }
-        },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
-        "summary": "Ajout d'un document d'une livraison"
       }
     }
   },
@@ -1408,7 +1408,7 @@
         "required": true,
         "schema": {
           "type": "string",
-          "description": "Id de livraison"
+          "description": "Delivery ID"
         }
       }
     },
@@ -1428,7 +1428,7 @@
   },
   "tags": [
     {
-      "name": "Livraison"
+      "name": "Delivery"
     },
     {
       "name": "Health"
@@ -1437,7 +1437,7 @@
       "name": "Document"
     },
     {
-      "name": "Souscriptions"
+      "name": "Subscriptions"
     }
   ]
 }
