@@ -13,8 +13,8 @@ This token is essential and allows you to authenticate during each call. It must
 | Environment |      URL     |
 | ------------- | :-----------: |
 | Production    | <https://token.last-mile.fr/oauth/token> |
-| Preproduction | <https://connect.preprod.gcp.last-mile.fr/api/oauth/token> |
-| Recette       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token> |
+| Pre-production| <https://connect.preprod.gcp.last-mile.fr/api/oauth/token> |
+| Staging       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token> |
 
 ### Retrieve a token
 <!-- theme: info -->

@@ -10,7 +10,6 @@ Those requests and events are describes in **Woop to Carrier** section of our do
 
 To subscribe to requests and events, you will need to make a first call to **API [/souscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** 
 
-Data to send are:
 
 ```json json_schema
 {
