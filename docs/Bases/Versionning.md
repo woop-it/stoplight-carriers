@@ -2,17 +2,17 @@
 tags: ['Bases']
 ---
 
-# Versionning
+# Versioning
 
-Un versioning par **header HTTP** est utilisé sur toutes les APIs.
+A versioning system based on **HTTP Header** is used on all APIs.
 
-Le header `x-api-version` doit être envoyé à chaque appel avec **la version d'API ciblée**.
+`x-api-version` header must be sent in each call with the **targeted API version**.
 
-Exemple :
+Example :
 ```json
 {
   "x-api-version": "1.3.0"
 }
 ```
 
-*Les numéros de version suivent la convention. Suivre le lien pour plus de détails sur la Semantic Versioning : [semver](https://semver.org/)*.
+*Version numbers follow a convention. Follow this link for more details on Semantic Versioning : [semver](https://semver.org/)*.

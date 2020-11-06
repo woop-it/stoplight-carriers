@@ -141,7 +141,7 @@
     },
     "/deliveries/{deliveryId}/packages/{packageId}/status": {
       "put": {
-        "description": "Permet de mettre à jour le statut d'une commande pour un colis en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "description": "Permet de mettre à jour le statut d'un colis précis pour une commande en cours. L'information est transmise à Woop afin de suivre le parcours du colis.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
         "operationId": "putPackageStatus",
         "parameters": [
           {
@@ -162,7 +162,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations du nouveau statut de colis",
+          "description": "Contient les nouvelles informations sur le statut du colis de la commande",
           "content": {
             "application/json": {
               "schema": {
@@ -245,7 +245,7 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Mise à jour de statut d'un colis",
+        "summary": "Mise à jour du statut d'un colis",
         "tags": [
           "Livraison"
         ]
