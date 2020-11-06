@@ -1,22 +1,22 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Transporteur vers Woop",
-    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Transporteur vers Woop\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la <b>Version 1.3.0</b>",
+    "title": "Carrier to Woop",
+    "description": "First, all informations about Woop API headed to carriers are centralized in this documentation. If you need precisions or have any questions, please contact internal technical team.\n\nTo use the API, you need to take your access you got during the creation of your account on Woop platform.\n\nThe current offered version is <b>Version 1.3.0</b>",
     "version": "1.3.0"
   },
   "servers": [
     {
       "url": "car-api.recette.gcp.last-mile.fr",
-      "description": "URL de recette"
+      "description": "Staging URL"
     },
     {
       "url": "car-api.preprod.gcp.last-mile.fr",
-      "description": "URL de preprod"
+      "description": "Preprod URL"
     },
     {
       "url": "carrier.last-mile.fr",
-      "description": "URL de prod"
+      "description": "Prod URL"
     }
   ],
   "paths": {
