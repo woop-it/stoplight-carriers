@@ -12,7 +12,7 @@
     },
     {
       "url": "car-api.preprod.gcp.last-mile.fr",
-      "description": "Preprod URL"
+      "description": "Pre-prod URL"
     },
     {
       "url": "carrier.last-mile.fr",
@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "description": "Allows updating an order status for an in progress delivery. The information is transmitted to Woop in order to follow the order process. <a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow and status list</a>",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -50,7 +50,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations du nouveau statut de livraison",
+          "description": "Contains the new delivery status informations",
           "content": {
             "application/json": {
               "schema": {
@@ -77,11 +77,11 @@
                 ]
               },
               "examples": {
-                "Livraison livrée conforme": {
+                "Delivery correctly delivered": {
                   "value": {
                     "status": "DELIVERY_DELIVERED_OK",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "J'ai attendu 5min dehors.",
+                    "comment": "I waited 5 minutes outside.",
                     "team": {
                       "members": [
                         {
@@ -97,10 +97,10 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Request processed with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -119,13 +119,13 @@
             }
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           },
           "403": {
-            "description": "Le status ne peut plus être edité"
+            "description": "The status cannot be updated anymore."
           },
           "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
+            "description": "The 'deliveryId' has not been found."
           }
         },
         "security": [
@@ -133,7 +133,7 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Mise à jour de statut d'une livraison",
+        "summary": "Delivery status update",
         "tags": [
           "Livraison"
         ]
