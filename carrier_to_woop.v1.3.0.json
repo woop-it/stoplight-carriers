@@ -141,7 +141,7 @@
     },
     "/deliveries/{deliveryId}/packages/{packageId}/status": {
       "put": {
-        "description": "Permet de mettre à jour le statut d'un colis précis pour une commande en cours. L'information est transmise à Woop afin de suivre le parcours du colis.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "description": "Allows updating a package status for a precise order in progress. The information is transmitted to Woop in order to follow the package process. <a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow and status list</a>",
         "operationId": "putPackageStatus",
         "parameters": [
           {
@@ -156,13 +156,13 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Id du colis"
+              "description": "Package ID"
             }
           }
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les nouvelles informations sur le statut du colis de la commande",
+          "description": "Contains new informations about the order package status",
           "content": {
             "application/json": {
               "schema": {
@@ -189,11 +189,11 @@
                 ]
               },
               "examples": {
-                "Livraison livrée conforme": {
+                "Delivery correctly delivered": {
                   "value": {
                     "status": "DELIVERY_DELIVERED_OK",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "J'ai attendu 5min dehors.",
+                    "comment": "I waited 5 minutes outside.",
                     "team": {
                       "members": [
                         {
@@ -209,10 +209,10 @@
         },
         "responses": {
           "204": {
-            "description": "Requête traitée avec succès"
+            "description": "Request processed with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -231,13 +231,13 @@
             }
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           },
           "403": {
-            "description": "Le status ne peut plus être edité"
+            "description": "The status can't be edited anymore"
           },
           "404": {
-            "description": "Le 'deliveryId' ou 'packageId' n'a pas été trouvé"
+            "description": "The 'deliveryId' or 'packageId' has not been found"
           }
         },
         "security": [
@@ -245,9 +245,9 @@
             "oAuth2ClientCredentials": []
           }
         ],
-        "summary": "Mise à jour du statut d'un colis",
+        "summary": "Package status update",
         "tags": [
-          "Livraison"
+          "Delivery"
         ]
       }
     },

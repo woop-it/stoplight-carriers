@@ -1,33 +1,33 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Woop vers Transporteur",
-    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Woop vers Transporteur\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la **Version 1.4.0**",
+    "title": "Woop to Carrier",
+    "description": "First, all informations about Woop API headed to carriers are centralized in this documentation. If you need precisions or have any questions, please contact internal technical team.\n\nTo use the API, you need to take your access you got during the creation of your account on Woop platform.\n\nThe current offered version is <b>Version 1.4.0</b>",
     "version": "1.4.0"
   },
   "paths": {
     "/quotes": {
       "post": {
         "tags": [
-          "Devis"
+          "Quotes"
         ],
-        "description": "Cette méthode permet de recevoir les demandes de devis. Si le devis est validé, les informations transmises seront utilisées lors de la création de l'ordre de livraison à l'aide du POST /deliveries. ",
+        "description": "Allows receiving quotes requests. If the quote is validated, transmitted informations will be used during the delivery order creation with POST /deliveries.",
         "operationId": "postQuote",
         "requestBody": {
           "required": true,
-          "description": "Contient les informations nécessaire à la création d'un devis de livraison. ",
+          "description": "Contains necessary informations to create a quote.",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/postQuote"
               },
               "examples": {
-                "Exemple par défaut": {
+                "Default example": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
-                      "name": "Enseigne A",
+                      "name": "Retailer A",
                       "id": "ret123",
                       "store": {
                         "id": "store123",
@@ -48,7 +48,7 @@
                         "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux sur le boulevard.",
+                      "infos": "Road works.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -96,7 +96,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Produit label 1",
+                            "label": "Product label 1",
                             "quantity": 1
                           }
                         ],
@@ -108,16 +108,16 @@
                     ]
                   }
                 },
-                "Exemple avec le prix des produits": {
+                "Example with product price": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
-                      "name": "Enseigne A",
+                      "name": "Retailer A",
                       "id": "ret123",
                       "store": {
                         "id": "store123",
-                        "name": "Magasin C",
+                        "name": "Store C",
                         "contact": {
                           "firstName": "Pierre",
                           "lastName": "Dupond",
@@ -134,7 +134,7 @@
                         "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux sur le boulevard.",
+                      "infos": "Road works.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -182,7 +182,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Produit label 1",
+                            "label": "Product label 1",
                             "quantity": 1
                           }
                         ],
@@ -199,16 +199,16 @@
                     }
                   }
                 },
-                "Exemple avec tags": {
+                "Example with tags": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
-                      "name": "Enseigne A",
+                      "name": "Retailer A",
                       "id": "ret123",
                       "store": {
                         "id": "store123",
-                        "name": "Magasin C",
+                        "name": "Store C",
                         "contact": {
                           "firstName": "Pierre",
                           "lastName": "Dupond",
@@ -225,7 +225,7 @@
                         "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux sur le boulevard.",
+                      "infos": "Road works.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -273,7 +273,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Produit label 1",
+                            "label": "Product label 1",
                             "quantity": 1
                           }
                         ],
@@ -303,7 +303,7 @@
         },
         "responses": {
           "201": {
-            "description": "Code succès, les devis ont été générés pour la commande. Tous les transporteurs solicités possèdent un identifiant de devis pour accepter la livraison.",
+            "description": "Success code, quotes have been generated. All asked carriers have a quote ID to accept the delivery.",
             "content": {
               "application/json": {
                 "schema": {
@@ -331,7 +331,7 @@
             }
           },
           "202": {
-            "description": "Code succès, les devis ont été générés pour la commande. Tous les transporteurs solicités possèdent un identifiant de devis pour accepter la livraison.\n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "Success code, quotes have been generated. All asked carriers have a quote ID to accept the delivery.\n\n[See refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -357,7 +357,7 @@
                       "reasons": [
                         "REFUSED_TOO_HEAVY"
                       ],
-                      "comment": "C'est trop lourd !"
+                      "comment": "It's too heavy !"
                     }
                   }
                 }
@@ -365,7 +365,7 @@
             }
           },
           "400": {
-            "description": "Des élèments sont manquants et/ou incorrect dans le body. ",
+            "description": "Missing or incorrect elements in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -381,7 +381,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -393,15 +393,15 @@
             }
           }
         },
-        "summary": "Demande de devis"
+        "summary": "Quote request"
       }
     },
     "/quotes/{quoteId}": {
       "delete": {
         "tags": [
-          "Devis"
+          "Quotes"
         ],
-        "description": "Cette méthode permet de recevoir les demandes d'annulation d'un devis.",
+        "description": "Allows receiving quote cancellation requests.",
         "operationId": "deleteQuote",
         "parameters": [
           {
@@ -410,16 +410,16 @@
         ],
         "responses": {
           "204": {
-            "description": "Devis annul avec succès"
+            "description": "Quote cancelled with success"
           },
           "403": {
-            "description": "Le devis ne peut pas/plus être annulé"
+            "description": "The quote can't or no longer be cancelled"
           },
           "404": {
-            "description": "L'identifiant du devis quoteId n'existe pas"
+            "description": "The 'quoteId' does not exist"
           }
         },
-        "summary": "Annulation d'un devis"
+        "summary": "Quote cancellation"
       },
       "parameters": [
         {
@@ -429,34 +429,34 @@
           "name": "quoteId",
           "in": "path",
           "required": true,
-          "description": "Numéro de devis"
+          "description": "Quote ID"
         }
       ]
     },
     "/deliveries": {
       "post": {
         "operationId": "postDelivery",
-        "description": "Cette méthode permet de valider un devis et de recevoir l'ordre de livraison. Elle fournit en réponse, les informations supplémentaires utiles à la livraison.",
+        "description": "Allows validating a quote and receiving the delivery order. Its response provides additional useful informations for the delivery.",
         "requestBody": {
           "required": true,
-          "description": "Contient les informations requis pour la création d'une demande de livraison.",
+          "description": "Contains necessary informations to create a delivery.",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/postDelivery"
               },
               "examples": {
-                "Exemple par défaut": {
+                "Default example": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "quoteId": "4zd5z4d5zd",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
-                      "name": "Enseigne A",
+                      "name": "Retailer A",
                       "id": "ret123",
                       "store": {
                         "id": "store123",
-                        "name": "Magasin C",
+                        "name": "Store C",
                         "contact": {
                           "firstName": "Pierre",
                           "lastName": "Dupond",
@@ -479,7 +479,7 @@
                         "city": "La Madeleine",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Road works.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -534,7 +534,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Armoire",
+                            "label": "Wardrobe",
                             "quantity": 1
                           }
                         ],
@@ -549,17 +549,17 @@
                     ]
                   }
                 },
-                "Exemple avec le prix des produits": {
+                "Example with product price": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "quoteId": "4zd5z4d5zd",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
-                      "name": "Enseigne A",
+                      "name": "Retailer A",
                       "id": "ret123",
                       "store": {
                         "id": "store123",
-                        "name": "Magasin C",
+                        "name": "Store C",
                         "contact": {
                           "firstName": "Pierre",
                           "lastName": "Dupond",
@@ -582,7 +582,7 @@
                         "city": "La Madeleine",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Road works.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -635,7 +635,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Armoire",
+                            "label": "Wardrobe",
                             "quantity": 1
                           }
                         ],
@@ -652,17 +652,17 @@
                     }
                   }
                 },
-                "Exemple avec tags": {
+                "Example with tags": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "quoteId": "4zd5z4d5zd",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
-                      "name": "Enseigne A",
+                      "name": "Retailer A",
                       "id": "ret123",
                       "store": {
                         "id": "store123",
-                        "name": "Magasin C",
+                        "name": "Store C",
                         "contact": {
                           "firstName": "Pierre",
                           "lastName": "Dupond",
@@ -685,7 +685,7 @@
                         "city": "La Madeleine",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Road works.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -740,7 +740,7 @@
                             "type": "TYPOLOGY_GENERIC",
                             "ean": "4897567123548",
                             "cug": "e21fe21",
-                            "label": "Armoire",
+                            "label": "Wardrobe",
                             "quantity": 1
                           }
                         ],
@@ -767,7 +767,7 @@
         },
         "responses": {
           "201": {
-            "description": "La livraison est acceptée, un 'deliveryId' est retourné, additionnellement un tableau d'id de 'packages' peut être retourné en cas de tracking par colis.",
+            "description": "Delivery is accepted, a 'deliveryId' is returned, in addition an array of 'packages' IDs can be returned in case of tracking by package.",
             "content": {
               "application/json": {
                 "schema": {
@@ -784,12 +784,12 @@
                   ]
                 },
                 "examples": {
-                  "Exemple par défaut": {
+                  "Default example": {
                     "value": {
                       "deliveryId": "5q4f5q4zd"
                     }
                   },
-                  "Exemple avec suivi de colis": {
+                  "Example with package tracking": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
                       "packages": [
@@ -799,7 +799,7 @@
                       ]
                     }
                   },
-                  "Exemple avec référence de livraison": {
+                  "Example with delivery reference": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
                       "externalReference": "12254-AX"
@@ -810,7 +810,7 @@
             }
           },
           "205": {
-            "description": "La livraison est finalement refusée, les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". \n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "Delivery is refused after all, possible refusal reasons are described in \"reasons\". \n\n[See refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -833,7 +833,7 @@
                       "reasons": [
                         "REFUSED_TOO_HEAVY"
                       ],
-                      "comment": "Finalement je ne prends pas cette livraison."
+                      "comment": "After all, i don't take this delivery."
                     }
                   }
                 }
@@ -841,7 +841,7 @@
             }
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -857,7 +857,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -870,17 +870,17 @@
           }
         },
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "summary": "Demande de livraison"
+        "summary": "Delivery request"
       }
     },
     "/deliveries/{deliveryId}": {
       "delete": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Cette méthode permet de recevoir les demandes d'annulation d'une livraison.",
+        "description": "Allows receiving delivery cancellation requests.",
         "operationId": "deleteDelivery",
         "parameters": [
           {
@@ -889,23 +889,23 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations sur les motifs de l'annulation de la livraison.",
+          "description": "Contaisn informations about delivery cancellation reasons.",
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "description": "Informations d'annulation",
+                "description": "Cancellation informations",
                 "properties": {
                   "reasons": {
                     "type": "array",
-                    "description": "Liste des motifs d'annulation",
+                    "description": "list of refusal reasons",
                     "items": {
                       "$ref": "#/components/schemas/cancelledReason"
                     }
                   },
                   "comment": {
                     "type": "string",
-                    "description": "Commentaire libre"
+                    "description": "Free comment"
                   }
                 },
                 "required": [
@@ -919,7 +919,7 @@
                     "reasons": [
                       "CANCELLED_CANNOT_SERVICE"
                     ],
-                    "comment": "En fait non."
+                    "comment": "In the end, no."
                   }
                 }
               }
@@ -928,10 +928,10 @@
         },
         "responses": {
           "204": {
-            "description": "Livraison annulée avec succès"
+            "description": "Delivery cancelled with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -947,7 +947,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -959,23 +959,23 @@
             }
           },
           "403": {
-            "description": "La commande ne peut être annulée",
+            "description": "Delivery can't be cancelled",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Informations du refus d'annulation",
+                  "description": "Informations about cancellation refusal",
                   "properties": {
                     "reasons": {
                       "type": "array",
-                      "description": "Liste des motifs du refus d'annulation",
+                      "description": "List of cancellation refusal reasons",
                       "items": {
                         "type": "string"
                       }
                     },
                     "comment": {
                       "type": "string",
-                      "description": "Commentaire libre"
+                      "description": "Free comment"
                     }
                   }
                 },
@@ -985,7 +985,7 @@
                       "reasons": [
                         "Missing argument 'xxxxx'"
                       ],
-                      "comment": "C'est trop tard !"
+                      "comment": "It's too late !"
                     }
                   }
                 }
@@ -993,16 +993,16 @@
             }
           },
           "404": {
-            "description": "Le 'deliveryId' n'existe pas"
+            "description": "The 'deliveryId' does not exist"
           }
         },
-        "summary": "Annulation d'une livraison"
+        "summary": "Delivery cancellation"
       },
       "patch": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Cette méthode permet de recevoir les demanddes de mise à jour d'une livraison.",
+        "description": "Allows receiving delivey update requests.",
         "operationId": "patchDelivery",
         "parameters": [
           {
@@ -1011,27 +1011,27 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations de mise à jour d'une livraison.",
+          "description": "Contains informations about delivery update.",
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "description": "Mise à jour de livraison",
+                "description": "Delivery update",
                 "properties": {
                   "picking": {
                     "type": "object",
-                    "description": "Informations sur l'adresse de prélèvement",
+                    "description": "Informations about picking address",
                     "properties": {
                       "address": {
                         "$ref": "#/components/schemas/address"
                       },
                       "infos": {
                         "type": "string",
-                        "description": "Informations libre à propos de l'adresse"
+                        "description": "Free informations about address"
                       },
                       "interval": {
                         "type": "array",
-                        "description": "Créneaux de prélèvement",
+                        "description": "Picking interval",
                         "items": {
                           "$ref": "#/components/schemas/interval"
                         }
@@ -1048,18 +1048,18 @@
                   },
                   "delivery": {
                     "type": "object",
-                    "description": "Informations sur l'adresse de livraison",
+                    "description": "Informations about delivery address",
                     "properties": {
                       "address": {
                         "$ref": "#/components/schemas/address"
                       },
                       "infos": {
                         "type": "string",
-                        "description": "Informations libre à propos de l'adresse de livraison"
+                        "description": "Free informations about the delivery address"
                       },
                       "interval": {
                         "type": "array",
-                        "description": "Créneaux de livraison",
+                        "description": "Delivery interval",
                         "items": {
                           "$ref": "#/components/schemas/interval"
                         }
@@ -1076,7 +1076,7 @@
                   },
                   "packages": {
                     "type": "array",
-                    "description": "Ensemble des colis",
+                    "description": "Whole packages",
                     "items": {
                       "$ref": "#/components/schemas/package"
                     }
@@ -1087,7 +1087,7 @@
                 }
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "picking": {
                       "contact": {
@@ -1121,13 +1121,13 @@
         },
         "responses": {
           "204": {
-            "description": "Livraison mis à jour avec succès"
+            "description": "Delivery updated with success"
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not allowed to access this element."
           },
           "403": {
-            "description": "La commande ne peut être modifiée",
+            "description": "The delivery can't be modified",
             "content": {
               "application/json": {
                 "schema": {
@@ -1145,12 +1145,12 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
                       ],
-                      "comment": "C'est trop tard !"
+                      "comment": "Too late !"
                     }
                   }
                 }
@@ -1158,15 +1158,15 @@
             }
           }
         },
-        "summary": "Mise à jour d'une livraison"
+        "summary": "Delivery update"
       }
     },
     "/deliveries/{deliveryId}/score": {
       "put": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Cette méthode permet de recevoir la notification d'une nouvelle note d'une livraison.",
+        "description": "Allows receiving new delivery rating notification.",
         "operationId": "putDeliveryScore",
         "parameters": [
           {
@@ -1175,7 +1175,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient la note client.",
+          "description": "Contains client rating.",
           "content": {
             "application/json": {
               "schema": {
@@ -1190,7 +1190,7 @@
                         "type": "SCORE_TYPE_RECOMMENDATION"
                       }
                     ],
-                    "comment": "Je recommande à 200% !"
+                    "comment": "I strongly recommend !"
                   }
                 }
               }
@@ -1199,10 +1199,10 @@
         },
         "responses": {
           "204": {
-            "description": "Note enregistrée avec succès"
+            "description": "Rating saved with success"
           },
           "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -1230,21 +1230,21 @@
             }
           },
           "404": {
-            "description": "Le 'deliveryId' n'existe pas"
+            "description": "The 'deliveryId' does not exist"
           }
         },
-        "summary": "Ajout d'une note d'une livraison"
+        "summary": "Add a delivery rating"
       }
     },
     "/pickupPoints": {
       "get": {
-        "summary": "Recherche de points relais",
+        "summary": "Pickup point search",
         "tags": [
-          "Point Relais"
+          "Pickup point"
         ],
         "responses": {
           "200": {
-            "description": "OK, Contient les points relais",
+            "description": "OK, contains pickup points",
             "content": {
               "application/json": {
                 "schema": {
@@ -1252,7 +1252,7 @@
                   "properties": {
                     "pickupPoints": {
                       "type": "array",
-                      "description": "Informations sur les point relais",
+                      "description": "Informations about pickup points",
                       "items": {
                         "type": "object",
                         "properties": {
@@ -1273,64 +1273,64 @@
                                 ]
                               }
                             ],
-                            "description": "Adresse du point relais"
+                            "description": "Pickup point address"
                           },
                           "coordinates": {
                             "$ref": "#/components/schemas/coordinates"
                           },
                           "id": {
                             "type": "string",
-                            "description": "Id du point relais"
+                            "description": "Pickup point ID"
                           },
                           "openingHours": {
                             "type": "object",
-                            "description": "Horaires d'ouverture du point relais",
+                            "description": "Pickup point opening hours",
                             "properties": {
                               "monday": {
                                 "type": "array",
-                                "description": "Horaires du lundi",
+                                "description": "Monday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
                               },
                               "tuesday": {
                                 "type": "array",
-                                "description": "Horaires du mardi",
+                                "description": "Tuesday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
                               },
                               "wednesday": {
                                 "type": "array",
-                                "description": "Horaires du mercredi",
+                                "description": "Wednesday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
                               },
                               "thursday": {
                                 "type": "array",
-                                "description": "Horaires du jeudi",
+                                "description": "Thursday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
                               },
                               "friday": {
                                 "type": "array",
-                                "description": "Horaires du vendredi",
+                                "description": "Friday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
                               },
                               "saturday": {
                                 "type": "array",
-                                "description": "Horaires du samedi",
+                                "description": "Saturday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
                               },
                               "sunday": {
                                 "type": "array",
-                                "description": "Horaires du dimanche",
+                                "description": "Sunday hours",
                                 "items": {
                                   "$ref": "#/components/schemas/interval_hour"
                                 }
@@ -1354,7 +1354,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "pickupPoints": [
                         {
@@ -1363,7 +1363,7 @@
                             "postalCode": "59000",
                             "city": "Lille",
                             "country": "FR",
-                            "title": "Point relais"
+                            "title": "Pickup point"
                           },
                           "coordinates": {
                             "latitude": 50.638386,
@@ -1427,7 +1427,7 @@
             }
           },
           "400": {
-            "description": "Des élèments sont manquants et/ou incorrect dans le body. ",
+            "description": "Missing or incorrect element in body",
             "content": {
               "application/json": {
                 "schema": {
@@ -1456,7 +1456,7 @@
           }
         },
         "operationId": "getPickupPoints",
-        "description": "Cette méthode permet de récupérer la liste des point relais situés autour d’une géolocalisation donnée.",
+        "description": "Allows receiving list of pickup points located around given geographic localisation.",
         "parameters": [
           {
             "$ref": "#/components/parameters/queryLatitude"
@@ -1485,7 +1485,7 @@
       "address": {
         "x-examples": {
           "Exemple": {
-            "addressLine1": "179 boulevard de Turien",
+            "addressLine1": "179 boulevard de Turin",
             "addressLine2": "Woop",
             "elevator": true,
             "floor": 8,
@@ -1495,40 +1495,40 @@
           }
         },
         "type": "object",
-        "description": "Ensemble des informations utiles pour une adresse livraison/prélèvement.",
-        "title": "Adresse (address)",
+        "description": "All useful informations about delivery/picking address.",
+        "title": "Address (address)",
         "properties": {
           "addressLine1": {
             "type": "string",
-            "description": "Adresse complète du lieu principal"
+            "description": "Main place full address"
           },
           "addressLine2": {
             "type": "string",
-            "description": "Adresse complémentaire du lieu"
+            "description": "Place additionnal address"
           },
           "elevator": {
             "type": "boolean",
-            "description": "Indique si l’adresse possède un ascenseur\nValeur par défaut : FALSE"
+            "description": "Indicates if place has a lift\nDefault value : FALSE"
           },
           "floor": {
             "type": "integer",
-            "description": "Précise l’étage de l’adresse en question\nValeur par défaut : 0"
+            "description": "Specifies the floor\nDefault value : 0"
           },
           "postalCode": {
             "type": "string",
-            "description": "Correspond au code postal associé à l’adresse principale"
+            "description": "Corresponds with associated main place potal code"
           },
           "doorCode": {
             "type": "string",
-            "description": "Digicode"
+            "description": "Door code"
           },
           "city": {
             "type": "string",
-            "description": "Intitulé de la ville"
+            "description": "City"
           },
           "district": {
             "type": "string",
-            "description": "Intitulé de l’arrondissement"
+            "description": "District"
           },
           "country": {
             "type": "string",
@@ -1536,11 +1536,11 @@
               "FR",
               "BE"
             ],
-            "description": "Correspond au code Pays (ISO 3166-1 alpha-2)"
+            "description": "Country code (ISO 3166-1 alpha-2)"
           },
           "comment": {
             "type": "string",
-            "description": "Commentaire libre d’utilisation"
+            "description": "Comment, free to use"
           }
         },
         "required": [
@@ -1551,37 +1551,37 @@
         ]
       },
       "addressWithoutSensitiveData": {
-        "title": "Adresse sans digicode (addressWithoutSensitiveData)",
+        "title": "Address without door code (addressWithoutSensitiveData)",
         "type": "object",
-        "description": "Informations d'une adresse sans digicode.",
+        "description": "Address informations without door code.",
         "properties": {
           "addressLine1": {
             "type": "string",
-            "description": "Adresse complète du lieu principal"
+            "description": "Main place full address"
           },
           "addressLine2": {
             "type": "string",
-            "description": "Adresse complémentaire du lieu"
+            "description": "Place additionnal address"
           },
           "elevator": {
             "type": "boolean",
-            "description": "Indique si l’adresse possède un ascenseur\nValeur par défaut : FALSE"
+            "description": "Indicates if place has a lift\nDefault value : FALSE"
           },
           "floor": {
             "type": "integer",
-            "description": "Précise l’étage de l’adresse en question\nValeur par défaut : 0"
+            "description": "Specifies the floor\nDefault value : 0"
           },
           "postalCode": {
             "type": "string",
-            "description": "Correspond au code postal associé à l’adresse principale"
+            "description": "Corresponds with associated main place potal code"
           },
           "city": {
             "type": "string",
-            "description": "Intitulé de la ville"
+            "description": "City"
           },
           "district": {
             "type": "string",
-            "description": "Intitulé de l’arrondissement"
+            "description": "District"
           },
           "country": {
             "type": "string",
@@ -1589,11 +1589,11 @@
               "FR",
               "BE"
             ],
-            "description": "Correspond au code Pays (ISO 3166-1 alpha-2)"
+            "description": "Country code (ISO 3166-1 alpha-2)"
           },
           "pickupPointId": {
             "type": "string",
-            "description": "Identifiant du point relais. Présent si le service de livraison est \"SERVICE_PICKUP_POINT\""
+            "description": "Pickup point ID. Present if delivery service is \"SERVICE_PICKUP_POINT\""
           }
         },
         "required": [
@@ -1604,7 +1604,7 @@
         ],
         "x-examples": {
           "Exemple": {
-            "addressLine1": "179 boulevard de Turien",
+            "addressLine1": "179 boulevard de Turin",
             "addressLine2": "Woop",
             "elevator": true,
             "floor": 8,
@@ -1615,19 +1615,19 @@
         }
       },
       "interval": {
-        "title": "Créneau de dates (interval)",
-        "description": "Précise l'interval de date pour un prélèvement/livraison.",
+        "title": "Date interval (interval)",
+        "description": "Specifies date interval for a picking/delivery.",
         "type": "object",
         "properties": {
           "start": {
             "type": "string",
             "format": "datetime",
-            "description": "Début du créneau"
+            "description": "Interval start"
           },
           "end": {
             "type": "string",
             "format": "datetime",
-            "description": "Fin du créneau"
+            "description": "Interval end"
           }
         },
         "required": [
@@ -1642,24 +1642,24 @@
         }
       },
       "contact": {
-        "description": "Informations personnelles sur le contact de livraison et/ou de prélèvement.",
+        "description": "Personal informations about picking/delivery contact.",
         "type": "object",
         "properties": {
           "firstName": {
             "type": "string",
-            "description": "Correspond au prénom du client final"
+            "description": "Client firt name"
           },
           "lastName": {
             "type": "string",
-            "description": "Correspond au nom de famille du client final"
+            "description": "Client last name"
           },
           "phone": {
             "type": "string",
-            "description": "Correspond au numéro de téléphone du client final"
+            "description": "Client phone number"
           },
           "email": {
             "type": "string",
-            "description": "Correspond à l’email du client final"
+            "description": "Client e-mail"
           }
         },
         "required": [
@@ -1672,7 +1672,7 @@
       },
       "tags": {
         "type": "array",
-        "description": "Permet de définir des \"marqueurs\" sur cette commande.",
+        "description": "Allows defining \"markers\" on this order.",
         "items": {
           "type": "object",
           "required": [
@@ -1693,32 +1693,32 @@
         "title": "Tags (tags)"
       },
       "contactWithLocalization": {
-        "description": "Informations personnelles sur le contact de livraison et/ou de prélèvement.",
+        "description": "Personal informations about picking/delivery contact.",
         "type": "object",
         "properties": {
           "firstName": {
             "type": "string",
-            "description": "Correspond au prénom du client final"
+            "description": "Client firt name"
           },
           "lastName": {
             "type": "string",
-            "description": "Correspond au nom de famille du client final"
+            "description": "Client last name"
           },
           "phone": {
             "type": "string",
-            "description": "Correspond au numéro de téléphone du client final"
+            "description": "Client phone number"
           },
           "email": {
             "type": "string",
-            "description": "Correspond à l’email du client final"
+            "description": "Client e-mail"
           },
           "language": {
             "type": "string",
-            "description": "Correspond à la langue du client final"
+            "description": "Client language"
           },
           "timezone": {
             "type": "string",
-            "description": "Correspond au fuseau horaire de livraison du client final"
+            "description": "Delivery time zone for the client"
           }
         },
         "required": [
@@ -1736,8 +1736,8 @@
         "items": {
           "$ref": "#/components/schemas/deliveryService"
         },
-        "title": "Services de livraison (services)",
-        "description": "Précise les services de livraison possible. ",
+        "title": "Delivery services (services)",
+        "description": "Specifies the possible delivery services. ",
         "x-examples": {
           "Exemple": [
             "SERVICE_SELECTED_ROOM"
@@ -1746,8 +1746,8 @@
       },
       "package": {
         "type": "object",
-        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un ensemble des produits de la commande regroupé par colis.",
-        "title": "Colis (package)",
+        "description": "Handling unit at retailers own. Generally used as the whole order products grouped by package.",
+        "title": "Package (package)",
         "x-examples": {
           "example-1": {
             "references": [
@@ -1784,7 +1784,7 @@
         "properties": {
           "references": {
             "type": "array",
-            "description": "Références internes des colis si fournies par l'enseigne",
+            "description": "Package internal references if provided by retailer",
             "items": {
               "type": "string"
             }
@@ -1803,7 +1803,7 @@
           },
           "products": {
             "type": "array",
-            "description": "Liste des produits dans le colis",
+            "description": "Product list in the package",
             "items": {
               "type": "object",
               "properties": {
@@ -1812,20 +1812,20 @@
                 },
                 "ean": {
                   "type": "string",
-                  "description": "Ean du produit"
+                  "description": "Product EAN"
                 },
                 "cug": {
                   "type": "string",
-                  "description": "Cug du produit"
+                  "description": "Product CUG"
                 },
                 "label": {
                   "type": "string",
-                  "description": "Libellé du produit"
+                  "description": "Product label"
                 },
                 "quantity": {
                   "type": "integer",
                   "default": 1,
-                  "description": "Quantité de produit dans le colis"
+                  "description": "Product quantity in the package"
                 }
               },
               "required": [
@@ -1835,7 +1835,7 @@
           },
           "quantity": {
             "type": "integer",
-            "description": "Quantité de colis"
+            "description": "Package quantity"
           }
         },
         "required": [
@@ -1847,13 +1847,13 @@
         ]
       },
       "quote": {
-        "title": "Devis (quote)",
-        "description": "Informations sur le devis.",
+        "title": "Quote (quote)",
+        "description": "Informations about the quote.",
         "type": "object",
         "properties": {
           "quoteId": {
             "type": "string",
-            "description": "Identifiant du devis"
+            "description": "Quote ID"
           },
           "price": {
             "$ref": "#/components/schemas/price"
@@ -1864,8 +1864,8 @@
         }
       },
       "notation": {
-        "title": "Note client (notation)",
-        "description": "Précise la note obtenu sur la livraison de la part du client final. ",
+        "title": "Client rating (notation)",
+        "description": "Specifies the obtained score from client. ",
         "x-examples": {
           "Exemple": {
             "score": [
@@ -1874,14 +1874,14 @@
                 "type": "SCORE_TYPE_RECOMMENDATION"
               }
             ],
-            "comment": "Top!"
+            "comment": "Awesome !"
           }
         },
         "type": "object",
         "properties": {
           "score": {
             "type": "array",
-            "description": "Liste des scores",
+            "description": "Score list",
             "items": {
               "$ref": "#/components/schemas/score"
             }
@@ -1898,7 +1898,7 @@
       "score": {
         "type": "object",
         "title": "Score (score)",
-        "description": "Précise le score obtenu lors de la livraison. ",
+        "description": "Specifies the obtained score during the delivery.",
         "x-examples": {
           "Score de recommendation": {
             "note": 6,
@@ -1912,7 +1912,7 @@
         "properties": {
           "note": {
             "type": "number",
-            "description": "Note sur 10"
+            "description": "Score out of 10"
           },
           "type": {
             "type": "string",
@@ -1920,7 +1920,7 @@
               "SCORE_TYPE_RECOMMENDATION",
               "SCORE_TYPE_SATISFACTION"
             ],
-            "description": "Type de score"
+            "description": "Score type"
           }
         },
         "required": [
@@ -1929,7 +1929,7 @@
         ]
       },
       "length": {
-        "description": "Précise la dimension d'un colis.",
+        "description": "Specifies the package dimension.",
         "type": "object",
         "title": "Dimension (length)",
         "properties": {
@@ -1948,13 +1948,13 @@
         ]
       },
       "mass": {
-        "description": "Précise le poids d'un colis/produit.",
+        "description": "Specifies the package/product weight.",
         "type": "object",
         "properties": {
           "value": {
             "type": "number",
             "format": "float",
-            "description": "Valeur indicative du poids"
+            "description": "Weight value"
           },
           "unit": {
             "$ref": "#/components/schemas/massUnit"
@@ -1964,20 +1964,20 @@
           "value",
           "unit"
         ],
-        "title": "Poids (mass)"
+        "title": "Weight (mass)"
       },
       "retailer": {
-        "title": "Enseigne (retailer)",
-        "description": "Précise les informations propre à l'identification de l'enseigne lors d'une livraison. ",
+        "title": "Retailer (retailer)",
+        "description": "Specifies the informations used to identify the retailer during the delivery. ",
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "description": "Nom de l'enseigne"
+            "description": "Retailer name"
           },
           "id": {
             "type": "string",
-            "description": "Identifiant de l'enseigne"
+            "description": "Retailer ID"
           },
           "store": {
             "type": "object",
@@ -1986,15 +1986,15 @@
               "name",
               "contact"
             ],
-            "description": "Magasin de l'enseigne",
+            "description": "Retailer store",
             "properties": {
               "id": {
                 "type": "string",
-                "description": "Identifiant du magasin"
+                "description": "Store ID"
               },
               "name": {
                 "type": "string",
-                "description": "Nom du magasin"
+                "description": "Store name"
               },
               "contact": {
                 "$ref": "#/components/schemas/contact"
@@ -2009,14 +2009,14 @@
         ]
       },
       "price": {
-        "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
+        "description": "Corresponds with products selling price. Filled if delivery is realized with service “SERVICE_INSTALL”.",
         "type": "object",
-        "title": "Prix de vente des produits (price)",
+        "title": "Products selling price (price)",
         "properties": {
           "value": {
             "type": "number",
             "format": "float",
-            "description": "Valeur indicative du prix",
+            "description": "Price value",
             "exclusiveMinimum": true,
             "minimum": 0
           },
@@ -2027,8 +2027,8 @@
       },
       "refusedReason": {
         "type": "string",
-        "description": "Précise les raisons de refus possible décrit dans l'article associé : \"Motifs de refus\".",
-        "title": "Motif de refus (refusedReason)",
+        "description": "Specifies the possible refusal reasons described in article : \"Motifs de refus\".",
+        "title": "Refusal reason (refusedReason)",
         "enum": [
           "REFUSED_AREA",
           "REFUSED_AVAILABILITY",
@@ -2053,8 +2053,8 @@
           "CANCELLED_NEW_ADDRESS",
           "CANCELLED_INCOMPLETE"
         ],
-        "description": "Liste regroupant l’ensemble des motifs d’annulation possible pour une livraison",
-        "title": "Motif d'annulation d'une livraison (cancelledReason)",
+        "description": "List of all possible cancellation reason for a delivery",
+        "title": "Cancellation reason (cancelledReason)",
         "x-examples": {
           "Exemple": "CANCELLED_CANNOT_SERVICE"
         }
@@ -2073,8 +2073,8 @@
           "SERVICE_COMPLEX_INSTALL",
           "SERVICE_ASSEMBLY"
         ],
-        "title": "Service de livraison (deliveryService)",
-        "description": "Précise les différents service de livraison possible au sein de la plateforme. ",
+        "title": "Delivery service (deliveryService)",
+        "description": "Specifies the different possible delivery services in the platform.",
         "x-examples": {
           "Exemple": "SERVICE_SELECTED_ROOM"
         }
@@ -2096,8 +2096,8 @@
           "VEHICLE_TYPE_CAR",
           "VEHICLE_TYPE_E_CAR"
         ],
-        "title": "Type de véhicule (vehicleType)",
-        "description": "Précise le type de véhicule utilisé lors de la livraison.",
+        "title": "Vehicle type (vehicleType)",
+        "description": "Specifies the vehicle type used during the delivery.",
         "x-examples": {
           "Exemple": "VEHICLE_TYPE_BIKE"
         }
@@ -2118,8 +2118,8 @@
           "TYPOLOGY_PALLET_GENERIC",
           "TYPOLOGY_NON_STANDARD"
         ],
-        "title": "Typologie de produit (productType)",
-        "description": "Précise la typologie d'un produit.",
+        "title": "Product typology (productType)",
+        "description": "Specifies the product typology.",
         "x-examples": {
           "Exemple": "TYPOLOGY_GENERIC"
         }
@@ -2129,8 +2129,8 @@
         "enum": [
           "EUR"
         ],
-        "description": "Devise, précise la monnaie utilisée.",
-        "title": "Devise (currency)",
+        "description": "Specifies the currency used.",
+        "title": "Currency (currency)",
         "x-examples": {
           "Exemple": "EUR"
         }
@@ -2146,9 +2146,9 @@
           "ft",
           "mi"
         ],
-        "description": "Précise l'unité de longueur.",
+        "description": "Specifies the length unit.",
         "default": "cm",
-        "title": "Unité de mesure (lengthUnit)"
+        "title": "Measure unit (lengthUnit)"
       },
       "massUnit": {
         "type": "string",
@@ -2162,9 +2162,9 @@
           "mt",
           "t"
         ],
-        "description": "Précise l'unité de poids.",
+        "description": "Specifies the weight unit.",
         "default": "kg",
-        "title": "Unité de poids (massUnit)",
+        "title": "Weight unit (massUnit)",
         "x-examples": {
           "Exemple": "kg"
         }
@@ -2188,8 +2188,8 @@
             }
           }
         },
-        "title": "Informations sur l'adresse de prélèvement ou livraison",
-        "description": "Informations sur l'adresse de prélèvement ou livraison."
+        "title": "Informations about picking/delivery address.",
+        "description": "Informations about picking/delivery address."
       },
       "withContact": {
         "required": [
@@ -2229,8 +2229,8 @@
             }
           }
         ],
-        "title": "Informations sur l'adresse de prélèvement",
-        "description": "Informations de l'adresse de prélèvement."
+        "title": "Informations about picking address.",
+        "description": "Informations about picking address."
       },
       "withContactAndLocalization": {
         "allOf": [
@@ -2248,8 +2248,8 @@
             }
           }
         ],
-        "title": "Informations sur l'adresse de livraison",
-        "description": "Informations sur l'adresse de livraison."
+        "title": "Informations about delivery address.",
+        "description": "Informations about delivery addres.s"
       },
       "postQuote": {
         "allOf": [
@@ -2271,8 +2271,8 @@
             }
           }
         ],
-        "description": "Informations nécessaire à la création d'un devis de livraison.",
-        "title": "Informations de demande de devis (postQuote)"
+        "description": "Necessary informations to create a delivery quote.",
+        "title": "Quote request informations (postQuote)"
       },
       "postDelivery": {
         "allOf": [
@@ -2295,20 +2295,20 @@
             }
           }
         ],
-        "title": "Demande livraison (postDelivery)",
-        "description": "Précise les informations utiles à la création d'une demande de création de livraison. "
+        "title": "Delivery request (postDelivery)",
+        "description": "Specifies the informations used to create a delivery."
       },
       "deliveryInformations": {
-        "description": "Informations de livraison.",
+        "description": "Delivery informations.",
         "type": "object",
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Identifiant unique de la commande à renseigner par l'enseigne"
+            "description": "Unique order ID to be filled by the retailer"
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égal à l’orderId. "
+            "description": "Order reference, number associated to a store. Can be equal to orderId."
           },
           "productsPrice": {
             "$ref": "#/components/schemas/price"
@@ -2318,7 +2318,7 @@
           },
           "packages": {
             "type": "array",
-            "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis",
+            "description": "Handling unit at retailers own. Generally used as the whole order products grouped by package.",
             "items": {
               "$ref": "#/components/schemas/package"
             }
@@ -2337,17 +2337,17 @@
           "packages",
           "services"
         ],
-        "title": "Informations de livraison (deliveryInformations)",
+        "title": "Delivery informations (deliveryInformations)",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "orderId": "65zq1d5qz1d56q1",
             "referenceNumber": "65zq1d5qz1d56q1-456",
             "retailer": {
-              "name": "Enseigne A",
+              "name": "Retailer A",
               "id": "ret123",
               "store": {
                 "id": "store123",
-                "name": "Magasin C",
+                "name": "Store C",
                 "contact": {
                   "firstName": "Pierre",
                   "lastName": "Dupond",
@@ -2370,7 +2370,7 @@
                 "city": "La Madeleine",
                 "country": "FR"
               },
-              "infos": "Travaux en ce moment attention.",
+              "infos": "Road works.",
               "interval": [
                 {
                   "start": "2019-12-04T12:30:00+0000",
@@ -2425,7 +2425,7 @@
                     "type": "TYPOLOGY_GENERIC",
                     "ean": "4897567123548",
                     "cug": "e21fe21",
-                    "label": "Armoire",
+                    "label": "Wardrobe",
                     "quantity": 1
                   }
                 ],
@@ -2440,8 +2440,8 @@
         }
       },
       "postDeliveryInformations": {
-        "title": "Informations de demande de livraison (postDeliveryInformations)",
-        "description": "Informations de demande de livraison.",
+        "title": "Delivery request informations (postDeliveryInformations)",
+        "description": "Delivery request informations.",
         "type": "object",
         "x-examples": {
           "example": {
@@ -2513,11 +2513,11 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Identifiant unique de la commande à renseigner par l'enseigne"
+            "description": "Unique order ID to be filled by the retailer"
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId"
+            "description": "Order reference, number associated to a store. Can be equal to orderId."
           },
           "productsPrice": {
             "$ref": "#/components/schemas/price"
@@ -2527,7 +2527,7 @@
           },
           "packages": {
             "type": "array",
-            "description": "Ensemble des colis",
+            "description": "Whole packages",
             "items": {
               "$ref": "#/components/schemas/package"
             }
@@ -2540,7 +2540,7 @@
           },
           "quoteId": {
             "type": "string",
-            "description": "Identifiant référence du devis de la commande"
+            "description": "Order quote ID"
           }
         },
         "required": [
@@ -2557,13 +2557,13 @@
         "properties": {
           "deliveryId": {
             "type": "string",
-            "description": "Identifiant unique de la livraison"
+            "description": "Unique delivery ID"
           }
         },
-        "description": "Informations retour à la création d'une livraison. ",
-        "title": "Retour d'information (deliveryCreated)",
+        "description": "Delivery creation response informations.",
+        "title": "Response informations (deliveryCreated)",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "deliveryId": "1123663GHG"
           }
         }
@@ -2577,8 +2577,8 @@
             "type": "string"
           }
         },
-        "title": "Retour d'information : Création d'une livraison avec reference (deliveryCreatedPackages))",
-        "description": "Informations retour création d'une livraison avec reference."
+        "title": "Response informations : Creation of a delivery with a reference (deliveryCreatedPackages))",
+        "description": "Informations about delivery creation with reference response"
       },
       "deliveryCreatedPackages": {
         "allOf": [
@@ -2590,7 +2590,7 @@
             "properties": {
               "packages": {
                 "type": "array",
-                "description": "Informations sur les colis",
+                "description": "Informations about packages",
                 "items": {
                   "type": "object",
                   "properties": {
@@ -2603,8 +2603,8 @@
             }
           }
         ],
-        "title": "Retour d'information : Création d'une livraison avec colis (deliveryCreatedPackages))",
-        "description": "Informations retour création d'une livraison avec colis.",
+        "title": "Response informations : Creation of a delivery with a package (deliveryCreatedPackages))",
+        "description": "Informations about delivery creation with a package response",
         "x-examples": {
           "Exemple": {
             "deliveryId": "113123765",
@@ -2618,14 +2618,14 @@
       },
       "coordinates": {
         "type": "object",
-        "description": "Précise les coordonnées géographiques à utiliser pour la création.",
+        "description": "Specifies the geographic coordinates to use for the creation.",
         "x-examples": {
           "Exemple": {
             "latitude": 50.63833,
             "longitude": 3.077359
           }
         },
-        "title": "Coordonnées géographiques (coordinates)",
+        "title": "Geographic coordinates (coordinates)",
         "properties": {
           "latitude": {
             "type": "number",
@@ -2663,15 +2663,15 @@
             "end": "18:00"
           }
         },
-        "description": "Précise l'interval de date d'ouverture.",
-        "title": "Créneau horaires (interval_hour)"
+        "description": "Specifies the openning date interval.",
+        "title": "Hour interval (interval_hour)"
       }
     },
     "parameters": {
       "queryLatitude": {
         "in": "query",
         "required": true,
-        "description": "Latitude du point de recherche",
+        "description": "Searching point latitude",
         "name": "latitude",
         "schema": {
           "type": "number"
@@ -2679,7 +2679,7 @@
       },
       "queryLongitude": {
         "in": "query",
-        "description": "Longitude du point de recherche",
+        "description": "Searching point longitude",
         "required": true,
         "name": "longitude",
         "schema": {
@@ -2689,7 +2689,7 @@
       "queryNumber": {
         "in": "query",
         "required": false,
-        "description": "Nombre de points relais retournés",
+        "description": "Number of returned pickup points",
         "name": "number",
         "schema": {
           "type": "integer",
@@ -2700,7 +2700,7 @@
       "queryKilometricDistance": {
         "in": "query",
         "required": false,
-        "description": "Distance en kilomètres du rayon de recherche",
+        "description": "Distance in kilometers of searching radius",
         "name": "kilometricDistance",
         "schema": {
           "type": "integer",
@@ -2712,7 +2712,7 @@
         "in": "query",
         "required": false,
         "name": "type",
-        "description": "Type de point relais",
+        "description": "Pickup point type",
         "schema": {
           "type": "string",
           "enum": [
@@ -2729,7 +2729,7 @@
         "in": "query",
         "required": false,
         "name": "category",
-        "description": "Catégorie de point relais",
+        "description": "pickup point category",
         "schema": {
           "type": "string",
           "enum": [
@@ -2743,7 +2743,7 @@
       "pathQuoteId": {
         "in": "path",
         "required": true,
-        "description": "Identifiant de devis",
+        "description": "Quote ID",
         "name": "quoteId",
         "schema": {
           "type": "string"
@@ -2753,7 +2753,7 @@
         "in": "path",
         "required": true,
         "name": "deliveryId",
-        "description": "Identifiant de livraison",
+        "description": "Delivery ID",
         "schema": {
           "type": "string"
         }
@@ -2764,16 +2764,16 @@
   "servers": [],
   "tags": [
     {
-      "name": "Livraison"
+      "name": "Delivery"
     },
     {
-      "name": "Devis"
+      "name": "Quotes"
     },
     {
-      "name": "Point Relais"
+      "name": "Pickup point"
     },
     {
-      "name": "Colis"
+      "name": "Package"
     }
   ]
 }
