@@ -107,7 +107,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -219,7 +219,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -299,7 +299,7 @@
                 }
               },
               "examples": {
-                "Annulation tardive": {
+                "Late cancellation": {
                   "value": {
                     "amount": 165.98,
                     "currency": "EUR",
@@ -324,7 +324,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -392,7 +392,7 @@
                 }
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "emittedCarbonDioxide": {
                       "value": 13.5,
@@ -421,7 +421,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -527,7 +527,7 @@
                 }
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "status": true,
                     "type": "EVENT_TYPE_SMS",
@@ -552,7 +552,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -628,7 +628,7 @@
                 ]
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "document": "file stream",
                     "type": "EVIDENCE",
@@ -651,7 +651,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -1038,7 +1038,7 @@
                   "$ref": "#/components/schemas/badRequest"
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -1374,7 +1374,7 @@
         "description": "Missing or incorrect element in body",
         "title": "Error 400",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "reasons": [
               "Missing argument 'xxxxx'"
             ]

@@ -314,7 +314,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": [
                       {
                         "quoteId": "4zd5z4d5zd",
@@ -352,7 +352,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "REFUSED_TOO_HEAVY"
@@ -828,7 +828,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "REFUSED_TOO_HEAVY"
@@ -914,7 +914,7 @@
                 ]
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "reasons": [
                       "CANCELLED_CANNOT_SERVICE"
@@ -980,7 +980,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -1182,7 +1182,7 @@
                 "$ref": "#/components/schemas/notation"
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "score": [
                       {
@@ -1218,7 +1218,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -1443,7 +1443,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": {
                       "reasons": [
                         "Missing argument 'xxxxx'"
@@ -1484,7 +1484,7 @@
     "schemas": {
       "address": {
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "addressLine1": "179 boulevard de Turin",
             "addressLine2": "Woop",
             "elevator": true,
@@ -1603,7 +1603,7 @@
           "country"
         ],
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "addressLine1": "179 boulevard de Turin",
             "addressLine2": "Woop",
             "elevator": true,
@@ -1635,7 +1635,7 @@
           "end"
         ],
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "start": "2019-05-02T15:52:01+0000",
             "end": "2019-05-02T17:52:01+0000"
           }
@@ -1739,7 +1739,7 @@
         "title": "Delivery services (services)",
         "description": "Specifies the possible delivery services. ",
         "x-examples": {
-          "Exemple": [
+          "Example": [
             "SERVICE_SELECTED_ROOM"
           ]
         }
@@ -1867,7 +1867,7 @@
         "title": "Client rating (notation)",
         "description": "Specifies the obtained score from client. ",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "score": [
               {
                 "note": 8,
@@ -1900,11 +1900,11 @@
         "title": "Score (score)",
         "description": "Specifies the obtained score during the delivery.",
         "x-examples": {
-          "Score de recommendation": {
+          "Recommendation score": {
             "note": 6,
             "type": "SCORE_TYPE_RECOMMENDATION"
           },
-          "Score de satisfaction": {
+          "Satisfaction score": {
             "note": 9,
             "type": "SCORE_TYPE_SATISFACTION"
           }
@@ -2040,7 +2040,7 @@
         ],
         "example": "REFUSED_AREA",
         "x-examples": {
-          "Exemple": "REFUSED_AREA"
+          "Example": "REFUSED_AREA"
         }
       },
       "cancelledReason": {
@@ -2056,7 +2056,7 @@
         "description": "List of all possible cancellation reason for a delivery",
         "title": "Cancellation reason (cancelledReason)",
         "x-examples": {
-          "Exemple": "CANCELLED_CANNOT_SERVICE"
+          "Example": "CANCELLED_CANNOT_SERVICE"
         }
       },
       "deliveryService": {
@@ -2076,7 +2076,7 @@
         "title": "Delivery service (deliveryService)",
         "description": "Specifies the different possible delivery services in the platform.",
         "x-examples": {
-          "Exemple": "SERVICE_SELECTED_ROOM"
+          "Example": "SERVICE_SELECTED_ROOM"
         }
       },
       "vehicleType": {
@@ -2099,7 +2099,7 @@
         "title": "Vehicle type (vehicleType)",
         "description": "Specifies the vehicle type used during the delivery.",
         "x-examples": {
-          "Exemple": "VEHICLE_TYPE_BIKE"
+          "Example": "VEHICLE_TYPE_BIKE"
         }
       },
       "productType": {
@@ -2121,7 +2121,7 @@
         "title": "Product typology (productType)",
         "description": "Specifies the product typology.",
         "x-examples": {
-          "Exemple": "TYPOLOGY_GENERIC"
+          "Example": "TYPOLOGY_GENERIC"
         }
       },
       "currency": {
@@ -2132,7 +2132,7 @@
         "description": "Specifies the currency used.",
         "title": "Currency (currency)",
         "x-examples": {
-          "Exemple": "EUR"
+          "Example": "EUR"
         }
       },
       "lengthUnit": {
@@ -2166,7 +2166,7 @@
         "default": "kg",
         "title": "Weight unit (massUnit)",
         "x-examples": {
-          "Exemple": "kg"
+          "Example": "kg"
         }
       },
       "withoutContact": {
@@ -2606,7 +2606,7 @@
         "title": "Response informations : Creation of a delivery with a package (deliveryCreatedPackages))",
         "description": "Informations about delivery creation with a package response",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "deliveryId": "113123765",
             "packages": [
               {
@@ -2620,7 +2620,7 @@
         "type": "object",
         "description": "Specifies the geographic coordinates to use for the creation.",
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "latitude": 50.63833,
             "longitude": 3.077359
           }
@@ -2658,7 +2658,7 @@
           "end"
         ],
         "x-examples": {
-          "Exemple": {
+          "Example": {
             "start": "14:00",
             "end": "18:00"
           }
