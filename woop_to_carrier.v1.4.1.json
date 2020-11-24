@@ -1083,6 +1083,10 @@
                   },
                   "services": {
                     "$ref": "#/components/schemas/services"
+                  },
+                  "referenceNumber": {
+                    "type": "string",
+                    "description": "Référence de la commande, numéro associé à un magasin. "
                   }
                 }
               },
