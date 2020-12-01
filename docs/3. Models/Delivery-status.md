@@ -1,7 +1,5 @@
 # Delivery status
 
-Au cours de son cycle de vie la commande passe tour à tour par plusieurs statuts. Ceux que nous identifions sont les différents stades de la livraison.
-
 During its life cycle, the order goes through different statuses. Those we identify are the different delivery steps.
 
 ### Order workflow

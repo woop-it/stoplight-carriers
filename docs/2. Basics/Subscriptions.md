@@ -4,7 +4,7 @@ Subscription system allows you to **subscribe to requests and events** related t
 
 For example : Quote requests, delivery requests, delivery status changes etc.
 
-Those requests and events are describes in **Woop to Carrier** section of our documentation.
+Those requests and events are described in **Woop to Carrier** section of our documentation.
 
 ## Subscription initialization
 
