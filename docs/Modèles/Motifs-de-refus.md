@@ -1,4 +1,4 @@
-# Motifs de refus
+# Motifs de refus de prise en charge
 
 Pour plusieurs situations, le transporteur solicité a la possiblité de refuser lors de l'appel : 
 - Une demande de devis pour une course 
