@@ -1400,7 +1400,7 @@
   ],
   "security": [
     {
-      "oAuth2ClientCredentials": []
+      "Bearer": []
     }
   ]
 }
