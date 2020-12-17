@@ -128,11 +128,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Mise à jour de statut d'une livraison",
         "tags": [
           "Livraison"
@@ -240,11 +235,6 @@
             "description": "Le 'deliveryId' ou 'packageId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Mise à jour du statut d'un colis",
         "tags": [
           "Livraison"
@@ -345,11 +335,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
       }
     },
@@ -442,11 +427,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout d'informations de facturation d'une livraison"
       }
     },
@@ -570,11 +550,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout d'un évènement d'une livraison"
       }
     },
@@ -954,11 +929,6 @@
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout de souscriptions",
         "tags": [
           "Souscriptions"
@@ -1056,11 +1026,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout d'un document d'une livraison"
       }
     }
@@ -1412,16 +1377,9 @@
       }
     },
     "securitySchemes": {
-      "oAuth2ClientCredentials": {
+      "Bearer": {
         "type": "oauth2",
-        "flows": {
-          "clientCredentials": {
-            "tokenUrl": "https://token.last-mile.fr/oauth/token",
-            "x-google-issuer": "https://last-mile.eu.auth0.com/",
-            "x-google-jwks_uri": "https://last-mile.eu.auth0.com/.well-known/jwks.json",
-            "x-google-audiences": "https://carrier.api.meltingpoint.fr/"
-          }
-        },
+        "flows": {},
         "description": "[Voir la documentation](https://woop.stoplight.io/docs/carrier/docs/Bases/Authentification.md)"
       }
     }
@@ -1438,6 +1396,11 @@
     },
     {
       "name": "Souscriptions"
+    }
+  ],
+  "security": [
+    {
+      "oAuth2ClientCredentials": []
     }
   ]
 }
