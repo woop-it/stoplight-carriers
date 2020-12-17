@@ -128,11 +128,6 @@
             "description": "The 'deliveryId' has not been found."
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Delivery status update",
         "tags": [
           "Delivery"
@@ -240,11 +235,6 @@
             "description": "The 'deliveryId' or 'packageId' has not been found"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Package status update",
         "tags": [
           "Delivery"
@@ -345,11 +335,6 @@
             "description": "The 'deliveryId' has not been found"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Adding extra cost or discount on a delivery."
       }
     },
@@ -442,11 +427,6 @@
             "description": "The 'deliveryId' has not been found"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Adding billing informations on a delivery."
       }
     },
@@ -570,11 +550,6 @@
             "description": "The 'deliveryId' has not been found"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Adding a delivery event."
       }
     },
@@ -669,11 +644,6 @@
             "description": "The 'deliveryId' has not been found"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Adding a document on a delivery."
       }
     },
@@ -1053,11 +1023,6 @@
             "description": "You are not allowed to access this element."
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Adding subscriptions",
         "tags": [
           "Subscriptions"
@@ -1413,16 +1378,9 @@
       }
     },
     "securitySchemes": {
-      "oAuth2ClientCredentials": {
+      "Bearer": {
         "type": "oauth2",
-        "flows": {
-          "clientCredentials": {
-            "tokenUrl": "https://token.last-mile.fr/oauth/token",
-            "x-google-issuer": "https://last-mile.eu.auth0.com/",
-            "x-google-jwks_uri": "https://last-mile.eu.auth0.com/.well-known/jwks.json",
-            "x-google-audiences": "https://carrier.api.meltingpoint.fr/"
-          }
-        },
+        "flows": {},
         "description": "[Go to documentation](https://woop.stoplight.io/docs/carrier/branches/english/docs/2.%20Basics/Authentication.md)"
       }
     }
@@ -1439,6 +1397,11 @@
     },
     {
       "name": "Subscriptions"
+    }
+  ],
+  "security": [
+    {
+      "Bearer": []
     }
   ]
 }
