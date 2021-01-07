@@ -2013,9 +2013,9 @@
         ]
       },
       "price": {
-        "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
+        "description": "Correspond au prix du devis",
         "type": "object",
-        "title": "Prix de vente des produits (price)",
+        "title": "Prix du devis",
         "properties": {
           "value": {
             "type": "number",
@@ -2413,10 +2413,10 @@
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique. "
+            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique."
           },
           "productsPrice": {
-            "$ref": "#/components/schemas/price"
+            "$ref": "#/components/schemas/productPrice"
           },
           "retailer": {
             "$ref": "#/components/schemas/retailer"
@@ -2524,7 +2524,7 @@
             "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique. "
           },
           "productsPrice": {
-            "$ref": "#/components/schemas/price"
+            "$ref": "#/components/schemas/productPrice"
           },
           "retailer": {
             "$ref": "#/components/schemas/retailer"
@@ -2669,6 +2669,22 @@
         },
         "description": "Précise l'interval de date d'ouverture.",
         "title": "Créneau horaires (interval_hour)"
+      },
+      "productPrice": {
+        "title": "Prix de vente des produits (price)",
+        "type": "object",
+        "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "currency": {
+            "$ref": "#/components/schemas/currency"
+          }
+        }
       }
     },
     "parameters": {
