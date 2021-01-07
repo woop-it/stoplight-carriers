@@ -2413,7 +2413,7 @@
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égal à l'orderId. Le referenceNumber n'est pas unique."
+            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique."
           },
           "productsPrice": {
             "$ref": "#/components/schemas/productPrice"
@@ -2524,7 +2524,7 @@
             "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique. "
           },
           "productsPrice": {
-            "$ref": "#/components/schemas/price"
+            "$ref": "#/components/schemas/productPrice"
           },
           "retailer": {
             "$ref": "#/components/schemas/retailer"
