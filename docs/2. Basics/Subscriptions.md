@@ -8,7 +8,7 @@ Those requests and events are described in **Woop to Carrier** section of our do
 
 ## Subscription initialization
 
-To subscribe to requests and events, you will need to make a first call to **API [/souscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** 
+To subscribe to requests and events, you will need to make a first call to **API [/subscriptions](https://woop.stoplight.io/docs/carrier/branches/english/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** 
 
 
 ```json json_schema
