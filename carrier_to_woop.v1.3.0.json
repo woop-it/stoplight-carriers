@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Allows updating an order status for an in progress delivery. The information is transmitted to Woop in order to follow the order process. <a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow and status list</a>",
+        "description": "Allows updating an order status for an in progress delivery. The information is transmitted to Woop in order to follow the order process. <a href=\"https://woop.stoplight.io/docs/carrier/branches/english/docs/3.%20Models/Delivery-status.md\">Workflow and status list</a>",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -136,7 +136,7 @@
     },
     "/deliveries/{deliveryId}/packages/{packageId}/status": {
       "put": {
-        "description": "Allows updating a package status for a precise order in progress. The information is transmitted to Woop in order to follow the package process. <a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow and status list</a>",
+        "description": "Allows updating a package status for a precise order in progress. The information is transmitted to Woop in order to follow the package process. <a href=\"https://woop.stoplight.io/docs/carrier/branches/english/docs/3.%20Models/Delivery-status.md\">Workflow and status list</a>",
         "operationId": "putPackageStatus",
         "parameters": [
           {

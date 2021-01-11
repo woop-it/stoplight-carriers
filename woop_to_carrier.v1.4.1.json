@@ -331,7 +331,7 @@
             }
           },
           "202": {
-            "description": "Success code, quotes have been generated. All asked carriers have a quote ID to accept the delivery.\n\n[See refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "Success code, quotes have been generated. All asked carriers have a quote ID to accept the delivery.\n\n[See refusal reasons](https://woop.stoplight.io/docs/carrier/branches/english/docs/3.%20Models/Refusal-reasons.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -810,7 +810,7 @@
             }
           },
           "205": {
-            "description": "Delivery is refused after all, possible refusal reasons are described in \"reasons\". \n\n[See refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "Delivery is refused after all, possible refusal reasons are described in \"reasons\". \n\n[See refusal reasons](https://woop.stoplight.io/docs/carrier/branches/english/docs/3.%20Models/Refusal-reasons.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -1749,7 +1749,7 @@
         "description": "Handling unit at retailers own. Generally used as the whole order products grouped by package.",
         "title": "Package (package)",
         "x-examples": {
-          "example-1": {
+          "example": {
             "references": [
               "string"
             ],
