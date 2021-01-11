@@ -2759,9 +2759,20 @@
         }
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "API Key - 1": {
+        "name": "API Key",
+        "type": "apiKey",
+        "in": "query"
+      }
+    }
   },
-  "servers": [],
+  "servers": [
+    {
+      "url": "",
+      "description": ""
+    }
+  ],
   "tags": [
     {
       "name": "Delivery"
