@@ -16,5 +16,7 @@ Code| Intitulé
 `SERVICE_SELECTED_ROOM`| Livraison pièce du choix
 `SERVICE_SIMPLE_INSTALL`| Mise en service simple
 `SERVICE_COMPLEX_INSTALL`| Mise en service complexe
+`SERVICE_STANDARD_TAXI`| Livraison simple en taxi (type berline)
+`SERVICE_XL_TAXI`| Livraison simple en taxi (type Van)
 
 *La configuration de la prise en charge des services de livraison par transporteur est manuelle, veuillez nous contacter.*

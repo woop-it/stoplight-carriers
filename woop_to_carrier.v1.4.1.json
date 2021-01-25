@@ -2064,7 +2064,6 @@
         }
       },
       "deliveryService": {
-        "type": "string",
         "enum": [
           "SERVICE_SELECTED_ROOM",
           "SERVICE_FRONT_HOME",
@@ -2081,7 +2080,8 @@
         "description": "Précise les différents service de livraison possible au sein de la plateforme. ",
         "x-examples": {
           "Exemple": "SERVICE_SELECTED_ROOM"
-        }
+        },
+        "type": "string"
       },
       "vehicleType": {
         "type": "string",
