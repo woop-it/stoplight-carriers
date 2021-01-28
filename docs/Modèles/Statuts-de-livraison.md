@@ -28,6 +28,7 @@ Statut | Intitulé | Exemples de commentaire
  `DELIVERY_BLOCKED` | Livraison bloquée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
  `DELIVERY_DELAYED` | Livraison retardée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
  `DELIVERY_AVAILABLE` | Livraison disponible en point de retrait | "N/A"
+ `DELIVERY_REPLANNED`|Date de livraison replannifiée par une prise de RDV avec le client | "N/A" 
 
 ### Gestion des retours et des erreurs
 
