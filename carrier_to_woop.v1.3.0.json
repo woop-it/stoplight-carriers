@@ -72,7 +72,7 @@
                   "additionalData": {
                     "$ref": "#/components/schemas/additionalData"
                   },
-                  "interval": {
+                  "appointment": {
                     "$ref": "#/components/schemas/interval"
                   }
                 },
@@ -1393,8 +1393,8 @@
         ],
         "title": "Données additionnelles"
       },
-      "interval": {
-        "description": "Précise un interval de dates avec heures.",
+      "appointment": {
+        "description": "Précise un interval de dates avec heures pour la prise de RDV client.",
         "type": "object",
         "x-examples": {
           "example": {
@@ -1418,7 +1418,7 @@
           "start",
           "end"
         ],
-        "title": "Créneau de dates (interval)"
+        "title": "Date de prise RDV (appointment)"
       }
     },
     "parameters": {
