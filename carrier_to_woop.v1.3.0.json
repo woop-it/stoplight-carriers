@@ -73,7 +73,7 @@
                     "$ref": "#/components/schemas/additionalData"
                   },
                   "appointment": {
-                    "$ref": "#/components/schemas/interval"
+                    "$ref": "#/components/schemas/appointment"
                   }
                 },
                 "required": [
