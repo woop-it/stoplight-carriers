@@ -68,6 +68,9 @@
                   },
                   "team": {
                     "$ref": "#/components/schemas/team"
+                  },
+                  "additionalData": {
+                    "$ref": "#/components/schemas/additionalData"
                   }
                 },
                 "required": [
@@ -81,14 +84,20 @@
                   "value": {
                     "status": "DELIVERY_DELIVERED_OK",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "I waited 5 minutes outside.",
+                    "comment": "I waited 15 minutes.",
                     "team": {
                       "members": [
                         {
                           "id": "ZER784"
                         }
                       ]
-                    }
+                    },
+                    "additionalData": [
+                      {
+                        "key": "my_personnal_key",
+                        "value": "personal data"
+                      }
+                    ]
                   }
                 }
               }
@@ -553,100 +562,6 @@
         "summary": "Adding a delivery event."
       }
     },
-    "/deliveries/{deliveryId}/documents": {
-      "post": {
-        "tags": [
-          "Document"
-        ],
-        "description": "Adding a document",
-        "operationId": "postDeliveryDocument",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/apiVersion"
-          },
-          {
-            "$ref": "#/components/parameters/pathDeliveryId"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "description": "Contains informations about the document that will be sent.",
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "document": {
-                    "type": "string",
-                    "description": "Document in binary format, max 10 MB",
-                    "format": "binary"
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": "Document type",
-                    "enum": [
-                      "EVIDENCE",
-                      "INVOICE",
-                      "CONTRACT"
-                    ]
-                  },
-                  "date": {
-                    "type": "string",
-                    "description": "Document creation date",
-                    "format": "datetime"
-                  }
-                },
-                "required": [
-                  "document",
-                  "type",
-                  "date"
-                ]
-              },
-              "examples": {
-                "Example": {
-                  "value": {
-                    "document": "file stream",
-                    "type": "EVIDENCE",
-                    "date": "2019-11-27T10:30:00+0000"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Request processed with success"
-          },
-          "400": {
-            "description": "Missing or incorrect element in body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/badRequest"
-                },
-                "examples": {
-                  "Example": {
-                    "value": {
-                      "reasons": [
-                        "Missing argument 'xxxxx'"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "You are not allowed to access this element."
-          },
-          "404": {
-            "description": "The 'deliveryId' has not been found"
-          }
-        },
-        "summary": "Adding a document on a delivery."
-      }
-    },
     "/subscriptions": {
       "post": {
         "description": "Initialization of endpoints to exchange with carrier APIs.",
@@ -1028,6 +943,100 @@
           "Subscriptions"
         ]
       }
+    },
+    "/deliveries/{deliveryId}/documents": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Adding a document",
+        "operationId": "postDeliveryDocument",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contains informations about the document that will be sent.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "document": {
+                    "type": "string",
+                    "description": "Document in binary format, max 10 MB",
+                    "format": "binary"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Document type",
+                    "enum": [
+                      "EVIDENCE",
+                      "INVOICE",
+                      "CONTRACT"
+                    ]
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Document creation date",
+                    "format": "datetime"
+                  }
+                },
+                "required": [
+                  "document",
+                  "type",
+                  "date"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "document": "file stream",
+                    "type": "EVIDENCE",
+                    "date": "2019-11-27T10:30:00+0000"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Request processed with success"
+          },
+          "400": {
+            "description": "Missing or incorrect element in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not allowed to access this element."
+          },
+          "404": {
+            "description": "The 'deliveryId' has not been found"
+          }
+        },
+        "summary": "Adding a delivery document"
+      }
     }
   },
   "components": {
@@ -1355,6 +1364,31 @@
             }
           }
         }
+      },
+      "additionalData": {
+        "description": "Allows the carrier to transmit personalized information/data to the sign.",
+        "type": "object",
+        "x-examples": {
+          "example": {
+            "key": "string",
+            "value": "string"
+          }
+        },
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Label of transmitted information"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of transmitted information"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "Additional Data"
       }
     },
     "parameters": {

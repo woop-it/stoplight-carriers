@@ -1083,6 +1083,10 @@
                   },
                   "services": {
                     "$ref": "#/components/schemas/services"
+                  },
+                  "referenceNumber": {
+                    "type": "string",
+                    "description": "Order reference, number associated with a store."
                   }
                 }
               },
@@ -2060,7 +2064,6 @@
         }
       },
       "deliveryService": {
-        "type": "string",
         "enum": [
           "SERVICE_SELECTED_ROOM",
           "SERVICE_FRONT_HOME",
@@ -2077,7 +2080,8 @@
         "description": "Specifies the different possible delivery services in the platform.",
         "x-examples": {
           "Example": "SERVICE_SELECTED_ROOM"
-        }
+        },
+        "type": "string"
       },
       "vehicleType": {
         "type": "string",
@@ -2214,42 +2218,34 @@
             "$ref": "#/components/schemas/contact"
           }
         },
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/withoutContact"
-          },
-          {
-            "required": [
-              "contact"
-            ],
-            "properties": {
-              "contact": {
-                "$ref": "#/components/schemas/contact"
-              }
-            }
-          }
-        ],
         "title": "Informations about picking address.",
         "description": "Informations about picking address."
       },
       "withContactAndLocalization": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/withoutContact"
-          },
-          {
-            "required": [
-              "contact"
-            ],
-            "properties": {
-              "contact": {
-                "$ref": "#/components/schemas/contactWithLocalization"
-              }
-            }
-          }
+        "required": [
+          "address",
+          "interval",
+          "contact"
         ],
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "infos": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/interval"
+            }
+          },
+          "contact": {
+            "$ref": "#/components/schemas/contactWithLocalization"
+          }
+        },
         "title": "Informations about delivery address.",
-        "description": "Informations about delivery addres.s"
+        "description": "Informations about delivery address."
       },
       "postQuote": {
         "allOf": [

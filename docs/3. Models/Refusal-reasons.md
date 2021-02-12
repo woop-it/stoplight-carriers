@@ -15,3 +15,5 @@ Code| Comment
 `REFUSED_TOO_HEAVY`| Weight out of XX Kg limit
 `REFUSED_TOO_LARGE`| Dimensions out of XX cm/m/mm limit
 `REFUSED_EXCEPTION`| Error during some informations handling. e.g. "Invalid phone number"
+`REFUSED_TOO_LATE`| "The action is no longer authorised by the carrier. The status of the order no longer allows this type of action because the delivery status is too advanced (example: Cancellation refused for DELIVERY_PICK_UP_OK because loading is in progress).".
+`REFUSED_OTHER_REASON`| "Other reasons for refusal."
