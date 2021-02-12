@@ -2218,40 +2218,32 @@
             "$ref": "#/components/schemas/contact"
           }
         },
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/withoutContact"
-          },
-          {
-            "required": [
-              "contact"
-            ],
-            "properties": {
-              "contact": {
-                "$ref": "#/components/schemas/contact"
-              }
-            }
-          }
-        ],
         "title": "Informations sur l'adresse de prélèvement",
         "description": "Informations de l'adresse de prélèvement."
       },
       "withContactAndLocalization": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/withoutContact"
-          },
-          {
-            "required": [
-              "contact"
-            ],
-            "properties": {
-              "contact": {
-                "$ref": "#/components/schemas/contactWithLocalization"
-              }
-            }
-          }
+        "required": [
+          "address",
+          "interval",
+          "contact"
         ],
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "infos": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/interval"
+            }
+          },
+          "contact": {
+            "$ref": "#/components/schemas/contactWithLocalization"
+          }
+        },
         "title": "Informations sur l'adresse de livraison",
         "description": "Informations sur l'adresse de livraison."
       },
