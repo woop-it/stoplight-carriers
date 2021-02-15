@@ -331,7 +331,7 @@
             }
           },
           "202": {
-            "description": "La demande de devis a été traitée. Actuellement, aucun devis n'a été généré.",
+            "description": "Code succès, les devis ont été générés pour la commande. Tous les transporteurs solicités possèdent un identifiant de devis pour accepter la livraison.\n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -810,7 +810,7 @@
             }
           },
           "205": {
-            "description": "La livraison est finalement refusée, les motifs sont retournées.",
+            "description": "La livraison est finalement refusée, les valeurs possibles des motifs de refus sont renseignées dans \"reasons\". \n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -1083,6 +1083,10 @@
                   },
                   "services": {
                     "$ref": "#/components/schemas/services"
+                  },
+                  "referenceNumber": {
+                    "type": "string",
+                    "description": "Référence de la commande, numéro associé à un magasin. "
                   }
                 }
               },
@@ -1853,7 +1857,7 @@
         "properties": {
           "quoteId": {
             "type": "string",
-            "description": "Identifiant du devis"
+            "description": "Identifiant unique faisant référence au devis envoyé par le transporteur. Attention, cet identifiant doit être unique à la commande. "
           },
           "price": {
             "$ref": "#/components/schemas/price"
@@ -2009,9 +2013,9 @@
         ]
       },
       "price": {
-        "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
+        "description": "Correspond au prix du devis",
         "type": "object",
-        "title": "Prix de vente des produits (price)",
+        "title": "Prix du devis",
         "properties": {
           "value": {
             "type": "number",
@@ -2027,20 +2031,21 @@
       },
       "refusedReason": {
         "type": "string",
-        "enum": [
-          "REFUSED_TOO_HEAVY",
-          "REFUSED_AVAILABILITY",
-          "REFUSED_AREA",
-          "REFUSED_TOO_LARGE",
-          "REFUSED_TIME_NOT_WORKED",
-          "REFUSED_DAY_OFF",
-          "REFUSED_EXCEPTION"
-        ],
+        "description": "Précise les raisons de refus possible décrit dans l'article associé : \"Motifs de refus\".",
         "title": "Motif de refus (refusedReason)",
+        "enum": [
+          "REFUSED_AREA",
+          "REFUSED_AVAILABILITY",
+          "REFUSED_DAY_OFF",
+          "REFUSED_EXCEPTION",
+          "REFUSED_TIME_NOT_WORKED",
+          "REFUSED_TOO_HEAVY",
+          "REFUSED_TOO_LARGE"
+        ],
+        "example": "REFUSED_AREA",
         "x-examples": {
-          "Exemple": "REFUSED_TOO_HEAVY"
-        },
-        "description": "Précise les raisons de refus possible."
+          "Exemple": "REFUSED_AREA"
+        }
       },
       "cancelledReason": {
         "type": "string",
@@ -2059,7 +2064,6 @@
         }
       },
       "deliveryService": {
-        "type": "string",
         "enum": [
           "SERVICE_SELECTED_ROOM",
           "SERVICE_FRONT_HOME",
@@ -2076,7 +2080,8 @@
         "description": "Précise les différents service de livraison possible au sein de la plateforme. ",
         "x-examples": {
           "Exemple": "SERVICE_SELECTED_ROOM"
-        }
+        },
+        "type": "string"
       },
       "vehicleType": {
         "type": "string",
@@ -2213,40 +2218,32 @@
             "$ref": "#/components/schemas/contact"
           }
         },
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/withoutContact"
-          },
-          {
-            "required": [
-              "contact"
-            ],
-            "properties": {
-              "contact": {
-                "$ref": "#/components/schemas/contact"
-              }
-            }
-          }
-        ],
         "title": "Informations sur l'adresse de prélèvement",
         "description": "Informations de l'adresse de prélèvement."
       },
       "withContactAndLocalization": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/withoutContact"
-          },
-          {
-            "required": [
-              "contact"
-            ],
-            "properties": {
-              "contact": {
-                "$ref": "#/components/schemas/contactWithLocalization"
-              }
-            }
-          }
+        "required": [
+          "address",
+          "interval",
+          "contact"
         ],
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "infos": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/interval"
+            }
+          },
+          "contact": {
+            "$ref": "#/components/schemas/contactWithLocalization"
+          }
+        },
         "title": "Informations sur l'adresse de livraison",
         "description": "Informations sur l'adresse de livraison."
       },
@@ -2300,42 +2297,6 @@
       "deliveryInformations": {
         "description": "Informations de livraison.",
         "type": "object",
-        "properties": {
-          "orderId": {
-            "type": "string",
-            "description": "Identifiant unique de la commande à renseigner par l'enseigne"
-          },
-          "referenceNumber": {
-            "type": "string",
-            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égal à l’orderId. "
-          },
-          "productsPrice": {
-            "$ref": "#/components/schemas/price"
-          },
-          "retailer": {
-            "$ref": "#/components/schemas/retailer"
-          },
-          "packages": {
-            "type": "array",
-            "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis",
-            "items": {
-              "$ref": "#/components/schemas/package"
-            }
-          },
-          "services": {
-            "$ref": "#/components/schemas/services"
-          },
-          "tags": {
-            "$ref": "#/components/schemas/tags"
-          }
-        },
-        "required": [
-          "orderId",
-          "referenceNumber",
-          "retailer",
-          "packages",
-          "services"
-        ],
         "title": "Informations de livraison (deliveryInformations)",
         "x-examples": {
           "Exemple": {
@@ -2436,7 +2397,43 @@
               "SERVICE_SELECTED_ROOM"
             ]
           }
-        }
+        },
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "Identifiant unique de la commande à renseigner par l'enseigne. 1 orderId = 1 commande"
+          },
+          "referenceNumber": {
+            "type": "string",
+            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique."
+          },
+          "productsPrice": {
+            "$ref": "#/components/schemas/productPrice"
+          },
+          "retailer": {
+            "$ref": "#/components/schemas/retailer"
+          },
+          "packages": {
+            "type": "array",
+            "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un l'ensemble des produits de la commande regroupé par colis",
+            "items": {
+              "$ref": "#/components/schemas/package"
+            }
+          },
+          "services": {
+            "$ref": "#/components/schemas/services"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/tags"
+          }
+        },
+        "required": [
+          "orderId",
+          "referenceNumber",
+          "retailer",
+          "packages",
+          "services"
+        ]
       },
       "postDeliveryInformations": {
         "title": "Informations de demande de livraison (postDeliveryInformations)",
@@ -2512,14 +2509,14 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Identifiant unique de la commande à renseigner par l'enseigne"
+            "description": "Identifiant unique de la commande à renseigner par l'enseigne. 1 orderId = 1 commande"
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId"
+            "description": "Référence de la commande, numéro associé à un magasin. Pouvant être égale à l'orderId. Le referenceNumber n'est pas unique. "
           },
           "productsPrice": {
-            "$ref": "#/components/schemas/price"
+            "$ref": "#/components/schemas/productPrice"
           },
           "retailer": {
             "$ref": "#/components/schemas/retailer"
@@ -2539,7 +2536,7 @@
           },
           "quoteId": {
             "type": "string",
-            "description": "Identifiant référence du devis de la commande"
+            "description": "Identifiant unique référence du devis de la commande initiale"
           }
         },
         "required": [
@@ -2553,17 +2550,17 @@
       },
       "deliveryCreated": {
         "type": "object",
-        "properties": {
-          "deliveryId": {
-            "type": "string",
-            "description": "Identifiant unique de la livraison"
-          }
-        },
         "description": "Informations retour à la création d'une livraison. ",
         "title": "Retour d'information (deliveryCreated)",
         "x-examples": {
           "Exemple": {
             "deliveryId": "1123663GHG"
+          }
+        },
+        "properties": {
+          "deliveryId": {
+            "type": "string",
+            "description": "Identifiant unique de la livraison envoyé par le transporteur. Attention, cet identifiant doit être unique à la commande. "
           }
         }
       },
@@ -2664,6 +2661,22 @@
         },
         "description": "Précise l'interval de date d'ouverture.",
         "title": "Créneau horaires (interval_hour)"
+      },
+      "productPrice": {
+        "title": "Prix de vente des produits (price)",
+        "type": "object",
+        "description": "Correspond au prix de vente des produits. Renseigné si la livraison est effectuée avec le service “SERVICE_INSTALL”.",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "currency": {
+            "$ref": "#/components/schemas/currency"
+          }
+        }
       }
     },
     "parameters": {

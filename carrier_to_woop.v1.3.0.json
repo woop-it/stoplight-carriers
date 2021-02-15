@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.",
+        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -51,6 +51,122 @@
         "requestBody": {
           "required": true,
           "description": "Contient les informations du nouveau statut de livraison",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "$ref": "#/components/schemas/deliveryStatus"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "datetime"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "team": {
+                    "$ref": "#/components/schemas/team"
+                  },
+                  "additionalData": {
+                    "$ref": "#/components/schemas/additionalData"
+                  }
+                },
+                "required": [
+                  "status",
+                  "date",
+                  "comment"
+                ]
+              },
+              "examples": {
+                "Livraison livrée conforme": {
+                  "value": {
+                    "status": "DELIVERY_DELIVERED_OK",
+                    "date": "2019-11-27T10:30:00+0000",
+                    "comment": "J'ai patienté 15 min",
+                    "team": {
+                      "members": [
+                        {
+                          "id": "ZER784"
+                        }
+                      ]
+                    },
+                    "additionalData": [
+                      {
+                        "key": "my_personnal_key",
+                        "value": "personal data"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "Le status ne peut plus être edité"
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'a pas été trouvé"
+          }
+        },
+        "summary": "Mise à jour de statut d'une livraison",
+        "tags": [
+          "Livraison"
+        ]
+      }
+    },
+    "/deliveries/{deliveryId}/packages/{packageId}/status": {
+      "put": {
+        "description": "Permet de mettre à jour le statut d'un colis précis pour une commande en cours. L'information est transmise à Woop afin de suivre le parcours du colis.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "operationId": "putPackageStatus",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          },
+          {
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Id du colis"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contient les nouvelles informations sur le statut du colis de la commande",
           "content": {
             "application/json": {
               "schema": {
@@ -125,15 +241,10 @@
             "description": "Le status ne peut plus être edité"
           },
           "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
+            "description": "Le 'deliveryId' ou 'packageId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
-        "summary": "Mise à jour de statut d'une livraison",
+        "summary": "Mise à jour du statut d'un colis",
         "tags": [
           "Livraison"
         ]
@@ -233,11 +344,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
       }
     },
@@ -330,11 +436,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout d'informations de facturation d'une livraison"
       }
     },
@@ -458,11 +559,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout d'un évènement d'une livraison"
       }
     },
@@ -842,11 +938,6 @@
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout de souscriptions",
         "tags": [
           "Souscriptions"
@@ -944,11 +1035,6 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "security": [
-          {
-            "oAuth2ClientCredentials": []
-          }
-        ],
         "summary": "Ajout d'un document d'une livraison"
       }
     }
@@ -1277,6 +1363,31 @@
             }
           }
         }
+      },
+      "additionalData": {
+        "description": "Permet au transporteur de transmettre des informations/données personalisées vers l'enseigne. ",
+        "type": "object",
+        "x-examples": {
+          "example": {
+            "key": "string",
+            "value": "string"
+          }
+        },
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Libellé de l'information transmise"
+          },
+          "value": {
+            "type": "string",
+            "description": "Valeur de l'information transmise"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "Données additionnelles"
       }
     },
     "parameters": {
@@ -1300,16 +1411,10 @@
       }
     },
     "securitySchemes": {
-      "oAuth2ClientCredentials": {
+      "Bearer": {
         "type": "oauth2",
-        "flows": {
-          "clientCredentials": {
-            "tokenUrl": "https://last-mile.eu.auth0.com/oauth/token",
-            "x-google-issuer": "https://last-mile.eu.auth0.com/",
-            "x-google-jwks_uri": "https://last-mile.eu.auth0.com/.well-known/jwks.json",
-            "x-google-audiences": "https://carrier.api.meltingpoint.fr/"
-          }
-        }
+        "flows": {},
+        "description": "[Voir la documentation](https://woop.stoplight.io/docs/carrier/docs/Bases/Authentification.md)"
       }
     }
   },
@@ -1325,6 +1430,11 @@
     },
     {
       "name": "Souscriptions"
+    }
+  ],
+  "security": [
+    {
+      "Bearer": []
     }
   ]
 }
