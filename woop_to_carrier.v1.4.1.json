@@ -2013,14 +2013,14 @@
         ]
       },
       "price": {
-        "description": "Corresponds with products selling price. Filled if delivery is realized with service “SERVICE_INSTALL”.",
+        "description": "Corresponds to the price of the quote",
         "type": "object",
-        "title": "Products selling price (price)",
+        "title": "Quote price",
         "properties": {
           "value": {
             "type": "number",
             "format": "float",
-            "description": "Price value",
+            "description": "Indicative value of the price",
             "exclusiveMinimum": true,
             "minimum": 0
           },
@@ -2307,7 +2307,7 @@
             "description": "Order reference, number associated to a store. Can be equal to orderId."
           },
           "productsPrice": {
-            "$ref": "#/components/schemas/price"
+            "$ref": "#/components/schemas/productPrice"
           },
           "retailer": {
             "$ref": "#/components/schemas/retailer"
@@ -2516,7 +2516,7 @@
             "description": "Order reference, number associated to a store. Can be equal to orderId."
           },
           "productsPrice": {
-            "$ref": "#/components/schemas/price"
+            "$ref": "#/components/schemas/productPrice"
           },
           "retailer": {
             "$ref": "#/components/schemas/retailer"
@@ -2661,6 +2661,23 @@
         },
         "description": "Specifies the openning date interval.",
         "title": "Hour interval (interval_hour)"
+      },
+      "productPrice": {
+        "description": "Corresponds with products selling price. Filled if delivery is realized with service “SERVICE_INSTALL”.",
+        "type": "object",
+        "title": "Products selling price (price)",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "description": "Price value",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "currency": {
+            "$ref": "#/components/schemas/currency"
+          }
+        }
       }
     },
     "parameters": {
@@ -2756,7 +2773,7 @@
       }
     },
     "securitySchemes": {
-      "API Key - 1": {
+      "APIKey-1": {
         "name": "API Key",
         "type": "apiKey",
         "in": "query"
