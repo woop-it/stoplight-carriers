@@ -858,7 +858,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Ajout d'un document",
+        "description": "Ajout d'un document est ses informations au format form-data.\n\n[Voir la documentation pour plus d'informations](https://woop.stoplight.io/docs/carrier/docs/Bases/Upload-dun-document.md)",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -870,7 +870,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contient les informations du document envoyé.",
+          "description": "Contient les informations du document envoyé au format form-data.",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -905,7 +905,7 @@
               "examples": {
                 "Exemple": {
                   "value": {
-                    "document": "file stream",
+                    "document": "<file stream>",
                     "type": "EVIDENCE",
                     "date": "2019-11-27T10:30:00+0000"
                   }
