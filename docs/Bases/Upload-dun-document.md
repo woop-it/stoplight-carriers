@@ -4,6 +4,7 @@ Le endpoint d'ajout d'un document utilise le format mulipart/form-data qui perme
 
 Il y a tout d'abord un élément essentiel, l'envoie du header du **Content-Type** : `multipart/form-data; boundary=<calculated>` le boundary est calculé par le navigateur ou la libraire Http utilisée.
 
+
 Chaque partie du formulaire est envoyé de cette façon :
 
 - Pour les fichiers 
@@ -48,5 +49,5 @@ Avec [Retrofit](https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-t
 
 ** Java (SpringBoot) **
 
-Avec [HttpClient](https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server)
+Avec [HttpClient](https://www.baeldung.com/httpclient-post-http-request#post-multipart-request)
 
