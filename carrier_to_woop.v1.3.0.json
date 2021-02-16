@@ -71,6 +71,9 @@
                   },
                   "additionalData": {
                     "$ref": "#/components/schemas/additionalData"
+                  },
+                  "appointment": {
+                    "$ref": "#/components/schemas/appointment"
                   }
                 },
                 "required": [
@@ -1068,7 +1071,8 @@
           "DELIVERY_RETURNED_TO_PICK_UP",
           "DELIVERY_DELIVERED_OK",
           "DELIVERY_DELIVERED_PARTIALLY",
-          "DELIVERY_CANCELLED"
+          "DELIVERY_CANCELLED",
+          "DELIVERY_REPLANNED"
         ],
         "title": "Delivery status (deliveryStatus)",
         "description": "Specify the different possible delivery statuses in the platform.",
@@ -1389,6 +1393,33 @@
           "value"
         ],
         "title": "Additional Data"
+      },
+      "appointment": {
+        "description": "Specifies an interval of dates and times for the customer appointment.",
+        "type": "object",
+        "x-examples": {
+          "example": {
+            "start": "2019-05-02T15:52:01+0000",
+            "end": "2019-05-02T17:52:01+0000"
+          }
+        },
+        "properties": {
+          "start": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Beginning of the slot"
+          },
+          "end": {
+            "type": "string",
+            "minLength": 1,
+            "description": "End of the slot"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "Date of appointment (appointment)"
       }
     },
     "parameters": {

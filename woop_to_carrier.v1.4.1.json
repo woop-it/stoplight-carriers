@@ -1620,7 +1620,7 @@
       },
       "interval": {
         "title": "Date interval (interval)",
-        "description": "Specifies date interval for a picking/delivery.",
+        "description": "Specifies a date interval with time.",
         "type": "object",
         "properties": {
           "start": {
