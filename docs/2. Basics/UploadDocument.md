@@ -2,7 +2,7 @@
 
 The endpoint for adding a document uses the mulipart/form-data format which allows to send files in addition to the classical data in a form.
 
-There is first of all an essential element, the sending of the header of the **Content-Type**: `multipart/form-data; boundary=<calculated>` the boundary is calculated by the browser or the Http library used.
+First of all, the **Content-Type** header must be sent like this: `multipart/form-data; boundary=<calculated>` the boundary is calculated by the browser or the Http library used.
 
 
 Each part of the form is sent this way:
