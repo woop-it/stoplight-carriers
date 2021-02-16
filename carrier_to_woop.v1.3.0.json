@@ -949,7 +949,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Adding a document",
+        "description": "Adding a document is its information in form-data format.\n\n [See documentation for more information](https://woop.stoplight.io/docs/retailer/branches/english/docs/2.%20Basics/UploadDocument.md)",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -961,7 +961,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contains informations about the document that will be sent.",
+          "description": "Contains the information of the document sent in form-data format.",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -996,7 +996,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "document": "file stream",
+                    "document": "<file stream>",
                     "type": "EVIDENCE",
                     "date": "2019-11-27T10:30:00+0000"
                   }
