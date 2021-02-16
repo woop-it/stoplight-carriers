@@ -5,11 +5,11 @@ The endpoint for adding a document uses the mulipart/form-data format which allo
 There is first of all an essential element, the sending of the header of the **Content-Type**: `multipart/form-data; boundary=<calculated>` the boundary is calculated by the browser or the Http library used.
 
 
-Each part of the form is sent this way :
+Each part of the form is sent this way:
 
 - For the files 
 
-json
+```json
 Content-Disposition: form-data; name="{NAME}"; filename="{FILE NAME}"[CRLF].
 Content-Type: {MIME TYPE}[CRLF][CRLF].
 [CRLF]
@@ -18,15 +18,15 @@ Content-Type: {MIME TYPE}[CRLF][CRLF].
 ```
 - For classic data
 
-json
+```json
 Content-Disposition: form-data; name="{NAME}"[CRLF].
 [CRLF]
 {VALUE}
 ```
 
-The [CRLF] corresponds to a return to the line "\r\n". NAME and FILE NAME must not contain a quotation mark (") or a line break (\r or \n).
+The [CRLF] corresponds to a return to a line return "\r\n". NAME and FILE NAME must not contain a quotation mark (") or a line break (\r or \n).
 
-The data are separated by the boundary.
+Data are separated by the boundary.
 
 
 ### Usage
@@ -41,7 +41,7 @@ Native from browsers: [form-data](https://developer.mozilla.org/fr/docs/Web/API/
 
 **NodeJs**
 
-With the bookstore: [form-data](https://www.npmjs.com/package/form-data)
+With the library: [form-data](https://www.npmjs.com/package/form-data)
 
 ** Java (Android) **
 
