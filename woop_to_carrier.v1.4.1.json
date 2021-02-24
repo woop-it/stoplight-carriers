@@ -927,6 +927,9 @@
           }
         },
         "responses": {
+          "202": {
+            "description": "Livraison déjà annulée"
+          },
           "204": {
             "description": "Livraison annulée avec succès"
           },
