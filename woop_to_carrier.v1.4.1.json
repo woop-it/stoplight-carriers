@@ -927,6 +927,9 @@
           }
         },
         "responses": {
+          "202": {
+            "description": "Delivery already cancelled"
+          },
           "204": {
             "description": "Delivery cancelled with success"
           },
