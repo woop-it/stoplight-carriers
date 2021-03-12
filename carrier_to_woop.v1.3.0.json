@@ -102,6 +102,17 @@
                       }
                     ]
                   }
+                },
+                "Livraison replanifiée": {
+                  "value": {
+                    "status": "DELIVERY_REPLANNED",
+                    "date": "2019-11-27T10:30:00+0000",
+                    "comment": "Client pas présent.",
+                    "appointment": {
+                      "start": "2021-03-12T10:30:00+0000",
+                      "end": "2021-03-12T11:30:00+0000"
+                    }
+                  }
                 }
               }
             }
