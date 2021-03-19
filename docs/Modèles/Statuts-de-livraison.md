@@ -30,6 +30,8 @@ Statut | Intitulé | Exemples de commentaire
  `DELIVERY_AVAILABLE` | Livraison disponible en point de retrait | "N/A"
  `DELIVERY_REPLANNED`|Date de livraison replannifiée par une prise de RDV avec le client | "N/A" 
 
+Les statuts `DELIVERY_PICK_UP_PARTIALLY` et `DELIVERY_DELIVERED_PARTIALLY` sont réservés à la livraison et ne sont pas autorisés pour le suivi de colis.
+
 ### Gestion des retours et des erreurs
 
 ![get-started-icon](../../assets/images/Workflow_retours.png)
