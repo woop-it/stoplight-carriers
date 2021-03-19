@@ -138,6 +138,9 @@
           },
           "404": {
             "description": "Le 'deliveryId' n'a pas été trouvé"
+          },
+          "409": {
+            "description": "Une action est déjà en cours sur cette livraison"
           }
         },
         "summary": "Mise à jour de statut d'une livraison",
