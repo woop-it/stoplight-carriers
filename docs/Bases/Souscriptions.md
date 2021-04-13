@@ -557,7 +557,7 @@ cancelDelivery | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carri
 cancelQuote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes~1%7BquoteId%7D/delete) | NON
 score |  [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
 update |  [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
-pickupPoint |  (/pickupPoints)[https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1pickupPoints/get] | NON
+pickupPoint |  [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1pickupPoints/get) | NON
 
 
 <!-- theme: warning -->
