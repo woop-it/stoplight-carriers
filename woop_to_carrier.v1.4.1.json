@@ -1005,7 +1005,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet de recevoir les demanddes de mise à jour d'une livraison.",
+        "description": "Cette méthode permet de recevoir les demandes de mise à jour d'une livraison.",
         "operationId": "patchDelivery",
         "parameters": [
           {
