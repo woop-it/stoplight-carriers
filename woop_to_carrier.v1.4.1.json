@@ -2801,7 +2801,7 @@
         "required": [
           "id"
         ],
-        "title": "Étiquette (mass)"
+        "title": "Étiquette (label)"
       }
     },
     "parameters": {
