@@ -895,7 +895,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet de recevoir les demandes d'annulation d'une livraison.",
+        "description": "Cette méthode permet d'envoyer un demande d'annulation d'une livraison pour la confirmer auprès du transporteur. Le transporteur n'a pas besoin de faire une demande d'annulation à la réception de cette demande.",
         "operationId": "deleteDelivery",
         "parameters": [
           {
