@@ -1023,7 +1023,7 @@
           }
         },
         "responses": {
-          "204": {
+          "200": {
             "description": "Requête traitée avec succès"
           },
           "400": {
