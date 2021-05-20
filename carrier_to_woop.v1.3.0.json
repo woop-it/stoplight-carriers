@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Permet de mettre à jour le statut d'une commande pour une livraison en cours. L'information est transmise à Woop afin de suivre le parcours de la commande.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
+        "description": "Mise à jour de status de livraison ou de colis",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -57,23 +57,26 @@
                 "type": "object",
                 "properties": {
                   "status": {
-                    "$ref": "#/components/schemas/deliveryStatus"
+                    "type": "string",
+                    "description": "Statut de livraison"
                   },
                   "date": {
                     "type": "string",
-                    "format": "datetime"
+                    "format": "datetime",
+                    "description": "Date de changement de statut"
                   },
                   "comment": {
                     "type": "string"
+                  },
+                  "packageId": {
+                    "type": "string",
+                    "description": "Id du colis"
                   },
                   "team": {
                     "$ref": "#/components/schemas/team"
                   },
                   "additionalData": {
                     "$ref": "#/components/schemas/additionalData"
-                  },
-                  "appointment": {
-                    "$ref": "#/components/schemas/appointment"
                   }
                 },
                 "required": [
@@ -83,11 +86,11 @@
                 ]
               },
               "examples": {
-                "Livraison livrée conforme": {
+                "Mise à jour de statut d'une livraison": {
                   "value": {
-                    "status": "DELIVERY_DELIVERED_OK",
+                    "status": "delivered",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "J'ai patienté 15 min",
+                    "comment": "RAS",
                     "team": {
                       "members": [
                         {
@@ -103,15 +106,12 @@
                     ]
                   }
                 },
-                "Livraison replanifiée": {
+                "Mise à jour de statut d'un colis d'une livraison": {
                   "value": {
-                    "status": "DELIVERY_REPLANNED",
+                    "status": "pickup_ok",
                     "date": "2019-11-27T10:30:00+0000",
-                    "comment": "Client pas présent.",
-                    "appointment": {
-                      "start": "2021-03-12T10:30:00+0000",
-                      "end": "2021-03-12T11:30:00+0000"
-                    }
+                    "comment": "RAS",
+                    "packageId": "HBHGS19"
                   }
                 }
               }
@@ -144,14 +144,8 @@
           "401": {
             "description": "Vous n'êtes pas autorisé à accéder à cet élément."
           },
-          "403": {
-            "description": "Le status ne peut plus être edité"
-          },
           "404": {
             "description": "Le 'deliveryId' n'a pas été trouvé"
-          },
-          "409": {
-            "description": "Une action est déjà en cours sur cette livraison"
           }
         },
         "summary": "Mise à jour de statut d'une livraison",
@@ -162,6 +156,7 @@
     },
     "/deliveries/{deliveryId}/packages/{packageId}/status": {
       "put": {
+        "deprecated": true,
         "description": "Permet de mettre à jour le statut d'un colis précis pour une commande en cours. L'information est transmise à Woop afin de suivre le parcours du colis.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
         "operationId": "putPackageStatus",
         "parameters": [
@@ -383,6 +378,111 @@
         "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
       }
     },
+    "/deliveries/{deliveryId}/appointment": {
+      "put": {
+        "tags": [
+          "Livraison"
+        ],
+        "description": "Modification de la date de prise de rendez-vous client pour une livraison ou un colis",
+        "operationId": "putDeliveryAppointment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contient les informations du rendez-vous.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "appointment",
+                  "date"
+                ],
+                "properties": {
+                  "appointment": {
+                    "$ref": "#/components/schemas/appointment"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "datetime",
+                    "description": "Date de la modification"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "packageId": {
+                    "type": "string",
+                    "description": "Id du colis"
+                  }
+                }
+              },
+              "examples": {
+                "Modification date de rendez-vous d'une livraison": {
+                  "value": {
+                    "appointment" : {
+                      "start": "2021-06-27T10:30:00+0000",
+                      "end": "2021-06-27T11:30:00+0000"
+                    },
+                    "comment": "Client absent",
+                    "date": "2021-06-27T10:30:00+0000"
+                  }
+                },
+                "Modification date de rendez-vous d'un colis": {
+                  "value": {
+                    "appointment" : {
+                      "start": "2021-06-27T10:30:00+0000",
+                      "end": "2021-06-27T11:30:00+0000"
+                    },
+                    "comment": "Client absent",
+                    "date": "2021-06-27T10:30:00+0000",
+                    "packageId": "HBHGS19"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Requête traitée avec succès"
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "Des frais supplémentaires ne peuvent plus être envoyés"
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'a pas été trouvé"
+          }
+        },
+        "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
+      }
+    },
     "/deliveries/{deliveryId}/closure": {
       "post": {
         "tags": [
@@ -480,6 +580,7 @@
         "tags": [
           "Livraison"
         ],
+        "deprecated": true,
         "description": "Ajout d'un évènement d'une livraison.",
         "operationId": "postDeliveryEvent",
         "parameters": [
