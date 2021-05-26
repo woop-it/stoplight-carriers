@@ -364,7 +364,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Modification de la date de prise de rendez-vous client pour une livraison ou un colis",
+        "description": "Mise à jour de la date de rendez-vous",
         "operationId": "putDeliveryAppointment",
         "parameters": [
           {
