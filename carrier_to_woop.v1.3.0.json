@@ -480,7 +480,7 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
+        "summary": "Mise à jour de la date de rendez-vous"
       }
     },
     "/deliveries/{deliveryId}/closure": {
