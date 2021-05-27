@@ -767,7 +767,7 @@
         },
         "responses": {
           "201": {
-            "description": "La livraison est acceptée, un 'deliveryId' est retourné, additionnellement un tableau d'id de 'packages' peut être retourné en cas de tracking par colis, un tableau d'étiquettes peut être aussi retourné.",
+            "description": "La livraison est acceptée, un 'deliveryId' est retourné, additionnellement un tableau d'id de 'parcels' peut être retourné en cas de tracking par colis, un tableau d'étiquettes peut être aussi retourné.",
             "content": {
               "application/json": {
                 "schema": {
@@ -782,9 +782,10 @@
                   "Exemple avec suivi de colis": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
-                      "packages": [
+                      "parcels": [
                         {
-                          "id": "pack123"
+                          "id": "parcel123",
+                          "packageId": "1234A"
                         }
                       ]
                     }
@@ -1094,7 +1095,7 @@
                   },
                   "packages": {
                     "type": "array",
-                    "description": "Ensemble des colis",
+                    "description": "Ensemble des paquets",
                     "items": {
                       "$ref": "#/components/schemas/package"
                     }
@@ -1857,8 +1858,8 @@
       },
       "package": {
         "type": "object",
-        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un ensemble des produits de la commande regroupé par colis.",
-        "title": "Colis (package)",
+        "description": "Unité de manutention propre à l'enseigne. Généralement utilisé comme un ensemble des produits de la commande regroupé par paquet.",
+        "title": "Paquet (package)",
         "x-examples": {
           "example-1": {
             "references": [
@@ -1895,7 +1896,7 @@
         "properties": {
           "references": {
             "type": "array",
-            "description": "Références internes des colis si fournies par l'enseigne",
+            "description": "Références internes des paquets si fournies par l'enseigne",
             "items": {
               "type": "string"
             }
@@ -1914,7 +1915,7 @@
           },
           "products": {
             "type": "array",
-            "description": "Liste des produits dans le colis",
+            "description": "Liste des produits dans le paquet",
             "items": {
               "type": "object",
               "properties": {
@@ -2630,7 +2631,7 @@
           },
           "packages": {
             "type": "array",
-            "description": "Ensemble des colis",
+            "description": "Ensemble des paquets",
             "items": {
               "$ref": "#/components/schemas/package"
             }
@@ -2673,14 +2674,21 @@
             "type": "string",
             "description": "Référence de livraison"
           },
-          "packages": {
+          "parcels": {
             "type": "array",
             "description": "Informations sur les colis",
+          
             "items": {
               "type": "object",
+              "required": ["id"],
               "properties": {
                 "id": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Identifiant du colis"
+                },
+                "packageId": {
+                  "type": "string",
+                  "description": "Identifiant du paquet associé"
                 }
               }
             }
@@ -2795,7 +2803,7 @@
           },
           "packageId:": {
             "type": "string",
-            "description": "Identifiant du colis associé"
+            "description": "Identifiant paquetlis associé"
           }
         },
         "required": [
