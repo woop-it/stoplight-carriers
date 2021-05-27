@@ -68,7 +68,7 @@
                   "comment": {
                     "type": "string"
                   },
-                  "packageId": {
+                  "parcelId": {
                     "type": "string",
                     "description": "Id du colis"
                   },
@@ -111,7 +111,7 @@
                     "status": "pickup_ok",
                     "date": "2019-11-27T10:30:00+0000",
                     "comment": "RAS",
-                    "packageId": "HBHGS19"
+                    "parcelId": "HBHGS19"
                   }
                 }
               }
@@ -415,7 +415,7 @@
                   "comment": {
                     "type": "string"
                   },
-                  "packageId": {
+                  "parcelId": {
                     "type": "string",
                     "description": "Id du colis"
                   }
@@ -440,7 +440,7 @@
                     },
                     "comment": "Client absent",
                     "date": "2021-06-27T10:30:00+0000",
-                    "packageId": "HBHGS19"
+                    "parcelId": "HBHGS19"
                   }
                 }
               }
@@ -1580,7 +1580,7 @@
           }
         },
         "title": "Dimension (length)",
-        "description": "Précise la dimension d'un colis.",
+        "description": "Précise la dimension d'un paquet.",
         "x-examples": {
           "example": {
             "value": 200,
@@ -1602,7 +1602,7 @@
             "$ref": "#/components/schemas/massUnits"
           }
         },
-        "description": "Précise le poids d'un colis/produit.",
+        "description": "Précise le poids d'un paquet/produit.",
         "title": "Poids (mass)",
         "x-examples": {
           "example": {
