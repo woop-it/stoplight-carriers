@@ -75,6 +75,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 121.8,
                           "unit": "cm"
@@ -161,6 +162,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 121.8,
                           "unit": "cm"
@@ -252,6 +254,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 121.8,
                           "unit": "cm"
@@ -515,6 +518,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 15,
                           "unit": "cm"
@@ -616,6 +620,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 15,
                           "unit": "cm"
@@ -721,6 +726,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 15,
                           "unit": "cm"
@@ -1873,6 +1879,7 @@
         "title": "Paquet (package)",
         "x-examples": {
           "example-1": {
+            "id": 5,
             "references": [
               "string"
             ],
@@ -1905,9 +1912,13 @@
           }
         },
         "properties": {
+          "id": {
+              "type": "number",
+              "description": "Identifiant interne woop du paquet"
+          },
           "references": {
             "type": "array",
-            "description": "Références internes des paquets si fournies par l'enseigne",
+            "description": "Références externes des paquets si fournies par l'enseigne",
             "items": {
               "type": "string"
             }
@@ -2517,6 +2528,7 @@
             },
             "packages": [
               {
+                "id": 1,
                 "length": {
                   "value": 15,
                   "unit": "cm"
@@ -2617,6 +2629,7 @@
             },
             "packages": [
               {
+                "id": 1,
                 "references": [
                   "string"
                 ],
@@ -2731,9 +2744,12 @@
                   "type": "string",
                   "description": "Identifiant du colis"
                 },
-                "packageId": {
-                  "type": "string",
-                  "description": "Identifiant du paquet associé"
+                "packageIds": {
+                  "type": "array",
+                  "description": "Identifiant des paquets dans le colis",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -2846,9 +2862,9 @@
             "type": "string",
             "description": "Etiquette en base64 ou url vers l'étiquette"
           },
-          "packageId": {
+          "parcelId:": {
             "type": "string",
-            "description": "Identifiant paquetlis associé"
+            "description": "Identifiant du colis associé"
           }
         },
         "required": [
