@@ -1,6 +1,6 @@
 # Étiquettes de transport
 
-Des étiquettes de transport peuvent nous être fournies au retour de la [demande de livraison](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries/post) :
+Des étiquettes de transport peuvent nous être fournies au retour de la [demande de livraison](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries/post) :
 
 ### Schema de données
 ```json json_schema
@@ -74,7 +74,7 @@ Des étiquettes de transport peuvent nous être fournies au retour de la [demand
 
 > ### A noter
 >
-> Si vous fournissez une **étiquette à récupérer plus tard** il est nécessaire de souscrire au [**callback label**](https://woop.stoplight.io/docs/carrier/docs/Bases/Souscriptions.md#callbacks) ainsi que d'implémenter la fonction [**Récupération d'une étiquette**](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1labels~1{labelId}/get).
+> Si vous fournissez une **étiquette à récupérer plus tard** il est nécessaire de souscrire au [**callback label**](https://woop.stoplight.io/docs/carrier/docs/Bases/Souscriptions.md#callbacks) ainsi que d'implémenter la fonction [**Récupération d'une étiquette**](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1labels~1{labelId}/get).
 
                         
                         
