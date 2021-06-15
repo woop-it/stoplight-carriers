@@ -119,7 +119,7 @@
           }
         },
         "responses": {
-          "204": {
+          "202": {
             "description": "Requête traitée avec succès"
           },
           "400": {
@@ -448,7 +448,7 @@
           }
         },
         "responses": {
-          "204": {
+          "202": {
             "description": "Requête traitée avec succès"
           },
           "400": {
