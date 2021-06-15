@@ -2862,7 +2862,7 @@
             "type": "string",
             "description": "Etiquette en base64 ou url vers l'étiquette"
           },
-          "parcelId:": {
+          "parcelId": {
             "type": "string",
             "description": "Identifiant du colis associé"
           }
