@@ -1209,10 +1209,16 @@
                     "score": [
                       {
                         "note": 9,
-                        "type": "SCORE_TYPE_RECOMMENDATION"
+                        "type": "SCORE_TYPE_RECOMMENDATION",
+                        "includedInCarrierScore": false
                       }
                     ],
-                    "comment": "Je recommande à 200% !"
+                    "comment": [
+                      {
+                        "answer": "Pas de commentaires !",
+                        "question": "Avez-vous des suggestions à nous partager afin de nous aider à améliorer notre service de livraison ?"
+                      }
+                    ]
                   }
                 }
               }
@@ -1982,10 +1988,16 @@
             "score": [
               {
                 "note": 8,
-                "type": "SCORE_TYPE_RECOMMENDATION"
+                "type": "SCORE_TYPE_RECOMMENDATION",
+                "includedInCarrierScore": true
               }
             ],
-            "comment": "Top!"
+            "comment": [
+              {
+                "answer": "Non, livraison correcte.",
+                "question": "Avez-vous des suggestions à nous partager afin de nous aider à améliorer notre service de livraison ?"
+              }
+            ]
           }
         },
         "type": "object",
@@ -1998,7 +2010,11 @@
             }
           },
           "comment": {
-            "type": "string"
+            "type": "array",
+            "description": "Liste des commentaires clientd",
+            "items": {
+              "$ref": "#/components/schemas/scoreComment"
+            }
           }
         },
         "required": [
@@ -2013,11 +2029,13 @@
         "x-examples": {
           "Score de recommendation": {
             "note": 6,
-            "type": "SCORE_TYPE_RECOMMENDATION"
+            "type": "SCORE_TYPE_RECOMMENDATION",
+            "includedInCarrierScore": false
           },
           "Score de satisfaction": {
             "note": 9,
-            "type": "SCORE_TYPE_SATISFACTION"
+            "type": "SCORE_TYPE_SATISFACTION",
+            "includedInCarrierScore": true
           }
         },
         "properties": {
@@ -2032,11 +2050,16 @@
               "SCORE_TYPE_SATISFACTION"
             ],
             "description": "Type de score"
+          },
+          "includedInCarrierScore": {
+            "type": "boolean",
+            "description": "Inclus dans le calcul de la note transporteur"
           }
         },
         "required": [
           "note",
-          "type"
+          "type",
+          "includedInCarrierScore"
         ]
       },
       "length": {
@@ -2802,6 +2825,31 @@
           "id"
         ],
         "title": "Étiquette (label)"
+      },
+      "scoreComment": {
+        "title": "Commentaires sur la livraison (scoreComment)",
+        "type": "object",
+        "x-examples": {
+          "Exemple": {
+            "answer": "Pas de commentaires !",
+            "question": "Avez-vous des suggestions à nous partager afin de nous aider à améliorer notre service de livraison ?"
+          }
+        },
+        "description": "Champ libre pour les commentaires clients",
+        "properties": {
+          "answer": {
+            "type": "string",
+            "description": "Réponse apportée par le client final"
+          },
+          "question": {
+            "type": "string",
+            "description": "Question posée au client final"
+          }
+        },
+        "required": [
+          "answer",
+          "question"
+        ]
       }
     },
     "parameters": {
