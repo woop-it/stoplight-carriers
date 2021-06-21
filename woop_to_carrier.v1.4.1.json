@@ -767,21 +767,11 @@
         },
         "responses": {
           "201": {
-            "description": "La livraison est acceptée, un 'deliveryId' est retourné, additionnellement un tableau d'id de 'packages' peut être retourné en cas de tracking par colis.",
+            "description": "La livraison est acceptée, un 'deliveryId' est retourné, additionnellement un tableau d'id de 'packages' peut être retourné en cas de tracking par colis, un tableau d'étiquettes peut être aussi retourné.",
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/deliveryCreated"
-                    },
-                    {
-                      "$ref": "#/components/schemas/deliveryCreatedPackages"
-                    },
-                    {
-                      "$ref": "#/components/schemas/deliveryCreatedReference"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/deliveryCreated"
                 },
                 "examples": {
                   "Exemple par défaut": {
@@ -803,6 +793,31 @@
                     "value": {
                       "deliveryId": "5q4f5q4zd",
                       "externalReference": "12254-AX"
+                    }
+                  },
+                  "Exemple avec étiquettes de livraison": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "labels": [
+                        {
+                          "id": "LBL001",
+                          "type": "base64",
+                          "mode": "jpeg",
+                          "value": "UklGRvwNAABXRUJQVlA4TPANAAA...",
+                          "packageId": "5q4f5q4zd"
+                        },
+                        {
+                          "id": "LBL002",
+                          "type": "url",
+                          "mode": "jpeg",
+                          "value": "http://url.com",
+                          "packageId": "5q5f5q4zb"
+                        },
+                        {
+                          "id": "LBL003",
+                          "packageId": "5q5f5q4zb"
+                        }
+                      ]
                     }
                   }
                 }
@@ -880,7 +895,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet de recevoir les demandes d'annulation d'une livraison.",
+        "description": "Cette méthode permet d'envoyer un demande d'annulation d'une livraison pour la confirmer auprès du transporteur. Le transporteur n'a pas besoin de faire une demande d'annulation à la réception de cette demande.",
         "operationId": "deleteDelivery",
         "parameters": [
           {
@@ -1005,7 +1020,7 @@
         "tags": [
           "Livraison"
         ],
-        "description": "Cette méthode permet de recevoir les demanddes de mise à jour d'une livraison.",
+        "description": "Cette méthode permet de recevoir les demandes de mise à jour d'une livraison.",
         "operationId": "patchDelivery",
         "parameters": [
           {
@@ -1484,6 +1499,95 @@
             "$ref": "#/components/parameters/queryPickupPointCategory"
           }
         ]
+      }
+    },
+    "/labels/{labelId}": {
+      "get": {
+        "summary": "Récupération d'une étiquette",
+        "description": "Récupération d'une étiquette au format demandé",
+        "operationId": "getLabelById",
+        "tags": [
+          "Étiquette"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pathLabelId"
+          },
+          {
+            "in": "query",
+            "required": true,
+            "name": "mode",
+            "description": "Format demandé de l'étiquette",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "zpl",
+                "pdf",
+                "jpg",
+                "jpeg"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, contient l'étiquette en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "description": "Étiquette en base64"
+                    }
+                  },
+                  "required": [
+                    "label"
+                  ]
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "label": "UklGRvwNAABXRUJQVlA4TPANAAAvhoAKEPVgtLZ"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Elements manquants et/ou incorrect dans le body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Le 'labelId' n'existe pas"
+          }
+        }
       }
     }
   },
@@ -2564,56 +2668,34 @@
           "deliveryId": {
             "type": "string",
             "description": "Identifiant unique de la livraison envoyé par le transporteur. Attention, cet identifiant doit être unique à la commande. "
-          }
-        }
-      },
-      "deliveryCreatedReference": {
-        "properties": {
-          "deliveryId": {
-            "type": "string"
           },
           "externalReference": {
-            "type": "string"
-          }
-        },
-        "title": "Retour d'information : Création d'une livraison avec reference (deliveryCreatedPackages))",
-        "description": "Informations retour création d'une livraison avec reference."
-      },
-      "deliveryCreatedPackages": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/deliveryCreated"
+            "type": "string",
+            "description": "Référence de livraison"
           },
-          {
-            "type": "object",
-            "properties": {
-              "packages": {
-                "type": "array",
-                "description": "Informations sur les colis",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    }
-                  }
+          "packages": {
+            "type": "array",
+            "description": "Informations sur les colis",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
                 }
               }
             }
+          },
+          "labels": {
+            "type": "array",
+            "description": "Informations sur les étiquettes de livraison",
+            "items": {
+              "$ref": "#/components/schemas/label"
+            }
           }
-        ],
-        "title": "Retour d'information : Création d'une livraison avec colis (deliveryCreatedPackages))",
-        "description": "Informations retour création d'une livraison avec colis.",
-        "x-examples": {
-          "Exemple": {
-            "deliveryId": "113123765",
-            "packages": [
-              {
-                "id": "JU7798"
-              }
-            ]
-          }
-        }
+        },
+        "required": [
+          "deliveryId"
+        ]
       },
       "coordinates": {
         "type": "object",
@@ -2680,6 +2762,46 @@
             "$ref": "#/components/schemas/currency"
           }
         }
+      },
+      "label": {
+        "description": "Étiquette de transport",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant de l'étiquette"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type d'envoi de l'étiquette",
+            "enum": [
+              "base64",
+              "url"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "description": "Format de l'étiquette",
+            "enum": [
+              "zpl",
+              "pdf",
+              "jpg",
+              "jpeg"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "description": "Etiquette en base64 ou url vers l'étiquette"
+          },
+          "packageId": {
+            "type": "string",
+            "description": "Identifiant du colis associé"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Étiquette (label)"
       }
     },
     "parameters": {
@@ -2772,6 +2894,15 @@
         "schema": {
           "type": "string"
         }
+      },
+      "pathLabelId": {
+        "in": "path",
+        "required": true,
+        "name": "labelId",
+        "description": "Identifiant de l'étiquette",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "securitySchemes": {}
@@ -2789,6 +2920,9 @@
     },
     {
       "name": "Colis"
+    },
+    {
+      "name": "Étiquette"
     }
   ]
 }

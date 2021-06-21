@@ -13,8 +13,10 @@ Code| Intitulé
 `SERVICE_UNPACKING`| Déballage et reprise des emballages
 `SERVICE_FRONT_HOME`| Livraison devant habitation
 `SERVICE_PICKUP_POINT`| Livraison point relais
+`SERVICE_RETURN`| Retour produit
 `SERVICE_SELECTED_ROOM`| Livraison pièce du choix
 `SERVICE_SIMPLE_INSTALL`| Mise en service simple
+`SERVICE_RETURN`| Retour produit
 `SERVICE_COMPLEX_INSTALL`| Mise en service complexe
 `SERVICE_STANDARD_TAXI`| Livraison simple en taxi (type berline)
 `SERVICE_XL_TAXI`| Livraison simple en taxi (type Van)
