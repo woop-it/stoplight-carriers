@@ -1528,9 +1528,7 @@
               "type": "string",
               "enum": [
                 "zpl",
-                "pdf",
-                "jpg",
-                "jpeg"
+                "pdf"
               ]
             }
           }
