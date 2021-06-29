@@ -10,7 +10,7 @@ Ces demandes et évènements sont décrits dans la partie **Woop vers Transporte
 ## Initialisation des souscriptions
 
 
-Pour vous abonner aux demandes et évènements un premier appel à **l'API [/souscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** est nécessaire.
+Pour vous abonner aux demandes et évènements un premier appel à **l'API [/subscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** est nécessaire.
 
 Les données à envoyer sont :
 
