@@ -639,6 +639,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir woop vers transporteur)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -656,6 +689,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir woop vers transporteur)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -673,6 +739,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -690,6 +789,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -704,6 +836,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -721,6 +886,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -738,6 +936,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -755,6 +986,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -772,6 +1036,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -789,6 +1086,39 @@
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
                             "example": "1.4.0"
+                          },
+                          "headers": {
+                            "description": "Headers pour ce callback uniquement",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentification pour ce callback uniquement",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       }
@@ -800,6 +1130,7 @@
                     "example": "XMLAdapter"
                   },
                   "headers": {
+                    "description": "Headers pour tous les callbacks",
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -818,6 +1149,7 @@
                     }
                   },
                   "auth": {
+                    "description": "Authentification pour tous les callbacks",
                     "oneOf": [
                       {
                         "$ref": "#/components/schemas/postSubscriptionBasic"
