@@ -18,3 +18,5 @@ Statut | Intitulé
  `VEHICLE_TYPE_CAR`|Voiture
  `VEHICLE_TYPE_E_CAR`|Voiture électrique
  `VEHICLE_TYPE_UNKNOWN`|Véhicule inconnu
+ `VEHICLE_TYPE_GAZ_VAN_BIG`|Van grand modèle au gaz
+ `VEHICLE_TYPE_GAZ_VAN_MEDIUM`|Van moyen modèle au gaz
