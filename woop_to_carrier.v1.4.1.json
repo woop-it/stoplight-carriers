@@ -331,7 +331,7 @@
             }
           },
           "202": {
-            "description": "Code succès, les devis ont été générés pour la commande. Tous les transporteurs solicités possèdent un identifiant de devis pour accepter la livraison.\n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "Le transporteur n'est pas en capacité de traiter la demande pour des raisons techniques ou fonctionnelles, et il l'indique en utilisant un motif de refus normé et un commentaire précis.\n\n[Voir les motifs de refus](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -1709,6 +1709,10 @@
           "pickupPointId": {
             "type": "string",
             "description": "Identifiant du point relais. Présent si le service de livraison est \"SERVICE_PICKUP_POINT\""
+          },
+          "comment": {
+            "type": "string",
+            "description": "Informations supplémentaires"
           }
         },
         "required": [
