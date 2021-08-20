@@ -424,7 +424,7 @@
               "examples": {
                 "Modification date de rendez-vous d'une livraison": {
                   "value": {
-                    "appointment" : {
+                    "appointment": {
                       "start": "2021-06-27T10:30:00+0000",
                       "end": "2021-06-27T11:30:00+0000"
                     },
@@ -434,7 +434,7 @@
                 },
                 "Modification date de rendez-vous d'un colis": {
                   "value": {
-                    "appointment" : {
+                    "appointment": {
                       "start": "2021-06-27T10:30:00+0000",
                       "end": "2021-06-27T11:30:00+0000"
                     },

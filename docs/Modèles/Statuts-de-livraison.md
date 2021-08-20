@@ -25,7 +25,7 @@ Statut | Sous-statut | Intitulé | Exemples de commentaire
  `DELIVERY_KO`| `FAILED_WITH_RETRY`| Echec de la livraison avec replanification | "N/A"
  `DELIVERY_KO`| `FAILED_WITH_RETURN`| Echec de la livraison avec retour expéditeur | “Le client était absent" <br/> “Erreur dans l’adresse de livraison” <br/> "Problème d'accessibilité" <br/> "Le Produit ne correspond pas à ce que le client a commandé" <br/> "Le Produit est endommagé" <br/> "Le client refuse la livraison (il peut avoir changé d'avis, certains ne vont pas chercher leur produit en point relais..)"
  `DELIVERY_KO`| `REFUSED`| Livraison refusée par le destinataire | “Le client a refusé"
- `DELIVERY_KO`| `NOT_COLLECTED`| Non collecté par le coursier | "N/A"
+ `DELIVERY_KO`| `NOT_COLLECTED`| Non retiré par le destinataire | "N/A"
  `DELIVERY_RETURNED_TO_SENDER`|| Retour à l'expéditeur | “Le client était absent" <br/> “Erreur dans l’adresse de livraison” <br/> "Problème d'accessibilité" <br/> “produit 1 ref XXXX  ne correspond pas à ce que le client a commandé” <br/> “Produit 2 ref XXXX produit endommagé” <br/> “Produit 3 ref XXXX produit manquant”
  `DELIVERY_CANCELLED` || Livraison annulée | "Nos équipes ne sont plus en capacité d'effectuer cette livraison {raison}" <br/> raison : "véhicule en panne” <br/> “aucun livreur disponible” <br/> “aucun véhicule disponible” 
  `DELIVERY_BLOCKED` || Livraison bloquée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
@@ -34,6 +34,10 @@ Statut | Sous-statut | Intitulé | Exemples de commentaire
 
 
 
-### Gestion des retours et des erreurs
+### Sous-statuts et cas d'usage 
 
-![get-started-icon](../../assets/images/Workflow_retours.png)
+![get-started-icon](../../assets/images/Workflow_annexe_livraison.png)
+
+### Replanification
+
+La replanification de livraison sur une nouvelle date choisie par le client ou par le transporteur se fait via la méthode dédiée : 
