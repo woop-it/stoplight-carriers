@@ -2,8 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Woop vers Transporteur",
-    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Woop vers Transporteur\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la **Version 1.4.0**",
-    "version": "1.4.0"
+    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Woop vers Transporteur\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la **Version 1.5.0**",
+    "version": "1.5.0"
   },
   "paths": {
     "/quotes": {
@@ -28,7 +28,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -114,7 +114,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -205,7 +205,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -453,7 +453,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -556,7 +556,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -659,7 +659,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -2111,9 +2111,9 @@
             "type": "string",
             "description": "Nom de l'enseigne"
           },
-          "id": {
+          "code": {
             "type": "string",
-            "description": "Identifiant de l'enseigne"
+            "description": "Code unique de l'enseigne"
           },
           "store": {
             "type": "object",
@@ -2140,7 +2140,7 @@
         },
         "required": [
           "name",
-          "id",
+          "code",
           "store"
         ]
       },
@@ -2438,7 +2438,7 @@
             "referenceNumber": "65zq1d5qz1d56q1-456",
             "retailer": {
               "name": "Enseigne A",
-              "id": "ret123",
+              "code": "enseigne-a",
               "store": {
                 "id": "store123",
                 "name": "Magasin C",
@@ -2584,7 +2584,7 @@
             },
             "retailer": {
               "name": "string",
-              "id": "string",
+              "code": "string",
               "store": {
                 "id": "string",
                 "name": "string",
