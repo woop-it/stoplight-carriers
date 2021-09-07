@@ -1063,7 +1063,7 @@ label | Callback permettant de recevoir les demandes d'étiquettes | [/labels/{l
       "type": "string",
       "description": "Version d'API pour ce callback",
       "example": "1.5.0"
-    }
+    },
     "headers": {
       "type": "array",
       "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
