@@ -319,7 +319,9 @@
                       {
                         "quoteId": "4zd5z4d5zd",
                         "price": {
-                          "value": 135.56,
+                          "taxExcludedAmount": 181.82,
+                          "taxIncludedAmount": 200,
+                          "taxAmount": 18.18,
                           "currency": "EUR"
                         },
                         "vehicleType": "VEHICLE_TYPE_BIKE"
@@ -1267,6 +1269,7 @@
     "/pickupPoints": {
       "get": {
         "summary": "Recherche de points relais",
+        "deprecated": true,
         "tags": [
           "Point Relais"
         ],
@@ -2148,11 +2151,26 @@
         "description": "Correspond au prix du devis",
         "type": "object",
         "title": "Prix du devis",
+        "required": ["taxExcludedAmount", "currency"],
         "properties": {
-          "value": {
+          "taxExcludedAmount": {
             "type": "number",
             "format": "float",
-            "description": "Valeur indicative du prix",
+            "description": "Montant hors taxe",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "taxIncludedAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Montant TTC",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "taxAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Montant de la taxe",
             "exclusiveMinimum": true,
             "minimum": 0
           },
