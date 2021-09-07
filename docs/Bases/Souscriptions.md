@@ -42,6 +42,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         },
@@ -60,6 +152,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         },
@@ -78,6 +262,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         },
@@ -93,6 +369,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -111,6 +479,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         },
@@ -126,6 +586,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -162,6 +714,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -180,6 +824,98 @@ Les données à envoyer sont :
               "type": "string",
               "description": "Version d'API pour ce callback",
               "example": "1.5.0"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé/nom du header"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Valeur du header"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            },
+            "auth": {
+              "description": "Configuration de l'authentification spécifique à ce callback",
+              "oneOf": [
+                {
+                  "type": "object",
+                    "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+                    "required": [
+                      "username",
+                      "password"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+                  "required": [
+                    "client_id",
+                    "client_secret",
+                    "tokenEndPoint"
+                  ],
+                  "properties": {
+                    "client_id": {
+                      "type": "string"
+                    },
+                    "client_secret": {
+                      "type": "string"
+                    },
+                    "audience": {
+                      "type": "string"
+                    },
+                    "grant_type": {
+                      "type": "string"
+                    },
+                    "tokenEndPoint": {
+                      "type": "string",
+                      "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                    "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+                    "required": [
+                      "username",
+                      "password",
+                      "endpoint"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "endpoint": {
+                        "type": "string",
+                        "description": "Url permettant de recupérer le token d'accès"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -327,6 +1063,98 @@ label | Callback permettant de recevoir les demandes d'étiquettes | [/labels/{l
       "type": "string",
       "description": "Version d'API pour ce callback",
       "example": "1.5.0"
+    },
+    "headers": {
+      "type": "array",
+      "description": "Headers HTTP supplémentaires spécifique à envoyer lors de ce callback",
+        "items": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string",
+              "description": "Clé/nom du header"
+            },
+            "value": {
+              "type": "string",
+              "description": "Valeur du header"
+            }
+          },
+          "required": [
+            "key",
+            "value"
+          ]
+        }
+      },
+    "auth": {
+      "description": "Configuration de l'authentification spécifique à ce callback",
+      "oneOf": [
+        {
+          "type": "object",
+            "description": "A definir si la méthode d'authentification à l'API voulue est basic",
+            "required": [
+              "username",
+              "password"
+            ],
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "description": "A definir si la méthode d'authentification à l'API voulue est OAuth2",
+          "required": [
+            "client_id",
+            "client_secret",
+            "tokenEndPoint"
+          ],
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "client_secret": {
+              "type": "string"
+            },
+            "audience": {
+              "type": "string"
+            },
+            "grant_type": {
+              "type": "string"
+            },
+            "tokenEndPoint": {
+              "type": "string",
+              "description": "Url permettant de recupérer le token d'accès en fonction du clientId et du clientSecret"
+            }
+          }
+        },
+        {
+          "type": "object",
+            "description": "A définir si la méthode d'authentification donne un bearer token à partir d'un username/password",
+            "required": [
+              "username",
+              "password",
+              "endpoint"
+            ],
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "endpoint": {
+                "type": "string",
+                "description": "Url permettant de recupérer le token d'accès"
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }
@@ -364,6 +1192,18 @@ Exemple :
   }
 }
 ```
+**Auth**
+
+Si ce callback **uniquement** nécessite une authentification particulière, il est possible de la configurer. (voir la description Auth pour plus de détail)
+
+Si une authentification doit être configurée **pour tous les callbacks** voir la description Auth plus loin.
+
+**Headers**
+
+Si **ce callback uniquement** a besoin de headers HTTP supplémentaires, il est possible de configurer plusieurs couples de clé-valeur qui seront envoyés à chaque appel à ce callback.
+
+Si des headers sont nécessaire pour tous les callbacks voir la partie **Headers** plus loin.
+
 ### Adapter
 
 Valeur à remplir à notre demande.
@@ -528,6 +1368,44 @@ Je m'abonne à toutes les souscriptions, mon API est protégée par une authenti
     "pickupPoint": {
       "url": "https://my_url/pickupPoints",
       "version": "1.5.0"
+    }
+  },
+  "auth": {
+    "oauth2": {
+      "client_id": "XXXXXXXXXXX",
+      "client_secret": "xxxxxxXXXXXXx",
+      "audience": "my-audience.fr",
+      "grant_type": "client_credentials",
+      "tokenEndPoint": "https://my-token-url.fr"
+    }
+  }
+}
+```
+<!--
+type: tab
+title: Exemple 3
+-->
+Je m'abonne aux souscriptions obligatoires, mon API est protégée par OAuth2, un de mes callback nécessite une authentification différente
+```json
+{
+  "callbacks": {
+    "quote": {
+      "url": "https://my_partener/quotes",
+      "version": "1.4.0",
+      "auth": {
+        "basic": {
+          "username": "admin",
+          "password": "1234"
+        }
+      }
+    },
+    "delivery": {
+      "url": "https://my_url/deliveries",
+      "version": "1.4.0"
+    },
+    "cancelDelivery": {
+      "url": "https://my_url/deliveries/{deliveryId}",
+      "version": "1.4.0"
     }
   },
   "auth": {
