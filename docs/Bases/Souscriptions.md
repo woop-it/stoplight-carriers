@@ -10,7 +10,7 @@ Ces demandes et évènements sont décrits dans la partie **Woop vers Transporte
 ## Initialisation des souscriptions
 
 
-Pour vous abonner aux demandes et évènements un premier appel à **l'API [/subscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** est nécessaire.
+Pour vous abonner aux demandes et évènements un premier appel à **l'API [/subscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.5.0.json/paths/~1subscriptions/post)** est nécessaire.
 
 Les données à envoyer sont :
 
@@ -21,11 +21,6 @@ Les données à envoyer sont :
   "properties": {
     "callbacks": {
       "type": "object",
-      "required": [
-        "quote",
-        "delivery",
-        "cancelDelivery"
-      ],
       "properties": {
         "quote": {
           "type": "object",
@@ -1030,19 +1025,19 @@ Les données à envoyer sont :
 
 ### Callbacks
 
-Les `callbacks` ou autrement dit `webhooks` permettent de définir l'URL appelée pour chaque demande ou évènement, différents callbacks sont disponibles, **dont certains obligatoires** :
+Les `callbacks` ou autrement dit `webhooks` permettent de définir l'URL appelée pour chaque demande ou évènement, différents callbacks sont disponibles.
 
 
-Callback  | Description | Contrat d'interface | Requis
----------|----------|---------|---------
-quote | Callback permettant de recevoir les demandes de devis | [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes/post) | **OUI**
-delivery | Callback permettant de recevoir les demandes de livraison | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries/post) | **OUI**
-cancelDelivery | Callback permettant de recevoir les demandes d'annulation d'une livraison| [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/delete) | **OUI**
-cancelQuote | Callback permettant de recevoir les demandes d'annulation d'un devis | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes~1%7BquoteId%7D/delete) | NON
-score | Callback permettant de recevoir les notes client | [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
-update | Callback permettant de recevoir les demandes de mise à jour d'une livraison | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
-pickupPoint | Callback permettant de recevoir les demandes de points relais | [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1pickupPoints/get) | NON
-label | Callback permettant de recevoir les demandes d'étiquettes | [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1labels~1{labelId}/get) | NON
+Callback  | Description | Contrat d'interface
+---------|----------|---------
+quote | Callback permettant de recevoir les demandes de devis | [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes/post)
+delivery | Callback permettant de recevoir les demandes de livraison | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries/post)
+cancelDelivery | Callback permettant de recevoir les demandes d'annulation d'une livraison| [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/delete)
+cancelQuote | Callback permettant de recevoir les demandes d'annulation d'un devis | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes~1%7BquoteId%7D/delete)
+score | Callback permettant de recevoir les notes client | [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put)
+update | Callback permettant de recevoir les demandes de mise à jour d'une livraison | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/patch)
+pickupPoint | Callback permettant de recevoir les demandes de points relais | [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1pickupPoints/get)
+label | Callback permettant de recevoir les demandes d'étiquettes | [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1labels~1{labelId}/get)
 
 
 **Description d'un callback**
@@ -1308,7 +1303,7 @@ Ce token sera envoyé dans le header HTTP `Authorization: Bearer {token}`
 type: tab
 title: Exemple 1
 -->
-Je m'abonne aux souscriptions obligatoires, mon API est protégée par une simple API Key.
+Je m'abonne a certaines souscriptionq, mon API est protégée par une simple API Key.
 ```json
 {
   "callbacks": {
@@ -1385,7 +1380,7 @@ Je m'abonne à toutes les souscriptions, mon API est protégée par une authenti
 type: tab
 title: Exemple 3
 -->
-Je m'abonne aux souscriptions obligatoires, mon API est protégée par OAuth2, un de mes callback nécessite une authentification différente
+Je m'abonne a certaines souscriptions, mon API est protégée par OAuth2, un de mes callback nécessite une authentification différente
 ```json
 {
   "callbacks": {
@@ -1428,16 +1423,16 @@ Pour chaque *callback* configuré il est nécessaire d'implémenter le contrat d
 
 Pour rappel :
 
-Callback  | Contrat d'interface | Requis
----------|----------|---------
-quote |  [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes/post) | **OUI**
-delivery | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries/post) | **OUI**
-cancelDelivery | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/delete) | **OUI**
-cancelQuote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes~1%7BquoteId%7D/delete) | NON
-score |  [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NON
-update |  [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NON
-pickupPoint |  [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1pickupPoints/get) | NON
-label |  [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1labels~1{labelId}/get) | NON
+Callback  | Contrat d'interface
+---------|----------
+quote |  [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes/post)
+delivery | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries/post)
+cancelDelivery | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/delete)
+cancelQuote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1quotes~1%7BquoteId%7D/delete)
+score |  [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put)
+update |  [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1deliveries~1%7BdeliveryId%7D/patch)
+pickupPoint |  [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1pickupPoints/get)
+label |  [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.5.0.json/paths/~1labels~1{labelId}/get)
 
 
 <!-- theme: warning -->

@@ -606,17 +606,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "callbacks"
-                ],
                 "properties": {
                   "callbacks": {
                     "type": "object",
-                    "required": [
-                      "quote",
-                      "delivery",
-                      "cancelDelivery"
-                    ],
                     "properties": {
                       "quote": {
                         "type": "object",
