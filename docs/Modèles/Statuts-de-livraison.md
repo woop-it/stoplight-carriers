@@ -9,7 +9,7 @@ Au cours de son cycle de vie la commande passe tour à tour par plusieurs statut
 ### Liste des statuts de livraison possible
 
 Statut | Sous-statut | Intitulé | Exemples de commentaire
----------|----------
+---------|----------|----------|----------|
  `DELIVERY_INIT`|| Demande validée | "N/A"
  `DELIVERY_TEAM_ASSIGNED`|| Demande receptionnée par le coursier | "N/A"
  `DELIVERY_PICK_UP_STARTED`|| Coursier en approche expéditeur | "N/A"
