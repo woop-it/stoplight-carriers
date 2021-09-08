@@ -148,7 +148,7 @@
             "description": "Le 'deliveryId' n'a pas été trouvé"
           }
         },
-        "summary": "Mise à jour de statut d'une livraison",
+        "summary": "Mise à jour de statut d'une livraison ou d'un colis",
         "tags": [
           "Livraison"
         ]
