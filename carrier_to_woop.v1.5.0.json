@@ -2,8 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Transporteur vers Woop",
-    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Transporteur vers Woop\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la <b>Version 1.3.0</b>",
-    "version": "1.3.0"
+    "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Transporteur vers Woop\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la plateforme.\n\nLa version actuellement proposée dans la documentation est la <b>Version 1.5.0</b>",
+    "version": "1.5.0"
   },
   "servers": [
     {
@@ -149,114 +149,6 @@
           }
         },
         "summary": "Mise à jour de statut d'une livraison",
-        "tags": [
-          "Livraison"
-        ]
-      }
-    },
-    "/deliveries/{deliveryId}/packages/{packageId}/status": {
-      "put": {
-        "deprecated": true,
-        "description": "Permet de mettre à jour le statut d'un colis précis pour une commande en cours. L'information est transmise à Woop afin de suivre le parcours du colis.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow et liste des status</a>",
-        "operationId": "putPackageStatus",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/apiVersion"
-          },
-          {
-            "$ref": "#/components/parameters/pathDeliveryId"
-          },
-          {
-            "in": "path",
-            "name": "packageId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Id du colis"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "description": "Contient les nouvelles informations sur le statut du colis de la commande",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "$ref": "#/components/schemas/deliveryStatus"
-                  },
-                  "date": {
-                    "type": "string",
-                    "format": "datetime"
-                  },
-                  "comment": {
-                    "type": "string"
-                  },
-                  "team": {
-                    "$ref": "#/components/schemas/team"
-                  }
-                },
-                "required": [
-                  "status",
-                  "date",
-                  "comment"
-                ]
-              },
-              "examples": {
-                "Livraison livrée conforme": {
-                  "value": {
-                    "status": "DELIVERY_DELIVERED_OK",
-                    "date": "2019-11-27T10:30:00+0000",
-                    "comment": "J'ai attendu 5min dehors.",
-                    "team": {
-                      "members": [
-                        {
-                          "id": "ZER784"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Requête traitée avec succès"
-          },
-          "400": {
-            "description": "Elements manquants et/ou incorrect dans le body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/badRequest"
-                },
-                "examples": {
-                  "Exemple": {
-                    "value": {
-                      "reasons": [
-                        "Missing argument 'xxxxx'"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
-          },
-          "403": {
-            "description": "Le status ne peut plus être edité"
-          },
-          "404": {
-            "description": "Le 'deliveryId' ou 'packageId' n'a pas été trouvé"
-          }
-        },
-        "summary": "Mise à jour du statut d'un colis",
         "tags": [
           "Livraison"
         ]
@@ -1894,7 +1786,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "example": "1.3.0"
+          "example": "1.5.0"
         }
       },
       "pathDeliveryId": {
