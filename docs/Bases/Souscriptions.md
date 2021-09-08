@@ -1386,7 +1386,7 @@ Je m'abonne a certaines souscriptions, mon API est protégée par OAuth2, un de 
   "callbacks": {
     "quote": {
       "url": "https://my_partener/quotes",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "auth": {
         "basic": {
           "username": "admin",
@@ -1396,11 +1396,11 @@ Je m'abonne a certaines souscriptions, mon API est protégée par OAuth2, un de 
     },
     "delivery": {
       "url": "https://my_url/deliveries",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "cancelDelivery": {
       "url": "https://my_url/deliveries/{deliveryId}",
-      "version": "1.4.0"
+      "version": "1.5.0"
     }
   },
   "auth": {

@@ -11,7 +11,7 @@ A versioning system based on **HTTP Header** is used on all APIs.
 Example :
 ```json
 {
-  "x-api-version": "1.3.0"
+  "x-api-version": "1.5.0"
 }
 ```
 
