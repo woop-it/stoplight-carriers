@@ -623,7 +623,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir woop vers transporteur)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -673,7 +673,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir woop vers transporteur)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -723,7 +723,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -773,7 +773,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -820,7 +820,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -870,7 +870,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -920,7 +920,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -970,7 +970,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -1020,7 +1020,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -1070,7 +1070,7 @@
                           "version": {
                             "type": "string",
                             "description": "Version d'API pour ce callback (voir lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
                           },
                           "headers": {
                             "description": "Headers pour ce callback uniquement",
@@ -1155,23 +1155,23 @@
                     "callbacks": {
                       "quote": {
                         "url": "https://my_url/quote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "delivery": {
                         "url": "https://my_url/delivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelDelivery": {
                         "url": "https://my_url/cancelDelivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelQuote": {
                         "url": "https://my_url/cancelQuote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "score": {
                         "url": "https://my_url/score",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       }
                     },
                     "headers": [
@@ -1193,27 +1193,27 @@
                     "callbacks": {
                       "quote": {
                         "url": "https://my_url/quote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "delivery": {
                         "url": "https://my_url/delivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelDelivery": {
                         "url": "https://my_url/cancelDelivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelQuote": {
                         "url": "https://my_url/cancelQuote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "score": {
                         "url": "https://my_url/score",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "price": {
                         "url": "https://my_url/price",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       }
                     },
                     "auth": {
@@ -1232,23 +1232,23 @@
                     "callbacks": {
                       "quote": {
                         "url": "https://my_url/quote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "delivery": {
                         "url": "https://my_url/delivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelDelivery": {
                         "url": "https://my_url/cancelDelivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelQuote": {
                         "url": "https://my_url/cancelQuote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "score": {
                         "url": "https://my_url/score",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       }
                     },
                     "auth": {
