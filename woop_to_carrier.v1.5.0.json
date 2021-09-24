@@ -1666,19 +1666,53 @@
           "comment": {
             "type": "string",
             "description": "Commentaire libre d’utilisation"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "address",
+              "exchangePlace",
+              "pickupPoint"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "EXCHANGE_PLACE_STORE",
+              "EXCHANGE_PLACE_PFU",
+              "EXCHANGE_PLACE_STORAGE"
+            ]
           }
         },
         "required": [
           "addressLine1",
           "postalCode",
           "city",
-          "country"
+          "country",
+          "type"
         ]
       },
       "addressWithoutSensitiveData": {
         "title": "Adresse sans digicode (addressWithoutSensitiveData)",
         "type": "object",
         "description": "Informations d'une adresse sans digicode.",
+        "x-examples": {
+          "Exemple": {
+            "addressLine1": "179 boulevard de Turien",
+            "addressLine2": "Woop",
+            "elevator": true,
+            "floor": 8,
+            "postalCode": "59000",
+            "city": "Lille",
+            "country": "FR"
+          }
+        },
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -1716,32 +1750,40 @@
             ],
             "description": "Correspond au code Pays (ISO 3166-1 alpha-2)"
           },
-          "pickupPointId": {
-            "type": "string",
-            "description": "Identifiant du point relais. Présent si le service de livraison est \"SERVICE_PICKUP_POINT\""
-          },
           "comment": {
             "type": "string",
             "description": "Informations supplémentaires"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "address",
+              "exchangePlace",
+              "pickupPoint"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "EXCHANGE_PLACE_STORE",
+              "EXCHANGE_PLACE_PFU",
+              "EXCHANGE_PLACE_STORAGE"
+            ]
           }
         },
         "required": [
           "addressLine1",
           "postalCode",
           "city",
-          "country"
-        ],
-        "x-examples": {
-          "Exemple": {
-            "addressLine1": "179 boulevard de Turien",
-            "addressLine2": "Woop",
-            "elevator": true,
-            "floor": 8,
-            "postalCode": "59000",
-            "city": "Lille",
-            "country": "FR"
-          }
-        }
+          "country",
+          "type"
+        ]
       },
       "interval": {
         "title": "Créneau de dates (interval)",
@@ -1913,8 +1955,8 @@
         },
         "properties": {
           "id": {
-              "type": "number",
-              "description": "Identifiant interne woop du paquet"
+            "type": "number",
+            "description": "Identifiant interne woop du paquet"
           },
           "references": {
             "type": "array",
@@ -2163,7 +2205,10 @@
         "description": "Correspond au prix du devis",
         "type": "object",
         "title": "Prix du devis",
-        "required": ["taxExcludedAmount", "currency"],
+        "required": [
+          "taxExcludedAmount",
+          "currency"
+        ],
         "properties": {
           "taxExcludedAmount": {
             "type": "number",
@@ -2338,12 +2383,11 @@
         }
       },
       "withoutContact": {
-        "required": [
-          "address",
-          "interval"
-        ],
+        "title": "Informations sur l'adresse de prélèvement ou livraison",
+        "description": "Informations sur l'adresse de prélèvement ou livraison.",
+        "type": "object",
         "properties": {
-          "address": {
+          "location": {
             "$ref": "#/components/schemas/addressWithoutSensitiveData"
           },
           "infos": {
@@ -2356,17 +2400,17 @@
             }
           }
         },
-        "title": "Informations sur l'adresse de prélèvement ou livraison",
-        "description": "Informations sur l'adresse de prélèvement ou livraison."
+        "required": [
+          "location",
+          "interval"
+        ]
       },
       "withContact": {
-        "required": [
-          "address",
-          "interval",
-          "contact"
-        ],
+        "title": "Informations sur l'adresse de prélèvement",
+        "description": "Informations de l'adresse de prélèvement.",
+        "type": "object",
         "properties": {
-          "address": {
+          "location": {
             "$ref": "#/components/schemas/address"
           },
           "infos": {
@@ -2382,17 +2426,18 @@
             "$ref": "#/components/schemas/contact"
           }
         },
-        "title": "Informations sur l'adresse de prélèvement",
-        "description": "Informations de l'adresse de prélèvement."
-      },
-      "withContactAndLocalization": {
         "required": [
-          "address",
+          "location",
           "interval",
           "contact"
-        ],
+        ]
+      },
+      "withContactAndLocalization": {
+        "title": "Informations sur l'adresse de livraison",
+        "description": "Informations sur l'adresse de livraison.",
+        "type": "object",
         "properties": {
-          "address": {
+          "location": {
             "$ref": "#/components/schemas/address"
           },
           "infos": {
@@ -2408,8 +2453,11 @@
             "$ref": "#/components/schemas/contactWithLocalization"
           }
         },
-        "title": "Informations sur l'adresse de livraison",
-        "description": "Informations sur l'adresse de livraison."
+        "required": [
+          "location",
+          "interval",
+          "contact"
+        ]
       },
       "postQuote": {
         "allOf": [
@@ -2735,10 +2783,11 @@
           "parcels": {
             "type": "array",
             "description": "Informations sur les colis",
-          
             "items": {
               "type": "object",
-              "required": ["id"],
+              "required": [
+                "id"
+              ],
               "properties": {
                 "id": {
                   "type": "string",

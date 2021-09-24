@@ -42,6 +42,75 @@ title: 1.5
 ```
 <!-- type: tab-end -->
 
+**1.4 -> 1.5**
+
+- **Majeur**: Remplacement de l'address par location dans les *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
+<!--
+type: tab
+title: 1.4
+-->
+```json
+{
+  "picking": {
+    "address": { ... }
+  },
+  "delivery": {
+    "address": { ... }
+  }
+}
+```
+
+<!--
+type: tab
+title: 1.5
+-->
+```json
+{
+  "picking": {
+    "location": { ... }
+  },
+  "delivery": {
+    "location": { ... }
+  }
+}
+```
+<!-- type: tab-end -->
+
+**1.4 -> 1.5**
+
+- **Majeur**: Remplacement de l'id de point relais de l'address *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
+<!--
+type: tab
+title: 1.4
+-->
+```json
+{
+  "delivery": {
+    "address": { 
+      "pickupPointId": "0000"
+    }
+  }
+}
+```
+
+<!--
+type: tab
+title: 1.5
+-->
+```json
+{
+  "delivery": {
+    "location": { 
+      "type": "pickUpPoint",
+       "id": "0000"
+    }
+  }
+}
+```
+
+<!-- type: tab-end -->
+
+
 - **Majeur**: Changement du prix renvoyé dans la *réponse* a une [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
 
 <!--
