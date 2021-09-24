@@ -78,7 +78,7 @@ title: 1.5
 
 **1.4 -> 1.5**
 
-- **Majeur**: Remplacement de l'id de point relais de l'address *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
+- **Majeur**: Remplacement de l'id de point relais de l'address dans les *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
 <!--
 type: tab
 title: 1.4
