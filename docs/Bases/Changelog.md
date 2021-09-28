@@ -175,7 +175,7 @@ title: 1.5
   "parcels": [
     {
       "id": "parcel123",
-      "packageId": "1234A"
+      "reference": "1234A"
     }
   ]
 }
