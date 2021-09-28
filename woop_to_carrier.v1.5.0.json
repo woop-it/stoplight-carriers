@@ -2785,22 +2785,19 @@
             "description": "Informations sur les colis",
             "items": {
               "type": "object",
-              "required": [
-                "id"
-              ],
               "properties": {
                 "id": {
                   "type": "string",
                   "description": "Identifiant du colis"
                 },
-                "packageIds": {
-                  "type": "array",
-                  "description": "Identifiant des paquets dans le colis",
-                  "items": {
-                    "type": "string"
-                  }
+                "reference": {
+                  "type": "string",
+                  "description": "Identifiant des paquets dans le colis"
                 }
-              }
+              },
+              "required": [
+                "id"
+              ]
             }
           },
           "labels": {
