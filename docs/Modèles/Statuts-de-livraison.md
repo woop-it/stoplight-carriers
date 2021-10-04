@@ -31,6 +31,7 @@ Statut | Sous-statut | Intitulé | Exemples de commentaire
  `DELIVERY_BLOCKED` || Livraison bloquée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
  `DELIVERY_DELAYED` || Livraison retardée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
  `DELIVERY_AVAILABLE` || Dsponible en point-relais | "N/A"
+  `DELIVERY_REPLANNED` || Date de livraison replanifiée par le transporteur | "N/A"
 
 
 
@@ -40,4 +41,6 @@ Statut | Sous-statut | Intitulé | Exemples de commentaire
 
 ### Replanification
 
-La replanification de livraison sur une nouvelle date choisie par le client ou par le transporteur se fait via la méthode dédiée : 
+La replanification de livraison sur une nouvelle date choisie par le client ou par le transporteur doit se faire via la méthode [dédiée](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MjA0NzMzNjM-mise-a-jour-de-la-date-de-rendez-vous).
+
+![get-started-icon](../../assets/images/Delivery_replanned.png)
