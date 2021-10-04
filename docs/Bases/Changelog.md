@@ -9,6 +9,7 @@ Toutes les modifications notables apportées aux apis seront documentées ici.
 **1.4 -> 1.5**
 
 - **Majeur**: Remplacement du retailer id par le **retailer code** dans les *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
+
 <!--
 type: tab
 title: 1.4
@@ -45,6 +46,7 @@ title: 1.5
 **1.4 -> 1.5**
 
 - **Majeur**: Remplacement de l'address par location dans les *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
+
 <!--
 type: tab
 title: 1.4
@@ -79,6 +81,7 @@ title: 1.5
 **1.4 -> 1.5**
 
 - **Majeur**: Remplacement de l'id de point relais de l'address dans les *body* de [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) et [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
+
 <!--
 type: tab
 title: 1.4
@@ -109,7 +112,6 @@ title: 1.5
 ```
 
 <!-- type: tab-end -->
-
 
 - **Majeur**: Changement du prix renvoyé dans la *réponse* a une [Demande de devis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjY-demande-de-devis).
 
@@ -149,7 +151,9 @@ title: 1.5
 ]
 ```
 <!-- type: tab-end -->
+
 - **Majeur**: Changement de la réponse a une [Demande de livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MTMyNTMwNjg-demande-de-livraison) si des colis sont retournées, les **packages** sont renommés en **parcels**.
+
 <!--
 type: tab
 title: 1.4
@@ -188,6 +192,7 @@ title: 1.5
 
 - **Majeur**: Modification de la route de [Mise à jour de statut d'une livraison ou d'un colis](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MjA0NzMzNjE-mise-a-jour-de-statut-d-une-livraison).
 **Les status à envoyés sont maintenant directement les votres** sans correspondance aux anciens status Woop.
+
 <!--
 type: tab
 title: 1.3
@@ -212,6 +217,7 @@ title: 1.5
 }
 ```
 <!-- type: tab-end -->
+
 - **Majeur**: Ajout de la route de [Mise à jour de la date de rendez-vous](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MjA0NzMzNjM-mise-a-jour-de-la-date-de-rendez-vous).
 - **Majeur**: Suppression de la route de mise à jour de status d'un colis `PUT /deliveries/{deliveryId}/packages/{packageId}/status`
 - **Majeur**: Changement du body d'un [Ajout de frais supplémentaire ou de remise d'une livraison](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MjA0NzMzNjI-ajout-de-frais-supplementaire-ou-de-remise-d-une-livraison).
