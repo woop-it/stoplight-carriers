@@ -23,3 +23,4 @@ examples:
   - value: 54fd56g4f5gfd456sd
     type: barcode
     format: '128'
+x-internal: true
