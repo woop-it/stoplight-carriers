@@ -179,7 +179,13 @@ title: 1.5
   "parcels": [
     {
       "id": "parcel123",
-      "reference": "1234A"
+      "packageReference": "46DDFFE6456",
+      "trackingId": "D64D3486DEASW",
+      "barcode": {
+        "value": "1544566466221",
+        "type": "barcode",
+        "format": "128"
+      }
     }
   ]
 }

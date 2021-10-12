@@ -1921,24 +1921,23 @@
         "title": "Paquet (package)",
         "x-examples": {
           "example-1": {
-            "id": 5,
             "references": [
               "string"
             ],
             "length": {
-              "value": 0,
+              "value": 10,
               "unit": "cm"
             },
             "width": {
-              "value": 0,
+              "value": 10,
               "unit": "cm"
             },
             "height": {
-              "value": 0,
+              "value": 20,
               "unit": "cm"
             },
             "weight": {
-              "value": 0,
+              "value": 3,
               "unit": "kg"
             },
             "products": [
@@ -1950,14 +1949,10 @@
                 "quantity": 1
               }
             ],
-            "quantity": 0
+            "quantity": 1
           }
         },
         "properties": {
-          "id": {
-            "type": "number",
-            "description": "Identifiant interne woop du paquet"
-          },
           "references": {
             "type": "array",
             "description": "Références externes des paquets si fournies par l'enseigne",
@@ -2790,9 +2785,16 @@
                   "type": "string",
                   "description": "Identifiant du colis"
                 },
-                "reference": {
+                "packageReference": {
                   "type": "string",
-                  "description": "Identifiant des paquets dans le colis"
+                  "description": "Identifiant du paquet dans le colis"
+                },
+                "trackingId": {
+                  "type": "string",
+                  "description": "Identifiant du suivi du colis"
+                },
+                "barcode": {
+                  "$ref": "./models/barcode.yaml"
                 }
               },
               "required": [
