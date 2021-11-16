@@ -7,16 +7,16 @@
   },
   "servers": [
     {
-      "url": "car-api.recette.gcp.last-mile.fr",
-      "description": "URL de recette"
+      "url": "https://carrier.last-mile.fr",
+      "description": "URL de prod"
     },
     {
-      "url": "car-api.preprod.gcp.last-mile.fr",
+      "url": "https://car-api.preprod.gcp.last-mile.fr",
       "description": "URL de preprod"
     },
     {
-      "url": "carrier.last-mile.fr",
-      "description": "URL de prod"
+      "description": "URL de recette",
+      "url": "https://car-api.recette.gcp.last-mile.fr"
     }
   ],
   "paths": {
@@ -189,7 +189,7 @@
                     "exclusiveMinimum": true,
                     "minimum": 0
                   },
-                   "taxIncludedAmount": {
+                  "taxIncludedAmount": {
                     "type": "number",
                     "format": "float",
                     "description": "Montant TTC",
@@ -1389,6 +1389,50 @@
           }
         },
         "summary": "Ajout d'un document d'une livraison"
+      }
+    },
+    "/deliveries/{deliveryId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "45646fds-s4s44s-7e4e1d5d5"
+          },
+          "name": "deliveryId",
+          "in": "path",
+          "required": true,
+          "description": "Identifiant de la livraison à supprimer"
+        }
+      ],
+      "delete": {
+        "summary": "Suppression/Annulation d'une livraison",
+        "tags": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "Impossible de supprimer cette livraison (exemple: Livraison déjà supprimée)"
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'a pas été trouvé"
+          }
+        },
+        "operationId": "delete-deliveries-deliveryId",
+        "description": "",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "1.5.0"
+            },
+            "in": "header",
+            "name": "x-api-version"
+          }
+        ]
       }
     }
   },
