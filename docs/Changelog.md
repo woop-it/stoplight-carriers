@@ -261,3 +261,5 @@ title: 1.5
 
 - **Mineur**: Ajout de la possibilité d'ajouter une authentification ou headers spécifique a un callback d'un [Ajout de souscriptions](https://woop.stoplight.io/docs/carrier/branches/1.5/b3A6MjA0NzMzNjY-ajout-de-souscriptions).
 Voir la documentation [Souscriptions](https://woop.stoplight.io/docs/carrier/branches/1.5/ZG9jOjEwMDkzODI-souscriptions)
+
+- **Ajout** Ajout d'une route `DELETE /deliveries/{deliveryId}` [Voir la documentation](https://woop.stoplight.io/docs/carrier/b3A6MjgxNjc5MzM-suppression-annulation-d-une-livraison)
