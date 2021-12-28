@@ -1866,6 +1866,7 @@
       "contactWithLocalization": {
         "description": "Informations personnelles sur le contact de livraison et/ou de prélèvement.",
         "type": "object",
+        "title": "Contact (contactWithLocalization)",
         "properties": {
           "firstName": {
             "type": "string",
@@ -1896,11 +1897,8 @@
           "firstName",
           "lastName",
           "phone",
-          "email",
-          "language",
-          "timezone"
-        ],
-        "title": "Contact (contactWithLocalization)"
+          "email"
+        ]
       },
       "services": {
         "type": "array",
@@ -2483,19 +2481,19 @@
             "$ref": "#/components/schemas/postDeliveryInformations"
           },
           {
-            "required": [
-              "quoteId",
-              "picking",
-              "delivery"
-            ],
+            "type": "object",
             "properties": {
               "picking": {
-                "$ref": "#/components/schemas/withContact"
+                "$ref": "#/components/schemas/withContactAndLocalization"
               },
               "delivery": {
                 "$ref": "#/components/schemas/withContactAndLocalization"
               }
-            }
+            },
+            "required": [
+              "picking",
+              "delivery"
+            ]
           }
         ],
         "title": "Demande livraison (postDelivery)",
