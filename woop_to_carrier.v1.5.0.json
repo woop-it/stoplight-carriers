@@ -2631,6 +2631,9 @@
           },
           "tags": {
             "$ref": "#/components/schemas/tags"
+          },
+          "oustandingBalance": {
+            "$ref": "./models/oustandingBalance.yaml"
           }
         },
         "required": [
@@ -2744,6 +2747,9 @@
           "quoteId": {
             "type": "string",
             "description": "Identifiant unique référence du devis de la commande initiale"
+          },
+          "oustandingBalance": {
+            "$ref": "./models/oustandingBalance.yaml"
           }
         },
         "required": [

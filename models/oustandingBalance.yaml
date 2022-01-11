@@ -1,0 +1,24 @@
+title: oustandingBalance
+type: object
+properties:
+  value:
+    type: number
+  currency:
+    $ref: ../woop_to_carrier.v1.5.0.json#/components/schemas/currency
+  paymentMethod:
+    type: string
+    enum:
+      - CASH
+      - CREDIT_CART
+      - DEBIT_CARD
+      - DIRECT_DEBIT
+      - BANK_TRANSFER
+      - CHECK
+required:
+  - value
+  - currency
+  - paymentMethod
+examples:
+  - value: 17.5
+    currency: EUR
+    paymentMethod: CASH
