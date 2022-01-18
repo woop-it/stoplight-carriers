@@ -3,7 +3,7 @@
   "info": {
     "title": "Woop vers Transporteur",
     "description": "Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.\n\nPour utiliser les API \"Woop vers Transporteur\", vous devez vous munir des vos accès identifiants secret fournis lors de la création de votre compte transporteur au sein de la palteforme.\n\nLa version actuellement proposée dans la documentation est la **Version 1.5.0**",
-    "version": "1.5.0"
+    "version": "1.6.0"
   },
   "paths": {
     "/quotes": {
@@ -2632,8 +2632,8 @@
           "tags": {
             "$ref": "#/components/schemas/tags"
           },
-          "oustandingBalance": {
-            "$ref": "./models/oustandingBalance.yaml"
+          "expectedPayment": {
+            "$ref": "./models/expectedPayment.yaml"
           }
         },
         "required": [
@@ -2748,8 +2748,8 @@
             "type": "string",
             "description": "Identifiant unique référence du devis de la commande initiale"
           },
-          "oustandingBalance": {
-            "$ref": "./models/oustandingBalance.yaml"
+          "expectedPayment": {
+            "$ref": "./models/expectedPayment.yaml"
           }
         },
         "required": [

@@ -1,10 +1,14 @@
-title: oustandingBalance
+title: expectedPayment
 type: object
+examples:
+  - value: 17.5
+    currency: EUR
+    paymentMethod: CASH
 properties:
   value:
     type: number
   currency:
-    $ref: ../woop_to_carrier.v1.5.0.json#/components/schemas/currency
+    $ref: ../woop_to_carrier.json#/components/schemas/currency
   paymentMethod:
     type: string
     enum:
@@ -18,7 +22,3 @@ required:
   - value
   - currency
   - paymentMethod
-examples:
-  - value: 17.5
-    currency: EUR
-    paymentMethod: CASH
