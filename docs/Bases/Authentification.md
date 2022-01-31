@@ -4,9 +4,9 @@ tags: [token]
 
 # Authentification
 
-Un token est nécessaire pour échanger avec nos APIs, une fois récupéré il est valide pendant 24h et doit être fourni à chaque appel dans un header HTTP : ``` Authorization: Bearer {token} ```
+Un token est nécessaire pour échanger avec nos APIs, une fois récupéré il est valide pendant 24h.
 
-Le token est indispensable et permet de vous identifiant lors de chaque appel. Il doit être généré au début via la route indiquée. 
+## Récupérer un token
 
 ### Urls
 
@@ -16,7 +16,7 @@ Le token est indispensable et permet de vous identifiant lors de chaque appel. I
 | Preproduction | <https://connect.preprod.gcp.last-mile.fr/api/oauth/token> |
 | Recette       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token> |
 
-### Récupérer un token
+
 <!-- theme: info -->
 
 > 💡   &nbsp; Les paramètres client_id et client_secret vous seront communiqués ultérieurement par l'équipe IT de Woop.
@@ -42,7 +42,7 @@ Le token est indispensable et permet de vous identifiant lors de chaque appel. I
 }
 ```
 
-#### Réponse
+### Réponse
 ```json json_schema
 {
   "type": "object",
@@ -73,3 +73,18 @@ Le token est indispensable et permet de vous identifiant lors de chaque appel. I
   ]
 }
 ```
+
+
+## Utiliser du token
+
+L'`acces_token` obtenu doit être fourni à chaque appel dans un header HTTP : `Authorization: Bearer {token}`
+
+### Urls de nos API
+
+| Environnement |                             Url                            |
+| ------------- | :--------------------------------------------------------: |
+| Production    | <https://carrier.last-mile.fr>          |
+| Preproduction | <https://car-api.preprod.gcp.last-mile.fr> |
+| Recette       | <https://car-api.recette.gcp.last-mile.fr> |
+
+
