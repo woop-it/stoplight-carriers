@@ -2333,7 +2333,8 @@
       "currency": {
         "type": "string",
         "enum": [
-          "EUR"
+          "EUR",
+          "GBP"
         ],
         "description": "Devise, précise la monnaie utilisée.",
         "title": "Devise (currency)",
