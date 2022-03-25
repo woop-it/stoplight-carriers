@@ -1,35 +1,35 @@
-# Upload d'un document de livraison
+# Upload a delivery document
 
-Le endpoint d'ajout d'un document utilise le format mulipart/form-data qui permet d'envoyer des fichiers en plus de données classiques sous forme de formulaire.
+The endpoint to add a document uses the multipart/form-data format, which allows files to be sent together with the classic form data.
 
-Il y a tout d'abord un élément essentiel, l'envoie du header du **Content-Type** : `multipart/form-data; boundary=<calculated>` le boundary est calculé par le navigateur ou la libraire Http utilisée.
+Firstly, it is crucial to send the header of the **Content-Type** : `multipart/form-data; boundary=<calculated>` the boundary is calculated by the browser or the HTTP library used.
 
 
-Chaque partie du formulaire est envoyé de cette façon :
+Each part of the form is sent as follows:
 
-- Pour les fichiers 
+- For files
 
 ```json
-Content-Disposition: form-data; name="{NOM}"; filename="{NOM DU FICHIER}"[CRLF]
-Content-Type: {TYPE MIME}[CRLF]
+Content-Disposition: form-data; name="{NAME}"; filename="{FILE NAME}"[CRLF]
+Content-Type: {MIME TYPE}[CRLF]
 [CRLF]
 {CONTENT}
 
 ```
-- Pour les données classiques
+- For classic data
 
 ```json
-Content-Disposition: form-data; name="{NOM}"[CRLF]
+Content-Disposition: form-data; name="{NAME}"[CRLF]
 [CRLF]
-{VALEUR}
+{VALUE}
 ```
 
-Le [CRLF] correspond à un retour à la ligne "\r\n". Le NOM et le NOM DU FICHIER ne doivent pas contenir de guillemet (") ni de retour à la ligne (\r ou \n).
+The [CRLF] is equivalent to a line break "\r\n". The LAST NAME and FILE NAME must not contain quotation marks (") or a line break (\r or \n).
 
-Les données sont séparées par le boundary.
+The data is separated by the boundary.
 
 
-### Utilisation
+### Use
 
 **Postman**
 
@@ -37,17 +37,17 @@ Les données sont séparées par le boundary.
 
 **Javascript**
 
-Natif depuis les navigateurs: [form-data](https://developer.mozilla.org/fr/docs/Web/API/FormData/FormData)
+Native from browsers: [form-data](https://developer.mozilla.org/fr/docs/Web/API/FormData/FormData)
 
 **NodeJs**
 
-Avec la librairie: [form-data](https://www.npmjs.com/package/form-data)
+With the library: [form-data](https://www.npmjs.com/package/form-data)
 
 ** Java (Android) **
 
-Avec [Retrofit](https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server)
+With [Retrofit](https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server)
 
 ** Java (SpringBoot) **
 
-Avec [HttpClient](https://www.baeldung.com/httpclient-post-http-request#post-multipart-request)
+With [HttpClient](https://www.baeldung.com/httpclient-post-http-request#post-multipart-request)
 

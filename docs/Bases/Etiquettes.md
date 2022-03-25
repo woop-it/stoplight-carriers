@@ -1,46 +1,46 @@
-# Étiquettes de transport
+# Carrier labels
 
-Des étiquettes de transport peuvent nous être fournies au retour de la [demande de livraison](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries/post) :
+Carrier labels can be provided to us when the [delivery request is returned](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries/post) :
 
-### Schema de données
+### Data schema
 ```json json_schema
 {
-  "description": "Etiquette de transport",
+  "description": "Carrier label",
   "type": "object",
   "properties": {
     "id": {
       "type": "string",
-      "description": "Identifiant de l'étiquette"
+      "description": "Label identifier"
     },
     "type": {
       "type": "string",
-      "description": "Type d'envoi de l'étiquette",
+      "description": "Type of label delivery",
       "enum": ["base64", "url"]
     },
     "mode": {
       "type": "string",
-      "description": "Format de l'étiquette",
+      "description": "Label format",
       "enum": ["zpl", "pdf", "jpg", "jpeg"]
     },
     "value": {
       "type": "string",
-      "description": "Etiquette en base64 ou url vers l'étiquette"
+      "description": "Label in base64 or URL to the label"
     },
     "packageId:": {
       "type": "string",
-      "description" : "Identifiant du colis associé"
+      "description" : "Associated package identifier"
     }
   },
   "required": [
     "id"
   ],
-  "title": "Étiquette (mass)"
+  "title": "Label (mass)"
 }
 }
 ```
-**Plusieurs possibilités :** 
+**Several possibilities:** 
 
-*Étiquette en base64*
+*Label in base64*
 
 ```json
 {
@@ -52,7 +52,7 @@ Des étiquettes de transport peuvent nous être fournies au retour de la [demand
 }
 ```
 
-*Étiquette avec url*
+*Label with URL*
 ```json
 {
   "id": "LBL002",
@@ -63,7 +63,7 @@ Des étiquettes de transport peuvent nous être fournies au retour de la [demand
 }
 
 ```
-*Étiquette à récupérer plus tard*
+*Label to be retrieved later*
 ```json
 {
   "id": "LBL003", 
@@ -72,9 +72,9 @@ Des étiquettes de transport peuvent nous être fournies au retour de la [demand
 ```
 <!-- theme: warning -->
 
-> ### A noter
+> ### Note
 >
-> Si vous fournissez une **étiquette à récupérer plus tard** il est nécessaire de souscrire au [**callback label**](https://woop.stoplight.io/docs/carrier/docs/Bases/Souscriptions.md#callbacks) ainsi que d'implémenter la fonction [**Récupération d'une étiquette**](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1labels~1{labelId}/get).
+> If you provide a **Label to be retrieved later** you must subscribe to the [**callback label**](https://woop.stoplight.io/docs/carrier/docs/Bases/Souscriptions.md#callbacks) and implement the function [**Retrieving a label **](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1labels~1{labelId}/get).
 
                         
                         

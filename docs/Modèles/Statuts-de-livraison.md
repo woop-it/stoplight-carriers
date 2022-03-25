@@ -1,37 +1,37 @@
-# Statuts de livraison
+# Delivery status
 
-Au cours de son cycle de vie la commande passe tour à tour par plusieurs statuts. Ceux que nous identifions sont les différents stades de la livraison. 
+The order goes through several statuses in succession. We identify the different stages of the delivery.
 
-### Parcours d'une commande
+### Route of an order
 
 ![get-started-icon](../../assets/images/Workflow_status_livraison.png)
 
-### Liste des statuts de livraison possible
+### List of possible delivery statuses
 
-Statut | Intitulé | Exemples de commentaire
+Status | Title | Examples of comments
 ---------|----------
- `DELIVERY_INIT`| Validée transporteur | "N/A"
- `DELIVERY_STARTED`| Coursier en approche magasin |  "N/A"
- `DELIVERY_PICK_UP_REACHED`| Coursier arrivé en magasin |  "N/A"
- `DELIVERY_PICK_UP_OK`| Commande prise en charge |  "N/A"
- `DELIVERY_PICK_UP_FAILED`| Commande en échec au retrait | “La commande n’était pas prête” <br/> “Aucun vendeur présent/disponible sur site pour récupérer la marchandise” </br> "Colis manquants (certains transporteurs refusent les enlèvements partiels)" </br> "Emballage insuffisant (un défaut d'emballage sur un produit fragile peut être un motif de refus)" </br> "Lieu d'enlèvement inaccessible ou fermé" </br> "Temps d'attente excessif (contractuellement certains transporteurs peuvent refuser un enlèvement parce qu'ils ont attendu plus de x minutes)"
- `DELIVERY_PICK_UP_PARTIALLY`| Commande prise en charge partiellement | “produit 1 ref XXXX  ne correspond pas à ce que le client a commandé”<br/> “Produit 2 ref XXXX produit endommagé”<br/> “Produit 3 ref XXXX produit manquant”
- `DELIVERY_IN_PROGRESS` | Commande en cours de livraison | "N/A"
- `DELIVERY_AT_DROP_OF_LOCATION` | Coursier arrivé client | "N/A"
- `DELIVERY_DELIVERED_OK` | Commande livrée conforme | "N/A"
- `DELIVERY_DELIVERED_WITH_CLAIM` | Commande livrée avec réserves | "Le client a acceptée la commande avec les réserves suivante: {commentaire client}"
- `DELIVERY_DELIVERED_PARTIALLY` | Commande prise en charge partiellement | “produit 1 ref XXXX  ne correspond pas à ce que le client a commandé” <br/> “Produit 2 ref XXXX est endommagé” <br/> “Produit 3 ref XXXX produit manquant” <br/> "Le client refuse la livraison du produit ref XXX (il peut avoir changé d'avis)"
- `DELIVERY_FAILED_WITH_RETURN` | Livraison en échec avec retour magasin | “Le client était absent" <br/> “Erreur dans l’adresse de livraison” <br/> "Problème d'accessibilité" <br/> "Le Produit ne correspond pas à ce que le client a commandé" <br/> "Le Produit est endommagé" <br/> "Le client refuse la livraison (il peut avoir changé d'avis, certains ne vont pas chercher leur produit en point relais..)"
- `DELIVERY_RETURNED_TO_PICK_UP` | Commande retournée en magasin | “Le client était absent" <br/> “Erreur dans l’adresse de livraison” <br/> "Problème d'accessibilité" <br/> “produit 1 ref XXXX  ne correspond pas à ce que le client a commandé” <br/> “Produit 2 ref XXXX produit endommagé” <br/> “Produit 3 ref XXXX produit manquant”
- `DELIVERY_CANCELLED` | Livraison annulée | "Nos équipes ne sont plus en capacité d'effectuer cette livraison {raison}" <br/> raison : "véhicule en panne” <br/> “aucun livreur disponible” <br/> “aucun véhicule disponible” 
- `DELIVERY_CANCELLED_WITH_RETURN` | Livraison annulée avec retour magasin | "véhicule en panne” <br/> “tournée non finalisée”
- `DELIVERY_BLOCKED` | Livraison bloquée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
- `DELIVERY_DELAYED` | Livraison retardée | “Contrôle Douanier”<br/> "Camion bloqué par une intempérie"<br/> “Camion bloqué par la circulation”
- `DELIVERY_AVAILABLE` | Livraison disponible en point de retrait | "N/A"
- `DELIVERY_REPLANNED`|Date de livraison replannifiée par une prise de RDV avec le client | "N/A" 
+ `DELIVERY_INIT`| Validated carrier | "N/A"
+ `DELIVERY_STARTED`| Courier near to the store |  "N/A"
+ `DELIVERY_PICK_UP_REACHED`| Courier arrived at the store |  "N/A"
+ `DELIVERY_PICK_UP_OK`| Order collected |  "N/A"
+ `DELIVERY_PICK_UP_FAILED`| Order error at collection | "The order was not ready" <br/>"No salesman present/available on site to collect the goods" </br>"Missing packages (some carriers refuse partial collections)" </br>"Insufficient packaging (a packaging defect on a fragile product can be a reason for refusal)" </br>"Inaccessible or closed collection site" </br>"Excessive waiting time (contractually some carriers may refuse a collection because they have waited more than x minutes)"
+ `DELIVERY_PICK_UP_PARTIALLY`| Partial orders managed | "product 1 ref XXXX does not correspond to what the customer ordered"<br/>"Product 2 ref XXXX damaged"<br/>"Product 3 ref XXXX missing"
+ `DELIVERY_IN_PROGRESS` | Order in process of delivery | "N/A"
+ `DELIVERY_AT_DROP_OF_LOCATION` | Courier arriving at the customer location | "N/A"
+ `DELIVERY_DELIVERED_OK` | Order delivered correctly | "N/A"
+ `DELIVERY_DELIVERED_WITH_CLAIM` | Order delivered with reserves | "The customer has accepted the order with the following reserves: {commentaire client}"
+ `DELIVERY_DELIVERED_PARTIALLY` | Partial orders managed | "product 1 ref XXXX does not correspond to what the customer ordered" <br/>"Product 2 ref XXXX is damaged" <br/>"Product 3 ref XXXX is missing" <br/>"The customer refuses delivery of product ref XXX (they may no longer want it)"
+ `DELIVERY_FAILED_WITH_RETURN` | Failed delivery with return to store | "The customer was not there" <br/>"Error in the delivery address" <br/>"Access problem" <br/>"The Product does not correspond to what the customer ordered" <br/>"The Product is damaged" <br/>"The customer refuses delivery (they may no longer want it, some do not pick up their product at the relay point.)"
+ `DELIVERY_RETURNED_TO_PICK_UP` | Order returned to store | "The customer was not there" <br/>"Error in the delivery address" <br/>"Access problem" <br/>"product 1 ref XXXX does not correspond to what the customer ordered" <br/>"Product 2 ref XXXX is damaged" <br/>"Product 3 ref XXXX is missing"
+ `DELIVERY_CANCELLED` | Delivery cancelled | "Our teams are no longer able to make this delivery {raison}" <br/>reason: "vehicle broken down " <br/>"no delivery person available" <br/>"no vehicle available"
+ `DELIVERY_CANCELLED_WITH_RETURN` | Delivery cancelled with return to store | "vehicle broken down " <br/> "delivery run not completed"
+ `DELIVERY_BLOCKED` | Delivery blocked | "Customs Inspection"<br/>"Truck blocked by bad weather"<br/>"Truck blocked by traffic"
+ `DELIVERY_DELAYED` | Delivery delayed | "Customs Inspection"<br/>"Truck blocked by bad weather"<br/>"Truck blocked by traffic"
+ `DELIVERY_AVAILABLE` | Delivery available at collection points | "N/A"
+ `DELIVERY_REPLANNED`|Delivery date rescheduled by making an appointment with the customer | "N/A"
 
-Les statuts `DELIVERY_PICK_UP_PARTIALLY` et `DELIVERY_DELIVERED_PARTIALLY` sont réservés à la livraison et ne sont pas autorisés pour le suivi de colis.
+Status `DELIVERY_PICK_UP_PARTIALLY` and `DELIVERY_DELIVERED_PARTIALLY` are reserved for delivery only and are not allowed for tracking packages.
 
-### Gestion des retours et des erreurs
+### Returns and error management
 
 ![get-started-icon](../../assets/images/Workflow_retours.png)
