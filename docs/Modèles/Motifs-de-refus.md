@@ -1,19 +1,19 @@
-# Motifs de refus de prise en charge
+# Reasons for refusing the job
 
-Pour plusieurs situations, le transporteur solicité a la possiblité de refuser lors de l'appel : 
-- Une demande de devis pour une course 
-- Une demande de livraison pour validation d'un devis 
+For several reasons, the requested carrier can refuse the call:
+- A request for a quote for a route
+- A delivery request in validation of a quote
 
-Dans ce cas, la demande de devis a été traitée, mais aucun devis n'a été généré et/ou la livraison demandée est finalement refusée. Le transporteur est alors dans l'obligation d'indiquer le motif de son refus afin de pouvoir identifier les anomalies et/ou points de blocage. 
+In this case, the quote request has been processed, but no quote has been generated and/or the requested delivery is refused. The carrier must then indicate the reason for refusal to identify the anomalies and/or blockages.
 
-Code| Exemples de commentaire
+Code| Examples of comments
 ---------|----------
-`REFUSED_AREA`| "L'adresse de prélèvement se trouve dans un secteur qui n'est pas couvert par nos équipes”<br/>"La distance de livraison de XX km dépasse notre limite de XX Km”<br/>”Le code postal de livraison/de prélèvement est dans un zone qui n’est pas couverte par nos équipes”
-`REFUSED_AVAILABILITY`| "Pas d’équipe disponible pour une livraison au XX/XX/XXXX à XXhXX”<br/> "Pas d’équipe disponible pour un prélèvement au XX/XX/XXXX à XXhXX"
-`REFUSED_DAY_OFF`| "La date de prélèvement au XX/XX/XX se trouve sur une journée non travaillée”<br/>"La date de livraison au XX/XX/XX se trouve sur une journée non travaillée”
-`REFUSED_TIME_NOT_WORKED`| "Le créneau de prélèvement au XX/XX/XX à XXhXX se trouve sur un créneau non travaillé”<br/>"Le créneau  de livraison au XX/XX/XX  à XXhXX se trouve sur un créneau non travaillé”
-`REFUSED_TOO_HEAVY`| "Le poids total de la commande dépasse notre limite de prise en charge de XXKg”<br/> "Le poids d’un ou plusieurs colis de la commande dépasse notre limite de prise en charge de XXkg par colis”
-`REFUSED_TOO_LARGE`| "La dimension d’un ou plusieurs colis dépasse notre limite de prise en charge de XXcm/m”
-`REFUSED_EXCEPTION`| "Les délais de prévenance de XXh/XXminutes n’est pas respecté"<br/>"Impossibilité de géocoder l’adresse de prélèvement/livraison"<br/>"Le code postal ne respecte pas le format attendu”<br/> "Le numéro de téléphone du contact de prélèvement/livraison ne respecte pas le format attendu”<br/>"L’adresse e-mail du contact de prélèvement/livraison ne respecte pas le format attendu”<br/>"Le magasin avec l’ID XXX n’existe pas”<br/>"Le point de prélèvement avec l’ID XXX n’existe pas”<br/>"Pas de disponibilité pour le type de service XXX"<br/>"Pas de disponibilité pour la typologie de produit XXX"<br/>"Autre erreur: {erreur technique rencontrée}”
-`REFUSED_TOO_LATE`| "L'action n'est plus autorisée par le transporteur. L'état de la commande ne permet plus ce type d'action car le statut de livraison est trop avancé (exemple: Anulation refusée pour DELIVERY_PICK_UP_OK car le chargement est en cours)."
-`REFUSED_OTHER_REASON`| "Autre motifs de refus."
+`REFUSED_AREA`| "The collection address is in an area that is not covered by our teams"<br/>"The delivery distance of XX km exceeds our limit of XX km"<br/>"The delivery/pick-up postcode is in an area that is not covered by our teams"
+`REFUSED_AVAILABILITY`| "No team available for delivery on XX/XX/XXXX at XX:XX"<br/>"No team available for collection on XX/XX/XXXX at XX:XX"
+`REFUSED_DAY_OFF`| "The collection date of XX/XX/XX is on a non-working day."<br/>"The delivery date of XX/XX/XX is on a non-working day."
+`REFUSED_TIME_NOT_WORKED`| "The collection slot on XX/XX/XX at XX:XX is in a non-working slot"<br/>"The delivery slot on XX/XX/XX at XX:XX is in a non-working slot"
+`REFUSED_TOO_HEAVY`| "The total weight of the order exceeds our acceptance limit of XXKg"<br/>"The weight of one or more packages in the order exceeds our limit of XXkg per package"
+`REFUSED_TOO_LARGE`| "The size of one or more packages exceeds our acceptance limit of XXcm/m"
+`REFUSED_EXCEPTION`| "The notice period of XXhours/XXminutes has not been observed"<br/>"Unable to geocode the collection/delivery address"<br/>"The postcode does not follow the correct format"<br/>"The telephone number of the collection/delivery contact does not follow the correct format"<br/>"The e-mail address of the collection/delivery contact does not follow the correct format"<br/>"The store with ID XXX does not exist"<br/>"The collection point with ID XXX does not exist"<br/>"No availability of service type XXX"<br/>"No availability of product type XXX"<br/>"Other error: {erreur technique rencontrée}”
+`REFUSED_TOO_LATE`| "The action is no longer authorised by the carrier. The status of the order no longer allows this action because the delivery status has progressed too far, (for example: Cancellation rejected for DELIVERY_PICK_UP_OK because loading is in progress)."
+`REFUSED_OTHER_REASON`| "Other refusal reasons."

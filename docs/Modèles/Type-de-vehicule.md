@@ -1,22 +1,22 @@
-# Type de véhicule
+# Vehicle type
 
-Liste des différents type de véhicule possible lors de la création d'une commande.
+List of the types of vehicles available when creating an order.
 
-Statut | Intitulé
+Status | Title
 ---------|----------
- `VEHICLE_TYPE_BIKE`|Vélo
+ `VEHICLE_TYPE_BIKE`|Bike
  `VEHICLE_TYPE_SCOOTER`|Scooter
- `VEHICLE_TYPE_E_SCOOTER`|Scooter électrique
- `VEHICLE_TYPE_VAN_SMALL`|Van petit modèle
- `VEHICLE_TYPE_E_VAN_SMALL`|Van petit modèle électrique
- `VEHICLE_TYPE_VAN_MEDIUM`|Van moyen modèle
- `VEHICLE_TYPE_PEDESTRIAN`|Piéton
- `VEHICLE_TYPE_TRUCK`|Camion
- `VEHICLE_TYPE_VAN_BIG`|Van grand modèle
- `VEHICLE_TYPE_E_VAN_BIG`|Van grand modèle électrique
- `VEHICLE_TYPE_BIKE_CARGO`|Vélo cargo
- `VEHICLE_TYPE_CAR`|Voiture
- `VEHICLE_TYPE_E_CAR`|Voiture électrique
- `VEHICLE_TYPE_UNKNOWN`|Véhicule inconnu
- `VEHICLE_TYPE_GAZ_VAN_BIG`|Van grand modèle au gaz
- `VEHICLE_TYPE_GAZ_VAN_MEDIUM`|Van moyen modèle au gaz
+ `VEHICLE_TYPE_E_SCOOTER`|Electric scooter
+ `VEHICLE_TYPE_VAN_SMALL`|Small van
+ `VEHICLE_TYPE_E_VAN_SMALL`|Small electric van
+ `VEHICLE_TYPE_VAN_MEDIUM`|Medium van
+ `VEHICLE_TYPE_PEDESTRIAN`|Pedestrian
+ `VEHICLE_TYPE_TRUCK`|Truck
+ `VEHICLE_TYPE_VAN_BIG`|Large van
+ `VEHICLE_TYPE_E_VAN_BIG`|Large electric van
+ `VEHICLE_TYPE_BIKE_CARGO`|Cargo bike
+ `VEHICLE_TYPE_CAR`|Car
+ `VEHICLE_TYPE_E_CAR`|Electric car
+ `VEHICLE_TYPE_UNKNOWN`|Unknown vehicle
+ `VEHICLE_TYPE_GAZ_VAN_BIG`|Large diesel van
+ `VEHICLE_TYPE_GAZ_VAN_MEDIUM`|Medium diesel van

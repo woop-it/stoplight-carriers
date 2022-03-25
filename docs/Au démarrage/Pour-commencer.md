@@ -1,10 +1,11 @@
-# Pour commencer
+# To begin
 
-Pour commencer, toutes les informations technique concernant les API Woop à destination des transporteurs sont centralisées dans cette documentation. Pour toute question ou précision, merci de contacter l'équipe technique interne.
 
-Pour utiliser les API, vous devez vous munir des vos accès récupérés lors de la création de votre compte au sein de la plateforme.
+To begin, all technical information about Woop APIs for carriers is contained in this documentation. For any questions or clarifications, please contact the internal technical team.
 
-Ce document se décompose en 2 sections illustrant les échanges possible Woop <> Transporteur :
+To use the APIs, you will need the login information you received when you created your account on the platform.
 
-- `Transporteur vers Woop` Qui décrit globalement le fonctionnement des API (réponse) de la part du transporteur à destination de Woop. Des fonctions comme la mise à jour des statuts de livraison et l'ajout d'informations de facturation seront décrites dans cette partie.
-- `Woop vers Transporteur` Qui décrit globalement le fonctionnement des API de création à destination du transporteur de la part de Woop. Des fonctions comme la création d'un ordre de transport (livraison de commande) et la récupération d'une liste de point-relais seront décrites dans cette partie.
+This document is divided into 2 sections illustrating the exchanges possible between Woop and the Carrier:
+
+- `Carrier to Woop` Which describes the overall operation of the APIs (response) from the carrier to Woop. Functions such as updating delivery status and adding billing information are described in this section.
+- `Woop to Carrier` Which generally describes how Woop's creation APIs work when sent to the carrier. This section describes functions such as creating a (delivery order) and retrieving a list of relay points.
