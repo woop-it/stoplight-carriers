@@ -4,27 +4,27 @@ tags: [token]
 
 # Authentication
 
-A token is required to interact with our APIs. Once retrieved, it is valid for 24 hours and must be provided in an HTTP header for each call: `Authorisation: Bearer {token}`
+A token is required to interact with our APIs. Once retrieved, it is valid for 24 hours.
 
 The token is mandatory and is required to identify yourself during a call. It must be generated at the beginning via the route indicated.
 
 ### URLs
 
-| Environment |      URL     |
-| ------------- | :-----------: |
-| Production    | <https://token.last-mile.fr/oauth/token> |
+| Environment   |                            URL                             |
+| ------------- | :--------------------------------------------------------: |
+| Production    |          <https://token.last-mile.fr/oauth/token>          |
 | Preproduction | <https://connect.preprod.gcp.last-mile.fr/api/oauth/token> |
 | Receipt       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token> |
 
 ### Retrieving a token
+
 <!-- theme: info -->
 
-> 💡   &nbsp; The client_id and client_secret parameters will be provided later by the Woop IT team.
-
+> 💡 &nbsp; The client_id and client_secret parameters will be provided later by the Woop IT team.
 
 <!-- theme: danger -->
 
->   For this call only, the Content-Type specified in the header must be **application/x-www-form-urlencoded**.
+> For this call only, the Content-Type specified in the header must be **application/x-www-form-urlencoded**.
 
 ```json http
 {
@@ -43,6 +43,7 @@ The token is mandatory and is required to identify yourself during a call. It mu
 ```
 
 #### Response
+
 ```json json_schema
 {
   "type": "object",
@@ -54,9 +55,7 @@ The token is mandatory and is required to identify yourself during a call. It mu
     },
     "token_type": {
       "type": "string",
-      "enum": [
-        "bearer"
-      ]
+      "enum": ["bearer"]
     },
     "expires_in": {
       "type": "number",
@@ -66,10 +65,18 @@ The token is mandatory and is required to identify yourself during a call. It mu
       "type": "string"
     }
   },
-  "required": [
-    "access_token",
-    "token_type",
-    "expires_in"
-  ]
+  "required": ["access_token", "token_type", "expires_in"]
 }
 ```
+
+## Token usage
+
+The `acces_token` must be provided in an HTTP header for each call : `Authorization: Bearer {token}`
+
+### Urls de nos API
+
+| Environnement |                    Url                     |
+| ------------- | :----------------------------------------: |
+| Production    |       <https://carrier.last-mile.fr>       |
+| Preproduction | <https://car-api.preprod.gcp.last-mile.fr> |
+| Recette       | <https://car-api.recette.gcp.last-mile.fr> |

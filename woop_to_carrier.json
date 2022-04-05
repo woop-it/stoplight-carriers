@@ -2,8 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Woop to Carrier",
-    "description": "This document contains the technical information about Woop APIs for carriers. For any questions or clarification, please contact the internal technical team.\n\nTo use \"Carrier to Woop\" APIs, you must use the confidential access codes provided when you created your carrier account on the platform.\n\nThe version currently available in the documentation is **Version 1.4.0**",
-    "version": "1.4.0"
+    "description": "This document contains the technical information about Woop APIs for carriers. For any questions or clarification, please contact the internal technical team.\n\nTo use \"Carrier to Woop\" APIs, you must use the confidential access codes provided when you created your carrier account on the platform.\n\nThe version currently available in the documentation is **Version 1.6.0**",
+    "version": "1.6.0"
   },
   "paths": {
     "/quotes": {
@@ -28,7 +28,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -75,6 +75,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 121.8,
                           "unit": "cm"
@@ -114,7 +115,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -161,6 +162,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 121.8,
                           "unit": "cm"
@@ -205,7 +207,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -252,6 +254,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 121.8,
                           "unit": "cm"
@@ -319,7 +322,9 @@
                       {
                         "quoteId": "4zd5z4d5zd",
                         "price": {
-                          "value": 135.56,
+                          "taxExcludedAmount": 181.82,
+                          "taxIncludedAmount": 200,
+                          "taxAmount": 18.18,
                           "currency": "EUR"
                         },
                         "vehicleType": "VEHICLE_TYPE_BIKE"
@@ -453,7 +458,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -513,6 +518,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 15,
                           "unit": "cm"
@@ -556,7 +562,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne-a",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -614,6 +620,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 15,
                           "unit": "cm"
@@ -659,7 +666,7 @@
                     "referenceNumber": "65zq1d5qz1d56q1-456",
                     "retailer": {
                       "name": "Enseigne A",
-                      "id": "ret123",
+                      "code": "enseigne",
                       "store": {
                         "id": "store123",
                         "name": "Magasin C",
@@ -719,6 +726,7 @@
                     },
                     "packages": [
                       {
+                        "id": 1,
                         "length": {
                           "value": 15,
                           "unit": "cm"
@@ -767,7 +775,7 @@
         },
         "responses": {
           "201": {
-            "description": "The delivery is accepted, a 'deliveryId' is returned, additionally a table of 'package' ids can be returned if tracking by package. A table of labels can also be returned.",
+            "description": "The delivery is accepted, a 'deliveryId' is returned, additionally a table of 'parcels' ids can be returned if tracking by parcel. A table of labels can also be returned.",
             "content": {
               "application/json": {
                 "schema": {
@@ -782,9 +790,10 @@
                   "Exemple avec suivi de colis": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
-                      "packages": [
+                      "parcels": [
                         {
-                          "id": "pack123"
+                          "id": "parcel123",
+                          "packageReference": "1234A"
                         }
                       ]
                     }
@@ -804,18 +813,18 @@
                           "type": "base64",
                           "mode": "jpeg",
                           "value": "UklGRvwNAABXRUJQVlA4TPANAAA...",
-                          "packageId": "5q4f5q4zd"
+                          "parcelId": "5q4f5q4zd"
                         },
                         {
                           "id": "LBL002",
                           "type": "url",
                           "mode": "jpeg",
                           "value": "http://url.com",
-                          "packageId": "5q5f5q4zb"
+                          "parcelId": "5q5f5q4zb"
                         },
                         {
                           "id": "LBL003",
-                          "packageId": "5q5f5q4zb"
+                          "parcelId": "5q5f5q4zb"
                         }
                       ]
                     }
@@ -1267,6 +1276,7 @@
     "/pickupPoints": {
       "get": {
         "summary": "Recherche de points relais",
+        "deprecated": true,
         "tags": [
           "Point Relais"
         ],
@@ -1656,19 +1666,53 @@
           "comment": {
             "type": "string",
             "description": "Additional comments"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "address",
+              "exchangePlace",
+              "pickupPoint"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "EXCHANGE_PLACE_STORE",
+              "EXCHANGE_PLACE_PFU",
+              "EXCHANGE_PLACE_STORAGE"
+            ]
           }
         },
         "required": [
           "addressLine1",
           "postalCode",
           "city",
-          "country"
+          "country",
+          "type"
         ]
       },
       "addressWithoutSensitiveData": {
         "title": "Address without door code (addressWithoutSensitiveData)",
         "type": "object",
         "description": "Information about an address without a door code.",
+        "x-examples": {
+          "Exemple": {
+            "addressLine1": "179 boulevard de Turien",
+            "addressLine2": "Woop",
+            "elevator": true,
+            "floor": 8,
+            "postalCode": "59000",
+            "city": "Lille",
+            "country": "FR"
+          }
+        },
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -1706,32 +1750,40 @@
             ],
             "description": "The Country code (ISO 3166-1 alpha-2)"
           },
-          "pickupPointId": {
-            "type": "string",
-            "description": "Relay point identifier. Available if the delivery service is \"SERVICE_PICKUP_POINT\""
-          },
           "comment": {
             "type": "string",
-            "description": "Additional information"
+            "description": "Additional informations"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "address",
+              "exchangePlace",
+              "pickupPoint"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "EXCHANGE_PLACE_STORE",
+              "EXCHANGE_PLACE_PFU",
+              "EXCHANGE_PLACE_STORAGE"
+            ]
           }
         },
         "required": [
           "addressLine1",
           "postalCode",
           "city",
-          "country"
-        ],
-        "x-examples": {
-          "Exemple": {
-            "addressLine1": "179 boulevard de Turien",
-            "addressLine2": "Woop",
-            "elevator": true,
-            "floor": 8,
-            "postalCode": "59000",
-            "city": "Lille",
-            "country": "FR"
-          }
-        }
+          "country",
+          "type"
+        ]
       },
       "interval": {
         "title": "Date slot (interval)",
@@ -1814,6 +1866,7 @@
       "contactWithLocalization": {
         "description": "Personal information on the delivery and/or collection contact.",
         "type": "object",
+        "title": "Contact (contactWithLocalization)",
         "properties": {
           "firstName": {
             "type": "string",
@@ -1844,11 +1897,8 @@
           "firstName",
           "lastName",
           "phone",
-          "email",
-          "language",
-          "timezone"
-        ],
-        "title": "Contact (contactWithLocalization)"
+          "email"
+        ]
       },
       "services": {
         "type": "array",
@@ -1873,19 +1923,19 @@
               "string"
             ],
             "length": {
-              "value": 0,
+              "value": 10,
               "unit": "cm"
             },
             "width": {
-              "value": 0,
+              "value": 10,
               "unit": "cm"
             },
             "height": {
-              "value": 0,
+              "value": 20,
               "unit": "cm"
             },
             "weight": {
-              "value": 0,
+              "value": 3,
               "unit": "kg"
             },
             "products": [
@@ -1897,7 +1947,7 @@
                 "quantity": 1
               }
             ],
-            "quantity": 0
+            "quantity": 1
           }
         },
         "properties": {
@@ -2111,7 +2161,7 @@
             "type": "string",
             "description": "Brand name"
           },
-          "id": {
+          "code": {
             "type": "string",
             "description": "Brand identifier"
           },
@@ -2140,7 +2190,7 @@
         },
         "required": [
           "name",
-          "id",
+          "code",
           "store"
         ]
       },
@@ -2148,11 +2198,29 @@
         "description": "Corresponds to the quote price",
         "type": "object",
         "title": "Quote price",
+        "required": [
+          "taxExcludedAmount",
+          "currency"
+        ],
         "properties": {
-          "value": {
+          "taxExcludedAmount": {
             "type": "number",
             "format": "float",
-            "description": "Guide value of the price",
+            "description": "Tax excluded amount",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "taxIncludedAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Amount including VAT",
+            "exclusiveMinimum": true,
+            "minimum": 0
+          },
+          "taxAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Tax amount",
             "exclusiveMinimum": true,
             "minimum": 0
           },
@@ -2265,7 +2333,8 @@
       "currency": {
         "type": "string",
         "enum": [
-          "EUR"
+          "EUR",
+          "GBP"
         ],
         "description": "Currency, specifies the currency used.",
         "title": "Currency (currency)",
@@ -2308,12 +2377,11 @@
         }
       },
       "withoutContact": {
-        "required": [
-          "address",
-          "interval"
-        ],
+        "title": "Information on the picking or delivery address.",
+        "description": "Information on the picking or delivery address.",
+        "type": "object",
         "properties": {
-          "address": {
+          "location": {
             "$ref": "#/components/schemas/addressWithoutSensitiveData"
           },
           "infos": {
@@ -2326,17 +2394,17 @@
             }
           }
         },
-        "title": "Information on the collection or delivery address",
-        "description": "Information on the collection or delivery address."
+        "required": [
+          "location",
+          "interval"
+        ]
       },
       "withContact": {
-        "required": [
-          "address",
-          "interval",
-          "contact"
-        ],
+        "title": "Information on the picking address.",
+        "description": "Information on the picking address.",
+        "type": "object",
         "properties": {
-          "address": {
+          "location": {
             "$ref": "#/components/schemas/address"
           },
           "infos": {
@@ -2352,17 +2420,18 @@
             "$ref": "#/components/schemas/contact"
           }
         },
-        "title": "Collection address information",
-        "description": "Collection address information."
-      },
-      "withContactAndLocalization": {
         "required": [
-          "address",
+          "location",
           "interval",
           "contact"
-        ],
+        ]
+      },
+      "withContactAndLocalization": {
+        "title": "Delivery address information",
+        "description": "Delivery address information",
+        "type": "object",
         "properties": {
-          "address": {
+          "location": {
             "$ref": "#/components/schemas/address"
           },
           "infos": {
@@ -2378,8 +2447,11 @@
             "$ref": "#/components/schemas/contactWithLocalization"
           }
         },
-        "title": "Delivery address information",
-        "description": "Delivery address information."
+        "required": [
+          "location",
+          "interval",
+          "contact"
+        ]
       },
       "postQuote": {
         "allOf": [
@@ -2410,19 +2482,19 @@
             "$ref": "#/components/schemas/postDeliveryInformations"
           },
           {
-            "required": [
-              "quoteId",
-              "picking",
-              "delivery"
-            ],
+            "type": "object",
             "properties": {
               "picking": {
-                "$ref": "#/components/schemas/withContact"
+                "$ref": "#/components/schemas/withContactAndLocalization"
               },
               "delivery": {
                 "$ref": "#/components/schemas/withContactAndLocalization"
               }
-            }
+            },
+            "required": [
+              "picking",
+              "delivery"
+            ]
           }
         ],
         "title": "Delivery request (postDelivery)",
@@ -2438,7 +2510,7 @@
             "referenceNumber": "65zq1d5qz1d56q1-456",
             "retailer": {
               "name": "Enseigne A",
-              "id": "ret123",
+              "code": "enseigne-a",
               "store": {
                 "id": "store123",
                 "name": "Magasin C",
@@ -2498,6 +2570,7 @@
             },
             "packages": [
               {
+                "id": 1,
                 "length": {
                   "value": 15,
                   "unit": "cm"
@@ -2559,6 +2632,9 @@
           },
           "tags": {
             "$ref": "#/components/schemas/tags"
+          },
+          "expectedPayment": {
+            "$ref": "./models/expectedPayment.yaml"
           }
         },
         "required": [
@@ -2584,7 +2660,7 @@
             },
             "retailer": {
               "name": "string",
-              "id": "string",
+              "code": "string",
               "store": {
                 "id": "string",
                 "name": "string",
@@ -2598,6 +2674,7 @@
             },
             "packages": [
               {
+                "id": 1,
                 "references": [
                   "string"
                 ],
@@ -2671,6 +2748,9 @@
           "quoteId": {
             "type": "string",
             "description": "Unique quote identifier of the initial order"
+          },
+          "expectedPayment": {
+            "$ref": "./models/expectedPayment.yaml"
           }
         },
         "required": [
@@ -2700,16 +2780,31 @@
             "type": "string",
             "description": "Delivery reference number"
           },
-          "packages": {
+          "parcels": {
             "type": "array",
             "description": "Information on the package",
             "items": {
               "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Identifiant du colis"
+                },
+                "packageReference": {
+                  "type": "string",
+                  "description": "Identifiant du paquet dans le colis"
+                },
+                "trackingId": {
+                  "type": "string",
+                  "description": "Identifiant du suivi du colis"
+                },
+                "barcode": {
+                  "$ref": "./models/barcode.yaml"
                 }
-              }
+              },
+              "required": [
+                "id"
+              ]
             }
           },
           "labels": {
@@ -2820,7 +2915,7 @@
             "type": "string",
             "description": "Label in base64 or URL to the label"
           },
-          "packageId": {
+          "parcelId": {
             "type": "string",
             "description": "Associated package identifier"
           }

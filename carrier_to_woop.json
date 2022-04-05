@@ -2,21 +2,21 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Carrier to Woop",
-    "description": "This document contains the technical information about Woop APIs for carriers. For any questions or clarifications, please contact the internal technical team.\n\nTo use Carrier to Woop APIs, you must use the confidential access codes provided when you created your carrier account on the platform.\n\nThe version currently available in the documentation is <b>Version 1.3.0</b>",
-    "version": "1.3.0"
+    "description": "This document contains the technical information about Woop APIs for carriers. For any questions or clarifications, please contact the internal technical team.\n\nTo use Carrier to Woop APIs, you must use the confidential access codes provided when you created your carrier account on the platform.\n\nThe version currently available in the documentation is <b>Version 1.6.0</b>",
+    "version": "1.6.0"
   },
   "servers": [
     {
-      "url": "car-api.recette.gcp.last-mile.fr",
-      "description": "Receipt URL"
+      "url": "https://carrier.last-mile.fr",
+      "description": "Production URL"
     },
     {
-      "url": "car-api.preprod.gcp.last-mile.fr",
-      "description": "Preprod URL"
+      "url": "https://car-api.preprod.gcp.last-mile.fr",
+      "description": "Pre-production URL"
     },
     {
-      "url": "carrier.last-mile.fr",
-      "description": "Prod URL"
+      "description": "Staging URL",
+      "url": "https://car-api.recette.gcp.last-mile.fr"
     }
   ],
   "paths": {
@@ -38,7 +38,7 @@
     },
     "/deliveries/{deliveryId}/status": {
       "put": {
-        "description": "Allows you to update the status of an order for a delivery in progress. The information is sent to Woop to track the progress of the order.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow and status list</a>",
+        "description": "Delivery or package status update",
         "operationId": "putDeliveryStatus",
         "parameters": [
           {
@@ -57,23 +57,26 @@
                 "type": "object",
                 "properties": {
                   "status": {
-                    "$ref": "#/components/schemas/deliveryStatus"
+                    "type": "string",
+                    "description": "Statut de livraison"
                   },
                   "date": {
                     "type": "string",
-                    "format": "datetime"
+                    "format": "datetime",
+                    "description": "Date de changement de statut"
                   },
                   "comment": {
                     "type": "string"
+                  },
+                  "parcelId": {
+                    "type": "string",
+                    "description": "Id du colis"
                   },
                   "team": {
                     "$ref": "#/components/schemas/team"
                   },
                   "additionalData": {
                     "$ref": "#/components/schemas/additionalData"
-                  },
-                  "appointment": {
-                    "$ref": "#/components/schemas/appointment"
                   }
                 },
                 "required": [
@@ -83,9 +86,9 @@
                 ]
               },
               "examples": {
-                "Livraison livrée conforme": {
+                "Mise à jour de statut d'une livraison": {
                   "value": {
-                    "status": "DELIVERY_DELIVERED_OK",
+                    "status": "delivered",
                     "date": "2019-11-27T10:30:00+0000",
                     "comment": "I waited for 15 mins",
                     "team": {
@@ -103,15 +106,12 @@
                     ]
                   }
                 },
-                "Livraison replanifiée": {
+                "Mise à jour de statut d'un colis d'une livraison": {
                   "value": {
-                    "status": "DELIVERY_REPLANNED",
+                    "status": "pickup_ok",
                     "date": "2019-11-27T10:30:00+0000",
                     "comment": "Customer not present.",
-                    "appointment": {
-                      "start": "2021-03-12T10:30:00+0000",
-                      "end": "2021-03-12T11:30:00+0000"
-                    }
+                    "parcelId": "HBHGS19"
                   }
                 }
               }
@@ -119,7 +119,7 @@
           }
         },
         "responses": {
-          "204": {
+          "202": {
             "description": "Request processed successfully"
           },
           "400": {
@@ -143,136 +143,23 @@
           },
           "401": {
             "description": "You are not allowed to access this item."
-          },
-          "403": {
-            "description": "The status can no longer be updated"
           },
           "404": {
             "description": "The 'deliveryId' was not found"
-          },
-          "409": {
-            "description": "An action is already in progress on this delivery"
           }
         },
-        "summary": "Mise à jour de statut d'une livraison",
+        "summary": "Status update of a delivery or a package",
         "tags": [
-          "Livraison"
-        ]
-      }
-    },
-    "/deliveries/{deliveryId}/packages/{packageId}/status": {
-      "put": {
-        "description": "Allows you to update the status of a specific package for an order in progress. The information is sent to Woop to track the progress of the package.\n<a href=\"/docs/carrier/docs/Modèles/Statuts-de-livraison.md\">Workflow and status list</a>",
-        "operationId": "putPackageStatus",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/apiVersion"
-          },
-          {
-            "$ref": "#/components/parameters/pathDeliveryId"
-          },
-          {
-            "in": "path",
-            "name": "packageId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Package ID"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "description": "Contains new information on the status of the package",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "$ref": "#/components/schemas/deliveryStatus"
-                  },
-                  "date": {
-                    "type": "string",
-                    "format": "datetime"
-                  },
-                  "comment": {
-                    "type": "string"
-                  },
-                  "team": {
-                    "$ref": "#/components/schemas/team"
-                  }
-                },
-                "required": [
-                  "status",
-                  "date",
-                  "comment"
-                ]
-              },
-              "examples": {
-                "Livraison livrée conforme": {
-                  "value": {
-                    "status": "DELIVERY_DELIVERED_OK",
-                    "date": "2019-11-27T10:30:00+0000",
-                    "comment": "I waited outside for 5 mins.",
-                    "team": {
-                      "members": [
-                        {
-                          "id": "ZER784"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Request processed successfully"
-          },
-          "400": {
-            "description": "Missing and/or incorrect items in the body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/badRequest"
-                },
-                "examples": {
-                  "Exemple": {
-                    "value": {
-                      "reasons": [
-                        "Missing argument 'xxxxx'"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "You are not allowed to access this item."
-          },
-          "403": {
-            "description": "The status can no longer be edited"
-          },
-          "404": {
-            "description": "The 'deliveryId' or 'packageId' was not found"
-          }
-        },
-        "summary": "Mise à jour du statut d'un colis",
-        "tags": [
-          "Livraison"
+          "Delivery"
         ]
       }
     },
     "/deliveries/{deliveryId}/deltaCosts": {
       "put": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "description": "Adding an additional charge or discount to a delivery.",
+        "description": "Adding of extra costs for a delivery.",
         "operationId": "putDeliveryDeltaCosts",
         "parameters": [
           {
@@ -284,20 +171,37 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Contains delta cost information.",
+          "description": "Contains extra costs informations.",
           "content": {
             "application/json": {
               "schema": {
                 "required": [
-                  "amount",
+                  "taxExcludedAmount",
                   "reason",
                   "currency",
                   "date"
                 ],
                 "properties": {
-                  "amount": {
+                  "taxExcludedAmount": {
                     "type": "number",
-                    "format": "float"
+                    "format": "float",
+                    "description": "Montant hors taxe",
+                    "exclusiveMinimum": true,
+                    "minimum": 0
+                  },
+                  "taxIncludedAmount": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Montant TTC",
+                    "exclusiveMinimum": true,
+                    "minimum": 0
+                  },
+                  "taxAmount": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Montant de la taxe",
+                    "exclusiveMinimum": true,
+                    "minimum": 0
                   },
                   "reason": {
                     "$ref": "#/components/schemas/deltaCostReason"
@@ -315,12 +219,14 @@
                 }
               },
               "examples": {
-                "Annulation tardive": {
+                "Late cancellation": {
                   "value": {
-                    "amount": 165.98,
+                    "taxExcludedAmount": 18.18,
+                    "taxIncludedAmount": 20,
+                    "taxAmount": 1.82,
                     "currency": "EUR",
                     "reason": "DELTACOST_LATE_CANCELLATION",
-                    "comment": "Order cancelled 5 mins before delivery.",
+                    "comment": "Order canceled 5 min before delivery.",
                     "date": "2019-11-27T10:30:00+0000"
                   }
                 }
@@ -355,13 +261,118 @@
             "description": "You are not allowed to access this item."
           },
           "403": {
+            "description": "Additional charges can no longer be sent"
+          },
+          "404": {
+            "description": "The 'deliveryId' was not found"
+          }
+        },
+        "summary": "Adding extra cost to a delivery"
+      }
+    },
+    "/deliveries/{deliveryId}/appointment": {
+      "put": {
+        "tags": [
+          "Delivery"
+        ],
+        "description": "Appointment date update",
+        "operationId": "putDeliveryAppointment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contains appointment information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "appointment",
+                  "date"
+                ],
+                "properties": {
+                  "appointment": {
+                    "$ref": "#/components/schemas/appointment"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "datetime",
+                    "description": "Date de la modification"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "parcelId": {
+                    "type": "string",
+                    "description": "Id du colis"
+                  }
+                }
+              },
+              "examples": {
+                "Change appointment date for a delivery": {
+                  "value": {
+                    "appointment": {
+                      "start": "2021-06-27T10:30:00+0000",
+                      "end": "2021-06-27T11:30:00+0000"
+                    },
+                    "comment": "Client absent",
+                    "date": "2021-06-27T10:30:00+0000"
+                  }
+                },
+                "Change appointment date for a parcel": {
+                  "value": {
+                    "appointment": {
+                      "start": "2021-06-27T10:30:00+0000",
+                      "end": "2021-06-27T11:30:00+0000"
+                    },
+                    "comment": "Client absent",
+                    "date": "2021-06-27T10:30:00+0000",
+                    "parcelId": "HBHGS19"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Request processed successfully"
+          },
+          "400": {
+            "description": "Missing and/or incorrect items in the body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not allowed to access this item."
+          },
+          "403": {
             "description": "Additional charges can no longer be issued"
           },
           "404": {
             "description": "The 'deliveryId' was not found"
           }
         },
-        "summary": "Ajout de frais supplémentaire ou de remise d'une livraison"
+        "summary": "Mise à jour de la date de rendez-vous"
       }
     },
     "/deliveries/{deliveryId}/closure": {
@@ -459,8 +470,9 @@
     "/deliveries/{deliveryId}/events": {
       "post": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
+        "deprecated": true,
         "description": "Adding a delivery event.",
         "operationId": "postDeliveryEvent",
         "parameters": [
@@ -539,7 +551,7 @@
                     "type": "EVENT_TYPE_SMS",
                     "date": "2019-11-27T10:30:00+0000",
                     "subject": "DELIVERY_INIT",
-                    "message": "Bonjour, votre commande a bien été confirmée."
+                    "message": "Hello, your order has been confirmed."
                   }
                 }
               }
@@ -594,17 +606,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "callbacks"
-                ],
                 "properties": {
                   "callbacks": {
                     "type": "object",
-                    "required": [
-                      "quote",
-                      "delivery",
-                      "cancelDelivery"
-                    ],
                     "properties": {
                       "quote": {
                         "type": "object",
@@ -618,8 +622,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see woop to carrier)",
-                            "example": "1.4.0"
+                            "description": "Hello, your order has been confirmed.",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -636,7 +673,40 @@
                           "version": {
                             "type": "string",
                             "description": "API version for this callback (see woop to carrier)",
-                            "example": "1.4.0"
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -652,8 +722,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -669,8 +772,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -683,8 +819,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -700,8 +869,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -717,8 +919,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Authentication for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Headers for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -734,8 +969,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -751,8 +1019,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       },
@@ -768,8 +1069,41 @@
                           },
                           "version": {
                             "type": "string",
-                            "description": "API version for this callback (see lastmile_to_carrier)",
-                            "example": "1.4.0"
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
                           }
                         }
                       }
@@ -781,6 +1115,7 @@
                     "example": "XMLAdapter"
                   },
                   "headers": {
+                    "description": "Headers pour tous les callbacks",
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -799,6 +1134,7 @@
                     }
                   },
                   "auth": {
+                    "description": "Authentification pour tous les callbacks",
                     "oneOf": [
                       {
                         "$ref": "#/components/schemas/postSubscriptionBasic"
@@ -819,23 +1155,23 @@
                     "callbacks": {
                       "quote": {
                         "url": "https://my_url/quote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "delivery": {
                         "url": "https://my_url/delivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelDelivery": {
                         "url": "https://my_url/cancelDelivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelQuote": {
                         "url": "https://my_url/cancelQuote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "score": {
                         "url": "https://my_url/score",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       }
                     },
                     "headers": [
@@ -857,27 +1193,27 @@
                     "callbacks": {
                       "quote": {
                         "url": "https://my_url/quote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "delivery": {
                         "url": "https://my_url/delivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelDelivery": {
                         "url": "https://my_url/cancelDelivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelQuote": {
                         "url": "https://my_url/cancelQuote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "score": {
                         "url": "https://my_url/score",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "price": {
                         "url": "https://my_url/price",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       }
                     },
                     "auth": {
@@ -896,23 +1232,23 @@
                     "callbacks": {
                       "quote": {
                         "url": "https://my_url/quote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "delivery": {
                         "url": "https://my_url/delivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelDelivery": {
                         "url": "https://my_url/cancelDelivery",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "cancelQuote": {
                         "url": "https://my_url/cancelQuote",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       },
                       "score": {
                         "url": "https://my_url/score",
-                        "version": "1.4.0"
+                        "version": "1.5.0"
                       }
                     },
                     "auth": {
@@ -1053,6 +1389,50 @@
           }
         },
         "summary": "Ajout d'un document d'une livraison"
+      }
+    },
+    "/deliveries/{deliveryId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "45646fds-s4s44s-7e4e1d5d5"
+          },
+          "name": "deliveryId",
+          "in": "path",
+          "required": true,
+          "description": "Identifiant de la livraison à supprimer"
+        }
+      ],
+      "delete": {
+        "summary": "Suppression/Annulation d'une livraison",
+        "tags": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+          },
+          "403": {
+            "description": "Impossible de supprimer cette livraison (exemple: Livraison déjà supprimée)"
+          },
+          "404": {
+            "description": "Le 'deliveryId' n'a pas été trouvé"
+          }
+        },
+        "operationId": "delete-deliveries-deliveryId",
+        "description": "",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "1.5.0"
+            },
+            "in": "header",
+            "name": "x-api-version"
+          }
+        ]
       }
     }
   },
@@ -1442,7 +1822,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "example": "1.3.0"
+          "example": "1.5.0"
         }
       },
       "pathDeliveryId": {

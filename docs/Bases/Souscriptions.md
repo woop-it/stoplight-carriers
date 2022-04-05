@@ -4,333 +4,26 @@ The subscription system allows you to **subscribe to requests and events related
 
 For example: Request for a quote, request for a delivery, change of delivery status, etc.
 
-
 These requests and events are described in the **Woop to Carrier** documentation.
 
 ## Initiating subscriptions
 
+To subscribe to requests and events a first call to **the API [/subscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.json/paths/~1subscriptions/post)** is required.
 
-To subscribe to requests and events a first call to **the API [/subscriptions](https://woop.stoplight.io/docs/carrier/carrier_to_woop.v1.3.0.json/paths/~1subscriptions/post)** is required.
+## Callbacks
 
-The data to be sent is:
+`Callbacks` also called `webhooks` allow you to define the URL called for each request or event, various callbacks are available, **some of them are mandatory** :
 
-```json json_schema
-{
- "type": "object",
-  "description": "Subscription information",
-  "properties": {
-    "callbacks": {
-      "type": "object",
-      "required": [
-        "quote",
-        "delivery",
-        "cancelDelivery"
-      ],
-      "properties": {
-        "quote": {
-          "type": "object",
-          "description": "Callback to receive quote requests",
-          "required": [
-            "url"
-          ],
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          }
-        },
-        "delivery": {
-          "type": "object",
-          "description": "Callback to receive delivery requests"
-          "required": [
-            "url"
-          ],
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          }
-        },
-        "cancelDelivery": {
-          "type": "object",
-          "description": "Callback to receive requests to cancel a delivery"
-          "required": [
-            "url"
-          ],
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          }
-        },
-        "cancelQuote": {
-          "type": "object",
-          "description": "Callback to receive requests to cancel a quote",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          },
-          "required": [
-            "url"
-          ]
-        },
-        "score": {
-          "type": "object",
-          "description": "Callback to receive customer ratings",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          }
-        },
-        "update": {
-          "type": "object",
-          "description": "Callback to receive delivery update requests",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          },
-          "required": [
-            "url"
-          ]
-        },
-        "pickupPoint": {
-          "type": "object",
-          "description": "Callback to receive relay point requests",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          },
-          "required": [
-            "url"
-          ]
-        },
-        "label": {
-          "type": "object",
-          "description": "Callback to receive label requests",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version",
-              "example": "1.4.0"
-            }
-          },
-          "required": [
-            "url"
-          ]
-        },
-        "status": {
-          "type": "object",
-          "description": "Callback to receive requests to retrieve the status of a 'package'",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "URL of the API route'"
-            },
-            "version": {
-              "type": "string",
-              "description": "API version for this callback",
-              "example": "1.4.0"
-            }
-          },
-          "required": [
-            "url"
-          ]
-        }
-      }
-    },
-    "adapter": {
-      "type": "string",
-      "description": "Allows you to indicate the name of the service used in WOOP to convert the data format of selected Carrier APIs.",
-      "example": "XMLAdapter"
-    },
-    "headers": {
-      "type": "array",
-      "description": "Additional HTTP headers to be sent during callbacks",
-      "items": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "Key/name of the header"
-          },
-          "value": {
-            "type": "string",
-            "description": "Value of the header"
-          }
-        },
-        "required": [
-          "key",
-          "value"
-        ]
-      }
-    },
-    "auth": {
-      "description": "Configuring the authentication of your API",
-      "oneOf": [
-        {
-           "type": "object",
-            "description": "To be defined if the required API authentication method is basic",
-            "required": [
-              "username",
-              "password"
-            ],
-            "properties": {
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "description": "To be defined if the required API authentication method is OAuth2",
-          "required": [
-            "client_id",
-            "client_secret",
-            "tokenEndPoint"
-          ],
-          "properties": {
-            "client_id": {
-              "type": "string"
-            },
-            "client_secret": {
-              "type": "string"
-            },
-            "audience": {
-              "type": "string"
-            },
-            "grant_type": {
-              "type": "string"
-            },
-            "tokenEndPoint": {
-              "type": "string",
-              "description": "URL to retrieve the access token according to the clientId and the clientSecret"
-            }
-          }
-        },
-        {
-           "type": "object",
-            "description": "To be defined if the authentication method gives a bearer token from a username/password",
-            "required": [
-              "username",
-              "password",
-              "endpoint"
-            ],
-            "properties": {
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "endpoint": {
-                "type": "string",
-                "description": "URL to retrieve the access token"
-              }
-            }
-          }
-        }
-      ]
-    }
-  },
-  "required": [
-    "callbacks"
-  ]
-}
-```
-
-### Callbacks
-
-  `Callbacks` also called `webhooks` allow you to define the URL called for each request or event, various callbacks are available, **some of them are mandatory** :
-
-
-Callback  | Description | Interface contract | Required
----------|----------|---------
-quote | Callback to receive quote requests | [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes/post) | **YES**
-delivery | Callback to receive delivery requests | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries/post) | **YES**
-cancelDelivery | Callback to receive requests to cancel a delivery| [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/delete) | **YES**
-cancelQuote | Callback to receive requests to cancel a quote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes~1%7BquoteId%7D/delete) | NO
-score | Callback to receive customer ratings | [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NO
-update | Callback to receive delivery update requests | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NO
-pickupPoint | Callback to receive relay point requests | [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1pickupPoints/get) | NO
-label | Callback to receive label requests | [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1labels~1{labelId}/get) | NO
-
-
-**Description of a callback**
-
-```json json_schema
-{
-  "type": "object",
-  "description": "Callback"
-  "required": [
-    "url"
-  ],
-  "properties": {
-    "url": {
-      "type": "string",
-      "description": "URL of the API route"
-    }, 
-    "version": {
-      "type": "string",
-      "description": "API version for this callback",
-      "example": "1.4.0"
-    }
-  }
-}
-```
+| Callback       | Description                                       | Interface contract                                                                                                                            | Required |
+| -------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| quote          | Callback to receive quote requests                | [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1quotes/post)                                                    | **YES**  |
+| delivery       | Callback to receive delivery requests             | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1deliveries/post)                                            | **YES**  |
+| cancelDelivery | Callback to receive requests to cancel a delivery | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1deliveries~1%7BdeliveryId%7D/delete)           | **YES**  |
+| cancelQuote    | Callback to receive requests to cancel a quote    | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1quotes~1%7BquoteId%7D/delete)                         | NO       |
+| score          | Callback to receive customer ratings              | [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NO       |
+| update         | Callback to receive delivery update requests      | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1deliveries~1%7BdeliveryId%7D/patch)            | NO       |
+| pickupPoint    | Callback to receive relay point requests          | [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1pickupPoints/get)                                         | NO       |
+| label          | Callback to receive label requests                | [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1labels~1{labelId}/get)                                | NO       |
 
 **URL**
 
@@ -340,10 +33,10 @@ URL of the API route where the Woop platform will send the callback event.
 
 > **URL variables**
 >
-> To retrieve the deliveryId or quoteId in your APIs, it is highly recommended to include the variables `{deliveryId}` and `{quoteId}`  ' in your callback URLs.
+> To retrieve the deliveryId or quoteId in your APIs, it is highly recommended to include the variables `{deliveryId}` and `{quoteId}` in your callback URLs.
 > These variables will be replaced by the real values during the calls.
 >
-> Exemple: **https://my_url/deliveries/{deliveryId}** 
+> Exemple: **https://my_url/deliveries/{deliveryId}**
 
 **Version**
 
@@ -351,30 +44,34 @@ Targeted API version of the callback.
 
 Like all our APIs, callbacks are versioned, **when you subscribe to a callback you must specify which version**.
 
-The version is found in the documentation [Woop to Carrier](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json).
+The version is found in the documentation [Woop to Carrier](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json).
 
 Example:
+
 ```json
 {
   "callbacks": {
-    "status" : {
+    "status": {
       "url": "https://my_url/quotes",
-      "version": "1.4.0"
+      "version": "1.6.0"
     }
   }
 }
 ```
-### Adapt
-
-Value to be entered at our request.
 
 ### Headers
 
 If your API needs additional HTTP headers, you can add multiple key-value pairs to be sent on each call.
 
+When `headers` is on top-level in body, they are sent for each callback:
+
 Example:
+
 ```json
 {
+  "callback": {
+    ...
+  },
   "headers" : [
     {
       "x-api-key": "78YJHBG738knkh3"
@@ -383,18 +80,42 @@ Example:
 }
 ```
 
+You can also add headers for a specific callback. The headers are sent only for this callback.
+
+Example:
+
+```json
+{
+  "callback": {
+    "quote": {
+      "url": "https://my-quote.com",
+      "headers": [
+        {
+          "x-api-key": "ABCDEFG"
+        }
+      ]
+    }
+  }
+}
+```
+
+<!-- theme: info -->
+
+> When `headers` are defined both on top-level and specific callback level, `headers` sent are **specific callback level**, top-level `headers` are ignored.
+
 ### Auth
 
 Your API can be configured if it requires authentication.
 
 Three authentication methods are available:
 
-
 <!--
 type: tab
 title: Basic method
 -->
+
 Configuration:
+
 ```json
 {
   "auth": {
@@ -405,14 +126,18 @@ Configuration:
   }
 }
 ```
+
 An HTTP header `Authorisation: Basic YWRtaW46MTIzNA==` will be sent to your API.
 
 `YWRtaW46MTIzNA==` Which is the Base64 representation of the text admin:1234
+
 <!--
 type: tab
 title: OAuth2 method
 -->
+
 Configuration:
+
 ```json
 {
   "auth": {
@@ -426,13 +151,16 @@ Configuration:
   }
 }
 ```
+
 A token exchange that complies with the [OAuth2 client_credentials](https://tools.ietf.org/html/rfc6749#section-4.4) will be made for each call.
 
 <!--
 type: tab
 title: Token method
 -->
+
 Configuration:
+
 ```json
 {
   "auth": {
@@ -445,22 +173,31 @@ Configuration:
   }
 }
 ```
+
 This method will make a call **HTTP POST** to the configured endpoint with the following parameters:
+
 ```json
 {
   "username": "{username}",
   "password": "{password}"
 }
 ```
-The called endpoint should return a token: 
+
+The called endpoint should return a token:
+
 ```json
 {
-  "token": "87YB1K2B312K3",
+  "token": "87YB1K2B312K3"
 }
 ```
+
 This token will be sent in the HTTP header `Authorisation: Bearer {token}`
+
 <!-- type: tab-end -->
 
+<!-- theme: info -->
+
+> Like `headers`, `auth` can be declared on top-level or in specific callback. When `auth` are defined both on top-level and specific callback level, `auth` used are those of **specific callback level**, top-level `auth` are ignored.
 
 ### Example subscriptions
 
@@ -468,21 +205,23 @@ This token will be sent in the HTTP header `Authorisation: Bearer {token}`
 type: tab
 title: Example 1
 -->
+
 I subscribe to the required subscriptions, my API is protected by a simple API Key.
+
 ```json
 {
   "callbacks": {
     "quote": {
       "url": "https://my_url/quotes",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "delivery": {
       "url": "https://my_url/deliveries",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "cancelDelivery": {
       "url": "https://my_url/deliveries/{deliveryId}",
-      "version": "1.4.0"
+      "version": "1.5.0"
     }
   },
   "headers": [
@@ -497,37 +236,80 @@ I subscribe to the required subscriptions, my API is protected by a simple API K
 type: tab
 title: Example 2
 -->
+
 I subscribe to the required subscriptions, my API is protected by authentication, it is possible to configure it OAuth2.
+
 ```json
 {
   "callbacks": {
     "quote": {
       "url": "https://my_url/quotes",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "delivery": {
       "url": "https://my_url/deliveries",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "cancelDelivery": {
       "url": "https://my_url/deliveries/{deliveryId}",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "cancelQuote": {
       "url": "https://my_url/quotes/{quoteId}",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "score": {
       "url": "https://my_url/deliveries/{deliveryId}/score",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "update": {
       "url": "https://my_url/deliveries/deliveries/{deliveryId}",
-      "version": "1.4.0"
+      "version": "1.5.0"
     }
     "pickupPoint": {
       "url": "https://my_url/pickupPoints",
-      "version": "1.4.0"
+      "version": "1.5.0"
+    }
+  },
+  "auth": {
+    "oauth2": {
+      "client_id": "XXXXXXXXXXX",
+      "client_secret": "xxxxxxXXXXXXx",
+      "audience": "my-audience.fr",
+      "grant_type": "client_credentials",
+      "tokenEndPoint": "https://my-token-url.fr"
+    }
+  }
+}
+```
+
+<!--
+type: tab
+title: Exemple 3
+-->
+
+I subscribe to some subscriptions, my API is protected by OAuth2, but `quote` callback requires a different authentication (oauth is not used for `quote` callback).
+
+```json
+{
+  "callbacks": {
+    "quote": {
+      "url": "https://my_partener/quotes",
+      "version": "1.5.0",
+      "auth": {
+        "basic": {
+          "username": "admin",
+          "password": "1234"
+        }
+      }
+    },
+    "delivery": {
+      "url": "https://my_url/deliveries",
+      "version": "1.5.0"
+    },
+    "cancelDelivery": {
+      "url": "https://my_url/deliveries/{deliveryId}",
+      "version": "1.5.0"
     }
   },
   "auth": {
@@ -543,24 +325,6 @@ I subscribe to the required subscriptions, my API is protected by authentication
 ```
 
 <!-- type: tab-end -->
-
-## Subscription implementation
-
-For each *callback* configured you must implement the interface contract linked to it.
-
-As a reminder:
-
-Callback  | Interface contract | Required
----------|----------|---------
-quote |  [/quotes](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes/post) | **YES**
-delivery | [/deliveries](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries/post) | **YES**
-cancelDelivery | [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/delete) | **YES**
-cancelQuote | [/quotes/{quoteId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1quotes~1%7BquoteId%7D/delete) | NO
-score |  [/deliveries/{deliveryId}/score](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D~1score/put) | NO
-update |  [/deliveries/{deliveryId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries~1%7BdeliveryId%7D/patch) | NO
-pickupPoint |  [/pickupPoints](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1pickupPoints/get) | NO
-label |  [/labels/{labelId}](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1labels~1{labelId}/get) | NO
-
 
 <!-- theme: warning -->
 

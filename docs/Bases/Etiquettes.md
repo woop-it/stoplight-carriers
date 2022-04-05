@@ -1,8 +1,9 @@
 # Carrier labels
 
-Carrier labels can be provided to us when the [delivery request is returned](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1deliveries/post) :
+Carrier labels can be provided to us in response on the [delivery request](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1deliveries/post) :
 
 ### Data schema
+
 ```json json_schema
 {
   "description": "Carrier label",
@@ -38,9 +39,10 @@ Carrier labels can be provided to us when the [delivery request is returned](htt
 }
 }
 ```
-**Several possibilities:** 
 
-*Label in base64*
+**Several possibilities:**
+
+_Label in base64_
 
 ```json
 {
@@ -52,7 +54,8 @@ Carrier labels can be provided to us when the [delivery request is returned](htt
 }
 ```
 
-*Label with URL*
+_Label with URL_
+
 ```json
 {
   "id": "LBL002",
@@ -61,20 +64,19 @@ Carrier labels can be provided to us when the [delivery request is returned](htt
   "value": "http://url.com",
   "packageId": "5q5f5q4zb"
 }
-
 ```
-*Label to be retrieved later*
+
+_Label to be retrieved later_
+
 ```json
 {
-  "id": "LBL003", 
+  "id": "LBL003",
   "packageId": "5q5f5q4zb"
 }
 ```
+
 <!-- theme: warning -->
 
 > ### Note
 >
-> If you provide a **Label to be retrieved later** you must subscribe to the [**callback label**](https://woop.stoplight.io/docs/carrier/docs/Bases/Souscriptions.md#callbacks) and implement the function [**Retrieving a label **](https://woop.stoplight.io/docs/carrier/woop_to_carrier.v1.4.1.json/paths/~1labels~1{labelId}/get).
-
-                        
-                        
+> If you provide a **Label to be retrieved later** you must subscribe to the [**callback label**](https://woop.stoplight.io/docs/carrier/docs/Bases/Souscriptions.md#callbacks) and implement the function [**Retrieving a label**](https://woop.stoplight.io/docs/carrier/woop_to_carrier.json/paths/~1labels~1{labelId}/get).
