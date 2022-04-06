@@ -9,7 +9,7 @@
     "/quotes": {
       "post": {
         "tags": [
-          "Devis"
+          "Quote"
         ],
         "description": "This method is used to receive requests for quotes. If the quote is validated, the information transmitted will be used to create the delivery order using POST/deliveries. ",
         "operationId": "postQuote",
@@ -227,7 +227,7 @@
                         "city": "Lille",
                         "country": "FR"
                       },
-                      "infos": "Travaux sur le boulevard.",
+                      "infos": "Doorbell out of order.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -398,13 +398,13 @@
             }
           }
         },
-        "summary": "Demande de devis"
+        "summary": "Quote request"
       }
     },
     "/quotes/{quoteId}": {
       "delete": {
         "tags": [
-          "Devis"
+          "Quote"
         ],
         "description": "Use this method to receive requests to cancel a quote.",
         "operationId": "deleteQuote",
@@ -424,7 +424,7 @@
             "description": "The quote identifier 'quoteId' does not exist"
           }
         },
-        "summary": "Annulation d'un devis"
+        "summary": "Cancel quote"
       },
       "parameters": [
         {
@@ -484,7 +484,7 @@
                         "city": "La Madeleine",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Doorbell out of order.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -588,7 +588,7 @@
                         "city": "La Madeleine",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Doorbell out of order.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -692,7 +692,7 @@
                         "city": "La Madeleine",
                         "country": "FR"
                       },
-                      "infos": "Travaux en ce moment attention.",
+                      "infos": "Doorbell out of order.",
                       "interval": [
                         {
                           "start": "2019-12-04T12:30:00+0000",
@@ -782,12 +782,12 @@
                   "$ref": "#/components/schemas/deliveryCreated"
                 },
                 "examples": {
-                  "Exemple par défaut": {
+                  "Default example": {
                     "value": {
                       "deliveryId": "5q4f5q4zd"
                     }
                   },
-                  "Exemple avec suivi de colis": {
+                  "Example with parcel tracking": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
                       "parcels": [
@@ -798,13 +798,13 @@
                       ]
                     }
                   },
-                  "Exemple avec référence de livraison": {
+                  "Example with delivery reference": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
                       "externalReference": "12254-AX"
                     }
                   },
-                  "Exemple avec étiquettes de livraison": {
+                  "Example with delivery labels": {
                     "value": {
                       "deliveryId": "5q4f5q4zd",
                       "labels": [
@@ -894,15 +894,15 @@
           }
         },
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
-        "summary": "Demande de livraison"
+        "summary": "Delivery request"
       }
     },
     "/deliveries/{deliveryId}": {
       "delete": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
         "description": "This method allows you to send a request to cancel a delivery and confirm it with the carrier. The carrier does not need to request a cancellation on receipt of this request.",
         "operationId": "deleteDelivery",
@@ -1023,11 +1023,11 @@
             "description": "The 'deliveryId' does not exist"
           }
         },
-        "summary": "Annulation d'une livraison"
+        "summary": "Delete a delivery"
       },
       "patch": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
         "description": "This method is used to receive requests to update a delivery.",
         "operationId": "patchDelivery",
@@ -1189,13 +1189,13 @@
             }
           }
         },
-        "summary": "Mise à jour d'une livraison"
+        "summary": "Update delivery status"
       }
     },
     "/deliveries/{deliveryId}/score": {
       "put": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
         "description": "This method allows you to receive notification of a new delivery rating.",
         "operationId": "putDeliveryScore",
@@ -1224,8 +1224,8 @@
                     ],
                     "comment": [
                       {
-                        "answer": "Pas de commentaires !",
-                        "question": "Avez-vous des suggestions à nous partager afin de nous aider à améliorer notre service de livraison ?"
+                        "answer": "No comment !",
+                        "question": "Do you have any suggestions to share with us to help us improve our delivery service?"
                       }
                     ]
                   }
@@ -1270,15 +1270,15 @@
             "description": "The 'deliveryId' does not exist"
           }
         },
-        "summary": "Ajout d'une note d'une livraison"
+        "summary": "New delivery rating"
       }
     },
     "/pickupPoints": {
       "get": {
-        "summary": "Recherche de points relais",
+        "summary": "Relay points",
         "deprecated": true,
         "tags": [
-          "Point Relais"
+          "Relay points"
         ],
         "responses": {
           "200": {
@@ -1519,11 +1519,11 @@
     },
     "/labels/{labelId}": {
       "get": {
-        "summary": "Récupération d'une étiquette",
+        "summary": "Retrieving a label",
         "description": "Retrieving a label in the requested format",
         "operationId": "getLabelById",
         "tags": [
-          "Étiquette"
+          "Label"
         ],
         "parameters": [
           {
@@ -2046,8 +2046,8 @@
             ],
             "comment": [
               {
-                "answer": "Non, livraison correcte.",
-                "question": "Avez-vous des suggestions à nous partager afin de nous aider à améliorer notre service de livraison ?"
+                "answer": "No, correct delivery.",
+                "question": "Do you have any suggestions to share with us to help us improve our delivery service?"
               }
             ]
           }
@@ -2537,7 +2537,7 @@
                 "city": "La Madeleine",
                 "country": "FR"
               },
-              "infos": "Travaux en ce moment attention.",
+              "infos": "Doorbell out of order.",
               "interval": [
                 {
                   "start": "2019-12-04T12:30:00+0000",
@@ -2789,15 +2789,15 @@
               "properties": {
                 "id": {
                   "type": "string",
-                  "description": "Identifiant du colis"
+                  "description": "Parcel identifier"
                 },
                 "packageReference": {
                   "type": "string",
-                  "description": "Identifiant du paquet dans le colis"
+                  "description": "Package reference in parcel"
                 },
                 "trackingId": {
                   "type": "string",
-                  "description": "Identifiant du suivi du colis"
+                  "description": "Tracking parcel identifier"
                 },
                 "barcode": {
                   "$ref": "./models/barcode.yaml"
@@ -2931,8 +2931,8 @@
         "type": "object",
         "x-examples": {
           "Exemple": {
-            "answer": "Pas de commentaires !",
-            "question": "Avez-vous des suggestions à nous partager afin de nous aider à améliorer notre service de livraison ?"
+            "answer": "No comment !",
+            "question": "Do you have any suggestions to share with us to help us improve our delivery service?"
           }
         },
         "description": "Additional field for customer comments",
@@ -3058,19 +3058,19 @@
   "servers": [],
   "tags": [
     {
-      "name": "Livraison"
+      "name": "Delivery"
     },
     {
-      "name": "Devis"
+      "name": "Quote"
     },
     {
-      "name": "Point Relais"
+      "name": "Relay points"
     },
     {
-      "name": "Colis"
+      "name": "Parcel"
     },
     {
-      "name": "Étiquette"
+      "name": "Label"
     }
   ]
 }

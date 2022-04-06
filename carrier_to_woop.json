@@ -58,19 +58,19 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "description": "Statut de livraison"
+                    "description": "Delivery status"
                   },
                   "date": {
                     "type": "string",
                     "format": "datetime",
-                    "description": "Date de changement de statut"
+                    "description": "Status real datetime"
                   },
                   "comment": {
                     "type": "string"
                   },
                   "parcelId": {
                     "type": "string",
-                    "description": "Id du colis"
+                    "description": "Parcel identifier"
                   },
                   "team": {
                     "$ref": "#/components/schemas/team"
@@ -86,7 +86,7 @@
                 ]
               },
               "examples": {
-                "Mise à jour de statut d'une livraison": {
+                "Update delivery status": {
                   "value": {
                     "status": "delivered",
                     "date": "2019-11-27T10:30:00+0000",
@@ -106,7 +106,7 @@
                     ]
                   }
                 },
-                "Mise à jour de statut d'un colis d'une livraison": {
+                "Update parcel status": {
                   "value": {
                     "status": "pickup_ok",
                     "date": "2019-11-27T10:30:00+0000",
@@ -185,21 +185,21 @@
                   "taxExcludedAmount": {
                     "type": "number",
                     "format": "float",
-                    "description": "Montant hors taxe",
+                    "description": "Excluded tax amount",
                     "exclusiveMinimum": true,
                     "minimum": 0
                   },
                   "taxIncludedAmount": {
                     "type": "number",
                     "format": "float",
-                    "description": "Montant TTC",
+                    "description": "Amount including tax",
                     "exclusiveMinimum": true,
                     "minimum": 0
                   },
                   "taxAmount": {
                     "type": "number",
                     "format": "float",
-                    "description": "Montant de la taxe",
+                    "description": "Tax amount",
                     "exclusiveMinimum": true,
                     "minimum": 0
                   },
@@ -302,7 +302,7 @@
                   "date": {
                     "type": "string",
                     "format": "datetime",
-                    "description": "Date de la modification"
+                    "description": "Datetime of this modification"
                   },
                   "comment": {
                     "type": "string"
@@ -320,7 +320,7 @@
                       "start": "2021-06-27T10:30:00+0000",
                       "end": "2021-06-27T11:30:00+0000"
                     },
-                    "comment": "Client absent",
+                    "comment": "Absent customer",
                     "date": "2021-06-27T10:30:00+0000"
                   }
                 },
@@ -330,7 +330,7 @@
                       "start": "2021-06-27T10:30:00+0000",
                       "end": "2021-06-27T11:30:00+0000"
                     },
-                    "comment": "Client absent",
+                    "comment": "Absent customer",
                     "date": "2021-06-27T10:30:00+0000",
                     "parcelId": "HBHGS19"
                   }
@@ -372,13 +372,13 @@
             "description": "The 'deliveryId' was not found"
           }
         },
-        "summary": "Mise à jour de la date de rendez-vous"
+        "summary": "Appointment date update"
       }
     },
     "/deliveries/{deliveryId}/closure": {
       "post": {
         "tags": [
-          "Livraison"
+          "Delivery"
         ],
         "description": "Adding billing information for a delivery.",
         "operationId": "postDeliveryClosure",
@@ -464,7 +464,7 @@
             "description": "The 'deliveryId' was not found"
           }
         },
-        "summary": "Ajout d'informations de facturation d'une livraison"
+        "summary": "Adding billing information for a delivery"
       }
     },
     "/deliveries/{deliveryId}/events": {
@@ -588,7 +588,7 @@
             "description": "The 'deliveryId' was not found"
           }
         },
-        "summary": "Ajout d'un évènement d'une livraison"
+        "summary": "Adding a delivery event"
       }
     },
     "/subscriptions": {
@@ -1241,7 +1241,7 @@
             "description": "You are not allowed to access this item."
           }
         },
-        "summary": "Ajout de souscriptions",
+        "summary": "Subscription management",
         "tags": [
           "Souscriptions"
         ]
@@ -1338,7 +1338,7 @@
             "description": "The 'deliveryId' was not found"
           }
         },
-        "summary": "Ajout d'un document d'une livraison"
+        "summary": "Adding a delivery document"
       }
     },
     "/deliveries/{deliveryId}": {
@@ -1351,24 +1351,24 @@
           "name": "deliveryId",
           "in": "path",
           "required": true,
-          "description": "Identifiant de la livraison à supprimer"
+          "description": "Identifier of the delivery to delete"
         }
       ],
       "delete": {
-        "summary": "Suppression/Annulation d'une livraison",
+        "summary": "Delete a delivery",
         "tags": [],
         "responses": {
           "204": {
             "description": "No Content"
           },
           "401": {
-            "description": "Vous n'êtes pas autorisé à accéder à cet élément."
+            "description": "You are not authorized to access this item."
           },
           "403": {
-            "description": "Impossible de supprimer cette livraison (exemple: Livraison déjà supprimée)"
+            "description": "Unable to delete this delivery (example: Delivery already deleted)"
           },
           "404": {
-            "description": "Le 'deliveryId' n'a pas été trouvé"
+            "description": "Delivery not found"
           }
         },
         "operationId": "delete-deliveries-deliveryId",
@@ -1795,7 +1795,7 @@
   },
   "tags": [
     {
-      "name": "Livraison"
+      "name": "Delivery"
     },
     {
       "name": "Health"
