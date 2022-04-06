@@ -1356,7 +1356,9 @@
       ],
       "delete": {
         "summary": "Delete a delivery",
-        "tags": [],
+        "tags": [
+          "Delivery"
+        ],
         "responses": {
           "204": {
             "description": "No Content"
