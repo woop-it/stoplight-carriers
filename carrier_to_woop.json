@@ -1115,7 +1115,7 @@
                     "example": "XMLAdapter"
                   },
                   "headers": {
-                    "description": "Headers pour tous les callbacks",
+                    "description": "Headers for all callbacks",
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -1134,7 +1134,7 @@
                     }
                   },
                   "auth": {
-                    "description": "Authentification pour tous les callbacks",
+                    "description": "Authentication for all callbacks",
                     "oneOf": [
                       {
                         "$ref": "#/components/schemas/postSubscriptionBasic"
@@ -1302,7 +1302,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Adding a document and its information in form-data format.\n\n[See the documentation for more information](https://woop.stoplight.io/docs/carrier/docs/Bases/Upload-dun-document.md)",
+        "description": "Adding a document and its information in form-data format.\n\n[See the documentation for more information](https://woop.stoplight.io/docs/carrier/docs/Basis/6.Delivery document.md)",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -1839,7 +1839,7 @@
       "Bearer": {
         "type": "oauth2",
         "flows": {},
-        "description": "[See documentation](https://woop.stoplight.io/docs/carrier/docs/Bases/Authentification.md)"
+        "description": "[See documentation](https://woop.stoplight.io/docs/carrier/docs/Basis/2.Authentication.md)"
       }
     }
   },
