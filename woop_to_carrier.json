@@ -2609,11 +2609,11 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Unique order identifier to be entered by the brand. 1 orderId = 1 order"
+            "description": "Order identifier to be entered by the brand. 1 orderId = 1 order"
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Order reference, store number. Can be the same as the orderId. The referenceNumber is not unique."
+            "description": "Order reference, store number. Can be the same as the orderId."
           },
           "productsPrice": {
             "$ref": "#/components/schemas/productPrice"
@@ -2721,11 +2721,11 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Unique order identifier to be entered by the brand. 1 orderId = 1 order"
+            "description": "Order identifier to be entered by the brand. 1 orderId = 1 order"
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Order reference, store number. Can be the same as the orderId. The referenceNumber is not unique. "
+            "description": "Order reference, store number. Can be the same as the orderId."
           },
           "productsPrice": {
             "$ref": "#/components/schemas/productPrice"
