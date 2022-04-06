@@ -907,56 +907,6 @@
                           }
                         }
                       },
-                      "price": {
-                        "type": "object",
-                        "required": [
-                          "url"
-                        ],
-                        "properties": {
-                          "url": {
-                            "type": "string",
-                            "description": "URL of the route to request a quote"
-                          },
-                          "version": {
-                            "type": "string",
-                            "description": "API version for this callback (see woop to carrier)",
-                            "example": "1.5.0"
-                          },
-                          "headers": {
-                            "description": "Authentication for this callback only",
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
-                              "properties": {
-                                "key": {
-                                  "type": "string"
-                                },
-                                "value": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "auth": {
-                            "description": "Headers for this callback only",
-                            "oneOf": [
-                              {
-                                "$ref": "#/components/schemas/postSubscriptionBasic"
-                              },
-                              {
-                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
-                              },
-                              {
-                                "$ref": "#/components/schemas/postSubscriptionToken"
-                              }
-                            ]
-                          }
-                        }
-                      },
                       "label": {
                         "type": "object",
                         "required": [
