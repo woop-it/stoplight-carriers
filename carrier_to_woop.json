@@ -1252,7 +1252,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Adding a document and its information in form-data format.\n\n[See the documentation for more information](https://woop.stoplight.io/docs/carrier/docs/Basis/6.Delivery document.md)",
+        "description": "Adding a document and its information in form-data format.\n\n[See the documentation for more information](https://woop.stoplight.io/docs/carrier/docs/Basis/6.Delivery%20document.md)",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {

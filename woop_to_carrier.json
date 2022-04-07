@@ -336,7 +336,7 @@
             }
           },
           "202": {
-            "description": "The carrier is unable to process the request for technical or functional reasons, and indicates this with a standard refusal reason and a precise comment.\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "The carrier is unable to process the request for technical or functional reasons, and indicates this with a standard refusal reason and a precise comment.\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Models/Refused%20reasons.md)",
             "content": {
               "application/json": {
                 "schema": {
@@ -834,7 +834,7 @@
             }
           },
           "205": {
-            "description": "The delivery is refused in the end, the possible reasons for refusal are entered in \"reasons\".\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Mod%C3%A8les/Motifs-de-refus.md)",
+            "description": "The delivery is refused in the end, the possible reasons for refusal are entered in \"reasons\".\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Models/Refused%20reasons.md)",
             "content": {
               "application/json": {
                 "schema": {
