@@ -1715,7 +1715,7 @@
         }
       },
       "additionalData": {
-        "description": "Allows the carrier to transmit personalised information/data to the brand. ",
+        "description": "Allows the carrier to transmit personalised information/data to the retailer. ",
         "type": "object",
         "x-examples": {
           "example": {

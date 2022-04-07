@@ -1915,7 +1915,7 @@
       },
       "package": {
         "type": "object",
-        "description": "Brand's handling unit. Generally used as a collection of products in the order grouped by package.",
+        "description": "Retailer's handling unit. Generally used as a collection of products in the order grouped by package.",
         "title": "Package (package)",
         "x-examples": {
           "example-1": {
@@ -1953,7 +1953,7 @@
         "properties": {
           "references": {
             "type": "array",
-            "description": "Internal package references if provided by the brand",
+            "description": "Internal package references if provided by the retailer",
             "items": {
               "type": "string"
             }
@@ -2153,17 +2153,17 @@
         "title": "Weight (mass)"
       },
       "retailer": {
-        "title": "Brand (retailer)",
-        "description": "Provides the information for the identification of the brand during a delivery. ",
+        "title": "Retailer",
+        "description": "Provides the information for the identification of the retailer during a delivery. ",
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "description": "Brand name"
+            "description": "Retailer name"
           },
           "code": {
             "type": "string",
-            "description": "Brand identifier"
+            "description": "Retailer identifier"
           },
           "store": {
             "type": "object",
@@ -2172,7 +2172,7 @@
               "name",
               "contact"
             ],
-            "description": "Brand store",
+            "description": "Retailer store",
             "properties": {
               "id": {
                 "type": "string",
@@ -2609,7 +2609,7 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Order identifier to be entered by the brand. 1 orderId = 1 order"
+            "description": "Order identifier to be entered by the retailer. 1 orderId = 1 order"
           },
           "referenceNumber": {
             "type": "string",
@@ -2623,7 +2623,7 @@
           },
           "packages": {
             "type": "array",
-            "description": "Brand's handling unit. Generally used as a collection of products in the order grouped by package",
+            "description": "Retailer's handling unit. Generally used as a collection of products in the order grouped by package",
             "items": {
               "$ref": "#/components/schemas/package"
             }
@@ -2721,7 +2721,7 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Order identifier to be entered by the brand. 1 orderId = 1 order"
+            "description": "Order identifier to be entered by the retailer. 1 orderId = 1 order"
           },
           "referenceNumber": {
             "type": "string",
