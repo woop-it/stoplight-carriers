@@ -4,7 +4,7 @@ The order goes through several statuses in succession. We identify the different
 
 ### Route of an order
 
-![get-started-icon](../../assets/images/Workflow_status_livraison.png)
+![get-started-icon](../../assets/images/workflow_delivery_status.png)
 
 ### List of possible delivery statuses
 
@@ -35,10 +35,10 @@ The order goes through several statuses in succession. We identify the different
 
 ### Use case
 
-![get-started-icon](../../assets/images/Workflow_annexe_livraison.png)
+![get-started-icon](../../assets/images/annexe_delivery_status.png)
 
 ### Rescheduling
 
 The rescheduling of delivery on a new date chosen by the customer or by the carrier must be done via the [dedicated] method (https://woop.stoplight.io/docs/carrier/b3A6MzYyMDcwODc).
 
-![get-started-icon](../../assets/images/Delivery_replanned.png)
+![get-started-icon](../../assets/images/replaned_delivery.png)
