@@ -4,7 +4,7 @@ Au cours de son cycle de vie la commande passe tour à tour par plusieurs statut
 
 ### Parcours d'une commande
 
-![get-started-icon](../../assets/images/Workflow_status_livraison.png)
+![get-started-icon](../../assets/images/delivery_status_workflow.png)
 
 ### Liste des statuts de livraison possible
 
@@ -34,4 +34,4 @@ Les statuts `DELIVERY_PICK_UP_PARTIALLY` et `DELIVERY_DELIVERED_PARTIALLY` sont 
 
 ### Gestion des retours et des erreurs
 
-![get-started-icon](../../assets/images/Workflow_retours.png)
+![get-started-icon](../../assets/images/return_workflow.png)
