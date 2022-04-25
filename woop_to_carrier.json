@@ -22,7 +22,7 @@
                 "$ref": "#/components/schemas/postQuote"
               },
               "examples": {
-                "Exemple par défaut": {
+                "Default example": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
@@ -101,7 +101,25 @@
                             "quantity": 1
                           }
                         ],
-                        "quantity": 2
+                        "quantity": 2,
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          },
+                          {
+                            "reference": "12356778",
+                            "barcode": {
+                              "value": "ERERBETHRJHR46457568563",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ]
                       }
                     ],
                     "services": [
@@ -109,7 +127,7 @@
                     ]
                   }
                 },
-                "Exemple avec le prix des produits": {
+                "Example with products price": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
@@ -201,7 +219,7 @@
                     }
                   }
                 },
-                "Exemple avec tags": {
+                "Example with tags": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "referenceNumber": "65zq1d5qz1d56q1-456",
@@ -451,7 +469,7 @@
                 "$ref": "#/components/schemas/postDelivery"
               },
               "examples": {
-                "Exemple par défaut": {
+                "Default Example": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "quoteId": "4zd5z4d5zd",
@@ -545,7 +563,14 @@
                           }
                         ],
                         "references": [
-                          "1234A"
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
                         ],
                         "quantity": 1
                       }
@@ -555,7 +580,7 @@
                     ]
                   }
                 },
-                "Exemple avec le prix des produits": {
+                "Example with products price": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "quoteId": "4zd5z4d5zd",
@@ -659,7 +684,7 @@
                     }
                   }
                 },
-                "Exemple avec tags": {
+                "Example with tags": {
                   "value": {
                     "orderId": "65zq1d5qz1d56q1",
                     "quoteId": "4zd5z4d5zd",
@@ -753,7 +778,14 @@
                           }
                         ],
                         "references": [
-                          "1234A"
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
                         ],
                         "quantity": 1
                       }
@@ -1118,7 +1150,7 @@
                 }
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
                     "picking": {
                       "contact": {
@@ -1920,7 +1952,14 @@
         "x-examples": {
           "example-1": {
             "references": [
-              "string"
+              {
+                "reference": "ZRD3578UYG4",
+                "barcode": {
+                  "value": "54fd56g4f5gfd456sd",
+                  "type": "barcode",
+                  "format": "128"
+                }
+              }
             ],
             "length": {
               "value": 10,
@@ -1953,9 +1992,22 @@
         "properties": {
           "references": {
             "type": "array",
-            "description": "Internal package references if provided by the retailer",
+            "description": "references if provided by the retailer",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "description": "Internal package references if provided by the retailer",
+                  "example": "ZRD3578UYG4"
+                },
+                "barcode": {
+                  "$ref": "./models/barcode.yaml"
+                }
+              },
+              "required": [
+                "reference"
+              ]
             }
           },
           "length": {
