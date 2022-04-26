@@ -375,6 +375,115 @@
         "summary": "Appointment date update"
       }
     },
+    "/deliveries/{deliveryId}/routes": {
+      "put": {
+        "description": "Delivery routes update",
+        "operationId": "putDeliveryRoutes",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          },
+          {
+            "$ref": "#/components/parameters/pathDeliveryId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contains the new delivery status information",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pickingRoute": {
+                    "$ref": "#/components/schemas/route"
+                  },
+                  "deliveryRoute": {
+                    "$ref": "#/components/schemas/route"
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "pickingRoute": {
+                      "routeId": "12345dsffsr",
+                      "stopId": "123890654FRTTY",
+                      "routeSequenceNumber": 3,
+                      "stopSequenceNumber": 2,
+                      "team": {
+                        "members": [
+                          {
+                            "id": "AAAAAA"
+                          }
+                        ]
+                      }
+                    },
+                    "deliveryRoute": {
+                      "routeId": "12345dsffsr",
+                      "stopId": "123890654FRTTYDEFERGE",
+                      "routeSequenceNumber": 3,
+                      "stopSequenceNumber": 7,
+                      "team": {
+                        "members": [
+                          {
+                            "id": "AAAAAA"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Request processed successfully"
+          },
+          "400": {
+            "description": "Missing and/or incorrect items in the body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not allowed to access this item."
+          },
+          "404": {
+            "description": "The 'deliveryId' was not found"
+          }
+        },
+        "summary": "Routes update of a delivery",
+        "tags": [
+          "Delivery"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "deliveryId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
     "/deliveries/{deliveryId}/closure": {
       "post": {
         "tags": [
@@ -1765,6 +1874,55 @@
           "end"
         ],
         "title": "Appointment date (appointment)"
+      },
+      "route": {
+        "title": "route",
+        "type": "object",
+        "description": "Delivery route information",
+        "properties": {
+          "routeId": {
+            "type": "string",
+            "description": "technical id from route system",
+            "example": "12345dsffsr"
+          },
+          "stopId": {
+            "type": "string",
+            "description": "technical id for a stop in the route",
+            "example": "123890654FRTTY"
+          },
+          "routeSequenceNumber": {
+            "type": "integer",
+            "description": "Route sequence number between all routes from one planning (starting from 1)",
+            "example": 3
+          },
+          "stopSequenceNumber": {
+            "type": "integer",
+            "description": "Stop sequence number between all stops from one route (starting from 1)",
+            "example": 7
+          },
+          "team": {
+            "$ref": "#/components/schemas/team"
+          }
+        },
+        "required": [
+          "routeId",
+          "stopId"
+        ],
+        "x-examples": {
+          "example": {
+            "routeId": "12345dsffsr",
+            "stopId": "123890654FRTTY",
+            "routeSequenceNumber": 3,
+            "stopSequenceNumber": 7,
+            "team": {
+              "members": [
+                {
+                  "id": "ZSDFE567"
+                }
+              ]
+            }
+          }
+        }
       }
     },
     "parameters": {
