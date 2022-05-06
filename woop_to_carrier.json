@@ -1225,7 +1225,7 @@
         "deprecated": true
       },
       "put": {
-        "summary": "",
+        "summary": "Update delivery",
         "operationId": "putDelivery",
         "responses": {
           "204": {
@@ -1609,7 +1609,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Delivery"
+        ]
       }
     },
     "/deliveries/{deliveryId}/score": {
