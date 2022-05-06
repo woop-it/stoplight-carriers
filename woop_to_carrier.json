@@ -1221,7 +1221,395 @@
             }
           }
         },
-        "summary": "Update delivery status"
+        "summary": "Update delivery status",
+        "deprecated": true
+      },
+      "put": {
+        "summary": "",
+        "operationId": "putDelivery",
+        "responses": {
+          "204": {
+            "description": "Delivery updated successfully"
+          },
+          "401": {
+            "description": "You are not allowed to access this item."
+          },
+          "403": {
+            "description": "The order cannot be changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ],
+                      "comment": "It's too late!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This method is used to receive requests to update a delivery.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postDelivery"
+              },
+              "examples": {
+                "Default Example": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with product prices": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM",
+                      "SERVICE_ASSEMBLY"
+                    ],
+                    "productsPrice": {
+                      "value": 30,
+                      "currency": "EUR"
+                    }
+                  }
+                },
+                "Example with tags": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/deliveries/{deliveryId}/score": {
