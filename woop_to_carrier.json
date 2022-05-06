@@ -1221,11 +1221,11 @@
             }
           }
         },
-        "summary": "Update delivery status",
+        "summary": "Update delivery",
         "deprecated": true
       },
       "put": {
-        "summary": "Update delivery",
+        "summary": "Update delivery - deprecated",
         "operationId": "putDelivery",
         "responses": {
           "204": {
@@ -1612,7 +1612,8 @@
         },
         "tags": [
           "Delivery"
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/deliveries/{deliveryId}/score": {
