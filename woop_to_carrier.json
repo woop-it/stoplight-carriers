@@ -2830,9 +2830,6 @@
           "location": {
             "$ref": "#/components/schemas/addressWithoutSensitiveData"
           },
-          "infos": {
-            "type": "string"
-          },
           "interval": {
             "type": "array",
             "items": {
@@ -2852,9 +2849,6 @@
         "properties": {
           "location": {
             "$ref": "#/components/schemas/address"
-          },
-          "infos": {
-            "type": "string"
           },
           "interval": {
             "type": "array",
@@ -2879,9 +2873,6 @@
         "properties": {
           "location": {
             "$ref": "#/components/schemas/address"
-          },
-          "infos": {
-            "type": "string"
           },
           "interval": {
             "type": "array",
