@@ -400,7 +400,7 @@
                     "description": "Picking information",
                     "properties": {
                       "stop": {
-                        "$ref": "#/components/schemas/stop"
+                        "$ref": "#/components/schemas/stopWithInterval"
                       }
                     }
                   },
@@ -409,7 +409,7 @@
                     "description": "Delivery Information",
                     "properties": {
                       "stop": {
-                        "$ref": "#/components/schemas/stop"
+                        "$ref": "#/components/schemas/stopWithInterval"
                       }
                     }
                   }
@@ -439,19 +439,23 @@
                           "team": {
                             "members": [
                               {
-                                "id": "AAAA"
+                                "id": "AAA"
                               }
                             ]
                           }
+                        },
+                        "plannedInterval": {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T14:30:00+0000"
                         }
                       }
                     },
                     "delivery": {
                       "stop": {
                         "references": {
-                          "id": "123890654FRTTYZZZ"
+                          "id": "123890654FRTTYZZ"
                         },
-                        "sequenceNumber": 12,
+                        "sequenceNumber": 15,
                         "route": {
                           "references": {
                             "id": "ZAESFHGTR567"
@@ -471,6 +475,10 @@
                               }
                             ]
                           }
+                        },
+                        "plannedInterval": {
+                          "start": "2019-12-04T16:30:00+0000",
+                          "end": "2019-12-04T18:30:00+0000"
                         }
                       }
                     }
@@ -1917,10 +1925,10 @@
         ],
         "title": "Appointment date (appointment)"
       },
-      "stop": {
-        "title": "stop",
+      "stopWithoutInterval": {
+        "title": "stopWithoutInterval",
         "type": "object",
-        "description": "Delivery stop information",
+        "description": "Delivery stop information without planned interval",
         "x-examples": {
           "Example": {
             "references": {
@@ -1971,6 +1979,73 @@
           },
           "route": {
             "$ref": "#/components/schemas/route"
+          }
+        },
+        "required": [
+          "references"
+        ]
+      },
+      "stopWithInterval": {
+        "title": "stopWithInterval",
+        "type": "object",
+        "description": "Delivery stop information including planned interval",
+        "x-examples": {
+          "Example": {
+            "references": {
+              "id": "123890654FRTTY"
+            },
+            "sequenceNumber": 7,
+            "route": {
+              "references": {
+                "id": "ZAESFHGTR567"
+              },
+              "sequenceNumber": 3,
+              "vehicle": {
+                "references": {
+                  "id": "34689875434578",
+                  "plateNumber": "ZE-678-HD"
+                },
+                "vehicleType": "VEHICLE_TYPE_BIKE"
+              },
+              "team": {
+                "members": [
+                  {
+                    "id": "string"
+                  }
+                ]
+              }
+            },
+            "plannedInterval": {
+              "start": "2019-12-04T12:30:00+0000",
+              "end": "2019-12-04T14:30:00+0000"
+            }
+          }
+        },
+        "properties": {
+          "references": {
+            "type": "object",
+            "description": "stop references",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "123890654FRTTY",
+                "description": "technical id for a stop in a route"
+              }
+            }
+          },
+          "sequenceNumber": {
+            "type": "integer",
+            "description": "Stop sequence number between all stops from one route (starting from 1)",
+            "example": 7
+          },
+          "route": {
+            "$ref": "#/components/schemas/route"
+          },
+          "plannedInterval": {
+            "$ref": "./woop_to_carrier.json#/components/schemas/interval"
           }
         },
         "required": [
