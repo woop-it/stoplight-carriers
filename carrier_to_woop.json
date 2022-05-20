@@ -432,7 +432,7 @@
                           "vehicle": {
                             "references": {
                               "id": "34689875434578",
-                              "plateNumber": "ZE-678-HD"
+                              "licencePlate": "ZE-678-HD"
                             },
                             "vehicleType": "VEHICLE_TYPE_BIKE"
                           },
@@ -464,7 +464,7 @@
                           "vehicle": {
                             "references": {
                               "id": "34689875434578",
-                              "plateNumber": "ZE-678-HD"
+                              "licencePlate": "ZE-678-HD"
                             },
                             "vehicleType": "VEHICLE_TYPE_BIKE"
                           },
@@ -2117,7 +2117,7 @@
           "Example": {
             "references": {
               "id": "34689875434578",
-              "plateNumber": "ZE-678-HD"
+              "licencePlate": "ZE-678-HD"
             },
             "vehicleType": "VEHICLE_TYPE_BIKE"
           }
@@ -2135,7 +2135,7 @@
                 "description": "technical id for a vehicle",
                 "example": "34689875434578"
               },
-              "plateNumber": {
+              "licencePlate": {
                 "type": "string",
                 "example": "ZE-678-HD",
                 "description": "Vehicle plate number"
