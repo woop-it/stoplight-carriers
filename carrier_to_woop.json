@@ -765,15 +765,13 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
                 "properties": {
                   "callbacks": {
                     "type": "object",
                     "properties": {
                       "quote": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -789,10 +787,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -800,7 +794,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -817,13 +815,13 @@
                               }
                             ]
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       },
                       "delivery": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -839,10 +837,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -850,7 +844,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -867,13 +865,13 @@
                               }
                             ]
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       },
                       "cancelDelivery": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -889,10 +887,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -900,7 +894,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -917,13 +915,13 @@
                               }
                             ]
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       },
                       "cancelQuote": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -939,10 +937,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -950,7 +944,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -967,7 +965,10 @@
                               }
                             ]
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       },
                       "score": {
                         "type": "object",
@@ -986,10 +987,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -997,7 +994,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -1018,9 +1019,6 @@
                       },
                       "pickupPoint": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1036,10 +1034,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1047,7 +1041,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -1064,13 +1062,13 @@
                               }
                             ]
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       },
                       "label": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1086,10 +1084,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1097,7 +1091,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -1114,13 +1112,13 @@
                               }
                             ]
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       },
                       "status": {
                         "type": "object",
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1136,10 +1134,6 @@
                             "type": "array",
                             "items": {
                               "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1147,7 +1141,11 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
                             }
                           },
                           "auth": {
@@ -1164,57 +1162,10 @@
                               }
                             ]
                           }
-                        }
-                      },
-                      "update": {
-                        "type": "object",
+                        },
                         "required": [
                           "url"
-                        ],
-                        "properties": {
-                          "url": {
-                            "type": "string",
-                            "description": "URL of the route to update a delivery order"
-                          },
-                          "version": {
-                            "type": "string",
-                            "description": "API version for this callback (see woop to carrier)",
-                            "example": "1.5.0"
-                          },
-                          "headers": {
-                            "description": "Headers for this callback only",
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "key",
-                                "value"
-                              ],
-                              "properties": {
-                                "key": {
-                                  "type": "string"
-                                },
-                                "value": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "auth": {
-                            "description": "Authentication for this callback only",
-                            "oneOf": [
-                              {
-                                "$ref": "#/components/schemas/postSubscriptionBasic"
-                              },
-                              {
-                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
-                              },
-                              {
-                                "$ref": "#/components/schemas/postSubscriptionToken"
-                              }
-                            ]
-                          }
-                        }
+                        ]
                       }
                     }
                   },
@@ -1228,10 +1179,6 @@
                     "type": "array",
                     "items": {
                       "type": "object",
-                      "required": [
-                        "key",
-                        "value"
-                      ],
                       "properties": {
                         "key": {
                           "type": "string"
@@ -1239,7 +1186,11 @@
                         "value": {
                           "type": "string"
                         }
-                      }
+                      },
+                      "required": [
+                        "key",
+                        "value"
+                      ]
                     }
                   },
                   "auth": {
