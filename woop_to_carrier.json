@@ -431,9 +431,14 @@
                           "team": {
                             "members": [
                               {
-                                "id": "string"
+                                "id": "AAA"
                               }
                             ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
                           }
                         }
                       }
@@ -481,9 +486,14 @@
                           "team": {
                             "members": [
                               {
-                                "id": "string"
+                                "id": "AAA"
                               }
                             ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
                           }
                         }
                       }
@@ -1042,6 +1052,11 @@
                                 "id": "AAA"
                               }
                             ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
                           }
                         }
                       }
@@ -1092,6 +1107,11 @@
                                 "id": "AAA"
                               }
                             ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
                           }
                         }
                       }

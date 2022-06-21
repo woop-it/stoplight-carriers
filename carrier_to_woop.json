@@ -442,6 +442,11 @@
                                 "id": "AAA"
                               }
                             ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
                           }
                         },
                         "plannedInterval": {
@@ -474,6 +479,11 @@
                                 "id": "AAA"
                               }
                             ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
                           }
                         },
                         "plannedInterval": {
@@ -2016,16 +2026,21 @@
             "vehicle": {
               "references": {
                 "id": "34689875434578",
-                "plateNumber": "ZE-678-HD"
+                "licencePlate": "ZE-678-HD"
               },
               "vehicleType": "VEHICLE_TYPE_BIKE"
             },
             "team": {
               "members": [
                 {
-                  "id": "string"
+                  "id": "AAAAA"
                 }
               ]
+            },
+            "planning": {
+              "references": {
+                "id": "P000001"
+              }
             }
           }
         },
@@ -2054,6 +2069,40 @@
           },
           "team": {
             "$ref": "#/components/schemas/team"
+          },
+          "planning": {
+            "$ref": "#/components/schemas/planning"
+          }
+        },
+        "required": [
+          "references"
+        ]
+      },
+      "planning": {
+        "title": "planning",
+        "type": "object",
+        "description": "Delivery planning information",
+        "x-examples": {
+          "example-1": {
+            "references": {
+              "id": "P000001"
+            }
+          }
+        },
+        "properties": {
+          "references": {
+            "type": "object",
+            "description": "planning references",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "technical id for a route in a planning",
+                "example": "P000001"
+              }
+            }
           }
         },
         "required": [
