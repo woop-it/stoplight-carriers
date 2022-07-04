@@ -2445,7 +2445,12 @@
           "vehicleType": {
             "$ref": "#/components/schemas/vehicleType"
           }
-        }
+        },
+        "required": [
+          "quoteId",
+          "price",
+          "vehicleType"
+        ]
       },
       "notation": {
         "title": "Customer rating (notation)",
