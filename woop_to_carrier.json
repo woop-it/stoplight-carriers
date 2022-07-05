@@ -2904,7 +2904,7 @@
       },
       "withContactAndLocalization": {
         "title": "Delivery address information",
-        "description": "Delivery address information",
+        "description": "Information on the picking or delivery address",
         "type": "object",
         "x-examples": {
           "Example": {
