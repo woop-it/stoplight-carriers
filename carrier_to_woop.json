@@ -633,7 +633,8 @@
             "description": "The 'deliveryId' was not found"
           }
         },
-        "summary": "Adding billing information for a delivery"
+        "summary": "Adding billing information for a delivery",
+        "deprecated": true
       }
     },
     "/deliveries/{deliveryId}/events": {
