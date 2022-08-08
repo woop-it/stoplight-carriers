@@ -102,6 +102,13 @@
                           }
                         ],
                         "quantity": 2,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m²"
+                          }
+                        },
+                        "type": "PACKAGE",
                         "references": [
                           {
                             "reference": "ZRD3578UYG4",
@@ -523,7 +530,7 @@
                   }
                 },
                 "examples": {
-                  "Exemple": {
+                  "Example": {
                     "value": [
                       {
                         "quoteId": "4zd5z4d5zd",
@@ -760,7 +767,14 @@
                             }
                           }
                         ],
-                        "quantity": 1
+                        "quantity": 1,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m²"
+                          }
+                        },
+                        "type": "PACKAGE"
                       }
                     ],
                     "services": [
@@ -2323,7 +2337,7 @@
         "description": "Retailer's handling unit. Generally used as a collection of products in the order grouped by package.",
         "title": "Package (package)",
         "x-examples": {
-          "example-1": {
+          "Example": {
             "references": [
               {
                 "reference": "ZRD3578UYG4",
@@ -2359,7 +2373,59 @@
                 "quantity": 1
               }
             ],
-            "quantity": 1
+            "quantity": 1,
+            "attributes": {
+              "footprint": {
+                "value": 13,
+                "unit": "m²"
+              }
+            },
+            "type": "PACKAGE"
+          },
+          "example-2": {
+            "references": [
+              {
+                "reference": "ZRD3578UYG4",
+                "barcode": {
+                  "value": "54fd56g4f5gfd456sd",
+                  "type": "barcode",
+                  "format": "128"
+                }
+              }
+            ],
+            "length": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "width": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "height": {
+              "value": 0,
+              "unit": "cm"
+            },
+            "weight": {
+              "value": 0,
+              "unit": "kg"
+            },
+            "products": [
+              {
+                "type": "TYPOLOGY_GENERIC",
+                "ean": "string",
+                "cug": "string",
+                "label": "string",
+                "quantity": 1
+              }
+            ],
+            "quantity": 0,
+            "attributes": {
+              "footprint": {
+                "value": 13,
+                "unit": "m²"
+              }
+            },
+            "type": "PACKAGE"
           }
         },
         "properties": {
@@ -2430,6 +2496,48 @@
           "quantity": {
             "type": "integer",
             "description": "Quantity of packages"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "package attributes",
+            "properties": {
+              "footprint": {
+                "type": "object",
+                "description": "package footprint on the ground",
+                "properties": {
+                  "value": {
+                    "type": "number",
+                    "description": "footprint value",
+                    "example": 13
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "footprint units",
+                    "enum": [
+                      "m²",
+                      "cm²",
+                      "pallet"
+                    ],
+                    "example": "m²"
+                  }
+                },
+                "required": [
+                  "value",
+                  "unit"
+                ]
+              }
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "package type",
+            "enum": [
+              "PACKAGE",
+              "TRAY",
+              "PALLET"
+            ],
+            "example": "PACKAGE",
+            "default": "PACKAGE"
           }
         },
         "required": [
@@ -2752,7 +2860,6 @@
           "TYPOLOGY_SMALL_HOUSEHOLD",
           "TYPOLOGY_HOUSEHOLD",
           "TYPOLOGY_LARGE_HOUSEHOLD",
-          "TYPOLOGY_PALLET_GENERIC",
           "TYPOLOGY_NON_STANDARD"
         ],
         "title": "Product type (productType)",
