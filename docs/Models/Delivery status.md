@@ -39,5 +39,3 @@ The order goes through several statuses in succession. We identify the different
 ### Rescheduling
 
 The rescheduling of delivery on a new date chosen by the customer or by the carrier must be done via the [dedicated] method (https://woop.stoplight.io/docs/carrier/b3A6MzYyMDcwODc).
-
-![get-started-icon](../../assets/images/replaned_delivery.png)
