@@ -105,7 +105,7 @@
                         "attributes": {
                           "footprint": {
                             "value": 13,
-                            "unit": "m²"
+                            "unit": "m2"
                           }
                         },
                         "type": "PACKAGE",
@@ -771,7 +771,7 @@
                         "attributes": {
                           "footprint": {
                             "value": 13,
-                            "unit": "m²"
+                            "unit": "m2"
                           }
                         },
                         "type": "PACKAGE"
@@ -2377,7 +2377,7 @@
             "attributes": {
               "footprint": {
                 "value": 13,
-                "unit": "m²"
+                "unit": "m2"
               }
             },
             "type": "PACKAGE"
@@ -2513,12 +2513,12 @@
                   "unit": {
                     "type": "string",
                     "description": "footprint units",
+                    "example": "m2",
                     "enum": [
-                      "m²",
-                      "cm²",
+                      "m2",
+                      "cm2",
                       "pallet"
-                    ],
-                    "example": "m²"
+                    ]
                   }
                 },
                 "required": [
