@@ -1373,7 +1373,7 @@
         "tags": [
           "Document"
         ],
-        "description": "Adding a document and its information in form-data format.\n\n[See the documentation for more information](https://woop.stoplight.io/docs/carrier/docs/Basis/6.Delivery%20document.md)",
+        "description": "Adding a document and its information.",
         "operationId": "postDeliveryDocument",
         "parameters": [
           {
@@ -1387,15 +1387,10 @@
           "required": true,
           "description": "Contains the information for the document sent in form-data format.",
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "document": {
-                    "type": "string",
-                    "description": "The document in binary format, 10mb max",
-                    "format": "binary"
-                  },
                   "type": {
                     "type": "string",
                     "description": "Document type",
@@ -1403,26 +1398,58 @@
                       "EVIDENCE",
                       "INVOICE",
                       "CONTRACT"
-                    ]
+                    ],
+                    "example": "EVIDENCE"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "description": "document sending mode (base64 / url)",
+                    "enum": [
+                      "base64",
+                      "url"
+                    ],
+                    "example": "base64"
+                  },
+                  "format": {
+                    "type": "string",
+                    "description": "document format",
+                    "enum": [
+                      "pdf",
+                      "jpg",
+                      "jpeg"
+                    ],
+                    "example": "pdf"
+                  },
+                  "document": {
+                    "type": "string",
+                    "description": "Document in base64 or URL of the document"
                   },
                   "date": {
                     "type": "string",
                     "description": "Creation date of the document",
-                    "format": "datetime"
+                    "format": "datetime",
+                    "example": "2019-12-06T13:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Document name",
+                    "example": "document.pdf"
                   }
                 },
                 "required": [
-                  "document",
                   "type",
                   "date"
                 ]
               },
               "examples": {
-                "Exemple": {
+                "Example": {
                   "value": {
-                    "document": "<file stream>",
                     "type": "EVIDENCE",
-                    "date": "2019-11-27T10:30:00+0000"
+                    "mode": "base64",
+                    "format": "pdf",
+                    "document": "string",
+                    "date": "2019-12-06T13:00:00+0000",
+                    "name": "document.pdf"
                   }
                 }
               }
