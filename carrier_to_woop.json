@@ -1410,16 +1410,6 @@
                     ],
                     "example": "base64"
                   },
-                  "format": {
-                    "type": "string",
-                    "description": "document format",
-                    "enum": [
-                      "pdf",
-                      "jpg",
-                      "jpeg"
-                    ],
-                    "example": "pdf"
-                  },
                   "document": {
                     "type": "string",
                     "description": "Document in base64 or URL of the document"
@@ -1438,7 +1428,10 @@
                 },
                 "required": [
                   "type",
-                  "date"
+                  "mode",
+                  "document",
+                  "date",
+                  "name"
                 ]
               },
               "examples": {
