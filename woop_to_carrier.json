@@ -3116,10 +3116,7 @@
             "$ref": "#/components/schemas/deliveryInformations"
           },
           {
-            "required": [
-              "picking",
-              "delivery"
-            ],
+            "type": "object",
             "properties": {
               "picking": {
                 "$ref": "#/components/schemas/withoutContact"
@@ -3127,11 +3124,13 @@
               "delivery": {
                 "$ref": "#/components/schemas/withoutContact"
               }
-            }
+            },
+            "required": [
+              "picking",
+              "delivery"
+            ]
           }
-        ],
-        "description": "Contains the information needed to create a delivery quote.",
-        "title": "Information for requesting a quote (postQuote)"
+        ]
       },
       "postDelivery": {
         "allOf": [
