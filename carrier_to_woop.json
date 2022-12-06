@@ -547,7 +547,7 @@
         }
       ]
     },
-    "/deliveries/{deliveryId}/trackingPageUrl": {
+    "/deliveries/{deliveryId}/trackings": {
       "parameters": [
         {
           "schema": {
@@ -560,7 +560,7 @@
       ],
       "put": {
         "summary": "Tracking Page URL update of a delivery",
-        "operationId": "putDeliveryTrackingPageUrl",
+        "operationId": "putDeliveryTrackings",
         "responses": {
           "202": {
             "description": "Request processed successfully"
@@ -585,7 +585,7 @@
             "description": "The 'deliveryId' was not found"
           }
         },
-        "description": "Delivery tracking page url update.",
+        "description": "Delivery tracking update.",
         "requestBody": {
           "content": {
             "application/json": {
