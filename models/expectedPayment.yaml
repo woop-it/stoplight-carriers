@@ -13,11 +13,11 @@ properties:
     type: string
     enum:
       - CASH
-      - CREDIT_CART
       - DEBIT_CARD
       - DIRECT_DEBIT
       - BANK_TRANSFER
       - CHECK
+      - CREDIT_CARD
 required:
   - value
   - currency
