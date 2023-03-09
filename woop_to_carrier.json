@@ -506,6 +506,185 @@
                       }
                     }
                   }
+                },
+                "Example with boxCategory & networkOperator": {
+                  "value": {
+                    "orderId": "string",
+                    "referenceNumber": "string",
+                    "productsPrice": {
+                      "value": 0,
+                      "currency": "EUR"
+                    },
+                    "retailer": {
+                      "name": "string",
+                      "code": "string",
+                      "store": {
+                        "id": "string",
+                        "name": "string",
+                        "contact": {
+                          "firstName": "string",
+                          "lastName": "string",
+                          "phone": "string",
+                          "email": "string"
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "length": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "weight": {
+                          "value": 0,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "string",
+                            "cug": "string",
+                            "label": "string",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 0
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ],
+                    "expectedPayment": {
+                      "value": 17.5,
+                      "currency": "EUR",
+                      "paymentMethod": "CASH"
+                    },
+                    "picking": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "string"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "location": {
+                        "type": "pickupPoint",
+                        "id": "1849U",
+                        "carrierCode": "chronopost"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -2111,6 +2290,18 @@
               "EXCHANGE_PLACE_PFU",
               "EXCHANGE_PLACE_STORAGE"
             ]
+          },
+          "networkOperatorCode": {
+            "$ref": "./models/PickUpPoint/networkOperatorCode.json",
+            "x-stoplight": {
+              "id": "bavsiagdkzfsn"
+            }
+          },
+          "boxCategoryId": {
+            "$ref": "./models/PickUpPoint/boxCategoryId.json",
+            "x-stoplight": {
+              "id": "xtibsj78pfd5a"
+            }
           }
         },
         "required": [
@@ -2194,6 +2385,18 @@
               "EXCHANGE_PLACE_PFU",
               "EXCHANGE_PLACE_STORAGE"
             ]
+          },
+          "networkOperator": {
+            "$ref": "./models/networkOperatorCode.json",
+            "x-stoplight": {
+              "id": "u5krrtwyc6t78"
+            }
+          },
+          "boxCategoryId": {
+            "$ref": "./models/PickUpPoint/boxCategoryId.json",
+            "x-stoplight": {
+              "id": "6r8ifs6zsxgrh"
+            }
           }
         },
         "required": [

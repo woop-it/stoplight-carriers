@@ -1,0 +1,12 @@
+{
+  "title": "Box Category Id",
+  "x-stoplight": {
+    "id": "xpok43afpql8n"
+  },
+  "type": "string",
+  "description": "Box category Id of a pick up point",
+  "example": "BoxCategory_001",
+  "x-tags": [
+    "PickUpPoint"
+  ]
+}
