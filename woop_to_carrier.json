@@ -1396,6 +1396,224 @@
                       "SERVICE_SELECTED_ROOM"
                     ]
                   }
+                },
+                "Example with boxCategory + networkOperator": {
+                  "value": {
+                    "orderId": "string",
+                    "referenceNumber": "string",
+                    "productsPrice": {
+                      "value": 0,
+                      "currency": "EUR"
+                    },
+                    "retailer": {
+                      "name": "string",
+                      "code": "string",
+                      "store": {
+                        "id": "string",
+                        "name": "string",
+                        "contact": {
+                          "firstName": "string",
+                          "lastName": "string",
+                          "phone": "string",
+                          "email": "string"
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "length": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "weight": {
+                          "value": 0,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "string",
+                            "cug": "string",
+                            "label": "string",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 0,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ],
+                    "quoteId": "string",
+                    "expectedPayment": {
+                      "value": 17.5,
+                      "currency": "EUR",
+                      "paymentMethod": "CASH"
+                    },
+                    "picking": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
