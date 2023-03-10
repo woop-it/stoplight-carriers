@@ -41,12 +41,20 @@
                       }
                     },
                     "picking": {
-                      "address": {
-                        "addressLine1": "179 Boulevard de Turin",
-                        "addressLine2": "",
-                        "postalCode": "59000",
-                        "city": "Lille",
-                        "country": "FR"
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE"
                       },
                       "infos": "Travaux sur le boulevard.",
                       "interval": [
@@ -57,14 +65,20 @@
                       ]
                     },
                     "delivery": {
-                      "address": {
-                        "addressLine1": "165 avenue de Bretagne",
-                        "addressLine2": "Euratech - EuraTechnologies",
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
                         "elevator": true,
-                        "floor": 2,
-                        "postalCode": "59000",
-                        "city": "Lille",
-                        "country": "FR"
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE"
                       },
                       "interval": [
                         {
@@ -153,12 +167,20 @@
                       }
                     },
                     "picking": {
-                      "address": {
-                        "addressLine1": "179 Boulevard de Turin",
-                        "addressLine2": "",
-                        "postalCode": "59000",
-                        "city": "Lille",
-                        "country": "FR"
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE"
                       },
                       "infos": "Travaux sur le boulevard.",
                       "interval": [
@@ -169,14 +191,20 @@
                       ]
                     },
                     "delivery": {
-                      "address": {
-                        "addressLine1": "165 avenue de Bretagne",
-                        "addressLine2": "Euratech - EuraTechnologies",
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
                         "elevator": true,
-                        "floor": 2,
-                        "postalCode": "59000",
-                        "city": "Lille",
-                        "country": "FR"
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE"
                       },
                       "interval": [
                         {
@@ -245,12 +273,20 @@
                       }
                     },
                     "picking": {
-                      "address": {
-                        "addressLine1": "179 Boulevard de Turin",
-                        "addressLine2": "",
-                        "postalCode": "59000",
-                        "city": "Lille",
-                        "country": "FR"
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE"
                       },
                       "infos": "Doorbell out of order.",
                       "interval": [
@@ -261,14 +297,20 @@
                       ]
                     },
                     "delivery": {
-                      "address": {
-                        "addressLine1": "165 avenue de Bretagne",
-                        "addressLine2": "Euratech - EuraTechnologies",
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
                         "elevator": true,
-                        "floor": 2,
-                        "postalCode": "59000",
-                        "city": "Lille",
-                        "country": "FR"
+                        "floor": 0,
+                        "postalCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE"
                       },
                       "interval": [
                         {
