@@ -1,0 +1,12 @@
+{
+  "title": "Delivery Id",
+  "x-stoplight": {
+    "id": "572yqk3lg7wbs"
+  },
+  "type": "string",
+  "description": "Unique Id for a delivery for a carrier",
+  "default": " Delivery_001",
+  "x-tags": [
+    "Delivery"
+  ]
+}

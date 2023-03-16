@@ -2465,6 +2465,97 @@
           }
         }
       }
+    },
+    "/deliveries/{deliveryId}/pinCodes": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "deliveryId",
+          "in": "path",
+          "required": true,
+          "description": "delivery Id"
+        }
+      ],
+      "put": {
+        "summary": "Put pinCodes",
+        "operationId": "put-deliveries-deliveryId-pinCodes",
+        "responses": {
+          "204": {
+            "description": "pinCodes correctly received"
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models/errorCode.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models/errorCode.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models/errorCode.json"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/putPinCodes"
+              },
+              "examples": {
+                "classic order": {
+                  "value": {
+                    "deliveryId": " Delivery_001",
+                    "loadingIdentification": {
+                      "pinCode": "123456",
+                      "barCode": {
+                        "value": "54fd56g4f5gfd456sd",
+                        "type": "barcode",
+                        "format": "128"
+                      }
+                    }
+                  }
+                },
+                "return order": {
+                  "value": {
+                    "deliveryId": " Delivery_001",
+                    "unloadingIdentification": {
+                      "pinCode": "123456",
+                      "barCode": {
+                        "value": "54fd56g4f5gfd456sd",
+                        "type": "barcode",
+                        "format": "128"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": " to send the pinCode to the carrier"
+      }
     }
   },
   "components": {
@@ -4268,6 +4359,87 @@
           "answer",
           "question"
         ]
+      },
+      "putPinCodes": {
+        "title": "putPinCodes",
+        "x-stoplight": {
+          "id": "p74kqamyrvn5x"
+        },
+        "type": "object",
+        "properties": {
+          "deliveryId": {
+            "$ref": "./models/delivery/deliveryId.json",
+            "x-stoplight": {
+              "id": "xkzkyuz7n7453"
+            }
+          },
+          "": {
+            "x-stoplight": {
+              "id": "svktr2v0nmgdo"
+            },
+            "oneOf": [
+              {
+                "x-stoplight": {
+                  "id": "vtlenl6kfqp2z"
+                },
+                "description": "if is a classic order",
+                "properties": {
+                  "loadingIdentification": {
+                    "$ref": "./models/Identification.json",
+                    "x-stoplight": {
+                      "id": "8qszb60qt7mxp"
+                    }
+                  }
+                }
+              },
+              {
+                "x-stoplight": {
+                  "id": "vz1blo7q6u4gq"
+                },
+                "description": "if is a return order",
+                "properties": {
+                  "unloadingIdentification": {
+                    "$ref": "./models/Identification.json",
+                    "x-stoplight": {
+                      "id": "8vmk9hp1qih0h"
+                    }
+                  }
+                }
+              }
+            ],
+            "description": "loadingIdentification if is a classic order\nunloadingIdentification if is a return order",
+            "type": "object"
+          }
+        },
+        "required": [
+          "deliveryId",
+          null
+        ],
+        "description": "",
+        "x-examples": {
+          "classic order": {
+            "deliveryId": " Delivery_001",
+            "loadingIdentification": {
+              "pinCode": "123456",
+              "barCode": {
+                "value": "54fd56g4f5gfd456sd",
+                "type": "barcode",
+                "format": "128"
+              }
+            }
+          },
+          "return order": {
+            "deliveryId": " Delivery_001",
+            "unloadingIdentification": {
+              "pinCode": "123456",
+              "barCode": {
+                "value": "54fd56g4f5gfd456sd",
+                "type": "barcode",
+                "format": "128"
+              }
+            }
+          }
+        }
       }
     },
     "parameters": {
