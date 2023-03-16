@@ -2554,7 +2554,10 @@
             }
           }
         },
-        "description": " to send the pinCode to the carrier"
+        "description": " to send the pinCode to the carrier",
+        "tags": [
+          "Relay points"
+        ]
       }
     }
   },
