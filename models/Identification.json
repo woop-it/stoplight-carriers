@@ -4,20 +4,6 @@
     "id": "ioga1fig1hjqq"
   },
   "type": "object",
-  "properties": {
-    "pinCode": {
-      "$ref": "../models/Common/pinCode.json",
-      "x-stoplight": {
-        "id": "pibd91hjxn8vf"
-      }
-    },
-    "barCode": {
-      "$ref": "../models/Common/barcode.json",
-      "x-stoplight": {
-        "id": "830hutwgoz4x4"
-      }
-    }
-  },
   "description": "loading or unloading identification",
   "examples": [
     {
@@ -28,5 +14,19 @@
         "format": "128"
       }
     }
-  ]
+  ],
+  "properties": {
+    "pinCode": {
+      "$ref": "./common/pinCode.json",
+      "x-stoplight": {
+        "id": "pibd91hjxn8vf"
+      }
+    },
+    "barCode": {
+      "$ref": "./barcode.yaml",
+      "x-stoplight": {
+        "id": "830hutwgoz4x4"
+      }
+    }
+  }
 }
