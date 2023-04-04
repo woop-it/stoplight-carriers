@@ -1,0 +1,18 @@
+{
+  "title": "Box Category Code",
+  "x-stoplight": {
+    "id": "qk57kzn9hs905"
+  },
+  "type": "string",
+  "enum": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "example": "S",
+  "description": "Box category code",
+  "x-tags": [
+    "PickUpPoint"
+  ]
+}
