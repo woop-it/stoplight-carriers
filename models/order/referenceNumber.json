@@ -1,0 +1,12 @@
+{
+  "title": "Reference Number",
+  "x-stoplight": {
+    "id": "1h5r8aic5rj2t"
+  },
+  "type": "string",
+  "description": "Order reference, store number. Can be the same as the orderId.",
+  "example": "ReferenceNumber_001",
+  "x-tags": [
+    "Order"
+  ]
+}

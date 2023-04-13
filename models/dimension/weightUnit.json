@@ -1,0 +1,25 @@
+{
+  "type": "string",
+  "x-stoplight": {
+    "id": "vjnjsi6di3yt5"
+  },
+  "description": "Specifies the unit of weight.",
+  "enum": [
+    "kg",
+    "mcg",
+    "mg",
+    "g",
+    "oz",
+    "lb",
+    "mt",
+    "t"
+  ],
+  "x-examples": {
+    "Example": "kg"
+  },
+  "title": "Weigth Unit",
+  "x-tags": [
+    "Dimension"
+  ],
+  "example": "kg"
+}

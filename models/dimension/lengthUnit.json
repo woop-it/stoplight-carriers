@@ -1,0 +1,25 @@
+{
+  "type": "string",
+  "x-stoplight": {
+    "id": "0x9bkccf7ps38"
+  },
+  "description": "Specifies the unit of measurement for the dimensions.",
+  "enum": [
+    "mm",
+    "cm",
+    "m",
+    "km",
+    "in",
+    "ft-us",
+    "ft",
+    "mi"
+  ],
+  "x-examples": {
+    "Example": "mm"
+  },
+  "title": "Length Unit",
+  "x-tags": [
+    "Dimension"
+  ],
+  "example": "cm"
+}

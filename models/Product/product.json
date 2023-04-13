@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "x-stoplight": {
+    "id": "6sz3bsmiw18yn"
+  },
+  "definitions": {
+    "productType": {
+      "type": "string",
+      "description": "Specifies the product type.",
+      "enum": [
+        "TYPOLOGY_GENERIC",
+        "TYPOLOGY_GROCERY",
+        "TYPOLOGY_FRESH",
+        "TYPOLOGY_FROZEN",
+        "TYPOLOGY_DANGEROUS",
+        "TYPOLOGY_HOUSEHOLD",
+        "TYPOLOGY_VOLUMINOUS",
+        "TYPOLOGY_FRAGILE",
+        "TYPOLOGY_VOLUMINOUS_FRAGILE",
+        "TYPOLOGY_LARGE_HOUSEHOLD",
+        "TYPOLOGY_SMALL_HOUSEHOLD"
+      ],
+      "x-examples": {
+        "Example": "TYPOLOGY_GENERIC"
+      },
+      "title": "Product type (productType)",
+      "x-stoplight": {
+        "id": "j7rno2lzvp4qc"
+      }
+    }
+  },
+  "title": "Product",
+  "description": "Product information",
+  "x-tags": [
+    "Product"
+  ],
+  "properties": {
+    "type": {
+      "$ref": "./productType.json",
+      "x-stoplight": {
+        "id": "xpmsl424e6tqg"
+      }
+    },
+    "ean": {
+      "type": "string",
+      "description": "Product EAN",
+      "example": "Ean_001",
+      "x-stoplight": {
+        "id": "6f0lyzyml0fx3"
+      }
+    },
+    "cug": {
+      "type": "string",
+      "description": "Product Cug",
+      "example": "Cug_001",
+      "x-stoplight": {
+        "id": "vjd3dyi006vrg"
+      }
+    },
+    "label": {
+      "type": "string",
+      "description": "Product description",
+      "example": "Product_Label",
+      "x-stoplight": {
+        "id": "0gjfou86li7px"
+      }
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1,
+      "description": "Product quantity",
+      "x-stoplight": {
+        "id": "juc35dgeb9bak"
+      }
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "examples": [
+    {
+      "type": "TYPOLOGY_GENERIC",
+      "ean": "Ean_001",
+      "cug": "Cug_001",
+      "label": "Product_Label",
+      "quantity": 1
+    }
+  ]
+}

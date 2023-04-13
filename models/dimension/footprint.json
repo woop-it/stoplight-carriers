@@ -1,0 +1,42 @@
+{
+  "title": "Footprint",
+  "x-stoplight": {
+    "id": "e2apuet14lqmm"
+  },
+  "type": "object",
+  "x-tags": [
+    "Dimension"
+  ],
+  "description": "Footprint",
+  "properties": {
+    "value": {
+      "type": "number",
+      "example": 10,
+      "x-stoplight": {
+        "id": "9vvc2ipopy5ij"
+      }
+    },
+    "unit": {
+      "type": "string",
+      "enum": [
+        "m2",
+        "cm2",
+        "pallet"
+      ],
+      "example": "m2",
+      "x-stoplight": {
+        "id": "b4z97pjwad1vn"
+      }
+    }
+  },
+  "required": [
+    "value",
+    "unit"
+  ],
+  "examples": [
+    {
+      "value": 10,
+      "unit": "m2"
+    }
+  ]
+}

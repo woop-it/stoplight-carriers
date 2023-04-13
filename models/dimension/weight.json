@@ -1,0 +1,32 @@
+{
+  "title": "Weight",
+  "x-stoplight": {
+    "id": "9jtxfyobj1hif"
+  },
+  "type": "object",
+  "x-tags": [
+    "Dimension"
+  ],
+  "description": "Specifies the weight",
+  "properties": {
+    "value": {
+      "type": "number",
+      "example": 5,
+      "x-stoplight": {
+        "id": "yo1pirmbd3x4c"
+      }
+    },
+    "unit": {
+      "$ref": "./weightUnit.json",
+      "x-stoplight": {
+        "id": "83py5vm1gmvd3"
+      }
+    }
+  },
+  "examples": [
+    {
+      "value": 5,
+      "unit": "kg"
+    }
+  ]
+}
