@@ -4418,7 +4418,7 @@
                 "description": "if is a classic order",
                 "properties": {
                   "loadingIdentification": {
-                    "$ref": "./models/Identification.json",
+                    "$ref": "./models/PickUpPoint/identification.json",
                     "x-stoplight": {
                       "id": "8qszb60qt7mxp"
                     }
