@@ -1,0 +1,25 @@
+{
+  "title": "Refused Reasons",
+  "x-stoplight": {
+    "id": "nu0ocrjor49i2"
+  },
+  "type": "object",
+  "examples": [],
+  "properties": {
+    "reason": {
+      "type": "string",
+      "example": "REFUSED_EXCEPTION",
+      "x-stoplight": {
+        "id": "l6khyu4mmns3j"
+      }
+    },
+    "comment": {
+      "type": "string",
+      "example": "Missing argument : deliveryId",
+      "x-stoplight": {
+        "id": "aeu2c7dl4qlss"
+      }
+    }
+  },
+  "description": "Template to be used for functional errors"
+}

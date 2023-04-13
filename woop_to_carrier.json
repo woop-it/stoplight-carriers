@@ -4375,6 +4375,30 @@
           "id": "p74kqamyrvn5x"
         },
         "type": "object",
+        "x-examples": {
+          "classic order": {
+            "deliveryId": " Delivery_001",
+            "loadingIdentification": {
+              "pinCode": "123456",
+              "barCode": {
+                "value": "54fd56g4f5gfd456sd",
+                "type": "barcode",
+                "format": "128"
+              }
+            }
+          },
+          "return order": {
+            "deliveryId": " Delivery_001",
+            "unloadingIdentification": {
+              "pinCode": "123456",
+              "barCode": {
+                "value": "54fd56g4f5gfd456sd",
+                "type": "barcode",
+                "format": "128"
+              }
+            }
+          }
+        },
         "properties": {
           "deliveryId": {
             "$ref": "./models/delivery/deliveryId.json",
@@ -4408,7 +4432,7 @@
                 "description": "if is a return order",
                 "properties": {
                   "unloadingIdentification": {
-                    "$ref": "./models/Identification.json",
+                    "$ref": "./models/PickUpPoint/identification.json",
                     "x-stoplight": {
                       "id": "8vmk9hp1qih0h"
                     }
@@ -4421,34 +4445,8 @@
           }
         },
         "required": [
-          "deliveryId",
-          null
-        ],
-        "description": "",
-        "x-examples": {
-          "classic order": {
-            "deliveryId": " Delivery_001",
-            "loadingIdentification": {
-              "pinCode": "123456",
-              "barCode": {
-                "value": "54fd56g4f5gfd456sd",
-                "type": "barcode",
-                "format": "128"
-              }
-            }
-          },
-          "return order": {
-            "deliveryId": " Delivery_001",
-            "unloadingIdentification": {
-              "pinCode": "123456",
-              "barCode": {
-                "value": "54fd56g4f5gfd456sd",
-                "type": "barcode",
-                "format": "128"
-              }
-            }
-          }
-        }
+          "deliveryId"
+        ]
       }
     },
     "parameters": {
