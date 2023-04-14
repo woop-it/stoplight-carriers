@@ -2466,7 +2466,7 @@
         }
       }
     },
-    "/deliveries/{deliveryId}/pinCodes": {
+    "/deliveries/{deliveryId}/loadingIdentifications": {
       "parameters": [
         {
           "schema": {
@@ -2479,7 +2479,7 @@
         }
       ],
       "put": {
-        "summary": "Put pinCodes",
+        "summary": "Put loadingIdentifications",
         "operationId": "put-deliveries-deliveryId-pinCodes",
         "responses": {
           "204": {
@@ -2521,7 +2521,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/putPinCodes"
+                "$ref": "#/components/schemas/putLoadingIdentifications"
               },
               "examples": {
                 "classic order": {
@@ -4369,8 +4369,8 @@
           "question"
         ]
       },
-      "putPinCodes": {
-        "title": "putPinCodes",
+      "putLoadingIdentifications": {
+        "title": "putLoadingIdentifications",
         "x-stoplight": {
           "id": "p74kqamyrvn5x"
         },
@@ -4446,7 +4446,8 @@
         },
         "required": [
           "deliveryId"
-        ]
+        ],
+        "description": ""
       }
     },
     "parameters": {
