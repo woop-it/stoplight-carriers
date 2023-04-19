@@ -1177,6 +1177,59 @@
                         "required": [
                           "url"
                         ]
+                      },
+                      "loadingIdentifications": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "8ym5zs7dnnxvq"
+                        },
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to retrieve the loading information bo"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
                       }
                     }
                   },
