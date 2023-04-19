@@ -640,7 +640,8 @@
                         "name": "string",
                         "id": "string",
                         "subType": "EXCHANGE_PLACE_STORE",
-                        "networkOperatorCode": "string"
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
                       },
                       "infos": "string",
                       "interval": [
@@ -2140,7 +2141,7 @@
         "summary": "Relay points",
         "deprecated": true,
         "tags": [
-          "Relay points"
+          "Pickup Point"
         ],
         "responses": {
           "200": {
@@ -2556,7 +2557,7 @@
         },
         "description": " to send the pinCode to the carrier",
         "tags": [
-          "Relay points"
+          "Pickup Point"
         ]
       }
     }
