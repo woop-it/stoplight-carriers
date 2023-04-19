@@ -2743,11 +2743,17 @@
             "enum": [
               "EXCHANGE_PLACE_STORE",
               "EXCHANGE_PLACE_PFU",
-              "EXCHANGE_PLACE_STORAGE"
-            ]
+              "EXCHANGE_PLACE_STORAGE",
+              "PICKUP_POINT_AGENCY",
+              "PICKUP_POINT_POST_OFFICE",
+              "PICKUP_POINT_RELAY_WITH_LOCKER",
+              "PICKUP_POINT_RELAY_WITHOUT_LOCKER",
+              "PICKUP_POINT_DRIVE"
+            ],
+            "description": "type = exchange place ,\nsubtype = \n- EXCHANGE_PLACE_STORE\n- EXCHANGE_PLACE_PFU\n- EXCHANGE_PLACE_STORAGE\n\ntype = pickup point ,\nsubtype = \n- PICKUP_POINT_AGENCY\n- PICKUP_POINT_POST_OFFICE\n- PICKUP_POINT_RELAY_WITH_LOCKER\n- PICKUP_POINT_RELAY_WITHOUT_LOCKER\n- PICKUP_POINT_DRIVE"
           },
-          "networkOperator": {
-            "$ref": "./models/networkOperatorCode.json",
+          "networkOperatorCode": {
+            "$ref": "./models/PickUpPoint/networkOperatorCode.json",
             "x-stoplight": {
               "id": "u5krrtwyc6t78"
             }
