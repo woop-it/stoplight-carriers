@@ -4225,7 +4225,7 @@
                   "description": "Tracking parcel identifier"
                 },
                 "barcode": {
-                  "$ref": "./models/barcode.yaml"
+                  "$ref": "./models/Common/barcode.json"
                 }
               },
               "required": [
