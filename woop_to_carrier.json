@@ -1631,7 +1631,8 @@
                 "examples": {
                   "Default example": {
                     "value": {
-                      "deliveryId": "5q4f5q4zd"
+                      "deliveryId": "5q4f5q4zd",
+                      "trackingPageUrl": "https://myTrackingPageUrl"
                     }
                   },
                   "Example with parcel tracking": {
@@ -4239,6 +4240,11 @@
             "items": {
               "$ref": "#/components/schemas/label"
             }
+          },
+          "trackingPageUrl": {
+            "type": "string",
+            "description": "delivery tracking page Url",
+            "example": "https://myTrackingPageUrl.com"
           }
         },
         "required": [

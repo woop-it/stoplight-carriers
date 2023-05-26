@@ -1,0 +1,24 @@
+title: expectedPayment
+type: object
+examples:
+  - value: 17.5
+    currency: EUR
+    paymentMethod: CASH
+properties:
+  value:
+    type: number
+  currency:
+    $ref: ../woop_to_carrier.json#/components/schemas/currency
+  paymentMethod:
+    type: string
+    enum:
+      - CASH
+      - DEBIT_CARD
+      - DIRECT_DEBIT
+      - BANK_TRANSFER
+      - CHECK
+      - CREDIT_CARD
+required:
+  - value
+  - currency
+  - paymentMethod
