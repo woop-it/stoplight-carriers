@@ -4178,6 +4178,9 @@
           },
           "expectedPayment": {
             "$ref": "./models/expectedPayment.yaml"
+          },
+          "addtionalData": {
+            "$ref": "./models/additionalData.yaml"
           }
         },
         "required": [
