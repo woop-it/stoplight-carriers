@@ -1953,7 +1953,13 @@
           "VEHICLE_TYPE_BIKE_CARGO",
           "VEHICLE_TYPE_CAR",
           "VEHICLE_TYPE_E_CAR",
-          "VEHICLE_TYPE_UNKNOWN"
+          "VEHICLE_TYPE_UNKNOWN",
+          "VEHICLE_TYPE_LIGHT_TRUCK",
+          "VEHICLE_TYPE_LIGHT_GAZ_TRUCK",
+          "VEHICLE_TYPE_MEDIUM_TRUCK",
+          "VEHICLE_TYPE_MEDIUM_GAZ_TRUCK",
+          "VEHICLE_TYPE_LIGHT_E_TRUCK",
+          "VEHICLE_TYPE_MEDIUM_E_TRUCK"
         ],
         "description": "Specifies the type of vehicle used for the delivery.",
         "title": "Vehicle type (vehicleType)",

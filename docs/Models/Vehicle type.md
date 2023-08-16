@@ -21,6 +21,12 @@ Status | Title
  `VEHICLE_TYPE_MAXI_TRUCK`|Maxi Diesel Truck (31 to 45 T)
  `VEHICLE_TYPE_MAXI_E_TRUCK`|Maxi Electric Truck (31 to 45 T)
  `VEHICLE_TYPE_MAXI_GAZ_TRUCK`|Maxi Gaz Truck (31 to 45 T)
+ `VEHICLE_TYPE_LIGHT_TRUCK`|Diesel Truck (3,5 to 7,5 T)
+ `VEHICLE_TYPE_LIGHT_GAZ_TRUCK`|Gaz Truck (3,5 to 7,5 T)
+ `VEHICLE_TYPE_MEDIUM_TRUCK`|Diesel Truck (7,5 to 15 T)
+ `VEHICLE_TYPE_MEDIUM_GAZ_TRUCK`|Gaz Truck (7,5 to 15 T)
+ `VEHICLE_TYPE_LIGHT_E_TRUCK`|Electric Truck (3,5 to 7,5 T)
+ `VEHICLE_TYPE_MEDIUM_E_TRUCK`|Electric Truck (7,5 to 15 T)
  `VEHICLE_TYPE_BIKE_CARGO`|Cargo bike
  `VEHICLE_TYPE_CAR`|Car
  `VEHICLE_TYPE_E_CAR`|Electric car
