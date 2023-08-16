@@ -36,8 +36,5 @@ Status | Title
  `VEHICLE_TYPE_MAXI_TRUCK`|Maxi Diesel Truck (31 to 45 T)
  `VEHICLE_TYPE_MAXI_E_TRUCK`|Maxi Electric Truck (31 to 45 T)
  `VEHICLE_TYPE_MAXI_GAZ_TRUCK`|Maxi Gaz Truck (31 to 45 T)
-
-
  `VEHICLE_TYPE_HYBRID_CAR`|Hybrid car
-
  `VEHICLE_TYPE_UNKNOWN`|Unknown vehicle
