@@ -2814,6 +2814,38 @@
             "items": {
               "$ref": "#/components/schemas/label"
             }
+          },
+          "routing": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "5gtu9pum8k3is"
+            },
+            "properties": {
+              "agency": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "bjm6m6zknj6u3"
+                }
+              },
+              "deliveryMode": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "0vln5mtfh5sc4"
+                }
+              },
+              "shuttle": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "otm8w5t24k6f7"
+                }
+              },
+              "id": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "p9ct8fq8hn58l"
+                }
+              }
+            }
           }
         },
         "required": [
