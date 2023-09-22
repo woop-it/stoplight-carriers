@@ -32,4 +32,4 @@ List of the delivery services available when creating an order.
 | `SERVICE_STORE_TO_STORE`           | Delivery from one store to another   |
 | `SERVICE_FREIGHT_ELEVATOR`         | Delivery by freight elevator         |
 
-*The set up of delivery services by carrier is manual, please contact us.*
+*The set up of delivery services by carrier is manual, please contact us.* 
