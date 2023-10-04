@@ -3307,36 +3307,36 @@
         "description": "Corresponds to the quote price",
         "type": "object",
         "title": "Quote price",
-        "required": [
-          "taxExcludedAmount",
-          "currency"
-        ],
         "properties": {
           "taxExcludedAmount": {
             "type": "number",
             "format": "float",
             "description": "Tax excluded amount",
-            "exclusiveMinimum": true,
+            "exclusiveMinimum": false,
             "minimum": 0
           },
           "taxIncludedAmount": {
             "type": "number",
             "format": "float",
             "description": "Amount including VAT",
-            "exclusiveMinimum": true,
+            "exclusiveMinimum": false,
             "minimum": 0
           },
           "taxAmount": {
             "type": "number",
             "format": "float",
             "description": "Tax amount",
-            "exclusiveMinimum": true,
+            "exclusiveMinimum": false,
             "minimum": 0
           },
           "currency": {
             "$ref": "#/components/schemas/currency"
           }
-        }
+        },
+        "required": [
+          "taxExcludedAmount",
+          "currency"
+        ]
       },
       "refusedReason": {
         "type": "string",
