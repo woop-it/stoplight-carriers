@@ -81,8 +81,7 @@
                 },
                 "required": [
                   "status",
-                  "date",
-                  "comment"
+                  "date"
                 ]
               },
               "examples": {
