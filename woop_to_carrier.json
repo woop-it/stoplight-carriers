@@ -1698,6 +1698,103 @@
           "type"
         ]
       },
+      "addressWithCoordinate": {
+        "x-examples": {
+          "Exemple": {
+            "addressLine1": "179 boulevard de Turien",
+            "addressLine2": "Woop",
+            "elevator": true,
+            "floor": 8,
+            "postalCode": "59000",
+            "city": "Lille",
+            "country": "FR"
+          }
+        },
+        "x-stoplight": {
+          "id": "vmfjdwlfk5427"
+        },
+        "type": "object",
+        "description": "All relevant information for a delivery/collection address.",
+        "title": "Address (address)",
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country",
+          "type"
+        ],
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "description": "Full address of the main location"
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Additional address of the location"
+          },
+          "elevator": {
+            "type": "boolean",
+            "description": "Indicates whether the address has a lift\nDefault value: FALSE"
+          },
+          "floor": {
+            "type": "integer",
+            "description": "Specifies the floor of the address in question\nDefault value: 0"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "The postcode of the main address"
+          },
+          "doorCode": {
+            "type": "string",
+            "description": "Door code"
+          },
+          "city": {
+            "type": "string",
+            "description": "City name"
+          },
+          "district": {
+            "type": "string",
+            "description": "Borough name"
+          },
+          "country": {
+            "type": "string",
+            "enum": [
+              "FR",
+              "BE"
+            ],
+            "description": "The Country code (ISO 3166-1 alpha-2)"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Additional comments"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "address",
+              "exchangePlace",
+              "pickupPoint"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "EXCHANGE_PLACE_STORE",
+              "EXCHANGE_PLACE_PFU",
+              "EXCHANGE_PLACE_STORAGE"
+            ]
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/coordinates"
+          }
+        }
+      },
       "addressWithoutSensitiveData": {
         "title": "Address without door code (addressWithoutSensitiveData)",
         "type": "object",
@@ -2484,18 +2581,18 @@
           },
           {
             "type": "object",
-            "properties": {
-              "picking": {
-                "$ref": "#/components/schemas/withContactAndLocalization"
-              },
-              "delivery": {
-                "$ref": "#/components/schemas/withContactAndLocalization"
-              }
-            },
             "required": [
               "picking",
               "delivery"
-            ]
+            ],
+            "properties": {
+              "picking": {
+                "$ref": "#/components/schemas/withContactLocalizationAndCoordinate"
+              },
+              "delivery": {
+                "$ref": "#/components/schemas/withContactLocalizationAndCoordinate"
+              }
+            }
           }
         ],
         "title": "Delivery request (postDelivery)",
@@ -2950,6 +3047,37 @@
           "answer",
           "question"
         ]
+      },
+      "withContactLocalizationAndCoordinate": {
+        "title": "withContactLocalizationAndCoordinate",
+        "x-stoplight": {
+          "id": "a7ierv6o4q8yp"
+        },
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/addressWithCoordinate"
+          },
+          "infos": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "by4ykb4jqwc6t"
+            }
+          },
+          "interval": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "2zlzxeio0bk6o"
+            },
+            "items": {
+              "$ref": "#/components/schemas/interval"
+            }
+          },
+          "contact": {
+            "$ref": "#/components/schemas/contactWithLocalization"
+          }
+        },
+        "description": ""
       }
     },
     "parameters": {
