@@ -1490,6 +1490,667 @@
         "tags": [
           "Souscriptions"
         ]
+      },
+      "patch": {
+        "description": "Endpoint for modifying exchanges with carrier APIs.",
+        "operationId": "patchSubscription",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiVersion"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Contains subscription information",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "callbacks": {
+                    "type": "object",
+                    "properties": {
+                      "quote": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route for obtaining quotes"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "Hello, your order has been confirmed.",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "delivery": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to validate a quote"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "cancelDelivery": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to cancel a delivery order"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "cancelQuote": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to cancel a quote"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "score": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to provide a rating for the carrier of an order"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "pickupPoint": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to provide the list of relay points"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "label": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to generate and retrieve a label"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to retrieve status by 'package'"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      },
+                      "loadingIdentifications": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "hkh8gzcqbtiw1"
+                        },
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the route to retrieve the loading information bo"
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "API version for this callback (see woop to carrier)",
+                            "example": "1.5.0"
+                          },
+                          "headers": {
+                            "description": "Headers for this callback only",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            }
+                          },
+                          "auth": {
+                            "description": "Authentication for this callback only",
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ]
+                      }
+                    }
+                  },
+                  "adapter": {
+                    "type": "string",
+                    "description": "Allows you to indicate the name of the service used in LMMP to convert the data format of selected Carrier APIs.",
+                    "example": "XMLAdapter"
+                  },
+                  "headers": {
+                    "description": "Headers for all callbacks",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "key",
+                        "value"
+                      ]
+                    }
+                  },
+                  "auth": {
+                    "description": "Authentication for all callbacks",
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/postSubscriptionBasic"
+                      },
+                      {
+                        "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                      },
+                      {
+                        "$ref": "#/components/schemas/postSubscriptionToken"
+                      }
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Basic": {
+                  "value": {
+                    "callbacks": {
+                      "quote": {
+                        "url": "https://my_url/quote",
+                        "version": "1.5.0"
+                      },
+                      "delivery": {
+                        "url": "https://my_url/delivery",
+                        "version": "1.5.0"
+                      },
+                      "cancelDelivery": {
+                        "url": "https://my_url/cancelDelivery",
+                        "version": "1.5.0"
+                      },
+                      "cancelQuote": {
+                        "url": "https://my_url/cancelQuote",
+                        "version": "1.5.0"
+                      },
+                      "score": {
+                        "url": "https://my_url/score",
+                        "version": "1.5.0"
+                      }
+                    },
+                    "headers": [
+                      {
+                        "key": "x-api-key",
+                        "value": "KHJKO8U9"
+                      }
+                    ],
+                    "auth": {
+                      "basic": {
+                        "username": "admin",
+                        "password": "1234"
+                      }
+                    }
+                  }
+                },
+                "OAuth2": {
+                  "value": {
+                    "callbacks": {
+                      "quote": {
+                        "url": "https://my_url/quote",
+                        "version": "1.5.0"
+                      },
+                      "delivery": {
+                        "url": "https://my_url/delivery",
+                        "version": "1.5.0"
+                      },
+                      "cancelDelivery": {
+                        "url": "https://my_url/cancelDelivery",
+                        "version": "1.5.0"
+                      },
+                      "cancelQuote": {
+                        "url": "https://my_url/cancelQuote",
+                        "version": "1.5.0"
+                      },
+                      "score": {
+                        "url": "https://my_url/score",
+                        "version": "1.5.0"
+                      },
+                      "price": {
+                        "url": "https://my_url/price",
+                        "version": "1.5.0"
+                      }
+                    },
+                    "auth": {
+                      "oauth2": {
+                        "client_id": "8664fb6e578be877cdd16e2c13e1db3e",
+                        "client_secret": "4bb43097953c6d3ffae77b77f4716bba",
+                        "audience": "carrier.last-mile.fr",
+                        "grant_type": "client_credentials",
+                        "tokenEndPoint": "token.last-mile.fr"
+                      }
+                    }
+                  }
+                },
+                "Token": {
+                  "value": {
+                    "callbacks": {
+                      "quote": {
+                        "url": "https://my_url/quote",
+                        "version": "1.5.0"
+                      },
+                      "delivery": {
+                        "url": "https://my_url/delivery",
+                        "version": "1.5.0"
+                      },
+                      "cancelDelivery": {
+                        "url": "https://my_url/cancelDelivery",
+                        "version": "1.5.0"
+                      },
+                      "cancelQuote": {
+                        "url": "https://my_url/cancelQuote",
+                        "version": "1.5.0"
+                      },
+                      "score": {
+                        "url": "https://my_url/score",
+                        "version": "1.5.0"
+                      }
+                    },
+                    "auth": {
+                      "token": {
+                        "username": "admin",
+                        "password": "1234",
+                        "endpoint": "token.last-mile.fr"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Request processed successfully"
+          },
+          "400": {
+            "description": "Missing and/or incorrect items in the body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not allowed to access this item."
+          },
+          "404": {
+            "description": "No subscription was found OR requested Carrier was not found"
+          }
+        },
+        "summary": "Subscription management",
+        "tags": [
+          "Souscriptions"
+        ]
       }
     },
     "/deliveries/{deliveryId}/documents": {
