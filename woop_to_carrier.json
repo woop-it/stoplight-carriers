@@ -1759,6 +1759,2664 @@
           "Delivery"
         ],
         "summary": "Delivery request"
+      },
+      "post - copy 3": {
+        "operationId": "postDelivery",
+        "description": "This method allows you to validate a quote and receive the delivery order. In response, it provides additional information about the delivery.",
+        "requestBody": {
+          "required": true,
+          "description": "Contains the information required to create a delivery request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postDelivery"
+              },
+              "examples": {
+                "Default Example": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with products price": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM",
+                      "SERVICE_ASSEMBLY"
+                    ],
+                    "productsPrice": {
+                      "value": 30,
+                      "currency": "EUR"
+                    }
+                  }
+                },
+                "Example with tags": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ]
+                  }
+                },
+                "Example with stops": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTYZZZ"
+                        },
+                        "sequenceNumber": 12,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with boxCategory + networkOperator": {
+                  "value": {
+                    "orderId": "string",
+                    "referenceNumber": "string",
+                    "productsPrice": {
+                      "value": 0,
+                      "currency": "EUR"
+                    },
+                    "retailer": {
+                      "name": "string",
+                      "code": "string",
+                      "store": {
+                        "id": "string",
+                        "name": "string",
+                        "contact": {
+                          "firstName": "string",
+                          "lastName": "string",
+                          "phone": "string",
+                          "email": "string"
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "length": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "weight": {
+                          "value": 0,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "string",
+                            "cug": "string",
+                            "label": "string",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 0,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ],
+                    "quoteId": "string",
+                    "expectedPayment": {
+                      "value": 17.5,
+                      "currency": "EUR",
+                      "paymentMethod": "CASH"
+                    },
+                    "picking": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The delivery is accepted, a 'deliveryId' is returned, additionally a table of 'parcels' ids can be returned if tracking by parcel. A table of labels can also be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deliveryCreated"
+                },
+                "examples": {
+                  "Default example": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "trackingPageUrl": "https://myTrackingPageUrl"
+                    }
+                  },
+                  "Example with parcel tracking": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "parcels": [
+                        {
+                          "id": "parcel123",
+                          "packageReference": "1234A"
+                        }
+                      ]
+                    }
+                  },
+                  "Example with delivery reference": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "externalReference": "12254-AX"
+                    }
+                  },
+                  "Example with delivery labels": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "parcels": [
+                        {
+                          "id": "5q4f5q4zd",
+                          "packageReference": "1234A"
+                        },
+                        {
+                          "id": "5q5f5q4zb",
+                          "packageReference": "1234A"
+                        },
+                        {
+                          "id": "5q5f5q4zc",
+                          "packageReference": "1234A"
+                        }
+                      ],
+                      "labels": [
+                        {
+                          "id": "LBL001",
+                          "type": "base64",
+                          "mode": "jpeg",
+                          "value": "UklGRvwNAABXRUJQVlA4TPANAAA...",
+                          "parcelId": "5q4f5q4zd"
+                        },
+                        {
+                          "id": "LBL002",
+                          "type": "url",
+                          "mode": "jpeg",
+                          "value": "http://url.com",
+                          "parcelId": "5q5f5q4zb"
+                        },
+                        {
+                          "id": "LBL003",
+                          "parcelId": "5q5f5q4zc"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "205": {
+            "description": "The delivery is refused in the end, the possible reasons for refusal are entered in \"reasons\".\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Models/Refused%20reasons.md)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/refusedReason"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "REFUSED_TOO_HEAVY"
+                      ],
+                      "comment": "I will not accept this delivery after all."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing and/or incorrect items in the body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delivery"
+        ],
+        "summary": "Delivery request"
+      },
+      "post - copy 2": {
+        "operationId": "postDelivery",
+        "description": "This method allows you to validate a quote and receive the delivery order. In response, it provides additional information about the delivery.",
+        "requestBody": {
+          "required": true,
+          "description": "Contains the information required to create a delivery request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postDelivery"
+              },
+              "examples": {
+                "Default Example": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with products price": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM",
+                      "SERVICE_ASSEMBLY"
+                    ],
+                    "productsPrice": {
+                      "value": 30,
+                      "currency": "EUR"
+                    }
+                  }
+                },
+                "Example with tags": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ]
+                  }
+                },
+                "Example with stops": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTYZZZ"
+                        },
+                        "sequenceNumber": 12,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with boxCategory + networkOperator": {
+                  "value": {
+                    "orderId": "string",
+                    "referenceNumber": "string",
+                    "productsPrice": {
+                      "value": 0,
+                      "currency": "EUR"
+                    },
+                    "retailer": {
+                      "name": "string",
+                      "code": "string",
+                      "store": {
+                        "id": "string",
+                        "name": "string",
+                        "contact": {
+                          "firstName": "string",
+                          "lastName": "string",
+                          "phone": "string",
+                          "email": "string"
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "length": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "weight": {
+                          "value": 0,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "string",
+                            "cug": "string",
+                            "label": "string",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 0,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ],
+                    "quoteId": "string",
+                    "expectedPayment": {
+                      "value": 17.5,
+                      "currency": "EUR",
+                      "paymentMethod": "CASH"
+                    },
+                    "picking": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The delivery is accepted, a 'deliveryId' is returned, additionally a table of 'parcels' ids can be returned if tracking by parcel. A table of labels can also be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deliveryCreated"
+                },
+                "examples": {
+                  "Default example": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "trackingPageUrl": "https://myTrackingPageUrl"
+                    }
+                  },
+                  "Example with parcel tracking": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "parcels": [
+                        {
+                          "id": "parcel123",
+                          "packageReference": "1234A"
+                        }
+                      ]
+                    }
+                  },
+                  "Example with delivery reference": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "externalReference": "12254-AX"
+                    }
+                  },
+                  "Example with delivery labels": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "parcels": [
+                        {
+                          "id": "5q4f5q4zd",
+                          "packageReference": "1234A"
+                        },
+                        {
+                          "id": "5q5f5q4zb",
+                          "packageReference": "1234A"
+                        },
+                        {
+                          "id": "5q5f5q4zc",
+                          "packageReference": "1234A"
+                        }
+                      ],
+                      "labels": [
+                        {
+                          "id": "LBL001",
+                          "type": "base64",
+                          "mode": "jpeg",
+                          "value": "UklGRvwNAABXRUJQVlA4TPANAAA...",
+                          "parcelId": "5q4f5q4zd"
+                        },
+                        {
+                          "id": "LBL002",
+                          "type": "url",
+                          "mode": "jpeg",
+                          "value": "http://url.com",
+                          "parcelId": "5q5f5q4zb"
+                        },
+                        {
+                          "id": "LBL003",
+                          "parcelId": "5q5f5q4zc"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "205": {
+            "description": "The delivery is refused in the end, the possible reasons for refusal are entered in \"reasons\".\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Models/Refused%20reasons.md)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/refusedReason"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "REFUSED_TOO_HEAVY"
+                      ],
+                      "comment": "I will not accept this delivery after all."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing and/or incorrect items in the body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delivery"
+        ],
+        "summary": "Delivery request"
+      },
+      "post - copy": {
+        "operationId": "postDelivery",
+        "description": "This method allows you to validate a quote and receive the delivery order. In response, it provides additional information about the delivery.",
+        "requestBody": {
+          "required": true,
+          "description": "Contains the information required to create a delivery request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postDelivery"
+              },
+              "examples": {
+                "Default Example": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with products price": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 2
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM",
+                      "SERVICE_ASSEMBLY"
+                    ],
+                    "productsPrice": {
+                      "value": 30,
+                      "currency": "EUR"
+                    }
+                  }
+                },
+                "Example with tags": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ]
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ]
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ]
+                  }
+                },
+                "Example with stops": {
+                  "value": {
+                    "orderId": "65zq1d5qz1d56q1",
+                    "quoteId": "4zd5z4d5zd",
+                    "referenceNumber": "65zq1d5qz1d56q1-456",
+                    "retailer": {
+                      "name": "Enseigne A",
+                      "code": "enseigne-a",
+                      "store": {
+                        "id": "store123",
+                        "name": "Magasin C",
+                        "contact": {
+                          "firstName": "Pierre",
+                          "lastName": "Dupond",
+                          "phone": "+33600000000",
+                          "email": "pierre.dupond@mail.fr"
+                        }
+                      }
+                    },
+                    "picking": {
+                      "contact": {
+                        "firstName": "Michel",
+                        "lastName": "Dupont",
+                        "phone": "+33600000000",
+                        "email": "michel.dupont@mail.fr"
+                      },
+                      "address": {
+                        "addressLine1": "237 rue du Ballon",
+                        "addressLine2": "Niji",
+                        "postalCode": "59110",
+                        "city": "La Madeleine",
+                        "country": "FR"
+                      },
+                      "infos": "Doorbell out of order.",
+                      "interval": [
+                        {
+                          "start": "2019-12-04T12:30:00+0000",
+                          "end": "2019-12-04T13:30:00+0000"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "contact": {
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "phone": "+33600000000",
+                        "email": "john.doe@mail.fr",
+                        "language": "fr-FR",
+                        "timezone": "Europe/Paris"
+                      },
+                      "address": {
+                        "addressLine1": "165 avenue de Bretagne",
+                        "elevator": true,
+                        "floor": 2,
+                        "postalCode": "59000",
+                        "city": "Lille",
+                        "country": "FR"
+                      },
+                      "interval": [
+                        {
+                          "start": "2019-12-06T13:00:00+0000",
+                          "end": "2019-12-06T15:00:00+0000"
+                        }
+                      ],
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTYZZZ"
+                        },
+                        "sequenceNumber": 12,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "AAA"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "POOOOO1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "id": 1,
+                        "length": {
+                          "value": 15,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 35.5,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 1.25,
+                          "unit": "m"
+                        },
+                        "weight": {
+                          "value": 12.35,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "4897567123548",
+                            "cug": "e21fe21",
+                            "label": "Armoire",
+                            "quantity": 1
+                          }
+                        ],
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "quantity": 1
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ]
+                  }
+                },
+                "Example with boxCategory + networkOperator": {
+                  "value": {
+                    "orderId": "string",
+                    "referenceNumber": "string",
+                    "productsPrice": {
+                      "value": 0,
+                      "currency": "EUR"
+                    },
+                    "retailer": {
+                      "name": "string",
+                      "code": "string",
+                      "store": {
+                        "id": "string",
+                        "name": "string",
+                        "contact": {
+                          "firstName": "string",
+                          "lastName": "string",
+                          "phone": "string",
+                          "email": "string"
+                        }
+                      }
+                    },
+                    "packages": [
+                      {
+                        "references": [
+                          {
+                            "reference": "ZRD3578UYG4",
+                            "barcode": {
+                              "value": "54fd56g4f5gfd456sd",
+                              "type": "barcode",
+                              "format": "128"
+                            }
+                          }
+                        ],
+                        "length": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "weight": {
+                          "value": 0,
+                          "unit": "kg"
+                        },
+                        "products": [
+                          {
+                            "type": "TYPOLOGY_GENERIC",
+                            "ean": "string",
+                            "cug": "string",
+                            "label": "string",
+                            "quantity": 1
+                          }
+                        ],
+                        "quantity": 0,
+                        "attributes": {
+                          "footprint": {
+                            "value": 13,
+                            "unit": "m2"
+                          }
+                        },
+                        "type": "PACKAGE"
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "tags": [
+                      {
+                        "key": "origin",
+                        "value": "web"
+                      }
+                    ],
+                    "quoteId": "string",
+                    "expectedPayment": {
+                      "value": 17.5,
+                      "currency": "EUR",
+                      "paymentMethod": "CASH"
+                    },
+                    "picking": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The delivery is accepted, a 'deliveryId' is returned, additionally a table of 'parcels' ids can be returned if tracking by parcel. A table of labels can also be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deliveryCreated"
+                },
+                "examples": {
+                  "Default example": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "trackingPageUrl": "https://myTrackingPageUrl"
+                    }
+                  },
+                  "Example with parcel tracking": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "parcels": [
+                        {
+                          "id": "parcel123",
+                          "packageReference": "1234A"
+                        }
+                      ]
+                    }
+                  },
+                  "Example with delivery reference": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "externalReference": "12254-AX"
+                    }
+                  },
+                  "Example with delivery labels": {
+                    "value": {
+                      "deliveryId": "5q4f5q4zd",
+                      "parcels": [
+                        {
+                          "id": "5q4f5q4zd",
+                          "packageReference": "1234A"
+                        },
+                        {
+                          "id": "5q5f5q4zb",
+                          "packageReference": "1234A"
+                        },
+                        {
+                          "id": "5q5f5q4zc",
+                          "packageReference": "1234A"
+                        }
+                      ],
+                      "labels": [
+                        {
+                          "id": "LBL001",
+                          "type": "base64",
+                          "mode": "jpeg",
+                          "value": "UklGRvwNAABXRUJQVlA4TPANAAA...",
+                          "parcelId": "5q4f5q4zd"
+                        },
+                        {
+                          "id": "LBL002",
+                          "type": "url",
+                          "mode": "jpeg",
+                          "value": "http://url.com",
+                          "parcelId": "5q5f5q4zb"
+                        },
+                        {
+                          "id": "LBL003",
+                          "parcelId": "5q5f5q4zc"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "205": {
+            "description": "The delivery is refused in the end, the possible reasons for refusal are entered in \"reasons\".\n\n[See the refusal reasons](https://woop.stoplight.io/docs/carrier/docs/Models/Refused%20reasons.md)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/refusedReason"
+                      }
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "REFUSED_TOO_HEAVY"
+                      ],
+                      "comment": "I will not accept this delivery after all."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing and/or incorrect items in the body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Missing argument 'xxxxx'"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Exemple": {
+                    "value": {
+                      "reasons": [
+                        "Missing argument 'xxxxx'"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delivery"
+        ],
+        "summary": "Delivery request"
       }
     },
     "/deliveries/{deliveryId}": {
@@ -2561,6 +5219,208 @@
           "Pickup Point"
         ]
       }
+    },
+    "/declarations": {
+      "post": {
+        "summary": "Declaration request",
+        "tags": [],
+        "responses": {},
+        "operationId": "post-declarations",
+        "x-stoplight": {
+          "id": "ark2d2zm61h3f"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postDeclaration"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "fullfilmentId": "string",
+                    "referenceNumber": "string",
+                    "retailer": {
+                      "name": "string",
+                      "code": "string",
+                      "store": {
+                        "id": "string",
+                        "name": "string",
+                        "contact": {
+                          "firstName": "string",
+                          "lastName": "string",
+                          "phone": "string",
+                          "email": "string"
+                        }
+                      }
+                    },
+                    "products": [
+                      {
+                        "type ": "TYPOLOGY_GENERIC",
+                        "ean": "string",
+                        "label": "string",
+                        "quantity": 0,
+                        "length": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "width": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "height": {
+                          "value": 0,
+                          "unit": "cm"
+                        },
+                        "weight": {
+                          "value": 0,
+                          "unit": "kg"
+                        }
+                      }
+                    ],
+                    "services": [
+                      "SERVICE_SELECTED_ROOM"
+                    ],
+                    "picking": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "delivery": {
+                      "location": {
+                        "addressLine1": "string",
+                        "addressLine2": "string",
+                        "elevator": true,
+                        "floor": 0,
+                        "postalCode": "string",
+                        "doorCode": "string",
+                        "city": "string",
+                        "district": "string",
+                        "country": "FR",
+                        "comment": "string",
+                        "type": "address",
+                        "name": "string",
+                        "id": "string",
+                        "subType": "EXCHANGE_PLACE_STORE",
+                        "networkOperatorCode": "NetworkOperator_001",
+                        "boxCategoryId": "BoxCategory_001"
+                      },
+                      "infos": "string",
+                      "interval": [
+                        {
+                          "start": "string",
+                          "end": "string"
+                        }
+                      ],
+                      "contact": {
+                        "firstName": "string",
+                        "lastName": "string",
+                        "phone": "string",
+                        "email": "string",
+                        "language": "string",
+                        "timezone": "string"
+                      },
+                      "stop": {
+                        "references": {
+                          "id": "123890654FRTTY"
+                        },
+                        "sequenceNumber": 7,
+                        "route": {
+                          "references": {
+                            "id": "ZAESFHGTR567"
+                          },
+                          "sequenceNumber": 3,
+                          "vehicle": {
+                            "references": {
+                              "id": "34689875434578",
+                              "licencePlate": "ZE-678-HD"
+                            },
+                            "vehicleType": "VEHICLE_TYPE_BIKE"
+                          },
+                          "team": {
+                            "members": [
+                              {
+                                "id": "string"
+                              }
+                            ]
+                          },
+                          "planning": {
+                            "references": {
+                              "id": "P000001"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This method makes it possible to send an order-taking declaration with an exhaustive list of the products in the customer's basket. The aim of this method is to provide visibility on the volume of orders taken for future orders. "
+      }
     }
   },
   "components": {
@@ -2905,7 +5765,7 @@
       },
       "package": {
         "type": "object",
-        "description": "Retailer's handling unit. Generally used as a collection of products in the order grouped by package.",
+        "description": "Retailer's handling unit. Generally used as a collection of products in the order grouped by package",
         "title": "Package (package)",
         "x-examples": {
           "Example": {
@@ -3307,36 +6167,36 @@
         "description": "Corresponds to the quote price",
         "type": "object",
         "title": "Quote price",
+        "required": [
+          "taxExcludedAmount",
+          "currency"
+        ],
         "properties": {
           "taxExcludedAmount": {
             "type": "number",
             "format": "float",
             "description": "Tax excluded amount",
-            "exclusiveMinimum": false,
+            "exclusiveMinimum": true,
             "minimum": 0
           },
           "taxIncludedAmount": {
             "type": "number",
             "format": "float",
             "description": "Amount including VAT",
-            "exclusiveMinimum": false,
+            "exclusiveMinimum": true,
             "minimum": 0
           },
           "taxAmount": {
             "type": "number",
             "format": "float",
             "description": "Tax amount",
-            "exclusiveMinimum": false,
+            "exclusiveMinimum": true,
             "minimum": 0
           },
           "currency": {
             "$ref": "#/components/schemas/currency"
           }
-        },
-        "required": [
-          "taxExcludedAmount",
-          "currency"
-        ]
+        }
       },
       "refusedReason": {
         "type": "string",
@@ -3392,43 +6252,36 @@
         },
         "type": "string"
       },
-       "vehicleType": {
+      "vehicleType": {
         "type": "string",
         "enum": [
           "VEHICLE_TYPE_BIKE",
-          "VEHICLE_TYPE_PEDESTRIAN",
-          "VEHICLE_TYPE_BIKE",
-          "VEHICLE_TYPE_E_BIKE",
-          "VEHICLE_TYPE_BIKE_CARGO",
-          "VEHICLE_TYPE_E_BIKE_CARGO",
-          "VEHICLE_TYPE_TRAILER_BIKE",
-          "VEHICLE_TYPE_E_TRAILER_BIKE",
-          "VEHICLE_TYPE_E_SCOOTER",
           "VEHICLE_TYPE_SCOOTER",
-          "VEHICLE_TYPE_CAR",
-          "VEHICLE_TYPE_HYBRID_CAR",
-          "VEHICLE_TYPE_E_CAR",
+          "VEHICLE_TYPE_E_SCOOTER",
           "VEHICLE_TYPE_VAN_SMALL",
-          "VEHICLE_TYPE_GAZ_VAN_SMALL",
           "VEHICLE_TYPE_E_VAN_SMALL",
+          "VEHICLE_TYPE_GAZ_VAN_SMALL",
           "VEHICLE_TYPE_VAN_MEDIUM",
-          "VEHICLE_TYPE_GAZ_VAN_MEDIUM",
           "VEHICLE_TYPE_E_VAN_MEDIUM",
-          "VEHICLE_TYPE_VAN_BIG",
-          "VEHICLE_TYPE_GAZ_VAN_BIG",
-          "VEHICLE_TYPE_E_VAN_BIG",
-          "VEHICLE_TYPE_LIGHT_TRUCK",
-          "VEHICLE_TYPE_LIGHT_GAZ_TRUCK",
-          "VEHICLE_TYPE_LIGHT_E_TRUCK",
-          "VEHICLE_TYPE_MEDIUM_TRUCK",
-          "VEHICLE_TYPE_MEDIUM_GAZ_TRUCK",
-          "VEHICLE_TYPE_MEDIUM_E_TRUCK",
+          "VEHICLE_TYPE_PEDESTRIAN",
           "VEHICLE_TYPE_TRUCK",
           "VEHICLE_TYPE_E_TRUCK",
+          "VEHICLE_TYPE_VAN_BIG",
+          "VEHICLE_TYPE_E_VAN_BIG",
           "VEHICLE_TYPE_GAZ_TRUCK",
           "VEHICLE_TYPE_MAXI_TRUCK",
           "VEHICLE_TYPE_MAXI_E_TRUCK",
           "VEHICLE_TYPE_MAXI_GAZ_TRUCK",
+          "VEHICLE_TYPE_BIKE_CARGO",
+          "VEHICLE_TYPE_CAR",
+          "VEHICLE_TYPE_E_CAR",
+          "VEHICLE_TYPE_GAZ_VAN_BIG",
+          "VEHICLE_TYPE_GAZ_VAN_MEDIUM",
+          "VEHICLE_TYPE_TRAILER_BIKE",
+          "VEHICLE_TYPE_E_TRAILER_BIKE",
+          "VEHICLE_TYPE_HYBRID_CAR",
+          "VEHICLE_TYPE_E_BIKE",
+          "VEHICLE_TYPE_E_BIKE_CARGO",
           "VEHICLE_TYPE_UNKNOWN"
         ],
         "title": "Vehicle type (vehicleType)",
@@ -3944,6 +6797,212 @@
           }
         }
       },
+      "postDeclaration": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/postDeclarationInformations"
+          },
+          {
+            "type": "object",
+            "required": [
+              "picking",
+              "delivery"
+            ],
+            "properties": {
+              "picking": {
+                "$ref": "#/components/schemas/withContactAndLocalization"
+              },
+              "delivery": {
+                "$ref": "#/components/schemas/withContactAndLocalization"
+              }
+            }
+          }
+        ],
+        "x-stoplight": {
+          "id": "tx65zixi1k8mf"
+        },
+        "title": "Declaration request (postDeclaration)",
+        "description": "Contains the information required to create a declaration request. ",
+        "x-examples": {
+          "Example 1": {
+            "fullfilmentId": "string",
+            "referenceNumber": "string",
+            "retailer": {
+              "name": "string",
+              "code": "string",
+              "store": {
+                "id": "string",
+                "name": "string",
+                "contact": {
+                  "firstName": "string",
+                  "lastName": "string",
+                  "phone": "string",
+                  "email": "string"
+                }
+              }
+            },
+            "products": [
+              {
+                "type ": "TYPOLOGY_GENERIC",
+                "ean": "string",
+                "label": "string",
+                "quantity": 0,
+                "length": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "width": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "weight": {
+                  "value": 0,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "services": [
+              "SERVICE_SELECTED_ROOM"
+            ],
+            "picking": {
+              "location": {
+                "addressLine1": "string",
+                "addressLine2": "string",
+                "elevator": true,
+                "floor": 0,
+                "postalCode": "string",
+                "doorCode": "string",
+                "city": "string",
+                "district": "string",
+                "country": "FR",
+                "comment": "string",
+                "type": "address",
+                "name": "string",
+                "id": "string",
+                "subType": "EXCHANGE_PLACE_STORE",
+                "networkOperatorCode": "NetworkOperator_001",
+                "boxCategoryId": "BoxCategory_001"
+              },
+              "infos": "string",
+              "interval": [
+                {
+                  "start": "string",
+                  "end": "string"
+                }
+              ],
+              "contact": {
+                "firstName": "string",
+                "lastName": "string",
+                "phone": "string",
+                "email": "string",
+                "language": "string",
+                "timezone": "string"
+              },
+              "stop": {
+                "references": {
+                  "id": "123890654FRTTY"
+                },
+                "sequenceNumber": 7,
+                "route": {
+                  "references": {
+                    "id": "ZAESFHGTR567"
+                  },
+                  "sequenceNumber": 3,
+                  "vehicle": {
+                    "references": {
+                      "id": "34689875434578",
+                      "licencePlate": "ZE-678-HD"
+                    },
+                    "vehicleType": "VEHICLE_TYPE_BIKE"
+                  },
+                  "team": {
+                    "members": [
+                      {
+                        "id": "string"
+                      }
+                    ]
+                  },
+                  "planning": {
+                    "references": {
+                      "id": "P000001"
+                    }
+                  }
+                }
+              }
+            },
+            "delivery": {
+              "location": {
+                "addressLine1": "string",
+                "addressLine2": "string",
+                "elevator": true,
+                "floor": 0,
+                "postalCode": "string",
+                "doorCode": "string",
+                "city": "string",
+                "district": "string",
+                "country": "FR",
+                "comment": "string",
+                "type": "address",
+                "name": "string",
+                "id": "string",
+                "subType": "EXCHANGE_PLACE_STORE",
+                "networkOperatorCode": "NetworkOperator_001",
+                "boxCategoryId": "BoxCategory_001"
+              },
+              "infos": "string",
+              "interval": [
+                {
+                  "start": "string",
+                  "end": "string"
+                }
+              ],
+              "contact": {
+                "firstName": "string",
+                "lastName": "string",
+                "phone": "string",
+                "email": "string",
+                "language": "string",
+                "timezone": "string"
+              },
+              "stop": {
+                "references": {
+                  "id": "123890654FRTTY"
+                },
+                "sequenceNumber": 7,
+                "route": {
+                  "references": {
+                    "id": "ZAESFHGTR567"
+                  },
+                  "sequenceNumber": 3,
+                  "vehicle": {
+                    "references": {
+                      "id": "34689875434578",
+                      "licencePlate": "ZE-678-HD"
+                    },
+                    "vehicleType": "VEHICLE_TYPE_BIKE"
+                  },
+                  "team": {
+                    "members": [
+                      {
+                        "id": "string"
+                      }
+                    ]
+                  },
+                  "planning": {
+                    "references": {
+                      "id": "P000001"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "deliveryInformations": {
         "description": "Delivery information.",
         "type": "object",
@@ -4211,6 +7270,96 @@
           "services",
           "quoteId"
         ]
+      },
+      "postDeclarationInformations": {
+        "title": "Declaration request information (postDeclarationInformations)",
+        "x-stoplight": {
+          "id": "iqywkwbqnq9ws"
+        },
+        "description": "Declaration request information.",
+        "type": "object",
+        "x-examples": {
+          "Example 2": {
+            "fullfilmentId": "string",
+            "referenceNumber": "string",
+            "retailer": {
+              "name": "string",
+              "code": "string",
+              "store": {
+                "id": "string",
+                "name": "string",
+                "contact": {
+                  "firstName": "string",
+                  "lastName": "string",
+                  "phone": "string",
+                  "email": "string"
+                }
+              }
+            },
+            "products": [
+              {
+                "type ": "TYPOLOGY_GENERIC",
+                "ean": "string",
+                "label": "string",
+                "quantity": 0,
+                "length": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "width": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 0,
+                  "unit": "cm"
+                },
+                "weight": {
+                  "value": 0,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "services": [
+              "SERVICE_SELECTED_ROOM"
+            ]
+          }
+        },
+        "required": [
+          "fullfilmentId",
+          "referenceNumber",
+          "retailer",
+          "products",
+          "services"
+        ],
+        "properties": {
+          "fullfilmentId": {
+            "type": "string",
+            "description": "Order identifier to be entered by the retailer.",
+            "x-stoplight": {
+              "id": "h72pfvk23e5jp"
+            }
+          },
+          "referenceNumber": {
+            "type": "string",
+            "description": "Order reference, store number. Can be the same as the orderId."
+          },
+          "retailer": {
+            "$ref": "#/components/schemas/retailer"
+          },
+          "products": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "mlf55zz2iqdjk"
+            },
+            "items": {
+              "$ref": "#/components/schemas/productItem"
+            }
+          },
+          "services": {
+            "$ref": "#/components/schemas/services"
+          }
+        }
       },
       "deliveryCreated": {
         "type": "object",
@@ -4484,6 +7633,71 @@
           "deliveryId"
         ],
         "description": ""
+      },
+      "productItem": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "type": "TYPOLOGY_GENERIC",
+            "ean": "978020137962",
+            "label": "produit 1",
+            "quantity": 1,
+            "length": {
+              "value": 15,
+              "unit": "cm"
+            },
+            "width": {
+              "value": 15,
+              "unit": "cm"
+            },
+            "height": {
+              "value": 15,
+              "unit": "cm"
+            },
+            "weight": {
+              "value": 900,
+              "unit": "g"
+            }
+          }
+        },
+        "title": "Product item (productItem)",
+        "description": "Product list / Shopping cart item. ",
+        "required": [
+          "type ",
+          "length",
+          "width",
+          "height",
+          "weight"
+        ],
+        "properties": {
+          "type ": {
+            "$ref": "#/components/schemas/productType"
+          },
+          "ean": {
+            "type": "string",
+            "description": "Product EAN"
+          },
+          "label": {
+            "type": "string",
+            "description": "Product name"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity of product in the package"
+          },
+          "length": {
+            "$ref": "#/components/schemas/length"
+          },
+          "width": {
+            "$ref": "#/components/schemas/length"
+          },
+          "height": {
+            "$ref": "#/components/schemas/length"
+          },
+          "weight": {
+            "$ref": "#/components/schemas/mass"
+          }
+        }
       }
     },
     "parameters": {
