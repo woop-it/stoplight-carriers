@@ -5223,7 +5223,9 @@
     "/declarations": {
       "post": {
         "summary": "Declaration request",
-        "tags": [],
+        "tags": [
+          "Declaration"
+        ],
         "responses": {},
         "operationId": "post-declarations",
         "x-stoplight": {
