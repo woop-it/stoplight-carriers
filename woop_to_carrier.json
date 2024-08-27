@@ -2805,6 +2805,13 @@
       "contact": {
         "description": "Personal information on the delivery and/or collection contact.",
         "type": "object",
+        "title": "Contact (contact)",
+        "required": [
+          "firstName",
+          "lastName",
+          "phone",
+          "email"
+        ],
         "properties": {
           "firstName": {
             "type": "string",
@@ -2821,15 +2828,32 @@
           "email": {
             "type": "string",
             "description": "The e-mail address of the end customer"
+          },
+          "isProfessional": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "7qbgvsp79nvk1"
+            },
+            "description": "Indicates if the contact is a professional"
+          },
+          "companyName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "lwd7doaolaw0c"
+            },
+            "description": "Is used to indicate the company name if the contact is a professional.\n"
           }
         },
-        "required": [
-          "firstName",
-          "lastName",
-          "phone",
-          "email"
-        ],
-        "title": "Contact (contact)"
+        "x-examples": {
+          "Example 1": {
+            "firstName": "string",
+            "lastName": "string",
+            "phone": "string",
+            "email": "string",
+            "isProfessional": true,
+            "companyName": "string"
+          }
+        }
       },
       "tags": {
         "type": "array",
@@ -2857,6 +2881,12 @@
         "description": "Personal information on the delivery and/or collection contact.",
         "type": "object",
         "title": "Contact (contactWithLocalization)",
+        "required": [
+          "firstName",
+          "lastName",
+          "phone",
+          "email"
+        ],
         "properties": {
           "firstName": {
             "type": "string",
@@ -2881,14 +2911,34 @@
           "timezone": {
             "type": "string",
             "description": "The delivery time zone of the end customer"
+          },
+          "isProfessional": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "ry53jtlesce3r"
+            },
+            "description": "Indicates if the contact is a professional"
+          },
+          "companyName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "2x76qnsqfnxno"
+            },
+            "description": "Is used to indicate the company name if the contact is a professional.\n"
           }
         },
-        "required": [
-          "firstName",
-          "lastName",
-          "phone",
-          "email"
-        ]
+        "x-examples": {
+          "Example 1": {
+            "firstName": "string",
+            "lastName": "string",
+            "phone": "string",
+            "email": "string",
+            "language": "string",
+            "timezone": "string",
+            "isProfessional": true,
+            "companyName": "string"
+          }
+        }
       },
       "services": {
         "type": "array",
@@ -3307,36 +3357,36 @@
         "description": "Corresponds to the quote price",
         "type": "object",
         "title": "Quote price",
-        "required": [
-          "taxExcludedAmount",
-          "currency"
-        ],
         "properties": {
           "taxExcludedAmount": {
             "type": "number",
             "format": "float",
             "description": "Tax excluded amount",
-            "exclusiveMinimum": true,
+            "exclusiveMinimum": false,
             "minimum": 0
           },
           "taxIncludedAmount": {
             "type": "number",
             "format": "float",
             "description": "Amount including VAT",
-            "exclusiveMinimum": true,
+            "exclusiveMinimum": false,
             "minimum": 0
           },
           "taxAmount": {
             "type": "number",
             "format": "float",
             "description": "Tax amount",
-            "exclusiveMinimum": true,
+            "exclusiveMinimum": false,
             "minimum": 0
           },
           "currency": {
             "$ref": "#/components/schemas/currency"
           }
-        }
+        },
+        "required": [
+          "taxExcludedAmount",
+          "currency"
+        ]
       },
       "refusedReason": {
         "type": "string",
@@ -4221,6 +4271,9 @@
             "deliveryId": "1123663GHG"
           }
         },
+        "required": [
+          "deliveryId"
+        ],
         "properties": {
           "deliveryId": {
             "type": "string",
@@ -4235,6 +4288,9 @@
             "description": "Information on the package",
             "items": {
               "type": "object",
+              "required": [
+                "id"
+              ],
               "properties": {
                 "id": {
                   "type": "string",
@@ -4251,10 +4307,7 @@
                 "barcode": {
                   "$ref": "./models/Common/barcode.json"
                 }
-              },
-              "required": [
-                "id"
-              ]
+              }
             }
           },
           "labels": {
@@ -4268,11 +4321,15 @@
             "type": "string",
             "description": "delivery tracking page Url",
             "example": "https://myTrackingPageUrl.com"
+          },
+          "platform": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "4hrguyifweyoy"
+            },
+            "description": "Platform from where the package is sent (in a warehouse context) "
           }
-        },
-        "required": [
-          "deliveryId"
-        ]
+        }
       },
       "coordinates": {
         "type": "object",
