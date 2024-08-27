@@ -3392,7 +3392,7 @@
         },
         "type": "string"
       },
-       "vehicleType": {
+      "vehicleType": {
         "type": "string",
         "enum": [
           "VEHICLE_TYPE_BIKE",
@@ -4221,6 +4221,9 @@
             "deliveryId": "1123663GHG"
           }
         },
+        "required": [
+          "deliveryId"
+        ],
         "properties": {
           "deliveryId": {
             "type": "string",
@@ -4235,6 +4238,9 @@
             "description": "Information on the package",
             "items": {
               "type": "object",
+              "required": [
+                "id"
+              ],
               "properties": {
                 "id": {
                   "type": "string",
@@ -4251,10 +4257,7 @@
                 "barcode": {
                   "$ref": "./models/Common/barcode.json"
                 }
-              },
-              "required": [
-                "id"
-              ]
+              }
             }
           },
           "labels": {
@@ -4268,11 +4271,15 @@
             "type": "string",
             "description": "delivery tracking page Url",
             "example": "https://myTrackingPageUrl.com"
+          },
+          "platform": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "4hrguyifweyoy"
+            },
+            "description": "Platform from where the package is sent (in a warehouse context) "
           }
-        },
-        "required": [
-          "deliveryId"
-        ]
+        }
       },
       "coordinates": {
         "type": "object",
