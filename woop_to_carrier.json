@@ -2805,6 +2805,13 @@
       "contact": {
         "description": "Personal information on the delivery and/or collection contact.",
         "type": "object",
+        "title": "Contact (contact)",
+        "required": [
+          "firstName",
+          "lastName",
+          "phone",
+          "email"
+        ],
         "properties": {
           "firstName": {
             "type": "string",
@@ -2821,15 +2828,32 @@
           "email": {
             "type": "string",
             "description": "The e-mail address of the end customer"
+          },
+          "isProfessional": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "7qbgvsp79nvk1"
+            },
+            "description": "Indicates if the contact is a professional"
+          },
+          "companyName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "lwd7doaolaw0c"
+            },
+            "description": "Is used to indicate the company name if the contact is a professional.\n"
           }
         },
-        "required": [
-          "firstName",
-          "lastName",
-          "phone",
-          "email"
-        ],
-        "title": "Contact (contact)"
+        "x-examples": {
+          "Example 1": {
+            "firstName": "string",
+            "lastName": "string",
+            "phone": "string",
+            "email": "string",
+            "isProfessional": true,
+            "companyName": "string"
+          }
+        }
       },
       "tags": {
         "type": "array",
@@ -2857,6 +2881,12 @@
         "description": "Personal information on the delivery and/or collection contact.",
         "type": "object",
         "title": "Contact (contactWithLocalization)",
+        "required": [
+          "firstName",
+          "lastName",
+          "phone",
+          "email"
+        ],
         "properties": {
           "firstName": {
             "type": "string",
@@ -2881,14 +2911,34 @@
           "timezone": {
             "type": "string",
             "description": "The delivery time zone of the end customer"
+          },
+          "isProfessional": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "ry53jtlesce3r"
+            },
+            "description": "Indicates if the contact is a professional"
+          },
+          "companyName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "2x76qnsqfnxno"
+            },
+            "description": "Is used to indicate the company name if the contact is a professional.\n"
           }
         },
-        "required": [
-          "firstName",
-          "lastName",
-          "phone",
-          "email"
-        ]
+        "x-examples": {
+          "Example 1": {
+            "firstName": "string",
+            "lastName": "string",
+            "phone": "string",
+            "email": "string",
+            "language": "string",
+            "timezone": "string",
+            "isProfessional": true,
+            "companyName": "string"
+          }
+        }
       },
       "services": {
         "type": "array",
