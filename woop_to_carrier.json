@@ -1622,6 +1622,13 @@
         "type": "object",
         "description": "All relevant information for a delivery/collection address.",
         "title": "Address (address)",
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country",
+          "type"
+        ],
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -1688,15 +1695,12 @@
               "EXCHANGE_PLACE_PFU",
               "EXCHANGE_PLACE_STORAGE"
             ]
+          },
+          "coordinates": {
+            "type": "object",
+            "$ref": "#/components/schemas/coordinates"
           }
-        },
-        "required": [
-          "addressLine1",
-          "postalCode",
-          "city",
-          "country",
-          "type"
-        ]
+        }
       },
       "addressWithoutSensitiveData": {
         "title": "Address without door code (addressWithoutSensitiveData)",
