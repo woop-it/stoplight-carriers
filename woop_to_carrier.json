@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Woop to Carrier",
-    "description": "This document contains the technical information about Woop APIs for carriers. For any questions or clarification, please contact the internal technical team.\n\nTo use \"Carrier to Woop\" APIs, you must use the confidential access codes provided when you created your carrier account on the platform.\n\nThe version currently available in the documentation is **Version 1.6.0**",
+    "description": "This document contains the technical information about Woop APIs for carriers. For any questions or clarification, please contact the internal technical team.\n\nTo use \"Carrier to Woop\" APIs, you must use the confidential access codes provided when you created your carrier account on the platform\n\nThe version currently available in the documentation is **Version 1.6.0**",
     "version": "1.6.0"
   },
   "paths": {
