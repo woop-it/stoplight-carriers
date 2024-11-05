@@ -876,7 +876,7 @@
     "/deliveries": {
       "post": {
         "operationId": "postDelivery",
-        "description": "This method allows you to validate a quote and receive the delivery order. In response, it provides additional information about the delivery.",
+        "description": "This method allows you to validate a quote and receive the delivery order. In response, it provides additional information about the delivery",
         "requestBody": {
           "required": true,
           "description": "Contains the information required to create a delivery request.",
