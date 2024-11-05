@@ -854,6 +854,9 @@
                     "properties": {
                       "quote": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -869,6 +872,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -876,11 +883,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -897,13 +900,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "delivery": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -919,6 +922,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -926,11 +933,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -947,13 +950,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "cancelDelivery": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -969,6 +972,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -976,11 +983,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -997,13 +1000,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "cancelQuote": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1019,6 +1022,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1026,11 +1033,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1047,10 +1050,7 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "score": {
                         "type": "object",
@@ -1069,6 +1069,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1076,11 +1080,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1101,6 +1101,9 @@
                       },
                       "pickupPoint": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1116,6 +1119,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1123,11 +1130,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1144,13 +1147,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "label": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1166,6 +1169,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1173,11 +1180,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1194,13 +1197,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "status": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1216,6 +1219,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1223,11 +1230,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1244,16 +1247,16 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "loadingIdentifications": {
                         "type": "object",
                         "x-stoplight": {
                           "id": "8ym5zs7dnnxvq"
                         },
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1269,6 +1272,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1276,11 +1283,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1297,10 +1300,74 @@
                               }
                             ]
                           }
+                        }
+                      },
+                      "appointments": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "wt40j6g7cbymy"
                         },
                         "required": [
                           "url"
-                        ]
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "mj24do0ojnihs"
+                            }
+                          },
+                          "version": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "f24djqzdgoyqt"
+                            },
+                            "description": "API version for this callback (see woop to carrier)"
+                          },
+                          "headers ": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "ytnpytsgmvt8c"
+                            },
+                            "description": "Headers for this callback only",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "g1xuwh1ae8nk7"
+                              },
+                              "type": "object",
+                              "required": [
+                                "",
+                                ""
+                              ],
+                              "properties": {
+                                "": {
+                                  "type": "string",
+                                  "x-stoplight": {
+                                    "id": "amdqsmvxjo2je"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "": {
+                            "x-stoplight": {
+                              "id": "gw0ed9eqp10d0"
+                            },
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ],
+                            "description": "Authentication for this callback only",
+                            "type": "object"
+                          }
+                        }
                       }
                     }
                   },
@@ -1314,6 +1381,10 @@
                     "type": "array",
                     "items": {
                       "type": "object",
+                      "required": [
+                        "key",
+                        "value"
+                      ],
                       "properties": {
                         "key": {
                           "type": "string"
@@ -1321,11 +1392,7 @@
                         "value": {
                           "type": "string"
                         }
-                      },
-                      "required": [
-                        "key",
-                        "value"
-                      ]
+                      }
                     }
                   },
                   "auth": {
@@ -1512,6 +1579,9 @@
                     "properties": {
                       "quote": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1527,6 +1597,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1534,11 +1608,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1555,13 +1625,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "delivery": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1577,6 +1647,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1584,11 +1658,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1605,13 +1675,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "cancelDelivery": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1627,6 +1697,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1634,11 +1708,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1655,13 +1725,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "cancelQuote": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1677,6 +1747,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1684,11 +1758,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1705,10 +1775,7 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "score": {
                         "type": "object",
@@ -1727,6 +1794,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1734,11 +1805,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1759,6 +1826,9 @@
                       },
                       "pickupPoint": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1774,6 +1844,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1781,11 +1855,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1802,13 +1872,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "label": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1824,6 +1894,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1831,11 +1905,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1852,13 +1922,13 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "status": {
                         "type": "object",
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1874,6 +1944,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1881,11 +1955,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1902,16 +1972,16 @@
                               }
                             ]
                           }
-                        },
-                        "required": [
-                          "url"
-                        ]
+                        }
                       },
                       "loadingIdentifications": {
                         "type": "object",
                         "x-stoplight": {
                           "id": "hkh8gzcqbtiw1"
                         },
+                        "required": [
+                          "url"
+                        ],
                         "properties": {
                           "url": {
                             "type": "string",
@@ -1927,6 +1997,10 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "required": [
+                                "key",
+                                "value"
+                              ],
                               "properties": {
                                 "key": {
                                   "type": "string"
@@ -1934,11 +2008,7 @@
                                 "value": {
                                   "type": "string"
                                 }
-                              },
-                              "required": [
-                                "key",
-                                "value"
-                              ]
+                              }
                             }
                           },
                           "auth": {
@@ -1955,10 +2025,72 @@
                               }
                             ]
                           }
+                        }
+                      },
+                      "appointments": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "i03lsoam0ixck"
                         },
                         "required": [
                           "url"
-                        ]
+                        ],
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "rv4o7of26kkpo"
+                            }
+                          },
+                          "version": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "qrhfmxiexa4ua"
+                            }
+                          },
+                          "headers": {
+                            "type": "object",
+                            "x-stoplight": {
+                              "id": "w8h2egqb41e2v"
+                            },
+                            "required": [
+                              "key",
+                              "value"
+                            ],
+                            "properties": {
+                              "key": {
+                                "type": "string",
+                                "x-stoplight": {
+                                  "id": "nzkv779829j4w"
+                                }
+                              },
+                              "value": {
+                                "type": "string",
+                                "x-stoplight": {
+                                  "id": "nqqz6cnq0mnpi"
+                                }
+                              }
+                            }
+                          },
+                          "auth": {
+                            "x-stoplight": {
+                              "id": "gu9ipj51ld35y"
+                            },
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionBasic"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionOAuth2"
+                              },
+                              {
+                                "$ref": "#/components/schemas/postSubscriptionToken"
+                              }
+                            ],
+                            "description": "Authentication for this callback only",
+                            "type": "object"
+                          }
+                        }
                       }
                     }
                   },
@@ -1972,6 +2104,10 @@
                     "type": "array",
                     "items": {
                       "type": "object",
+                      "required": [
+                        "key",
+                        "value"
+                      ],
                       "properties": {
                         "key": {
                           "type": "string"
@@ -1979,11 +2115,7 @@
                         "value": {
                           "type": "string"
                         }
-                      },
-                      "required": [
-                        "key",
-                        "value"
-                      ]
+                      }
                     }
                   },
                   "auth": {
