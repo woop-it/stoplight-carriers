@@ -1336,20 +1336,26 @@
                               },
                               "type": "object",
                               "required": [
-                                "",
-                                ""
+                                "key",
+                                "value"
                               ],
                               "properties": {
-                                "": {
+                                "key": {
                                   "type": "string",
                                   "x-stoplight": {
                                     "id": "amdqsmvxjo2je"
+                                  }
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "x-stoplight": {
+                                    "id": "snyha8j5gdbri"
                                   }
                                 }
                               }
                             }
                           },
-                          "": {
+                          "auth": {
                             "x-stoplight": {
                               "id": "gw0ed9eqp10d0"
                             },
