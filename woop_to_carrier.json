@@ -2580,6 +2580,13 @@
         "type": "object",
         "description": "All relevant information for a delivery/collection address.",
         "title": "Address (address)",
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country",
+          "type"
+        ],
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -2654,25 +2661,15 @@
             "description": "type = exchange place ,\nsubtype = \n- EXCHANGE_PLACE_STORE\n- EXCHANGE_PLACE_PFU\n- EXCHANGE_PLACE_STORAGE\n\ntype = pickup point ,\nsubtype = \n- PICKUP_POINT_AGENCY\n- PICKUP_POINT_POST_OFFICE\n- PICKUP_POINT_RELAY_WITH_LOCKER\n- PICKUP_POINT_RELAY_WITHOUT_LOCKER\n- PICKUP_POINT_DRIVE"
           },
           "networkOperatorCode": {
-            "$ref": "./models/PickUpPoint/networkOperatorCode.json",
-            "x-stoplight": {
-              "id": "bavsiagdkzfsn"
-            }
+            "$ref": "./models/PickUpPoint/networkOperatorCode.json"
           },
           "boxCategoryId": {
-            "$ref": "./models/PickUpPoint/boxCategoryId.json",
-            "x-stoplight": {
-              "id": "xtibsj78pfd5a"
-            }
+            "$ref": "./models/PickUpPoint/boxCategoryId.json"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/coordinates"
           }
-        },
-        "required": [
-          "addressLine1",
-          "postalCode",
-          "city",
-          "country",
-          "type"
-        ]
+        }
       },
       "addressWithoutSensitiveData": {
         "title": "Address without door code (addressWithoutSensitiveData)",
@@ -3049,12 +3046,22 @@
             "type": "PACKAGE"
           }
         },
+        "required": [
+          "length",
+          "width",
+          "height",
+          "weight",
+          "quantity"
+        ],
         "properties": {
           "references": {
             "type": "array",
             "description": "references if provided by the retailer",
             "items": {
               "type": "object",
+              "required": [
+                "reference"
+              ],
               "properties": {
                 "reference": {
                   "type": "string",
@@ -3064,10 +3071,7 @@
                 "barcode": {
                   "$ref": "./models/barcode.yaml"
                 }
-              },
-              "required": [
-                "reference"
-              ]
+              }
             }
           },
           "length": {
@@ -3087,6 +3091,9 @@
             "description": "List of products in the package",
             "items": {
               "type": "object",
+              "required": [
+                "type"
+              ],
               "properties": {
                 "type": {
                   "$ref": "#/components/schemas/productType"
@@ -3108,15 +3115,11 @@
                   "default": 1,
                   "description": "Quantity of product in the package"
                 }
-              },
-              "required": [
-                "type"
-              ]
+              }
             }
           },
-          "quantity": {
-            "type": "integer",
-            "description": "Quantity of packages"
+          "volume": {
+            "$ref": "#/components/schemas/volume"
           },
           "attributes": {
             "type": "object",
@@ -3125,6 +3128,10 @@
               "footprint": {
                 "type": "object",
                 "description": "package footprint on the ground",
+                "required": [
+                  "value",
+                  "unit"
+                ],
                 "properties": {
                   "value": {
                     "type": "number",
@@ -3141,13 +3148,13 @@
                       "pallet"
                     ]
                   }
-                },
-                "required": [
-                  "value",
-                  "unit"
-                ]
+                }
               }
             }
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity of packages"
           },
           "type": {
             "type": "string",
@@ -3160,14 +3167,7 @@
             "example": "PACKAGE",
             "default": "PACKAGE"
           }
-        },
-        "required": [
-          "length",
-          "width",
-          "height",
-          "weight",
-          "quantity"
-        ]
+        }
       },
       "quote": {
         "title": "Quote (quote)",
@@ -4541,6 +4541,31 @@
           "deliveryId"
         ],
         "description": ""
+      },
+      "volume": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "value": 45,
+            "unit": "cm3"
+          }
+        },
+        "description": "Specifies the volume of a package.",
+        "title": "Package volume (volume)",
+        "required": [
+          "value",
+          "unit"
+        ],
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unit": {
+            "enum": [
+              "cm3"
+            ]
+          }
+        }
       }
     },
     "parameters": {

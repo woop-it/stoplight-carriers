@@ -1,5 +1,6 @@
 ---
-tags: ["Basis"]
+tags: [Basis]
+stoplight-id: 1p9vn2atgetp4
 ---
 
 # Subscriptions
