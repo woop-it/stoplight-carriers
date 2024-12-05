@@ -1753,6 +1753,27 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reasons": {
+                      "x-stoplight": {
+                        "id": "3waxl05y0kvx7"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/refusedReason"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4400,6 +4421,10 @@
       "label": {
         "description": "Carrier label",
         "type": "object",
+        "title": "Label (label)",
+        "required": [
+          "id"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -4430,12 +4455,19 @@
           "parcelId": {
             "type": "string",
             "description": "Associated package identifier"
+          },
+          "size": {
+            "x-stoplight": {
+              "id": "wygclcjjmwnty"
+            },
+            "description": "Size label value. Standard size = A6 ",
+            "enum": [
+              "A4",
+              "A5",
+              "A6"
+            ]
           }
-        },
-        "required": [
-          "id"
-        ],
-        "title": "Label (label)"
+        }
       },
       "scoreComment": {
         "title": "Comments on the delivery (scoreComment)",
