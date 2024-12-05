@@ -16,6 +16,7 @@ The token is mandatory and is required to identify yourself during a call. It mu
 | Production    |          <https://token.last-mile.fr/oauth/token>          |
 | Preproduction | <https://connect.preprod.gcp.last-mile.fr/api/oauth/token> |
 | Receipt       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token> |
+| UAT       | <https://connect.recette.gcp.last-mile.fr/api/oauth/token>   |
 
 ### Retrieving a token
 
@@ -81,3 +82,5 @@ The `acces_token` must be provided in an HTTP header for each call : `Authorizat
 | Production    |       <https://carrier.last-mile.fr>       |
 | Preproduction | <https://car-api.preprod.gcp.last-mile.fr> |
 | Staging       | <https://car-api.recette.gcp.last-mile.fr> |
+| UAT           | <https://carrier.uat.woopit.fr>.           |
+
