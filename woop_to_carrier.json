@@ -2585,9 +2585,29 @@
     },
     "/appointments": {
       "post": {
-        "summary": "Your POST endpoint",
-        "tags": [],
-        "responses": {},
+        "summary": "New appointments request",
+        "tags": [
+          "Booking"
+        ],
+        "responses": {
+          "2XX": {
+            "description": "Shared Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/response_createBooking"
+                    },
+                    {
+                      "$ref": "#/components/schemas/response_timeslotSearch"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
         "operationId": "post-appointments",
         "x-stoplight": {
           "id": "93brveancrun1"
@@ -4620,7 +4640,6 @@
         }
       },
       "postAppointments": {
-        "type": "object",
         "x-examples": {
           "Example 1": {
             "action": "timeslots_search",
@@ -4693,110 +4712,27 @@
                 }
               ]
             }
-          }
-        },
-        "required": [
-          "action",
-          "payload"
-        ],
-        "properties": {
-          "action": {
-            "description": "Indicates that the action is a slot search.",
-            "enum": [
-              "timeslot_search"
-            ]
           },
-          "payload": {
-            "type": "object",
-            "required": [
-              "picking",
-              "delivery",
-              "services",
-              "packages"
-            ],
-            "properties": {
-              "picking": {
-                "type": "object",
-                "properties": {
-                  "location": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "enum": [
-                          "exchangePlace"
-                        ]
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "storeId": {
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "country": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "interval": {
-                    "$ref": "#/components/schemas/interval"
-                  }
-                }
-              },
-              "delivery": {
-                "type": "object",
-                "required": [
-                  "location",
-                  "interval"
-                ],
-                "properties": {
-                  "location": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "enum": [
-                          "address"
-                        ]
-                      },
-                      "addressLine1": {
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "country": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "interval": {
-                    "$ref": "#/components/schemas/interval"
-                  }
-                }
-              },
-              "services": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "packages": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/package"
-                }
+          "Example 2": {
+            "action": "create_booking",
+            "payload": {
+              "slot": {
+                "id": "string",
+                "expiredAt": "string"
               }
             }
           }
-        }
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/createBooking"
+          },
+          {
+            "$ref": "#/components/schemas/timeslotSearch"
+          }
+        ],
+        "description": "Information to create appointment",
+        "title": "postAppointments"
       },
       "timeslotSearch": {
         "type": "object",
@@ -4877,8 +4813,8 @@
             }
           }
         },
-        "title": "timeslot search for appointments request",
-        "description": "Indicates that the action is a slot search.",
+        "title": "timeslot_search",
+        "description": "timeslot_search for appointments request. Indicates that the action is a slot search.",
         "required": [
           "action",
           "payload"
@@ -5032,8 +4968,92 @@
             }
           }
         },
-        "description": "Indicates that the action is to create a reservation",
-        "title": "createBooking for appointments request"
+        "description": "create_booking for appointments request. Indicates that the action is to create a reservation",
+        "title": "create_booking"
+      },
+      "response_timeslotSearch": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "slots": [
+              null
+            ],
+            "id": "string",
+            "start": "string",
+            "end": "string",
+            "remainingCapacity": "string",
+            "errorMessage": "string",
+            "errorCode": "string"
+          }
+        },
+        "required": [
+          "slots",
+          "id",
+          "start",
+          "end"
+        ],
+        "properties": {
+          "slots": {
+            "type": "array",
+            "description": "Table containing objects representing slots",
+            "items": {
+              "nullable": true
+            }
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique slot identifier"
+          },
+          "start": {
+            "type": "string",
+            "description": "start slot\n",
+            "format": "date"
+          },
+          "end": {
+            "type": "string",
+            "description": "end slot\n",
+            "format": "date"
+          },
+          "remainingCapacity": {
+            "type": "number",
+            "description": "Remaining capacity for the slot"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message in the event of a problem\n"
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "error code\n"
+          }
+        },
+        "title": "response_timeslotSearch",
+        "description": "timeslot_search for appointments response."
+      },
+      "response_createBooking": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "bookingId": "23DEDE",
+            "expiredAt": "2019-08-24"
+          }
+        },
+        "required": [
+          "bookingId"
+        ],
+        "properties": {
+          "bookingId": {
+            "type": "string",
+            "description": "booking id on the carrier side\n"
+          },
+          "expiredAt": {
+            "type": "string",
+            "format": "date",
+            "description": "booking expiry date\n"
+          }
+        },
+        "title": "response_createBooking",
+        "description": "create_booking for appointments response."
       }
     },
     "parameters": {
@@ -5138,129 +5158,7 @@
       }
     },
     "securitySchemes": {},
-    "responses": {
-      "createBooking": {
-        "description": "Example response",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "required": [
-                "bookingId"
-              ],
-              "properties": {
-                "bookingId": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "wqkgg0hc9jclj"
-                  },
-                  "description": "booking id on the carrier side\n"
-                },
-                "expiredAt": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "39ih56y8mib7m"
-                  },
-                  "format": "date",
-                  "description": "booking expiry date"
-                }
-              }
-            },
-            "examples": {
-              "Example 1": {
-                "value": {
-                  "bookingId": "23DEDE",
-                  "expiredAt": "2019-08-24"
-                }
-              }
-            }
-          }
-        }
-      },
-      "timeslotSearch": {
-        "description": "Example response",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "required": [
-                "slots",
-                "id",
-                "start",
-                "end"
-              ],
-              "properties": {
-                "slots": {
-                  "type": "array",
-                  "x-stoplight": {
-                    "id": "swq6ciw1uhb5t"
-                  },
-                  "description": "Table containing objects representing slots",
-                  "items": {}
-                },
-                "id": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "efasho2r9euid"
-                  },
-                  "description": "Unique slot identifier"
-                },
-                "start": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "w5fwgfwrvlluy"
-                  },
-                  "description": "start slot"
-                },
-                "end": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "nqzd8xbqfebom"
-                  },
-                  "description": "end slot"
-                },
-                "remainingCapacity": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "bfv599p9v5i0p"
-                  },
-                  "description": "Remaining capacity for the slot"
-                },
-                "errorMessage": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "xteb7gupm8v4d"
-                  },
-                  "description": "Error message in the event of a problem"
-                },
-                "errorCode": {
-                  "type": "string",
-                  "x-stoplight": {
-                    "id": "bzntbg4hdyyvf"
-                  },
-                  "description": "error code"
-                }
-              }
-            },
-            "examples": {
-              "Example 1": {
-                "value": {
-                  "slots": [
-                    null
-                  ],
-                  "id": "string",
-                  "start": "string",
-                  "end": "string",
-                  "remainingCapacity": "string",
-                  "errorMessage": "string",
-                  "errorCode": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    "responses": {}
   },
   "servers": [],
   "tags": [
