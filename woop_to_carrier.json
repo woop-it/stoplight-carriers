@@ -2582,6 +2582,26 @@
           "Pickup Point"
         ]
       }
+    },
+    "/appointments": {
+      "post": {
+        "summary": "Your POST endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "post-appointments",
+        "x-stoplight": {
+          "id": "93brveancrun1"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postAppointments"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -4598,6 +4618,422 @@
             ]
           }
         }
+      },
+      "postAppointments": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "action": "timeslots_search",
+            "payload": {
+              "picking": {
+                "location": {
+                  "type": "exchangePlace",
+                  "id": "13013",
+                  "storeId": "MAGLMMP1",
+                  "postalCode": "59000",
+                  "city": "Lille",
+                  "country": "FR"
+                },
+                "interval": {
+                  "start": "2024-12-04T13:19:22.549Z",
+                  "end": "2024-12-04T13:19:22.549Z"
+                }
+              },
+              "delivery": {
+                "location": {
+                  "type": "address",
+                  "addressLine1": "42 rue Ratisbonne",
+                  "postalCode": "59000",
+                  "city": "Lille",
+                  "country": "FR"
+                },
+                "interval": {
+                  "start": "2024-12-06T13:19:22.549Z",
+                  "end": "2024-12-07T13:19:22.549Z"
+                }
+              },
+              "services": [
+                "SERVICE_FRONT_HOME"
+              ],
+              "packages": [
+                {
+                  "references": [
+                    {
+                      "reference": "1",
+                      "barcode": {
+                        "value": "2079932_1",
+                        "format": "128",
+                        "type": "barcode"
+                      }
+                    }
+                  ],
+                  "quantity": 1,
+                  "products": [
+                    {
+                      "ean": "ean test 12",
+                      "type": "TYPOLOGY_GENERIC"
+                    }
+                  ],
+                  "length": {
+                    "value": 10,
+                    "unit": "cm"
+                  },
+                  "width": {
+                    "value": 10,
+                    "unit": "cm"
+                  },
+                  "height": {
+                    "value": 10,
+                    "unit": "cm"
+                  },
+                  "weight": {
+                    "value": 12,
+                    "unit": "kg"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "action",
+          "payload"
+        ],
+        "properties": {
+          "action": {
+            "description": "Indicates that the action is a slot search.",
+            "enum": [
+              "timeslot_search"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "picking",
+              "delivery",
+              "services",
+              "packages"
+            ],
+            "properties": {
+              "picking": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "exchangePlace"
+                        ]
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "storeId": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "interval": {
+                    "$ref": "#/components/schemas/interval"
+                  }
+                }
+              },
+              "delivery": {
+                "type": "object",
+                "required": [
+                  "location",
+                  "interval"
+                ],
+                "properties": {
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "address"
+                        ]
+                      },
+                      "addressLine1": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "interval": {
+                    "$ref": "#/components/schemas/interval"
+                  }
+                }
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "packages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/package"
+                }
+              }
+            }
+          }
+        }
+      },
+      "timeslotSearch": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "1r3mmwboibgae"
+        },
+        "x-examples": {
+          "Example 1": {
+            "action": "timeslots_search",
+            "payload": {
+              "picking": {
+                "location": {
+                  "type": "exchangePlace",
+                  "id": "13013",
+                  "storeId": "MAGLMMP1",
+                  "postalCode": "59000",
+                  "city": "Lille",
+                  "country": "FR"
+                },
+                "interval": {
+                  "start": "2024-12-04T13:19:22.549Z",
+                  "end": "2024-12-04T13:19:22.549Z"
+                }
+              },
+              "delivery": {
+                "location": {
+                  "type": "address",
+                  "addressLine1": "42 rue Ratisbonne",
+                  "postalCode": "59000",
+                  "city": "Lille",
+                  "country": "FR"
+                },
+                "interval": {
+                  "start": "2024-12-06T13:19:22.549Z",
+                  "end": "2024-12-07T13:19:22.549Z"
+                }
+              },
+              "services": [
+                "SERVICE_FRONT_HOME"
+              ],
+              "packages": [
+                {
+                  "references": [
+                    {
+                      "reference": "1",
+                      "barcode": {
+                        "value": "2079932_1",
+                        "format": "128",
+                        "type": "barcode"
+                      }
+                    }
+                  ],
+                  "quantity": 1,
+                  "products": [
+                    {
+                      "ean": "ean test 12",
+                      "type": "TYPOLOGY_GENERIC"
+                    }
+                  ],
+                  "length": {
+                    "value": 10,
+                    "unit": "cm"
+                  },
+                  "width": {
+                    "value": 10,
+                    "unit": "cm"
+                  },
+                  "height": {
+                    "value": 10,
+                    "unit": "cm"
+                  },
+                  "weight": {
+                    "value": 12,
+                    "unit": "kg"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "title": "timeslot search for appointments request",
+        "description": "Indicates that the action is a slot search.",
+        "required": [
+          "action",
+          "payload"
+        ],
+        "properties": {
+          "action": {
+            "description": "Indicates that the action is a slot search",
+            "enum": [
+              "timeslot_search"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "picking",
+              "delivery",
+              "services",
+              "packages"
+            ],
+            "properties": {
+              "picking": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "exchangePlace"
+                        ]
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "storeId": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "interval": {
+                    "$ref": "#/components/schemas/interval"
+                  }
+                }
+              },
+              "delivery": {
+                "type": "object",
+                "required": [
+                  "location",
+                  "interval"
+                ],
+                "properties": {
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "address"
+                        ]
+                      },
+                      "addressLine1": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "interval": {
+                    "$ref": "#/components/schemas/interval"
+                  }
+                }
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "packages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/package"
+                }
+              }
+            }
+          }
+        }
+      },
+      "createBooking": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "action": "create_booking",
+            "payload": {
+              "slot": {
+                "id": "timestamp",
+                "expiredAt": "2024-04-20T08:00:00+0000"
+              }
+            }
+          }
+        },
+        "required": [
+          "action",
+          "payload"
+        ],
+        "properties": {
+          "action": {
+            "enum": [
+              "create_booking"
+            ],
+            "description": "Indicates that the action is to create a reservation"
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "slot"
+            ],
+            "properties": {
+              "slot": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "expiredAt"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique slot identifier"
+                  },
+                  "expiredAt": {
+                    "type": "string",
+                    "description": "Slot expiration date"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Indicates that the action is to create a reservation",
+        "title": "createBooking for appointments request"
       }
     },
     "parameters": {
@@ -4701,7 +5137,130 @@
         }
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {},
+    "responses": {
+      "createBooking": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "bookingId"
+              ],
+              "properties": {
+                "bookingId": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "wqkgg0hc9jclj"
+                  },
+                  "description": "booking id on the carrier side\n"
+                },
+                "expiredAt": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "39ih56y8mib7m"
+                  },
+                  "format": "date",
+                  "description": "booking expiry date"
+                }
+              }
+            },
+            "examples": {
+              "Example 1": {
+                "value": {
+                  "bookingId": "23DEDE",
+                  "expiredAt": "2019-08-24"
+                }
+              }
+            }
+          }
+        }
+      },
+      "timeslotSearch": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "slots",
+                "id",
+                "start",
+                "end"
+              ],
+              "properties": {
+                "slots": {
+                  "type": "array",
+                  "x-stoplight": {
+                    "id": "swq6ciw1uhb5t"
+                  },
+                  "description": "Table containing objects representing slots",
+                  "items": {}
+                },
+                "id": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "efasho2r9euid"
+                  },
+                  "description": "Unique slot identifier"
+                },
+                "start": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "w5fwgfwrvlluy"
+                  },
+                  "description": "start slot"
+                },
+                "end": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "nqzd8xbqfebom"
+                  },
+                  "description": "end slot"
+                },
+                "remainingCapacity": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "bfv599p9v5i0p"
+                  },
+                  "description": "Remaining capacity for the slot"
+                },
+                "errorMessage": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "xteb7gupm8v4d"
+                  },
+                  "description": "Error message in the event of a problem"
+                },
+                "errorCode": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "bzntbg4hdyyvf"
+                  },
+                  "description": "error code"
+                }
+              }
+            },
+            "examples": {
+              "Example 1": {
+                "value": {
+                  "slots": [
+                    null
+                  ],
+                  "id": "string",
+                  "start": "string",
+                  "end": "string",
+                  "remainingCapacity": "string",
+                  "errorMessage": "string",
+                  "errorCode": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   },
   "servers": [],
   "tags": [
