@@ -2585,7 +2585,7 @@
     },
     "/appointments": {
       "post": {
-        "summary": "New appointments request",
+        "summary": "New appointment request",
         "tags": [
           "Booking"
         ],
@@ -2727,8 +2727,10 @@
                 }
               }
             }
-          }
-        }
+          },
+          "description": "Contains the information needed to (1) create booking or (2) search a time slot.\n"
+        },
+        "description": "This method is used for two different purposes: \n- Create booking \n- Search for an available time slot \n\nThe body is dynamic depending on the value contained in the \"action\" field"
       }
     }
   },
@@ -4839,7 +4841,7 @@
             "$ref": "#/components/schemas/timeslotSearch"
           }
         ],
-        "description": "Information to create appointment",
+        "description": "",
         "title": "postAppointments"
       },
       "timeslotSearch": {
