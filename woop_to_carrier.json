@@ -2857,6 +2857,13 @@
             "country": "FR"
           }
         },
+        "required": [
+          "addressLine1",
+          "postalCode",
+          "city",
+          "country",
+          "type"
+        ],
         "properties": {
           "addressLine1": {
             "type": "string",
@@ -2923,25 +2930,15 @@
             "description": "type = exchange place ,\nsubtype = \n- EXCHANGE_PLACE_STORE\n- EXCHANGE_PLACE_PFU\n- EXCHANGE_PLACE_STORAGE\n\ntype = pickup point ,\nsubtype = \n- PICKUP_POINT_AGENCY\n- PICKUP_POINT_POST_OFFICE\n- PICKUP_POINT_RELAY_WITH_LOCKER\n- PICKUP_POINT_RELAY_WITHOUT_LOCKER\n- PICKUP_POINT_DRIVE"
           },
           "networkOperatorCode": {
-            "$ref": "./models/PickUpPoint/networkOperatorCode.json",
-            "x-stoplight": {
-              "id": "u5krrtwyc6t78"
-            }
+            "$ref": "./models/PickUpPoint/networkOperatorCode.json"
           },
           "boxCategoryId": {
-            "$ref": "./models/PickUpPoint/boxCategoryId.json",
-            "x-stoplight": {
-              "id": "6r8ifs6zsxgrh"
-            }
+            "$ref": "./models/PickUpPoint/boxCategoryId.json"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/coordinates"
           }
-        },
-        "required": [
-          "addressLine1",
-          "postalCode",
-          "city",
-          "country",
-          "type"
-        ]
+        }
       },
       "interval": {
         "title": "Date slot (interval)",
