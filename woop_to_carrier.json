@@ -2685,7 +2685,8 @@
           "CANCELLED_PREPARATION_DELAYED",
           "CANCELLED_BY_CLIENT",
           "CANCELLED_NEW_ADDRESS",
-          "CANCELLED_INCOMPLETE"
+          "CANCELLED_INCOMPLETE",
+          "CANCELLED_FOR_UPDATED"
         ],
         "description": "List of possible reasons for delivery cancellation",
         "title": "Reason for delivery cancellation (cancelledReason)",
