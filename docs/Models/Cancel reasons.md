@@ -9,4 +9,5 @@ Code | Title
  `CANCELLED_PREPARATION_DELAYED`|Cancellation because preparation was delayed
  `CANCELLED_BY_CLIENT`|Cancellation by the customer
  `CANCELLED_NEW_ADDRESS`|Cancellation for change of address
- `CANCELLED_INCOMPLETE `|Cancellation due to incomplete order
+ `CANCELLED_INCOMPLETE`|Cancellation due to incomplete order
+ `CANCELLED_FOR_UPDATED`|Cancellation due to recreate order after updated 
