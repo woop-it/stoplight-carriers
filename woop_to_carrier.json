@@ -3010,6 +3010,10 @@
             "$ref": "#/components/schemas/deliveryInformations"
           },
           {
+            "type": "object",
+            "x-stoplight": {
+              "id": "x32qhwjpxfvgf"
+            },
             "required": [
               "picking",
               "delivery"
