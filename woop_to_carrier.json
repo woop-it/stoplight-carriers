@@ -2362,12 +2362,22 @@
             "quantity": 1
           }
         },
+        "required": [
+          "length",
+          "width",
+          "height",
+          "weight",
+          "quantity"
+        ],
         "properties": {
           "references": {
             "type": "array",
             "description": "references if provided by the retailer",
             "items": {
               "type": "object",
+              "required": [
+                "reference"
+              ],
               "properties": {
                 "reference": {
                   "type": "string",
@@ -2375,12 +2385,9 @@
                   "example": "ZRD3578UYG4"
                 },
                 "barcode": {
-                  "$ref": "./models/barcode.yaml"
+                  "$ref": "#/components/schemas/barcode"
                 }
-              },
-              "required": [
-                "reference"
-              ]
+              }
             }
           },
           "length": {
@@ -2400,6 +2407,9 @@
             "description": "List of products in the package",
             "items": {
               "type": "object",
+              "required": [
+                "type"
+              ],
               "properties": {
                 "type": {
                   "$ref": "#/components/schemas/productType"
@@ -2421,24 +2431,14 @@
                   "default": 1,
                   "description": "Quantity of product in the package"
                 }
-              },
-              "required": [
-                "type"
-              ]
+              }
             }
           },
           "quantity": {
             "type": "integer",
             "description": "Quantity of packages"
           }
-        },
-        "required": [
-          "length",
-          "width",
-          "height",
-          "weight",
-          "quantity"
-        ]
+        }
       },
       "quote": {
         "title": "Quote (quote)",
@@ -3701,6 +3701,41 @@
           "answer",
           "question"
         ]
+      },
+      "barcode": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "value": "54fd56g4f5gfd456sd",
+            "type": "barcode",
+            "format": "128"
+          }
+        },
+        "description": "Include a barcode / QRCode for each package involved",
+        "title": "Barcode (barcode)",
+        "required": [
+          "value",
+          "type",
+          "format"
+        ],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Barcode value"
+          },
+          "type": {
+            "description": "Barcode display type",
+            "enum": [
+              "barcode"
+            ]
+          },
+          "format": {
+            "description": "Barcode format",
+            "enum": [
+              "128"
+            ]
+          }
+        }
       }
     },
     "parameters": {
