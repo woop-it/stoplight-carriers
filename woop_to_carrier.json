@@ -5053,9 +5053,12 @@
             }
           }
         },
+        "description": "create_booking for appointments request. Indicates that the action is to create a reservation",
+        "title": "create_booking",
         "required": [
           "action",
-          "payload"
+          "payload",
+          "retailerCode"
         ],
         "properties": {
           "action": {
@@ -5088,10 +5091,14 @@
                 }
               }
             }
+          },
+          "retailerCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cggqos6xd6a89"
+            }
           }
-        },
-        "description": "create_booking for appointments request. Indicates that the action is to create a reservation",
-        "title": "create_booking"
+        }
       },
       "response_timeslotSearch": {
         "type": "object",
