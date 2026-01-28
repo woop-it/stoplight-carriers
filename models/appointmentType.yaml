@@ -1,0 +1,7 @@
+title: appointmentType
+x-stoplight:
+  id: rqdjzwj7veq4h
+enum:
+  - DELIVERY_REFINED
+  - DELIVERY_REPLANNED
+description: ''
