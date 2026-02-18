@@ -4511,6 +4511,12 @@
               "id": "4hrguyifweyoy"
             },
             "description": "Platform from where the package is sent (in a warehouse context) "
+          },
+          "externalCarrierService": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "viyr5idt9cddh"
+            }
           }
         }
       },
